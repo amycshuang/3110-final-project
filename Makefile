@@ -1,4 +1,4 @@
-MODULES=player pokemon
+MODULES=player pokemon author
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)
