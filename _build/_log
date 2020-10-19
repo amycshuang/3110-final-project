@@ -1,0 +1,18 @@
+### Starting build.
+# Target: player.mli.depends, tags: { extension:mli, file:player.mli, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -modules player.mli > player.mli.depends # cached
+# Target: pokemon.mli.depends, tags: { extension:mli, file:pokemon.mli, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -modules pokemon.mli > pokemon.mli.depends # cached
+# Target: pokemon.cmi, tags: { byte, compile, extension:mli, file:pokemon.mli, interf, ocaml, quiet }
+ocamlfind ocamlc -c -o pokemon.cmi pokemon.mli # cached
+# Target: player.cmi, tags: { byte, compile, extension:mli, file:player.mli, interf, ocaml, quiet }
+ocamlfind ocamlc -c -o player.cmi player.mli # cached
+# Target: player.ml.depends, tags: { extension:ml, file:player.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -modules player.ml > player.ml.depends # cached
+# Target: player.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:player.cmo, file:player.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -o player.cmo player.ml # cached
+# Target: pokemon.ml.depends, tags: { extension:ml, file:pokemon.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -modules pokemon.ml > pokemon.ml.depends # cached
+# Target: pokemon.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:pokemon.cmo, file:pokemon.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -o pokemon.cmo pokemon.ml # cached
+# Compilation successful.
