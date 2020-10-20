@@ -2,25 +2,13 @@
 # Target: player.mli.depends, tags: { extension:mli, file:player.mli, ocaml, ocamldep, quiet }
 ocamlfind ocamldep -modules player.mli > player.mli.depends
 # Target: pokemon.mli.depends, tags: { extension:mli, file:pokemon.mli, ocaml, ocamldep, quiet }
-ocamlfind ocamldep -modules pokemon.mli > pokemon.mli.depends # cached
+ocamlfind ocamldep -modules pokemon.mli > pokemon.mli.depends
 # Target: pokemon.cmi, tags: { byte, compile, extension:mli, file:pokemon.mli, interf, ocaml, quiet }
-ocamlfind ocamlc -c -o pokemon.cmi pokemon.mli # cached
-# Target: player.cmi, tags: { byte, compile, extension:mli, file:player.mli, interf, ocaml, quiet }
-ocamlfind ocamlc -c -o player.cmi player.mli
-# Target: player.ml.depends, tags: { extension:ml, file:player.ml, ocaml, ocamldep, quiet }
-ocamlfind ocamldep -modules player.ml > player.ml.depends
-# Target: player.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:player.cmo, file:player.ml, implem, ocaml, quiet }
-ocamlfind ocamlc -c -o player.cmo player.ml
-# Target: pokemon.ml.depends, tags: { extension:ml, file:pokemon.ml, ocaml, ocamldep, quiet }
-ocamlfind ocamldep -modules pokemon.ml > pokemon.ml.depends # cached
-# Target: pokemon.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:pokemon.cmo, file:pokemon.ml, implem, ocaml, quiet }
-ocamlfind ocamlc -c -o pokemon.cmo pokemon.ml # cached
-# Target: author.mli.depends, tags: { extension:mli, file:author.mli, ocaml, ocamldep, quiet }
-ocamlfind ocamldep -modules author.mli > author.mli.depends
-# Target: author.cmi, tags: { byte, compile, extension:mli, file:author.mli, interf, ocaml, quiet }
-ocamlfind ocamlc -c -o author.cmi author.mli
-# Target: author.ml.depends, tags: { extension:ml, file:author.ml, ocaml, ocamldep, quiet }
-ocamlfind ocamldep -modules author.ml > author.ml.depends
-# Target: author.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:author.cmo, file:author.ml, implem, ocaml, quiet }
-ocamlfind ocamlc -c -o author.cmo author.ml
-# Compilation successful.
+ocamlfind ocamlc -c -o pokemon.cmi pokemon.mli
++ ocamlfind ocamlc -c -o pokemon.cmi pokemon.mli
+File "pokemon.mli", line 47, characters 21-35:
+47 | val poke_from_json : Yojson.Basic.t -> t
+                          ^^^^^^^^^^^^^^
+Error: Unbound module Yojson
+Command exited with code 2.
+# Compilation unsuccessful.
