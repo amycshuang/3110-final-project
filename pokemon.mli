@@ -76,6 +76,9 @@ val get_caught : t -> caught
 (** [get_move t move_name] is the [move] represented by [move_name]. *)
 val get_move : t -> string -> move
 
+(** [type_from_string type] is the string representation of poke_type [type] *)
+val type_from_string : string -> poke_type
+
 (** [level_up t] is pokemon [t] with [t]'s level incremented by one if 
     [t]'s curr_exp exceeds [t]'s level_up_exp and [t]'s hp, attack, and defense
     are incremented accordinglt. *)

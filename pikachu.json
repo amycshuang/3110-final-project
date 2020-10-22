@@ -1,0 +1,23 @@
+{
+  "name": "pikachu",
+  "poke_type": "Electric",
+  "stats": {
+    "level": 5,
+    "hp": 3,
+    "attack": 3,
+    "defense": 3,
+    "curr_exp": 0,
+    "level_up_exp": 1
+  },
+  "caught": false,
+  "move_set": [
+    {
+      "move_type": "Electric",
+      "move_name": "thunderbolt"
+    },
+    {
+      "move_type": "Fire",
+      "move_name": "fire punch"
+    }
+  ]
+}

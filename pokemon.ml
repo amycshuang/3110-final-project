@@ -35,8 +35,46 @@ type t = {
   move_set: move list
 }
 
-let poke_from_json pokemon = 
-  failwith "Unimplemented"
+let stats_of_json j = {
+  level = j |> member "level" |> to_int;
+  hp = j |> member "hp" |> to_int;
+  attack = j |> member "attack" |> to_int;
+  defense = j |> member "defense" |> to_int;
+  curr_exp = j |> member "curr_exp" |> to_int;
+  level_up_exp = j |> member "level_up_exp" |> to_int; 
+}
+
+let type_from_string = function 
+  | "Bug" -> Bug
+  | "Dark" -> Dark
+  | "Dragon" -> Dragon
+  | "Electric" -> Electric
+  | "Fighting" -> Fighting
+  | "Fire" -> Fire
+  | "Flying" -> Flying
+  | "Ghost" -> Ghost
+  | "Grass" -> Grass
+  | "Ice" -> Ice
+  | "Normal" -> Normal
+  | "Poison" -> Poison
+  | "Psychic" -> Psychic
+  | "Rock" -> Rock
+  | "Steel" -> Steel
+  | "Water" -> Water
+  | _ -> raise (InvalidPokemon "this pokemon does not have a type")
+
+let moves_of_json j = {
+  move_type = j |> member "move_type" |> to_string |> type_from_string;
+  move_name = j |> member "move_name" |> to_string; 
+}
+
+let poke_from_json j = {
+  name = j |> member "name" |> to_string;
+  poke_type = j |> member "poke_type" |> to_string |> type_from_string;
+  stats = j |> member "stats" |> stats_of_json;
+  caught = j |> member "caught" |> to_bool;
+  move_set = j |> member "move_set" |> to_list |> List.map moves_of_json;
+}
 
 let get_name pokemon = pokemon.name
 
