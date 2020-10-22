@@ -1,4 +1,3 @@
-(* Note: You may introduce new code anywhere in this file. *) 
 open Pokemon
 
 type nickname = string
