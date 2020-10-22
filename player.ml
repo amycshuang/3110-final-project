@@ -41,7 +41,26 @@ let init_player name start_poke = {
   balance = 0;
 }
 
-let check_pc player = failwith "unimplemented"
+(** [move_poke poke_list acc ct] returns a list of Pokemon that need to be 
+    removed from poke_list so that poke_list has a length of 6 or less *)
+let rec move_poke poke_list acc =
+    match poke_list with
+    | [] -> []
+    | h::t -> if (List.length poke_list) > 6 then move_poke t (h::acc) else acc
+
+let check_pc player =
+  let to_move = move_poke player.poke_list [] in 
+  let new_pc = to_move @ player.bag.pc_box in
+  let new_poke_list = 
+  List.filter (fun x -> not (List.mem x to_move)) player.poke_list in
+  {
+    nickname = player.nickname;
+    starter = player.starter;
+    location = player.location;
+    poke_list = new_poke_list;
+    bag = {player.bag with pc_box=new_pc};
+    balance = player.balance
+  }
 
 let catch_poke player poke =
   let new_poke_list = List.cons poke player.poke_list in
