@@ -1,7 +1,6 @@
 open OUnit2
 open Pokemon
 
-
 let pikachu = poke_from_json (Yojson.Basic.from_file "pikachu.json")
 
 let getter_test (name: string) (f) (pokemon: Pokemon.t) (expected_output) : 

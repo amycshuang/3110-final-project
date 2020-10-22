@@ -110,32 +110,13 @@ let level_up pokemon =
       defense = curr_stats.defense + 2;
       curr_exp = curr_stats.level_up_exp - curr_stats.curr_exp;
       level_up_exp = curr_stats.level_up_exp + 2;
-    } in 
-    {
-      name = pokemon.name;
-      poke_type = pokemon.poke_type;
-      stats = new_stats;
-      caught = pokemon.caught;
-      move_set = pokemon.move_set;
-    }
+    } in { pokemon with stats = new_stats;}
   else pokemon
 
 let increase_exp p1 p2 = 
   let p2_lvl = float_of_int p2.stats.level in 
   let exp = int_of_float (p2_lvl *. 0.5) in 
   let curr_stats = p1.stats in 
-  let new_stats = {
-    level = curr_stats.level;
-    hp = curr_stats.hp;
-    attack = curr_stats.attack;
-    defense = curr_stats.defense;
-    curr_exp = curr_stats.level_up_exp + exp;
-    level_up_exp = curr_stats.level_up_exp;
-  } in 
-  { 
-    name = p1.name;
-    poke_type = p1.poke_type;
-    stats = new_stats;
-    caught = p1.caught;
-    move_set = p1.move_set;
-  }
+  let new_stats = 
+    { curr_stats with curr_exp = curr_stats.level_up_exp + exp; } in 
+  { p1 with stats = new_stats;} 
