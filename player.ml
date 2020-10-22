@@ -43,4 +43,15 @@ let init_player name start_poke = {
 
 let check_pc player = failwith "unimplemented"
 
-let catch_poke player poke = failwith "unimplemented"
+let catch_poke player poke =
+  let new_poke_list = List.cons poke player.poke_list in
+  let updated_player =
+    {
+      nickname = player.nickname;
+      starter = player.starter;
+      location = player.location;
+      poke_list = new_poke_list;
+      bag = player.bag;
+      balance = player.balance
+    } in
+  check_pc updated_player
