@@ -13,5 +13,11 @@ default: build
 build:
 	$(OCAMLBUILD) $(OBJECTS)
 
+player:
+	utop -init player.ml
+
+pokemon:
+	utop -init pokemon.ml
+
 test:
 	$(OCAMLBUILD) -tag 'debug' $(TEST) && ./$(TEST)  
