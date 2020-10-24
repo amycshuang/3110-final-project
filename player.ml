@@ -71,5 +71,5 @@ let catch_poke player poke =
     } in
   check_pc updated_player
 
-(* let get_poke_list player  = 
-   List.sort compare (List.map) (fun x -> x.name) player.poke_list *)
+let get_poke_list player = 
+  List.map (fun x -> (get_name x, get_level x)) player.poke_list

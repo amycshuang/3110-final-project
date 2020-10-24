@@ -19,8 +19,8 @@ val init_player : nickname -> Pokemon.t -> t
     Pokemon party or PC box. *)
 val catch_poke : t -> Pokemon.t -> t
 
-(** [get_poke_list player] is a list of the names of the pokemon in a player's
-    pokemon list. *)
-val get_poke_list : t -> Pokemon.name list
+(** [get_poke_list player] is a list of the names of the pokemon and their levels
+    in a player's pokemon list. *)
+val get_poke_list : t -> (Pokemon.name * Pokemon.level) list
 (** getter functions:
     - bag, each list *)
