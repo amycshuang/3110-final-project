@@ -1,5 +1,6 @@
 open OUnit2
 open Pokemon
+open Player
 
 let pikachu = poke_from_json (Yojson.Basic.from_file "pikachu.json")
 
@@ -24,6 +25,11 @@ let pokemon_get_function_tests =
     getter_test "get_caught is false" get_caught pikachu false;
   ]
 
+
+let player_tests =
+  [
+
+  ]
 let suite =
   "test suite for A2"  >::: List.flatten [
     pokemon_get_function_tests;

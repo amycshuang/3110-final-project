@@ -44,6 +44,8 @@ let rec move_poke poke_list acc =
   | [] -> []
   | h::t -> if (List.length poke_list) > 6 then move_poke t (h::acc) else acc
 
+(** [check_pc player] ensures the player only has 6 pokemon in the player's 
+    party, otherwise, extra pokemon are moved to the PC box. *)
 let check_pc player =
   let to_move = move_poke player.poke_list [] in 
   let new_pc = to_move @ player.bag.pc_box in
@@ -68,3 +70,6 @@ let catch_poke player poke =
       balance = player.balance
     } in
   check_pc updated_player
+
+(* let get_poke_list player  = 
+   List.sort compare (List.map) (fun x -> x.name) player.poke_list *)
