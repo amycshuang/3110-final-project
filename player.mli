@@ -22,3 +22,6 @@ val check_pc : t -> t
 (** [catch_poke player poke] catches a Pokemon and adds it to the player's
     Pokemon party or PC box. *)
 val catch_poke : t -> Pokemon.t -> t
+
+(** getter functions:
+    - bag, each list *)
