@@ -1,9 +1,0 @@
-2020-10-22T20:02:53+00:00 en-ci-cisugcl20#02 I: Start test test suite for A2:1:get_poke_type is Electric.
-2020-10-22T20:02:53+00:00 en-ci-cisugcl20#02 I: Test test suite for A2:1:get_poke_type is Electric is successful.
-2020-10-22T20:02:53+00:00 en-ci-cisugcl20#02 I: End test test suite for A2:1:get_poke_type is Electric.
-2020-10-22T20:02:53+00:00 en-ci-cisugcl20#02 I: Start test test suite for A2:5:get_defense is 3.
-2020-10-22T20:02:53+00:00 en-ci-cisugcl20#02 I: Test test suite for A2:5:get_defense is 3 is successful.
-2020-10-22T20:02:53+00:00 en-ci-cisugcl20#02 I: End test test suite for A2:5:get_defense is 3.
-2020-10-22T20:02:53+00:00 en-ci-cisugcl20#02 I: Start test test suite for A2:6:get_curr_exp is 0.
-2020-10-22T20:02:53+00:00 en-ci-cisugcl20#02 I: Test test suite for A2:6:get_curr_exp is 0 is successful.
-2020-10-22T20:02:53+00:00 en-ci-cisugcl20#02 I: End test test suite for A2:6:get_curr_exp is 0.
