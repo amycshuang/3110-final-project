@@ -1,128 +1,128 @@
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Runner: processes
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Chooser: simple
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Configuration suite_name = "test suite for A2"
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Configuration cache_filename = "/home/klw242/3110/3110-final-project/_build/oUnit-$(suite_name).cache"
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Configuration run_gc_full_major = "true"
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Configuration display = "true"
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Configuration results_style_1_X = "false"
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Configuration testdata_dir = "none"
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Configuration health_check_interval = "1."
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Configuration verbose = "false"
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Configuration chooser = "simple"
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Configuration output_html_dir = "none"
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Configuration processes_kill_period = "5."
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Configuration runner = "processes"
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Configuration shards = "2"
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Configuration processes_grace_period = "5."
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Configuration log_encoding = "utf-8"
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Configuration output_junit_file = "none"
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Configuration ci = "false"
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Configuration output_file = "/home/klw242/3110/3110-final-project/_build/oUnit-$(suite_name)-$(shard_id).log"
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Using 2 workers maximum.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Starting worker number en-ci-cisugcl19#01.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Worker en-ci-cisugcl19#01 started.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Starting worker number en-ci-cisugcl19#02.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Worker en-ci-cisugcl19#02 started.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:1:get_poke_type is Electric, test suite for A2:0:get_name is Pikachu.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 I: Start test test suite for A2:0:get_name is Pikachu.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:1:get_poke_type is Electric, test suite for A2:0:get_name is Pikachu.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 I: Test test suite for A2:0:get_name is Pikachu is successful.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#02 I: Start test test suite for A2:1:get_poke_type is Electric.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:1:get_poke_type is Electric, test suite for A2:0:get_name is Pikachu.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 I: End test test suite for A2:0:get_name is Pikachu.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#02 I: Test test suite for A2:1:get_poke_type is Electric is successful.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:1:get_poke_type is Electric, test suite for A2:0:get_name is Pikachu.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#02 I: End test test suite for A2:1:get_poke_type is Electric.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:2:get_level is 5, test suite for A2:1:get_poke_type is Electric.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 I: Start test test suite for A2:2:get_level is 5.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:3:get_hp is 3, test suite for A2:2:get_level is 5.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#02 I: Start test test suite for A2:3:get_hp is 3.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:3:get_hp is 3, test suite for A2:2:get_level is 5.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 I: Test test suite for A2:2:get_level is 5 is successful.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:3:get_hp is 3, test suite for A2:2:get_level is 5.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 I: End test test suite for A2:2:get_level is 5.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:3:get_hp is 3, test suite for A2:2:get_level is 5.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:4:get_attack is 3, test suite for A2:3:get_hp is 3.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 I: Start test test suite for A2:4:get_attack is 3.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:4:get_attack is 3, test suite for A2:3:get_hp is 3.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#02 I: Test test suite for A2:3:get_hp is 3 is successful.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:4:get_attack is 3, test suite for A2:3:get_hp is 3.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#02 I: End test test suite for A2:3:get_hp is 3.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 I: Test test suite for A2:4:get_attack is 3 is successful.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:4:get_attack is 3, test suite for A2:3:get_hp is 3.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 I: End test test suite for A2:4:get_attack is 3.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:5:get_defense is 3, test suite for A2:4:get_attack is 3.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:6:get_curr_exp is 0, test suite for A2:5:get_defense is 3.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#02 I: Start test test suite for A2:5:get_defense is 3.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 I: Start test test suite for A2:6:get_curr_exp is 0.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:6:get_curr_exp is 0, test suite for A2:5:get_defense is 3.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#02 I: Test test suite for A2:5:get_defense is 3 is successful.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 I: Test test suite for A2:6:get_curr_exp is 0 is successful.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:6:get_curr_exp is 0, test suite for A2:5:get_defense is 3.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#02 I: End test test suite for A2:5:get_defense is 3.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 I: End test test suite for A2:6:get_curr_exp is 0.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:6:get_curr_exp is 0, test suite for A2:5:get_defense is 3.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:8:get_caught is false, test suite for A2:7:get_level_up_exp is 1.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#02 I: Start test test suite for A2:8:get_caught is false.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:8:get_caught is false, test suite for A2:7:get_level_up_exp is 1.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 I: Start test test suite for A2:7:get_level_up_exp is 1.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:8:get_caught is false, test suite for A2:7:get_level_up_exp is 1.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 I: Test test suite for A2:7:get_level_up_exp is 1 is successful.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:8:get_caught is false, test suite for A2:7:get_level_up_exp is 1.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 I: End test test suite for A2:7:get_level_up_exp is 1.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:8:get_caught is false, test suite for A2:7:get_level_up_exp is 1.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Still 2 tests running : test suite for A2:9:Checking pikachu, test suite for A2:8:get_caught is false.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:9:Checking pikachu, test suite for A2:8:get_caught is false.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 I: Start test test suite for A2:9:Checking pikachu.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Still 2 tests running : test suite for A2:9:Checking pikachu, test suite for A2:8:get_caught is false.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:9:Checking pikachu, test suite for A2:8:get_caught is false.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#02 I: Test test suite for A2:8:get_caught is false is successful.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Still 2 tests running : test suite for A2:9:Checking pikachu, test suite for A2:8:get_caught is false.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:9:Checking pikachu, test suite for A2:8:get_caught is false.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#02 I: End test test suite for A2:8:get_caught is false.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Still 2 tests running : test suite for A2:9:Checking pikachu, test suite for A2:8:get_caught is false.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:9:Checking pikachu, test suite for A2:8:get_caught is false.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Still 1 tests running : test suite for A2:9:Checking pikachu.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 1 tests running: test suite for A2:9:Checking pikachu.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 E: Test test suite for A2:9:Checking pikachu has failed.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 E: not equal in test test suite for A2:9:Checking pikachu.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 E: Raised at file "src/lib/ounit2/advanced/oUnitAssert.ml", line 45, characters 8-27
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 E: Called from file "src/lib/ounit2/advanced/oUnitRunner.ml", line 83, characters 13-26
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 E: 
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Still 1 tests running : test suite for A2:9:Checking pikachu.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 1 tests running: test suite for A2:9:Checking pikachu.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#01 I: End test test suite for A2:9:Checking pikachu.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Still 1 tests running : test suite for A2:9:Checking pikachu.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 1 tests running: test suite for A2:9:Checking pikachu.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: 0 tests running: .
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Worker en-ci-cisugcl19#02 has ended.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Worker en-ci-cisugcl19#01 has ended.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Used 2 worker during test execution.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Run 6 tests with shard en-ci-cisugcl19#01.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Run 4 tests with shard en-ci-cisugcl19#02.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Check health of shard en-ci-cisugcl19#01, 1 times.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Check health of shard en-ci-cisugcl19#02, 4 times.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: ==============
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Summary:
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 E: Test test suite for A2:9:Checking pikachu has failed.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 E: not equal in test test suite for A2:9:Checking pikachu.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 E: Raised at file "src/lib/ounit2/advanced/oUnitAssert.ml", line 45, characters 8-27
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 E: Called from file "src/lib/ounit2/advanced/oUnitRunner.ml", line 83, characters 13-26
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 E: 
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Test test suite for A2:8:get_caught is false is successful.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Test test suite for A2:7:get_level_up_exp is 1 is successful.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Test test suite for A2:6:get_curr_exp is 0 is successful.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Test test suite for A2:5:get_defense is 3 is successful.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Test test suite for A2:4:get_attack is 3 is successful.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Test test suite for A2:3:get_hp is 3 is successful.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Test test suite for A2:2:get_level is 5 is successful.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Test test suite for A2:1:get_poke_type is Electric is successful.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Test test suite for A2:0:get_name is Pikachu is successful.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Ran: 10 tests in: 0.19 seconds.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Cases: 10.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Tried: 10.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Errors: 0.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Failures: 1.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Skip: 0.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Todo: 0.
-2020-10-24T18:49:17+00:00 en-ci-cisugcl19#00 I: Timeout: 0.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Runner: processes
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Chooser: simple
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Configuration suite_name = "test suite for A2"
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Configuration cache_filename = "/home/klw242/3110/3110-final-project/_build/oUnit-$(suite_name).cache"
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Configuration run_gc_full_major = "true"
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Configuration display = "true"
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Configuration results_style_1_X = "false"
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Configuration testdata_dir = "none"
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Configuration health_check_interval = "1."
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Configuration verbose = "false"
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Configuration chooser = "simple"
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Configuration output_html_dir = "none"
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Configuration processes_kill_period = "5."
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Configuration runner = "processes"
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Configuration shards = "2"
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Configuration processes_grace_period = "5."
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Configuration log_encoding = "utf-8"
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Configuration output_junit_file = "none"
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Configuration ci = "false"
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Configuration output_file = "/home/klw242/3110/3110-final-project/_build/oUnit-$(suite_name)-$(shard_id).log"
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Using 2 workers maximum.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Starting worker number en-ci-cisugcl19#01.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Worker en-ci-cisugcl19#01 started.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Starting worker number en-ci-cisugcl19#02.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Worker en-ci-cisugcl19#02 started.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:1:get_poke_type is Electric, test suite for A2:0:get_name is Pikachu.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 I: Start test test suite for A2:0:get_name is Pikachu.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:1:get_poke_type is Electric, test suite for A2:0:get_name is Pikachu.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#02 I: Start test test suite for A2:1:get_poke_type is Electric.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:1:get_poke_type is Electric, test suite for A2:0:get_name is Pikachu.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 I: Test test suite for A2:0:get_name is Pikachu is successful.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:1:get_poke_type is Electric, test suite for A2:0:get_name is Pikachu.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 I: End test test suite for A2:0:get_name is Pikachu.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:1:get_poke_type is Electric, test suite for A2:0:get_name is Pikachu.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:2:get_level is 5, test suite for A2:1:get_poke_type is Electric.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 I: Start test test suite for A2:2:get_level is 5.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:2:get_level is 5, test suite for A2:1:get_poke_type is Electric.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#02 I: Test test suite for A2:1:get_poke_type is Electric is successful.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:2:get_level is 5, test suite for A2:1:get_poke_type is Electric.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#02 I: End test test suite for A2:1:get_poke_type is Electric.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:2:get_level is 5, test suite for A2:1:get_poke_type is Electric.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:3:get_hp is 3, test suite for A2:2:get_level is 5.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 I: Test test suite for A2:2:get_level is 5 is successful.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#02 I: Start test test suite for A2:3:get_hp is 3.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:3:get_hp is 3, test suite for A2:2:get_level is 5.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 I: End test test suite for A2:2:get_level is 5.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:3:get_hp is 3, test suite for A2:2:get_level is 5.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:4:get_attack is 3, test suite for A2:3:get_hp is 3.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 I: Start test test suite for A2:4:get_attack is 3.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:4:get_attack is 3, test suite for A2:3:get_hp is 3.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#02 I: Test test suite for A2:3:get_hp is 3 is successful.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:4:get_attack is 3, test suite for A2:3:get_hp is 3.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#02 I: End test test suite for A2:3:get_hp is 3.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:4:get_attack is 3, test suite for A2:3:get_hp is 3.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 I: Test test suite for A2:4:get_attack is 3 is successful.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:5:get_defense is 3, test suite for A2:4:get_attack is 3.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 I: End test test suite for A2:4:get_attack is 3.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#02 I: Start test test suite for A2:5:get_defense is 3.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:5:get_defense is 3, test suite for A2:4:get_attack is 3.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:6:get_curr_exp is 0, test suite for A2:5:get_defense is 3.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 I: Start test test suite for A2:6:get_curr_exp is 0.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:6:get_curr_exp is 0, test suite for A2:5:get_defense is 3.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#02 I: Test test suite for A2:5:get_defense is 3 is successful.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:6:get_curr_exp is 0, test suite for A2:5:get_defense is 3.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#02 I: End test test suite for A2:5:get_defense is 3.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:6:get_curr_exp is 0, test suite for A2:5:get_defense is 3.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:7:get_level_up_exp is 1, test suite for A2:6:get_curr_exp is 0.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 I: Test test suite for A2:6:get_curr_exp is 0 is successful.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:7:get_level_up_exp is 1, test suite for A2:6:get_curr_exp is 0.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 I: End test test suite for A2:6:get_curr_exp is 0.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:7:get_level_up_exp is 1, test suite for A2:6:get_curr_exp is 0.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:8:get_caught is false, test suite for A2:7:get_level_up_exp is 1.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 I: Start test test suite for A2:8:get_caught is false.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:8:get_caught is false, test suite for A2:7:get_level_up_exp is 1.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#02 I: Start test test suite for A2:7:get_level_up_exp is 1.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 I: Test test suite for A2:8:get_caught is false is successful.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:8:get_caught is false, test suite for A2:7:get_level_up_exp is 1.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#02 I: Test test suite for A2:7:get_level_up_exp is 1 is successful.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 I: End test test suite for A2:8:get_caught is false.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:8:get_caught is false, test suite for A2:7:get_level_up_exp is 1.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#02 I: End test test suite for A2:7:get_level_up_exp is 1.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Still 2 tests running : test suite for A2:9:Checking pikachu, test suite for A2:7:get_level_up_exp is 1.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 2 tests running: test suite for A2:9:Checking pikachu, test suite for A2:7:get_level_up_exp is 1.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 I: Start test test suite for A2:9:Checking pikachu.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Still 1 tests running : test suite for A2:9:Checking pikachu.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 1 tests running: test suite for A2:9:Checking pikachu.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 E: Test test suite for A2:9:Checking pikachu has failed.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 E: not equal in test test suite for A2:9:Checking pikachu.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 E: Raised at file "src/lib/ounit2/advanced/oUnitAssert.ml", line 45, characters 8-27
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 E: Called from file "src/lib/ounit2/advanced/oUnitRunner.ml", line 83, characters 13-26
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 E: 
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Still 1 tests running : test suite for A2:9:Checking pikachu.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 1 tests running: test suite for A2:9:Checking pikachu.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#01 I: End test test suite for A2:9:Checking pikachu.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Still 1 tests running : test suite for A2:9:Checking pikachu.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 1 tests running: test suite for A2:9:Checking pikachu.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: 0 tests running: .
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Worker en-ci-cisugcl19#02 has ended.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Worker en-ci-cisugcl19#01 has ended.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Used 2 worker during test execution.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Run 6 tests with shard en-ci-cisugcl19#01.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Run 4 tests with shard en-ci-cisugcl19#02.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Check health of shard en-ci-cisugcl19#01, 1 times.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Check health of shard en-ci-cisugcl19#02, 4 times.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: ==============
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Summary:
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 E: Test test suite for A2:9:Checking pikachu has failed.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 E: not equal in test test suite for A2:9:Checking pikachu.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 E: Raised at file "src/lib/ounit2/advanced/oUnitAssert.ml", line 45, characters 8-27
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 E: Called from file "src/lib/ounit2/advanced/oUnitRunner.ml", line 83, characters 13-26
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 E: 
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Test test suite for A2:7:get_level_up_exp is 1 is successful.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Test test suite for A2:8:get_caught is false is successful.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Test test suite for A2:6:get_curr_exp is 0 is successful.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Test test suite for A2:5:get_defense is 3 is successful.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Test test suite for A2:4:get_attack is 3 is successful.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Test test suite for A2:3:get_hp is 3 is successful.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Test test suite for A2:2:get_level is 5 is successful.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Test test suite for A2:1:get_poke_type is Electric is successful.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Test test suite for A2:0:get_name is Pikachu is successful.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Ran: 10 tests in: 0.19 seconds.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Cases: 10.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Tried: 10.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Errors: 0.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Failures: 1.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Skip: 0.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Todo: 0.
+2020-10-25T01:22:36+00:00 en-ci-cisugcl19#00 I: Timeout: 0.
