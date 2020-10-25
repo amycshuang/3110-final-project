@@ -2,3 +2,7 @@
 #require "yojson";;
 #require "ANSITerminal";;
 #directory "_build";;
+#load "pokemon.cmo";;
+#load "player.cmo";;
+open Pokemon
+open Player

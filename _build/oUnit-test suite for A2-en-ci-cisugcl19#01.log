@@ -1,0 +1,15 @@
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#01 I: Start test test suite for A2:0:get_name is Pikachu.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#01 I: Test test suite for A2:0:get_name is Pikachu is successful.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#01 I: End test test suite for A2:0:get_name is Pikachu.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#01 I: Start test test suite for A2:2:get_level is 5.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#01 I: Test test suite for A2:2:get_level is 5 is successful.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#01 I: End test test suite for A2:2:get_level is 5.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#01 I: Start test test suite for A2:4:get_attack is 3.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#01 I: Test test suite for A2:4:get_attack is 3 is successful.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#01 I: End test test suite for A2:4:get_attack is 3.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#01 I: Start test test suite for A2:6:get_curr_exp is 0.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#01 I: Test test suite for A2:6:get_curr_exp is 0 is successful.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#01 I: End test test suite for A2:6:get_curr_exp is 0.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#01 I: Start test test suite for A2:8:get_caught is false.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#01 I: Test test suite for A2:8:get_caught is false is successful.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#01 I: End test test suite for A2:8:get_caught is false.

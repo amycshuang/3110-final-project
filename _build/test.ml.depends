@@ -1,1 +1,1 @@
-test.ml: List OUnit2 Pokemon Yojson
+test.ml: List OUnit2 Player Pokemon Yojson

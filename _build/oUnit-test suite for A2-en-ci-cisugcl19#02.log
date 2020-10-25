@@ -1,0 +1,15 @@
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#02 I: Start test test suite for A2:1:get_poke_type is Electric.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#02 I: Test test suite for A2:1:get_poke_type is Electric is successful.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#02 I: End test test suite for A2:1:get_poke_type is Electric.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#02 I: Start test test suite for A2:3:get_hp is 3.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#02 I: Test test suite for A2:3:get_hp is 3 is successful.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#02 I: End test test suite for A2:3:get_hp is 3.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#02 I: Start test test suite for A2:5:get_defense is 3.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#02 I: Test test suite for A2:5:get_defense is 3 is successful.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#02 I: End test test suite for A2:5:get_defense is 3.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#02 I: Start test test suite for A2:7:get_level_up_exp is 1.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#02 I: Test test suite for A2:7:get_level_up_exp is 1 is successful.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#02 I: End test test suite for A2:7:get_level_up_exp is 1.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#02 I: Start test test suite for A2:9:Checking pikachu.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#02 I: Test test suite for A2:9:Checking pikachu is successful.
+2020-10-25T01:52:06+00:00 en-ci-cisugcl19#02 I: End test test suite for A2:9:Checking pikachu.

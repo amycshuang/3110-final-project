@@ -15,10 +15,12 @@ type nickname = string
     nickname and a starter pokemon. *)
 val init_player : nickname -> Pokemon.t -> t
 
-(** [check_pc player] ensures the player only has 6 pokemon in the player's 
-    party, otherwise, extra pokemon are moved to the PC box. *)
-val check_pc : t -> t
-
 (** [catch_poke player poke] catches a Pokemon and adds it to the player's
     Pokemon party or PC box. *)
 val catch_poke : t -> Pokemon.t -> t
+
+(** [get_poke_list player] is a list of the names of the pokemon and their levels
+    in a player's pokemon list. *)
+val get_poke_list : t -> (Pokemon.name * Pokemon.level) list
+(** getter functions:
+    - bag, each list *)
