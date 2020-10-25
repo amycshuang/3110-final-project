@@ -34,7 +34,7 @@ let player_poke_test
 
 let player_test =
   [
-    player_poke_test "Checking pikachu" player [("Pikachu", 5)]
+    player_poke_test "Checking pikachu" player [("Pikachu", 5);];
   ]
 let suite =
   "test suite for A2"  >::: List.flatten [
