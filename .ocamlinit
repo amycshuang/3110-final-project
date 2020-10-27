@@ -1,8 +1,12 @@
 #require "ounit2";;
 #require "yojson";;
+#require "graphics";;
 #require "ANSITerminal";;
+#require "camlimages.all_formats";;
+#require "camlimages.graphics";;
 #directory "_build";;
 #load "pokemon.cmo";;
 #load "player.cmo";;
+#use "gui.ml";;
 open Pokemon
 open Player
