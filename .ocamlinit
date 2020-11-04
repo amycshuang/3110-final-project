@@ -4,5 +4,11 @@
 #directory "_build";;
 #load "pokemon.cmo";;
 #load "player.cmo";;
+#load "command.cmo";;
+#load "testCommand.cmo";;
+#load_rec "pokemon.cmo";;
+#load_rec "player.cmo";;
+#load_rec "command.cmo";;
+#load_rec "testCommand.cmo";;
 open Pokemon
 open Player

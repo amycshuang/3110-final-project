@@ -13,9 +13,10 @@ type level_up_exp = int
 type caught = bool
 exception InvalidPokemon of string
 
+type move_name = string
 type move = {
   move_type: poke_type;
-  move_name: string;
+  move_name: move_name;
 }
 
 type stats = {
@@ -99,6 +100,10 @@ let get_move pokemon move_name =
           pokemon.move_set with
   | [] -> raise (InvalidPokemon "pokemon is not valid")
   | h :: t -> h
+
+let valid_move_name pokemon move_name = 
+  (List.filter (fun move' -> move'.move_name = move_name)
+     pokemon.move_set) <> []
 
 let level_up pokemon = 
   let curr_stats = pokemon.stats in
