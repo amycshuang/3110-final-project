@@ -2,6 +2,14 @@ open Graphics
 open Images
 
 type relief = Top | Bot | Flat;;
+type block = TallGrass 
+           | Water
+           | Grass
+           | Road
+           | Gym
+           | PokeCenter
+           | House
+
 type box_config =
   { x:int; y:int; w:int; h:int; bw:int; mutable r:relief;
     b1_col : Graphics.color;
@@ -66,10 +74,38 @@ let rec create_grid nb_col n sep b  =
     let b1 = {b with x=nx; y=ny} in
     b1::(create_grid nb_col (n-1) sep b);;
 
-let () = Graphics.open_graph " 1200x700";;
+let () = Graphics.open_graph "";;
 
-let img = Png.load_as_rgb24 "Map.png" [];;
-let g = Graphic_image.of_image img;;
+let img1 = Png.load_as_rgb24 "Map.png" [];;
+let g1 = Graphic_image.of_image img1;;
+let img2 = Png.load_as_rgb24 "actual.png" [];;
+let g2 = Graphic_image.of_image img2;;
 
-Graphics.draw_image g 0 0;;
+let vb = 
+  let b =  {x=0; y=0; w=50;h=50; bw=2;
+            b1_col=gray1; b2_col=gray3; b_col=gray2; r=Top} in 
+  Array.of_list (create_grid 5 29 0 b);;
+
+let render = 
+  let () = clear_graph () in
+  (* let _ = Graphics.draw_image g1 0 0 in 
+     let _ = Graphics.draw_image g2 10 10 in *)
+  let _ = Array.iter draw_box vb in
+  let () = synchronize () in ()
+
+
+(* 
+  [[Grass;TallGrass;Gym;Water;Grass];
+  [Grass;TallGrass;Path;Water;Grass]]
+  [Grass;TallGrass;Path;Path;TallGrass]]
+
+  | TallGrass 
+  | Water
+  | Grass
+  | Road
+  | Gym
+  | PokeCenter
+  | House
+
+*)
 
