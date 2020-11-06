@@ -2,7 +2,7 @@
 #require "yojson";;
 #require "graphics";;
 #require "ANSITerminal";;
-#require "camlimages.all_formats";;
+#require "camlimages.png";;
 #require "camlimages.graphics";;
 #directory "_build";;
 #load "pokemon.cmo";;

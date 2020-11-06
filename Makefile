@@ -5,7 +5,7 @@ MLIS=$(MODULES:=.mli)
 TEST=test.byte
 MAIN=main.byte
 OCAMLBUILD=ocamlbuild -use-ocamlfind
-PKGS=oUnit,yojson,ANSITerminal,graphics,camlimages,Map.png,character.png
+PKGS=oUnit,yojson,ANSITerminal,graphics,camlimages,Map.png
 
 default: build
 	utop
@@ -18,3 +18,6 @@ test:
 
 play:
 	$(OCAMLBUILD) $(MAIN) && ./$(MAIN)
+
+zip:
+	zip -r search.zip *.ml* _tags Makefile engine_test

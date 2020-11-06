@@ -14,7 +14,7 @@ type bag = {
 (** The type of values representing a player. *)
 type player = {
   nickname : nickname;
-  location : float * float;
+  location : int * int;
   poke_list : Pokemon.t list;
   bag : bag;
   balance : int;
@@ -31,7 +31,7 @@ let empty_bag = {
 
 let init_player name start_poke = {
   nickname = name;
-  location = (0., 0.);
+  location = (0, 0);
   poke_list = [start_poke];
   bag = empty_bag;
   balance = 0;
