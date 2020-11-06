@@ -14,7 +14,7 @@ type bag = {
 (** The type of values representing a player. *)
 type player = {
   nickname : nickname;
-  location : int * int;
+  location : int;
   poke_list : Pokemon.t list;
   bag : bag;
   balance : int;
@@ -29,9 +29,9 @@ let empty_bag = {
   inventory = [];
 }
 
-let init_player name start_poke = {
+let init_player name start_poke loc = {
   nickname = name;
-  location = (0, 0);
+  location = loc;
   poke_list = [start_poke];
   bag = empty_bag;
   balance = 0;
@@ -73,3 +73,7 @@ let catch_poke player poke =
 
 let get_poke_list player = 
   List.map (fun x -> (get_name x, get_level x)) player.poke_list
+
+let get_loc player = player.location
+
+let set_loc player x = {player with location=x}
