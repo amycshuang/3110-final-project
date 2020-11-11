@@ -1,4 +1,4 @@
-MODULES=player gui pokemon author input
+MODULES=state player gui pokemon author main
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)

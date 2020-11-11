@@ -14,7 +14,7 @@ type bag = {
 (** The type of values representing a player. *)
 type player = {
   nickname : nickname;
-  location : int;
+  location : int * int;
   poke_list : Pokemon.t list;
   bag : bag;
   balance : int;

@@ -1,16 +1,26 @@
+open State
+open Gui
+
 (** [play_game f] starts the adventure in file [f]. *)
-let play_game f =
-  failwith "Unimplemented"
+let rec play_game player =
+  let input = get_key () in
+  let p = move_map player (map_key input) in
+  render trying p;
+  play_game p
+
+
 
 (** [main ()] prompts for the game to play, then starts it. *)
 let main () =
-  ANSITerminal.(print_string [red]
-                  "\n\nWelcome to the 3110 Text Adventure Game engine.\n");
-  print_endline "Please enter the name of the game file you want to load.\n";
-  print_string  "> ";
-  match read_line () with
-  | exception End_of_file -> ()
-  | file_name -> play_game file_name
+  (* ANSITerminal.(print_string [red]
+                  "\n\nHello trainer, welcome to the PoKaml!\n");
+     print_endline "What should I call you?\n";
+     print_string  "> ";
+     match read_line () with
+     | exception End_of_file -> ()
+     | file_name -> play_game file_name *)
+  play_game test_player
+
 
 (* Execute the game engine. *)
 let () = main ()

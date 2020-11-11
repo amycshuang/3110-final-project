@@ -13,7 +13,7 @@ type nickname = string
 
 (** [init_player name start_poke] creates and initializes a player with a 
     nickname and a starter pokemon. *)
-val init_player : nickname -> Pokemon.t -> int -> t
+val init_player : nickname -> Pokemon.t -> int * int -> t
 
 (** [catch_poke player poke] catches a Pokemon and adds it to the player's
     Pokemon party or PC box. *)
@@ -26,7 +26,7 @@ val get_poke_list : t -> (Pokemon.name * Pokemon.level) list
     - bag, each list *)
 
 (** [get_loc player] is a block on which the player is on. *)
-val get_loc : t -> int
+val get_loc : t -> int * int
 
-(** [set_loc player x] sets the new block the player is on. *)
-val set_loc : t -> int -> t
+(** [set_loc player x] is the player with new location x. *)
+val set_loc : t -> int * int -> t
