@@ -1,1 +1,1 @@
-val render : State.block array array -> Player.t -> unit
+val render : State.map -> Player.t -> unit

@@ -9,7 +9,6 @@ let rec play_game player =
   play_game p
 
 
-
 (** [main ()] prompts for the game to play, then starts it. *)
 let main () =
   (* ANSITerminal.(print_string [red]
@@ -19,8 +18,8 @@ let main () =
      match read_line () with
      | exception End_of_file -> ()
      | file_name -> play_game file_name *)
+  (* Must take in a map name *)
   play_game test_player
-
 
 (* Execute the game engine. *)
 let () = main ()

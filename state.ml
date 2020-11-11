@@ -2,7 +2,7 @@ open Pokemon
 open Player
 open Graphics
 
-type status = Intro | Playing | Win
+type status = Intro | Walking | Battling | Win
 
 type block = TallGrass 
            | Water
@@ -16,7 +16,8 @@ type move = Up | Left | Right | Down
 
 let get_key () = (wait_next_event [Key_pressed]).Graphics.key
 
-(**[map_key ch] maps pressed character to an option of action*)
+type map = block array array
+
 let map_key ch : move option =
   match ch with
   | 'w' -> Some Up
@@ -74,3 +75,7 @@ let trying = [|[|Grass; Grass; Grass; Grass; Water; Water; Water; Road;
                  Water|]|]
 
 let test_player = init_player "testing" pikachu (player_start trying)
+
+let player_block p map = 
+  let (x, y) = get_loc p in
+  (map.(x)).(y)
