@@ -1,7 +1,6 @@
-open Graphics 
-open Images
-open Input
 open Player
+open Graphics 
+open Input
 
 type block = TallGrass 
            | Water
@@ -49,11 +48,6 @@ let new_box (b : box) =
   Graphics.fill_rect x1 y1 b.s b.s;
   new_outline b gray_outline;;
 
-let draw_center (png : string) (b : box) = 
-  let img_t = Png.load_as_rgb24 "actual.png" [] in
-  let (w, h) = Images.size img_t in 
-  let graph_t = Graphic_image.of_image img_t in
-  Graphics.draw_image graph_t (b.x + (b.s-w)/2) (b.y + (b.s-h)/2);;
 
 let rec new_grid (lst: block list) s = 
   match lst with 
@@ -134,16 +128,14 @@ let big_map = array_of_map 20 (List.rev hmm) 50
 let big_map_init = player_start num_of_row num_of_col
 let big_map_dims = graph_dims num_of_row num_of_col 50
 
-
-let move_player (input : Input.input) p = 
+let move_map p m =
   let curr = get_loc p in
-  if input.a then set_loc p (curr-1)
-  else if input.d then set_loc p (curr+1)
-  else if input.w then set_loc p (curr-num_of_col)
-  else if input.s then set_loc p (curr+num_of_col)
-  else p
-
-
+  match m with
+  | Some Up -> set_loc p (curr - num_of_col)
+  | Some Left -> set_loc p (curr - 1)
+  | Some Down -> set_loc p (curr+num_of_col)
+  | Some Right -> set_loc p (curr + 1)
+  | None -> p
 
 let () = Graphics.open_graph big_map_dims;;
 

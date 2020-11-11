@@ -3,8 +3,8 @@
 #require "graphics";;
 #require "ANSITerminal";;
 #directory "_build";;
-#use "gui.ml";;
 #load "pokemon.cmo";;
 #load "player.cmo";;
+#use "gui.ml";;
 open Pokemon
 open Player
