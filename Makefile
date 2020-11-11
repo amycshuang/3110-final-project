@@ -1,4 +1,4 @@
-MODULES=player pokemon author command
+MODULES=player pokemon author command main
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)
@@ -36,6 +36,9 @@ clean:
 	ocamlbuild -clean
 	rm -rf search.zip doc.public doc.private _coverage bisect*.coverage
 
+loc: 
+	cloc .
+
 test:
 	BISECT_COVERAGE=YES $(OCAMLBUILD) -tag 'debug' $(TEST) && ./$(TEST) -runner sequential
 
@@ -47,5 +50,5 @@ finalcheck: check
 	bash finalcheck.sh
 
 zip:
-	zip -r search.zip *.ml* _tags Makefile engine_test
+	zip -r pokemon.zip *.ml* _tags Makefile 
 
