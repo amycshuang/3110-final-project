@@ -73,9 +73,19 @@ let parse_cmd pkm cmd =
       | _ -> raise (InvalidCommand "Invalid Player Command")
     end
 
-let parse pkm cmd =
+let parse_yn cmd = 
+  match cmd with 
+  | [] -> raise (InvalidCommand "Empty Command")
+  | h :: t -> begin 
+      match h, t with 
+      | "yes", [] -> Yes
+      | "no", [] -> No 
+      | _ -> raise (InvalidCommand "Invalid Player Command")
+    end
+
+let parse cmd cmd_type =
   cmd 
   |> String.lowercase_ascii
   |> String.split_on_char ' ' 
   |> List.filter (fun x -> x <> "" && x <> "with")
-  |> parse_cmd pkm
+  |> cmd_type

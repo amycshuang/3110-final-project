@@ -32,6 +32,7 @@ exception InvalidCatch of string
 (** Raised when an invalid command is parsed. *)
 exception InvalidCommand of string
 
+val parse_yn : phrase -> command 
 (** [parse cmd] parses a player's input into a command [cmd]. The first
     word becomes the verb, and the rest of the words become the lowercased
     phrase. [parse cmd] is not case-sensitive.
@@ -51,4 +52,4 @@ exception InvalidCommand of string
     - [InvalidCommand cmd] if [cmd] does not start with "quit", "run", "attack",
       "catch", or "battle" or if the command has unncessary words or more
       words than necessary. *)
-val parse : Pokemon.t option -> string -> command
+val parse : string -> (phrase -> command) -> command

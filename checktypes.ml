@@ -4,14 +4,14 @@ end
 
 module AuthorsCheck : AuthorsSig = Author
 
-module type PlayerSig = sig
-  type t
-  type nickname = string
-  val init_player : nickname -> Pokemon.t -> t
-  val catch_poke : t -> Pokemon.t -> t
-  val get_poke_list : t -> (Pokemon.name * Pokemon.level) list
-end 
-module PlayerCheck : PlayerSig = Player
+(* module type PlayerSig = sig
+   type t
+   type nickname = string
+   val init_player : nickname -> Pokemon.t -> t
+   val catch_poke : t -> Pokemon.t -> t
+   val get_poke_list : t -> (Pokemon.name * Pokemon.level) list
+   end 
+   module PlayerCheck : PlayerSig = Player *)
 
 module type PokemonSig = sig 
   type t
@@ -59,7 +59,8 @@ module type CommandSig = sig
   exception InvalidAttack of string
   exception InvalidCatch of string
   exception InvalidCommand of string
-  val parse : Pokemon.t option -> string -> command
+  val parse_yn : phrase -> command
+  val parse : string -> (phrase -> command) -> command
 end 
 
 module CommandCheck : CommandSig = Command
