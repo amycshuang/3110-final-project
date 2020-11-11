@@ -1,4 +1,4 @@
-MODULES=player pokemon author gui
+MODULES=player pokemon author gui block
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)
