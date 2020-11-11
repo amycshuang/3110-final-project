@@ -17,7 +17,3 @@ _build
 \#*\#
 .DS_Store
 doc*/
-
-# bisect
-_coverage
-bisect*.coverage

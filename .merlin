@@ -2,5 +2,5 @@ B _build
 PKG ounit2
 PKG yojson
 PKG ocamlbuild
-PKG bisect_ppx-ocamlbuild
+PKG graphics
 PKG ANSITerminal

@@ -1,20 +1,17 @@
-MODULES=player pokemon author command main
+MODULES=player pokemon author command main gui input
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)
 TEST=test.byte
 MAIN=main.byte
-OCAMLBUILD=ocamlbuild -use-ocamlfind -plugin-tag 'package(bisect_ppx-ocamlbuild)'
-PKGS=oUnit,yojson, ANSITerminal
+OCAMLBUILD=ocamlbuild -use-ocamlfind 
+PKGS=oUnit,yojson, ANSITerminal, graphics
 
 default: build
 	utop
 
 build:
 	$(OCAMLBUILD) $(OBJECTS)
-
-bisect: clean test
-	bisect-ppx-report html
 
 check:
 	bash checkenv.sh && bash checktypes.sh
@@ -34,13 +31,13 @@ docs-private: build
 
 clean:
 	ocamlbuild -clean
-	rm -rf search.zip doc.public doc.private _coverage bisect*.coverage
+	rm -rf search.zip doc.public doc.private 
 
 loc: 
 	cloc .
 
 test:
-	BISECT_COVERAGE=YES $(OCAMLBUILD) -tag 'debug' $(TEST) && ./$(TEST) -runner sequential
+	$(OCAMLBUILD) -tag 'debug' $(TEST) && ./$(TEST) -runner sequential
 
 play:
 	$(OCAMLBUILD) $(MAIN) && ./$(MAIN)

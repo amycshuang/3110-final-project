@@ -4,7 +4,7 @@
 TARGETS="pokemon.cmo player.cmo command.cmo \
   testCommand.cmo author.cmo test.cmo" \
 
-OCAMLBUILD="ocamlbuild -use-ocamlfind -plugin-tag package(bisect_ppx-ocamlbuild)"
+OCAMLBUILD="ocamlbuild -use-ocamlfind"
 
 $OCAMLBUILD $TARGETS
 if [[ $? -ne 0 ]]; then

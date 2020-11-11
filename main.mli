@@ -1,2 +1,1 @@
-
-val main : unit 
+val main : unit -> unit
