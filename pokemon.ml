@@ -13,9 +13,10 @@ type level_up_exp = int
 type caught = bool
 exception InvalidPokemon of string
 
+type move_name = string
 type move = {
   move_type: poke_type;
-  move_name: string;
+  move_name: move_name;
 }
 
 type stats = {
@@ -61,7 +62,7 @@ let type_from_string = function
   | "Rock" -> Rock
   | "Steel" -> Steel
   | "Water" -> Water
-  | _ -> raise (InvalidPokemon "this pokemon does not have a type")
+  | _ -> raise (InvalidPokemon ("this pokemon does not have a type"))
 
 let moves_of_json j = {
   move_type = j |> member "move_type" |> to_string |> type_from_string;
@@ -74,7 +75,7 @@ let poke_from_json j = {
   stats = j |> member "stats" |> stats_of_json;
   caught = j |> member "caught" |> to_bool;
   move_set = j |> member "move_set" |> to_list |> List.map moves_of_json;
-}
+} 
 
 let get_name pokemon = pokemon.name
 
@@ -99,6 +100,12 @@ let get_move pokemon move_name =
           pokemon.move_set with
   | [] -> raise (InvalidPokemon "pokemon is not valid")
   | h :: t -> h
+
+let get_moves pokemon = List.map (fun x -> x.move_name) pokemon.move_set
+
+let valid_move_name pokemon move_name = 
+  (List.filter (fun move' -> move'.move_name = move_name)
+     pokemon.move_set) <> []
 
 let level_up pokemon = 
   let curr_stats = pokemon.stats in

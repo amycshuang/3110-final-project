@@ -14,13 +14,11 @@ type bag = {
 (** The type of values representing a player. *)
 type player = {
   nickname : nickname;
-  location : float * float;
+  location : int * int;
   poke_list : Pokemon.t list;
   bag : bag;
   balance : int;
 }
-
-type t = player
 
 (** [empty_bag] is a bag with nothing in pc_box, badge_case or inventory. *)
 let empty_bag = {
@@ -29,9 +27,9 @@ let empty_bag = {
   inventory = [];
 }
 
-let init_player name start_poke = {
+let init_player name start_poke loc = {
   nickname = name;
-  location = (0., 0.);
+  location = loc;
   poke_list = [start_poke];
   bag = empty_bag;
   balance = 0;
@@ -70,6 +68,3 @@ let catch_poke player poke =
       balance = player.balance
     } in
   check_pc updated_player
-
-let get_poke_list player = 
-  List.map (fun x -> (get_name x, get_level x)) player.poke_list

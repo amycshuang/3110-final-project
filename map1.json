@@ -1,0 +1,726 @@
+{
+  "width": 20,
+  "height": 12,
+  "blocks": [
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "house"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "house"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "house"
+    },
+    {
+      "type": "house"
+    },
+    {
+      "type": "house"
+    },
+    {
+      "type": "house"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "pokecenter"
+    },
+    {
+      "type": "pokecenter"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "gym"
+    },
+    {
+      "type": "gym"
+    },
+    {
+      "type": "gym"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "gym"
+    },
+    {
+      "type": "gym"
+    },
+    {
+      "type": "gym"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "house"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "house"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "house"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "grass"
+    },
+    {
+      "type": "house"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "water"
+    }
+  ]
+}

@@ -1,32 +1,35 @@
-(** 
-   Representation of a Pokecamel game state.
-*)
-open Pokemon
-open Player
+(** The different types of blocks within a map. *)
+type block = TallGrass 
+           | Water
+           | Grass
+           | Road
+           | Gym
+           | PokeCenter
+           | House
 
-(** The abstract type of values representing the game state. *)
-type t
+(** The status of the game. *)
+type status =  Walking | Battling | Encounter of block | Enter of block | Win
 
-(** The status of the player in the game, representing if the player has 
-    defeated the gym leader yet *)
-type status
+(** The type representing a map. *)
+type map = block array array
 
-(** Raised if a move is invalid. *)
-exception InvalidMove
+type state = {
+  map : map;
+  player : Player.player;
+  panel_txt : string;
+  status : status;
+}
 
-(** [init_state] is the initial state of the game. 
-    ex. initializes map and blocks, initializes player, etc. *)
-val init_state : t
+(** [get_key ()] returns the corresponding character of the key pressed *)
+val get_key : unit -> char
 
-(** [get_player st] is the current data of the player. *)
-val get_player : t -> Player.t
+(** [map_key ch st] maps pressed character to an option of action *)
+val process_input : char -> state -> state
 
-(** [update_player_bag st] is the player after their bag has been updated. *)
-val update_player_bag : t -> Player.t
+(** [process_encounter ch st] is the state after an encounter. *)
+val process_encounter :  char -> state -> state
 
-(** [string_of_player_data pl] prints the player's current data. *)
-val print_player_data : Player.t -> unit
+(** [trying] is a test map to test for rendering *)
+val testing_state : state
 
-(** [move_player st poke] is the data of the pokemon the player chooses 
-    from their pokemon list *)
-val choose_pokemon : t -> Pokemon.name -> Pokemon.t
+val init_state : Player.nickname -> 'a -> state
