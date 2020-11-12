@@ -1,4 +1,4 @@
-MODULES=state player gui pokemon author main block
+MODULES=state player gui pokemon author main block json_utility_script
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)
@@ -6,6 +6,7 @@ TEST=test.byte
 MAIN=main.byte
 OCAMLBUILD=ocamlbuild -use-ocamlfind 
 PKGS=oUnit,yojson, ANSITerminal, graphics
+JSONBUILD=json_utility_script.byte
 
 default: build
 	utop
@@ -42,10 +43,12 @@ test:
 play:
 	$(OCAMLBUILD) $(MAIN) && ./$(MAIN)
 
+json:
+	$(OCAMLBUILD) $(JSONBUILD) && ./$(JSONBUILD)
+
 finalcheck: check
 	bash checkzip.sh
 	bash finalcheck.sh
 
 zip:
 	zip -r pokemon.zip *.ml* _tags Makefile 
-

@@ -35,6 +35,9 @@ val list_to_blocks : block_type list -> t list
     2d array of a size specificed by the JSON [json]. *)
 val list_to_matrix : t list -> Yojson.Basic.t -> t array array
 
+(** [rev_matrix a] reverses the array [a]. *)
+val rev_matrix : t array -> t array
+
 (** [get_block_type t] returns the block_type representation of type t. *)
 val get_block_type : t -> block_type
 
