@@ -35,7 +35,7 @@ let start_game_message name =
 (** TODO - call the actual spawning function from Block *)
 let fake_spawn_poke = Pokemon.poke_from_json (Yojson.Basic.from_file "pikachu.json")
 
-
+(** [check_st st] *)
 let check_st (st : State.state) = 
   match st.status with 
   | Walking -> ()

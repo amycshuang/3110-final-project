@@ -24,7 +24,7 @@ type map = block array array
 
 type state = {
   map : map;
-  player : Player.t;
+  player : Player.player;
   panel_txt : string;
   status : status;
 }
@@ -40,16 +40,36 @@ let map_key ch =
   | _ -> Display Default
 
 let move_map p m =
-  let (x, y) = get_loc p in
+  let (x, y) = p.location in
   match m with
-  | Up -> set_loc p (x, y + 1)
-  | Left -> set_loc p (x - 1, y)
-  | Down -> set_loc p (x, y - 1)
-  | Right -> set_loc p (x + 1, y)
+  | Up -> {p with location=(x, y + 1)}
+  | Left -> {p with location=(x - 1, y)}
+  | Down -> {p with location=(x, y - 1)}
+  | Right -> {p with location=(x + 1, y)}
 
-let display txt = function
-  | Bag -> "Berries: 5"
-  | PokeList -> "Pikachu"
+let string_of_item = function
+  | Potion -> "Potion"
+  | Pokeball -> "Pokeball"
+
+let parse_bag p = 
+  let bag = p.bag in
+  let inventory = bag.inventory in
+  let rec parse_inventory = function
+    | [] -> ""
+    | (item, ct) :: t -> (string_of_item item) ^ ": " ^ string_of_int ct ^ "\n" 
+                         ^ parse_inventory t in 
+  parse_inventory inventory
+
+let parse_pokelist p =
+  let pokelist = p.poke_list in
+  let rec parse_poke = function
+    | [] -> ""
+    | pokemon :: t -> (get_name pokemon) ^ "\n" ^ parse_poke t in
+  parse_poke pokelist
+
+let display st = function
+  | Bag -> parse_bag st.player
+  | PokeList -> parse_pokelist st.player
   | Default -> "Default txt"
 
 let update_status = function 

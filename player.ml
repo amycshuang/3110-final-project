@@ -20,8 +20,6 @@ type player = {
   balance : int;
 }
 
-type t = player
-
 (** [empty_bag] is a bag with nothing in pc_box, badge_case or inventory. *)
 let empty_bag = {
   pc_box = [];
@@ -70,10 +68,3 @@ let catch_poke player poke =
       balance = player.balance
     } in
   check_pc updated_player
-
-let get_poke_list player = 
-  List.map (fun x -> (get_name x, get_level x)) player.poke_list
-
-let get_loc player = player.location
-
-let set_loc player x = {player with location=x}
