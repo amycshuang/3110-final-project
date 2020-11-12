@@ -1,4 +1,4 @@
-MODULES=player pokemon author fake
+MODULES=player pokemon author json_utility_script
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)
@@ -6,7 +6,7 @@ TEST=test.byte
 MAIN=main.byte
 OCAMLBUILD=ocamlbuild -use-ocamlfind
 PKGS=oUnit,yojson
-JSONBUILD=fake.byte
+JSONBUILD=json_utility_script.byte
 
 default: build
 	utop

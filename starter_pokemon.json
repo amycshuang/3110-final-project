@@ -1,0 +1,126 @@
+[
+  {
+    "name": "Bulbasaur",
+    "poke_type": "Grass",
+    "stats": {
+      "level": 1,
+      "hp": 45,
+      "attack": 49,
+      "defense": 49,
+      "curr_exp": 64,
+      "level_up_exp": 100
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Grass",
+        "move_name": "Vine Whip"
+      },
+      {
+        "move_type": "Poison",
+        "move_name": "Poison Powder"
+      },
+      {
+        "move_type": "Grass",
+        "move_name": "Leech Seed"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Sweet Scent"
+      }
+    ]
+  },
+  {
+    "name": "Charmander",
+    "poke_type": "Fire",
+    "stats": {
+      "level": 1,
+      "hp": 39,
+      "attack": 52,
+      "defense": 43,
+      "curr_exp": 62,
+      "level_up_exp": 100
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Dragon",
+        "move_name": "Dragon Breath"
+      },
+      {
+        "move_type": "Fire",
+        "move_name": "Ember"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Scary Face"
+      },
+      {
+        "move_type": "Fire",
+        "move_name": "Flare Blitz"
+      }
+    ]
+  },
+  {
+    "name": "Squirtle",
+    "poke_type": "Water",
+    "stats": {
+      "level": 1,
+      "hp": 44,
+      "attack": 48,
+      "defense": 65,
+      "curr_exp": 63,
+      "level_up_exp": 100
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Dark",
+        "move_name": "Bite"
+      },
+      {
+        "move_type": "Water",
+        "move_name": "Rain Dance"
+      },
+      {
+        "move_type": "Water",
+        "move_name": "Aqua Tail"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Skull Bash"
+      }
+    ]
+  },
+  {
+    "name": "Pikachu",
+    "poke_type": "Electric",
+    "stats": {
+      "level": 1,
+      "hp": 35,
+      "attack": 55,
+      "defense": 40,
+      "curr_exp": 112,
+      "level_up_exp": 200
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Fairy",
+        "move_name": "Sweet Kiss"
+      },
+      {
+        "move_type": "Electric",
+        "move_name": "Electro Ball"
+      },
+      {
+        "move_type": "Electric",
+        "move_name": "Thunderbolt"
+      },
+      {
+        "move_type": "Dark",
+        "move_name": "Nasty Plot"
+      }
+    ]
+  }
+]

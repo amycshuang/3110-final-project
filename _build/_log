@@ -1,8 +1,8 @@
 ### Starting build.
-# Target: fake.ml.depends, tags: { package(ANSITerminal), package(ounit2), package(yojson), extension:ml, file:fake.ml, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ounit2 -package yojson -package ANSITerminal -modules fake.ml > fake.ml.depends # cached
-# Target: fake.cmo, tags: { package(ANSITerminal), package(ounit2), package(yojson), byte, compile, extension:cmo, extension:ml, file:fake.cmo, file:fake.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package ounit2 -package yojson -package ANSITerminal -o fake.cmo fake.ml # cached
-# Target: fake.byte, tags: { package(ANSITerminal), package(ounit2), package(yojson), byte, dont_link_with, extension:byte, file:fake.byte, link, ocaml, program, quiet, traverse }
-ocamlfind ocamlc -linkpkg -package ounit2 -package yojson -package ANSITerminal fake.cmo -o fake.byte # cached
+# Target: json_utility_script.ml.depends, tags: { package(ANSITerminal), package(ounit2), package(yojson), extension:ml, file:json_utility_script.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package yojson -package ANSITerminal -modules json_utility_script.ml > json_utility_script.ml.depends
+# Target: json_utility_script.cmo, tags: { package(ANSITerminal), package(ounit2), package(yojson), byte, compile, extension:cmo, extension:ml, file:json_utility_script.cmo, file:json_utility_script.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package yojson -package ANSITerminal -o json_utility_script.cmo json_utility_script.ml
+# Target: json_utility_script.byte, tags: { package(ANSITerminal), package(ounit2), package(yojson), byte, dont_link_with, extension:byte, file:json_utility_script.byte, link, ocaml, program, quiet, traverse }
+ocamlfind ocamlc -linkpkg -package ounit2 -package yojson -package ANSITerminal json_utility_script.cmo -o json_utility_script.byte
 # Compilation successful.
