@@ -2,11 +2,11 @@ open State
 open Gui
 
 (** [play_game f] starts the adventure in file [f]. *)
-let rec play_game player =
+let rec play_game st =
   let input = get_key () in
-  let p = process_input input player in
-  render trying p;
-  play_game p
+  let st = process_input input st in
+  render st;
+  play_game st
 
 
 (** [main ()] prompts for the game to play, then starts it. *)
@@ -19,7 +19,7 @@ let main () =
      | exception End_of_file -> ()
      | file_name -> play_game file_name *)
   (* Must take in a map name *)
-  play_game test_player
+  play_game testing_state
 
 (* Execute the game engine. *)
 let () = main ()

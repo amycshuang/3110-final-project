@@ -50,12 +50,17 @@ let graph_dims blocks =
   " " ^ string_of_int (ncol * box_len) ^ "x" ^
   string_of_int (nrow * box_len + panel_height)
 
-let render m p = 
-  let () = Graphics.open_graph (graph_dims m); in 
+let display_text s =
+  Graphics.moveto 10 50;
+  Graphics.draw_string s
+
+let render (st : State.state) = 
+  let () = Graphics.open_graph (graph_dims st.map); in 
   let () = clear_graph () in
-  let () = draw_map m in
-  let () = draw_panel m in
-  let () = draw_char p in
+  let () = draw_map st.map in
+  let () = draw_panel st.map in
+  let () = draw_char st.player in
+  let () = display_text st.panel_txt in
   let () = synchronize () in ()
 
-let () = render trying test_player
+let () = render testing_state
