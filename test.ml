@@ -36,10 +36,16 @@ let player_test =
   [
     player_poke_test "Checking pikachu" player [("pikachu", 5);];
   ]
+
+let command_tests = List.flatten [
+    TestCommand.command_tests;
+  ]
+
 let suite =
   "test suite for A2"  >::: List.flatten [
     pokemon_get_function_tests;
     player_test;
+    command_tests;
   ]
 
 let _ = run_test_tt_main suite

@@ -14,3 +14,6 @@ modules needed to run this code.
 
 - `make build` builds the modules needed to run the project
 - `make test` evaluates the test cases in test.ml
+
+opam install graphics
+opam install camlimages
