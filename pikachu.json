@@ -1,23 +1,31 @@
 {
-  "name": "pikachu",
-  "poke_type": "Electric",
+  "name": "Bulbasaur",
+  "poke_type": "Grass",
   "stats": {
-    "level": 5,
-    "hp": 3,
-    "attack": 3,
-    "defense": 3,
-    "curr_exp": 0,
-    "level_up_exp": 1
+    "level": 1,
+    "hp": 45,
+    "attack": 49,
+    "defense": 49,
+    "curr_exp": 64,
+    "level_up_exp": 100
   },
   "caught": false,
   "move_set": [
     {
-      "move_type": "Electric",
-      "move_name": "thunderbolt"
+      "move_type": "Grass",
+      "move_name": "Vine Whip"
     },
     {
-      "move_type": "Fire",
-      "move_name": "fire punch"
+      "move_type": "Poison",
+      "move_name": "Poison Powder"
+    },
+    {
+      "move_type": "Grass",
+      "move_name": "Leech Seed"
+    },
+    {
+      "move_type": "Normal",
+      "move_name": "Sweet Scent"
     }
   ]
 }

@@ -16,4 +16,3 @@ modules needed to run this code.
 - `make test` evaluates the test cases in test.ml
 
 opam install graphics
-opam install camlimages
