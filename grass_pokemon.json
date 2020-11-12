@@ -1,0 +1,48 @@
+[
+  {
+    "name": "asdasda",
+    "poke_type": "asdasd",
+    "stats": {
+      "level": 0,
+      "hp": 1212,
+      "attack": 213123,
+      "defense": 123123,
+      "curr_exp": 123123,
+      "level_up_exp": 12312
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "2323",
+        "move_name": "sds"
+      },
+      {
+        "move_type": "",
+        "move_name": ""
+      }
+    ]
+  },
+  {
+    "name": "asdasda",
+    "poke_type": "asdasd",
+    "stats": {
+      "level": 0,
+      "hp": 1212,
+      "attack": 213123,
+      "defense": 123123,
+      "curr_exp": 123123,
+      "level_up_exp": 12312
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "2323",
+        "move_name": "sds"
+      },
+      {
+        "move_type": "",
+        "move_name": ""
+      }
+    ]
+  }
+]

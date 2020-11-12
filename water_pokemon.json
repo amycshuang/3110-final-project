@@ -1,0 +1,14 @@
+{
+  "name": "fsd",
+  "poke_type": "",
+  "stats": {
+    "level": 0,
+    "hp": 0,
+    "attack": 0,
+    "defense": 0,
+    "curr_exp": 0,
+    "level_up_exp": 0
+  },
+  "caught": false,
+  "move_set": []
+}

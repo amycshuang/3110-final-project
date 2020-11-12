@@ -8,11 +8,6 @@ type t = {
 
 type status = Champion | InProgress
 
-(* let init_state n init_poke = {
-   player = Player.init_player n init_poke
-   (* map = Map.init *) 
-   } *)
-
 (** [get_player st] is the current data of the player. *)
 let get_player = Player.t
 
