@@ -26,7 +26,7 @@ let draw_map blocks =
     for col = 0 to (ncol - 1) do
       Graphics.set_color (color_of_block (blocks.(row)).(col));
       Graphics.fill_rect (col * box_len)
-        ((nrow - row - 1) * box_len + panel_height) box_len box_len;
+        (row * box_len + panel_height) box_len box_len;
     done
   done
 
@@ -39,7 +39,7 @@ let draw_panel blocks =
   Graphics.draw_rect 0 0 panel_width panel_height
 
 let draw_char p = 
-  let (x, y) = get_loc p in
+  let (x, y) = p.location in
   Graphics.set_color char_color;
   Graphics.fill_circle (x * box_len + box_len/2)
     (y * box_len + box_len/2 + panel_height) char_size;;

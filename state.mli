@@ -15,7 +15,7 @@ type map = block array array
 
 type state = {
   map : map;
-  player : Player.t;
+  player : Player.player;
   panel_txt : string;
 }
 
