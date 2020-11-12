@@ -13,19 +13,19 @@ type block = TallGrass
 (** The type representing a map. *)
 type map = block array array
 
-val test_player : Player.t
-
-(** TODO - change string to Pokemon.t after add initialize starter implementation *)
-val make_player : string -> string -> Player.t
+type state = {
+  map : map;
+  player : Player.t;
+  panel_txt : string;
+}
 
 (** [get_key ()] returns the corresponding character of the key pressed *)
 val get_key : unit -> char
 
 (** [map_key ch] maps pressed character to an option of action*)
-val process_input : char -> Player.t -> Player.t
-
-(** [test_player] is a player used for testing to render *)
-val test_player : Player.t
+val process_input : char -> state -> state
 
 (** [trying] is a test map to test for rendering *)
-val trying : map
+val testing_state : state
+
+val init_state : Player.nickname -> 'a -> state

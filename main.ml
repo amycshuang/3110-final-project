@@ -15,9 +15,11 @@ let clarkson_message =
   "This world is inhabited by creatures called pokémon! \n" ^ 
   "Your very own Pokémon legend is about to unfold! \n" ^
   "A world of dreams and adventures with Pokémon awaits! Let's go! \n\n" ^ 
-  "Now, which Pokemon do you want?\n\n" ^ 
+  "Now, which Pokemon do you want?\n\n" 
 
-  "Bulbasaur        Charmander          Squirtle\n\n"
+let bulbasaur = "Bulbasaur"
+let charmander = "Charmander"       
+let squirtle = "Squirtle"
 
 let reprompt_starter_message name = 
   "Sorry " ^ name ^ "!" ^ 
@@ -29,18 +31,18 @@ let start_game_message name =
   "Good luck on your adventure! Peace, love, and 3110" 
 
 (** [play_game f] starts the adventure in file [f]. *)
-let rec play_game player : unit =
+let rec play_game st =
   let input = get_key () in
-  let p = process_input input player in
-  render trying p;
-  play_game p
+  let st = process_input input st in
+  render st;
+  play_game st
 
 let start_game name pkm = 
   ANSITerminal.(print_string [cyan] (start_game_message name));
   print_endline "";
-  let player = make_player name pkm in 
-  render trying player;
-  play_game player 
+  let state = init_state name pkm in 
+  render state;
+  play_game state 
 
 let rec init_player_starter name msg = 
   ANSITerminal.(print_string [cyan] msg);
@@ -78,16 +80,6 @@ let main () =
                 "What should I call you?\n" in 
   init_player_name welcome  
 
-
-(* ANSITerminal.(print_string [red]
-                "\n\nHello trainer, welcome to the PoKaml!\n");
-   print_endline "What should I call you?\n";
-   print_string  "> ";
-   match read_line () with
-   | exception End_of_file -> ()
-   | file_name -> play_game file_name *)
-(* Must take in a map name *)
-(* play_game test_player *)
 
 (* Execute the game engine. *)
 let () = main ()

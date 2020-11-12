@@ -14,29 +14,48 @@ type block = TallGrass
 
 type move = Up | Left | Right | Down
 
+type display = Default | Bag | PokeList
+
+type action = Move of move | Display of display
+
 let get_key () = (wait_next_event [Key_pressed]).Graphics.key
 
 type map = block array array
 
-let map_key ch : move option =
+type state = {
+  map : map;
+  player : Player.t;
+  panel_txt : string;
+}
+
+let map_key ch =
   match ch with
-  | 'w' -> Some Up
-  | 'a' -> Some Left
-  | 's' -> Some Down
-  | 'd' -> Some Right
-  | _ -> None
+  | 'w' -> Move Up
+  | 'a' -> Move Left
+  | 's' -> Move Down
+  | 'd' -> Move Right
+  | 'b' -> Display Bag
+  | 'p' -> Display PokeList
+  | _ -> Display Default
 
 let move_map p m =
   let (x, y) = get_loc p in
   match m with
-  | Some Up -> set_loc p (x, y + 1)
-  | Some Left -> set_loc p (x - 1, y)
-  | Some Down -> set_loc p (x, y - 1)
-  | Some Right -> set_loc p (x + 1, y)
-  | None -> p
+  | Up -> set_loc p (x, y + 1)
+  | Left -> set_loc p (x - 1, y)
+  | Down -> set_loc p (x, y - 1)
+  | Right -> set_loc p (x + 1, y)
 
-let process_input input p =
-  move_map p (map_key input)
+let display txt = function
+  | Bag -> "Berries: 5"
+  | PokeList -> "Pikachu"
+  | Default -> "Default txt"
+
+let process_input input st =
+  let action = map_key input in
+  match action with
+  | Move dir -> {st with player=(move_map st.player dir)} 
+  | Display x -> {st with panel_txt=(display st.panel_txt x)}
 
 let pikachu = poke_from_json (Yojson.Basic.from_file "pikachu.json")
 
@@ -82,5 +101,17 @@ let test_player = init_player "testing" pikachu (player_start trying)
 (** TODO - change the starter to an actual pokemon object *)
 let make_player name starter = init_player name pikachu (player_start trying)
 
+let init_state name starter = {
+  map = trying;
+  player = make_player name starter;
+  panel_txt = "default";
+}
+
 let player_block p map = 
   let (x, y) = get_loc p in (map.(x)).(y)
+
+let testing_state = {
+  map=trying;
+  player=test_player;
+  panel_txt="Default text"
+}
