@@ -22,11 +22,12 @@ val catch_poke : t -> Pokemon.t -> t
 (** [get_poke_list player] is a list of the names of the pokemon and their levels
     in a player's pokemon list. *)
 val get_poke_list : t -> (Pokemon.name * Pokemon.level) list
+
 (** getter functions:
     - bag, each list *)
 
 (** [get_loc player] is a block on which the player is on. *)
 val get_loc : t -> int * int
 
-(** [set_loc player x] is the player with new location x. *)
+(** [set_loc player x] is the player with new location [x]. *)
 val set_loc : t -> int * int -> t

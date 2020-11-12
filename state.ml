@@ -35,12 +35,15 @@ let move_map p m =
   | Some Right -> set_loc p (x + 1, y)
   | None -> p
 
+let process_input input p =
+  move_map p (map_key input)
+
 let pikachu = poke_from_json (Yojson.Basic.from_file "pikachu.json")
 
 let player_start blocks = 
   let ncol = Array.length blocks.(0) in
   let nrow = Array.length blocks in
-  (nrow / 2, ncol / 2)
+  (ncol / 2, nrow / 2)
 
 let trying = [|[|Grass; Grass; Grass; Grass; Water; Water; Water; Road;
                  TallGrass; Grass; Grass; Grass; Grass; Grass; Grass; Grass;
@@ -80,5 +83,4 @@ let test_player = init_player "testing" pikachu (player_start trying)
 let make_player name starter = init_player name pikachu (player_start trying)
 
 let player_block p map = 
-  let (x, y) = get_loc p in
-  (map.(x)).(y)
+  let (x, y) = get_loc p in (map.(x)).(y)
