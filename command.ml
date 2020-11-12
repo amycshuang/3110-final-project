@@ -74,14 +74,19 @@ let parse_cmd pkm cmd =
       | _ -> raise (InvalidCommand "Invalid Player Command")
     end
 
+let parse_cmd cmd = 
+  match cmd with 
+  | _ -> failwith "unimplemented"
+
 let parse_starter pkm =
   match pkm with 
   | [] -> raise (InvalidCommand "Empty Command")
   | h :: t -> begin 
       match h with 
-      | "charmander" as c -> (SPokemon c)
-      | "bulbasaur" as b -> (SPokemon b)
-      | "squirtle" as s -> (SPokemon s) 
+      | "charmander" as c -> SPokemon c
+      | "bulbasaur" as b -> SPokemon b
+      | "squirtle" as s -> SPokemon s
+      | "pikachu" as p -> SPokemon p
       | _ -> raise (InvalidPokemon "Invalid Pokemon")
     end 
 

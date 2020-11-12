@@ -103,4 +103,4 @@ let render (s : map) p =
   (* let _ = ms_char 15 big_map.(get_loc p) in *)
   let () = synchronize () in ()
 
-let () = render trying test_player
+(* let () = render trying test_player *)

@@ -1,1 +1,1 @@
-(* val main : unit -> string  -> unit -> unit *)
+val main : unit -> unit

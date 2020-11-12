@@ -34,6 +34,8 @@ exception InvalidCatch of string
 exception InvalidCommand of string
 
 (** TODO write documentation *)
+val parse_cmd : phrase -> command
+(** TODO write documentation *)
 val parse_starter: phrase -> command
 
 (** TODO write documentation *)
