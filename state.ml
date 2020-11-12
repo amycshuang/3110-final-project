@@ -3,7 +3,6 @@ open Pokemon
 
 type t = {
   player: Player.t; 
-  (* m: Map.t *)
 }
 
 type status = Champion | InProgress
