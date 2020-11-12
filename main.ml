@@ -4,7 +4,7 @@ open Gui
 (** [play_game f] starts the adventure in file [f]. *)
 let rec play_game player =
   let input = get_key () in
-  let p = move_map player (map_key input) in
+  let p = process_input input player in
   render trying p;
   play_game p
 
