@@ -23,6 +23,11 @@ let clarkson_message =
   "A world of dreams and adventures with Pokémon awaits! Let's go!\n\n" ^ 
   "Now, which Pokemon do you want?"
 
+let reprompt_starter_message name = 
+  "Sorry " ^ name ^ " !" ^ 
+  "That is not one of the starter pokemon we have available" ^ 
+  "Choose again!"
+
 let start_game name = failwith "unimplemented"
 
 let rec init_player_starter name msg () = 
@@ -31,13 +36,12 @@ let rec init_player_starter name msg () =
   print_string ">";
   try 
     match parse (read_line ()) parse_starter with 
-    | SPokemon "charmander" -> failwith "unimplemented"
-    | SPokemon "bulbasaur" ->  failwith "unimplemented"
-    | SPokemon "squirtle" -> failwith "unimplemented"
-    | _ -> failwith "unimplemented"
+    | SPokemon ("charmander" as c) -> make_player name c
+    | SPokemon ("bulbasaur" as b) ->  make_player name b 
+    | SPokemon ("squirtle" as s) -> make_player name s 
+    | _ -> init_player_starter name (reprompt_starter_message name) ()
   with 
-  | InvalidCommand m -> 
-    failwith "unimpl"
+  | InvalidCommand m -> init_player_starter name error_message ()
 
 let rec init_player_name msg () = 
   ANSITerminal.erase Screen;

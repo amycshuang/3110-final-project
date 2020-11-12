@@ -76,6 +76,9 @@ let trying = [|[|Grass; Grass; Grass; Grass; Water; Water; Water; Road;
 
 let test_player = init_player "testing" pikachu (player_start trying)
 
+(** TODO - change the starter to an actual pokemon object *)
+let make_player name starter = init_player name pikachu (player_start trying)
+
 let player_block p map = 
   let (x, y) = get_loc p in
   (map.(x)).(y)

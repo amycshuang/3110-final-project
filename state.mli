@@ -12,6 +12,9 @@ type map = block array array
 
 val test_player : Player.t
 
+(** TODO - change string to Pokemon.t after add initialize starter implementation *)
+val make_player : string -> string -> Player.t
+
 val get_key : unit -> char
 
 (**[map_key ch] maps pressed character to an option of action*)
