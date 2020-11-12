@@ -86,6 +86,10 @@ let get_block_type (t : t) =
   | House -> "house" 
   | PokeCenter -> "pokecenter"
 
+let poke_list_from_json (json : Yojson.Basic.t) =
+  let lst = [json] in
+  List.map Pokemon.poke_from_json lst
+
 let spawn_poke (lst : Pokemon.t list) =
   let random = Random.int (List.length lst) in
   let poke_arr = Array.of_list lst in
@@ -105,6 +109,7 @@ let spawn_prob (t : t) (lst : Pokemon.t list) =
   | Gym -> None
   | House -> None
   | PokeCenter -> None
+
 
 (** Utop testing for now*)
 let map = json_to_list (Yojson.Basic.from_file "map1.json")
