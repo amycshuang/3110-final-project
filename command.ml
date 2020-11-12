@@ -9,6 +9,7 @@ type command =
   | Run 
   | Catch 
   | Bag
+  | SPokemon of string
   | Attack of phrase
   | Battle of phrase
 
@@ -72,6 +73,17 @@ let parse_cmd pkm cmd =
         else raise (InvalidCommand "Invalid Battle Command")
       | _ -> raise (InvalidCommand "Invalid Player Command")
     end
+
+let parse_starter pkm =
+  match pkm with 
+  | [] -> raise (InvalidCommand "Empty Command")
+  | h :: t -> begin 
+      match h with 
+      | "charmander" as c -> (SPokemon c)
+      | "bulbasaur" as b -> (SPokemon b)
+      | "squirtle" as s -> (SPokemon s) 
+      | _ -> raise (InvalidPokemon "Invalid Pokemon")
+    end 
 
 let parse_yn cmd = 
   match cmd with 

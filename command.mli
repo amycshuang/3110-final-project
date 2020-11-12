@@ -20,6 +20,7 @@ type command =
   | Run 
   | Catch
   | Bag 
+  | SPokemon of string
   | Attack of phrase
   | Battle of phrase
 
@@ -32,7 +33,12 @@ exception InvalidCatch of string
 (** Raised when an invalid command is parsed. *)
 exception InvalidCommand of string
 
+(** TODO write documentation *)
+val parse_starter: phrase -> command
+
+(** TODO write documentation *)
 val parse_yn : phrase -> command 
+
 (** [parse cmd] parses a player's input into a command [cmd]. The first
     word becomes the verb, and the rest of the words become the lowercased
     phrase. [parse cmd] is not case-sensitive.

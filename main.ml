@@ -20,14 +20,26 @@ let clarkson_message =
   "My name is Clarkson! People call me the pokémon Prof!" ^ 
   "This world is inhabited by creatures called pokémon!" ^ 
   "Your very own Pokémon legend is about to unfold!" ^
-  "A world of dreams and adventures with Pokémon awaits! Let's go!"
-
-let prompt_choose_start_message = "Now, "
+  "A world of dreams and adventures with Pokémon awaits! Let's go!\n\n" ^ 
+  "Now, which Pokemon do you want?"
 
 let start_game name = failwith "unimplemented"
 
-(* 
 let rec init_player_starter name msg () = 
+  ANSITerminal.erase Screen;
+  print_endline msg;
+  print_string ">";
+  try 
+    match parse (read_line ()) parse_starter with 
+    | SPokemon "charmander" -> failwith "unimplemented"
+    | SPokemon "bulbasaur" ->  failwith "unimplemented"
+    | SPokemon "squirtle" -> failwith "unimplemented"
+    | _ -> failwith "unimplemented"
+  with 
+  | InvalidCommand m -> 
+    failwith "unimpl"
+
+let rec init_player_name msg () = 
   ANSITerminal.erase Screen;
   print_endline msg;
   print_string ">";
@@ -35,29 +47,12 @@ let rec init_player_starter name msg () =
   print_endline (confirm_name_message name);
   try 
     match parse (read_line ()) parse_yn with 
-    | Yes -> init_player_starter
+    | Yes -> init_player_starter clarkson_message
     | No ->  init_player_name reprompt_name_message ()
     | _ -> init_player_name error_message ()
   with 
   | InvalidCommand m -> 
-    print_endline error_message;
-    init_player_name error_message () *)
-
-(* let rec init_player_name msg () = 
-   ANSITerminal.erase Screen;
-   print_endline msg;
-   print_string ">";
-   let name = read_line () in 
-   print_endline (confirm_name_message name);
-   try 
-    match parse (read_line ()) parse_yn with 
-    | Yes -> init_player_starter clarkson_message
-    | No ->  init_player_name reprompt_name_message ()
-    | _ -> init_player_name error_message ()
-   with 
-   | InvalidCommand m -> 
-    print_endline error_message;
-    init_player_name error_message () *)
+    init_player_name error_message ()
 
 (** [main ()] prompts for the game to play, then starts it. *)
 let main () =
@@ -77,4 +72,4 @@ let main () =
 (* play_game test_player *)
 
 (* Execute the game engine. *)
-let () = main ()
+(* let () = main () *)
