@@ -46,7 +46,7 @@ val list_to_matrix : block list -> Yojson.Basic.t -> block array array
 val rev_matrix : block array -> block array
 
 (** [rev_matrix a] reverses the array [a]. *)
-val rev_matrix : t array -> t array
+val rev_matrix : block array -> block array
 
 (** [get_block_type t] returns the block_type representation of type t. *)
 val get_block_type : block -> block_type
