@@ -82,9 +82,8 @@ let update_status = function
   | House -> Enter House
 
 let player_block p map = 
-  let (x, y) = get_loc p in 
-  let rev_y = Array.length map - y - 1 in 
-  (map.(rev_y)).(x)
+  let (x, y) = p.location in 
+  (map.(y)).(x)
 
 let process_input input st =
   let action = map_key input in
@@ -93,7 +92,7 @@ let process_input input st =
       let mv_st =  {st with player=(move_map st.player dir)} in 
       {mv_st with status = (update_status (player_block mv_st.player mv_st.map))}
     end 
-  | Display x -> {st with panel_txt=(display st.panel_txt x)}
+  | Display x -> {st with panel_txt=(display st x)}
 
 let process_encounter input (st : state) = 
   let action = map_key input in 
@@ -102,7 +101,7 @@ let process_encounter input (st : state) =
       let mv_st =  {st with player=(move_map st.player dir)} in 
       {mv_st with status = (update_status (player_block mv_st.player mv_st.map))}
     end 
-  | Display x -> {st with panel_txt=(display st.panel_txt x)}
+  | Display x -> {st with panel_txt=(display st x)}
 
 let pikachu = poke_from_json (Yojson.Basic.from_file "pikachu.json")
 
