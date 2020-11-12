@@ -96,11 +96,11 @@ let spawn_prob (t : t) (lst : Pokemon.t list) =
   | House -> None
   | PokeCenter -> None
 
-
 (* * Utop testing for now
    let map = json_to_list (Yojson.Basic.from_file "map1.json")
 
    let dims = map_dim (Yojson.Basic.from_file "map1.json")
+
 
    let map_list = list_to_blocks map
 

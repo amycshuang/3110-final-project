@@ -50,4 +50,4 @@ val spawn_poke : Pokemon.t list -> Pokemon.t
 
 (** [spawn_prob t lst] decides whether Some pokemon from the pokemon list [lst] 
     will spawn on a block [t]. If a pokemon is not spawned, None is returned. *)
-val spawn_prob : t ->  Pokemon.t option
+val spawn_prob : t -> Pokemon.t list -> Pokemon.t option

@@ -39,6 +39,9 @@ type caught = bool
 (** The type of a pokemon's move *)
 type move 
 
+(** The type of a pokemon's move name *)
+type move_name = string
+
 (** Raised when an invalid pokemon is encountered. *)
 exception InvalidPokemon of string
 
@@ -74,7 +77,14 @@ val get_level_up_exp : t -> level_up_exp
 val get_caught : t -> caught
 
 (** [get_move t move_name] is the [move] represented by [move_name]. *)
-val get_move : t -> string -> move
+val get_move : t -> move_name -> move
+
+(** TODO - add doc *)
+val get_moves : t -> string list
+
+(** [valid_move_name pkm move_name] is true if move_name is a valid move name
+    for one of [pokemon]'s moves  *)
+val valid_move_name : t -> string -> bool
 
 (** [type_from_string type] is the string representation of poke_type [type] *)
 val type_from_string : string -> poke_type
