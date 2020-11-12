@@ -32,13 +32,21 @@ let map_key ch =
   | 'p' -> Display PokeList
   | _ -> Display Default
 
-let move_map p m =
+let check_bounds (x1, y1) (x2, y2) map = 
+  let ncol = Array.length map.(0) in
+  let nrow = Array.length map in
+  if (x2 < 0 || x2 > (ncol - 1)) || (y2 < 0 || y2 > (nrow - 1)) 
+  then (x1, y1) else (x2, y2)
+
+let move_map p m map =
   let (x, y) = p.location in
-  match m with
-  | Up -> {p with location=(x, y + 1)}
-  | Left -> {p with location=(x - 1, y)}
-  | Down -> {p with location=(x, y - 1)}
-  | Right -> {p with location=(x + 1, y)}
+  let new_loc = 
+    match m with
+    | Up -> (x, y + 1)
+    | Left -> (x - 1, y)
+    | Down -> (x, y - 1)
+    | Right -> (x + 1, y)
+  in {p with location=(check_bounds (x, y) new_loc map)}
 
 let string_of_item = function
   | Potion -> "Potion"
@@ -82,7 +90,7 @@ let process_input input st =
   let action = map_key input in
   match action with
   | Move dir -> begin 
-      let mv_st =  {st with player=(move_map st.player dir)} in 
+      let mv_st =  {st with player=(move_map st.player dir st.map)} in 
       {mv_st with status = (update_status (player_block mv_st.player mv_st.map))}
     end 
   | Display x -> {st with panel_txt=(display st x)}
@@ -91,7 +99,7 @@ let process_encounter input (st : state) =
   let action = map_key input in 
   match action with 
   | Move dir -> begin 
-      let mv_st =  {st with player=(move_map st.player dir)} in 
+      let mv_st =  {st with player=(move_map st.player dir st.map)} in 
       {mv_st with status = (update_status (player_block mv_st.player mv_st.map))}
     end 
   | Display x -> {st with panel_txt=(display st x)}
