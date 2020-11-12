@@ -101,6 +101,8 @@ let get_move pokemon move_name =
   | [] -> raise (InvalidPokemon "pokemon is not valid")
   | h :: t -> h
 
+let get_moves pokemon = List.map (fun x -> x.move_name) pokemon.move_set
+
 let valid_move_name pokemon move_name = 
   (List.filter (fun move' -> move'.move_name = move_name)
      pokemon.move_set) <> []

@@ -2,8 +2,6 @@ open Pokemon
 open Player
 open Graphics
 
-type status = Intro | Walking | Battling | Win
-
 type block = TallGrass 
            | Water
            | Grass
@@ -11,6 +9,8 @@ type block = TallGrass
            | Gym
            | PokeCenter
            | House
+
+type status =  Walking | Battling | Encounter of block | Enter of block | Win
 
 type move = Up | Left | Right | Down
 
@@ -26,6 +26,7 @@ type state = {
   map : map;
   player : Player.t;
   panel_txt : string;
+  status : status;
 }
 
 let map_key ch =
@@ -51,10 +52,36 @@ let display txt = function
   | PokeList -> "Pikachu"
   | Default -> "Default txt"
 
+let update_status = function 
+  | TallGrass -> Encounter TallGrass
+  | Water -> Encounter Water
+  | Grass -> Walking
+  | Road -> Walking
+  | Gym -> Enter Gym
+  | PokeCenter -> Enter PokeCenter
+  | House -> Enter House
+
+let player_block p map = 
+  let (x, y) = get_loc p in 
+  let rev_y = Array.length map - y - 1 in 
+  (map.(rev_y)).(x)
+
 let process_input input st =
   let action = map_key input in
   match action with
-  | Move dir -> {st with player=(move_map st.player dir)} 
+  | Move dir -> begin 
+      let mv_st =  {st with player=(move_map st.player dir)} in 
+      {mv_st with status = (update_status (player_block mv_st.player mv_st.map))}
+    end 
+  | Display x -> {st with panel_txt=(display st.panel_txt x)}
+
+let process_encounter input (st : state) = 
+  let action = map_key input in 
+  match action with 
+  | Move dir -> begin 
+      let mv_st =  {st with player=(move_map st.player dir)} in 
+      {mv_st with status = (update_status (player_block mv_st.player mv_st.map))}
+    end 
   | Display x -> {st with panel_txt=(display st.panel_txt x)}
 
 let pikachu = poke_from_json (Yojson.Basic.from_file "pikachu.json")
@@ -62,7 +89,7 @@ let pikachu = poke_from_json (Yojson.Basic.from_file "pikachu.json")
 let player_start blocks = 
   let ncol = Array.length blocks.(0) in
   let nrow = Array.length blocks in
-  (ncol / 2, nrow / 2)
+  ((ncol / 2) - 1, nrow / 2)
 
 let trying = [|[|Grass; Grass; Grass; Grass; Water; Water; Water; Road;
                  TallGrass; Grass; Grass; Grass; Grass; Grass; Grass; Grass;
@@ -105,13 +132,12 @@ let init_state name starter = {
   map = trying;
   player = make_player name starter;
   panel_txt = "default";
+  status = Walking;
 }
 
-let player_block p map = 
-  let (x, y) = get_loc p in (map.(x)).(y)
-
 let testing_state = {
-  map=trying;
-  player=test_player;
-  panel_txt="Default text"
+  map = trying;
+  player = test_player;
+  panel_txt = "Default text";
+  status = Walking;
 }

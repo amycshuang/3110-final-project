@@ -74,10 +74,6 @@ let parse_cmd pkm cmd =
       | _ -> raise (InvalidCommand "Invalid Player Command")
     end
 
-let parse_cmd cmd = 
-  match cmd with 
-  | _ -> failwith "unimplemented"
-
 let parse_starter pkm =
   match pkm with 
   | [] -> raise (InvalidCommand "Empty Command")

@@ -1,6 +1,7 @@
 open Player
 open Graphics 
 open State
+open Pokemon
 
 let box_len = 25
 let char_size = 8
@@ -8,6 +9,18 @@ let char_color = Graphics.black
 let panel_height = 75
 let panel_color = Graphics.rgb 151 199 218
 let panel_outline = 3
+
+type battle_option = {
+  loc : int * int;
+  text : string;
+  selected: bool;
+}
+
+let battle = {loc = (45, 80); text = "Battle"; selected = false}
+let bag = {loc = (145, 80); text = "Bag"; selected = false}
+let pokemon = {loc = (245, 80); text = "Pokemon"; selected = false}
+let run = {loc = (395, 80); text = "Run"; selected = false}
+let battle_options = [battle; bag; pokemon; run]
 
 let color_of_block b = 
   match b with
@@ -62,5 +75,61 @@ let render (st : State.state) =
   let () = draw_char st.player in
   let () = display_text st.panel_txt in
   let () = synchronize () in ()
+(* 
+let draw_choose (dir : State.move) = 
+  match dir with 
+  | Some Left -> ()
+  | Some Right -> ()
+  | None -> () *)
+
+let render_pkm_stats pkm s_x s_y = 
+  let () = moveto s_x s_y in 
+  let () = draw_string (get_name pkm) in 
+  let () = moveto s_x (s_y - 20) in 
+  let () = draw_string ("lvl: " ^ string_of_int (get_level pkm)) in 
+  let () = moveto s_x (s_y - 40) in 
+  let () = draw_string ("hp: " ^ string_of_int (get_hp pkm)) in ()
+
+let render_pkm x y color = 
+  Graphics.set_color color;
+  Graphics.fill_circle x y 40;;
+
+let rec pkm_mvs_string = function
+  | [] -> ""
+  | h :: t -> h ^ "   " ^ pkm_mvs_string t
+
+let rec render_battle_options color b_opts = 
+  Graphics.set_color color;
+  match b_opts with 
+  | [] -> () 
+  | h :: t -> begin 
+      let (x, y) = h.loc in 
+      let () = moveto x y in 
+      let () = draw_string h.text in 
+      render_battle_options color t
+    end
+
+let render_encounter (st : State.state) (block : State.block)
+    (trn_pkm : Pokemon.t) (w_pkm : Pokemon.t) =
+  let w_width = size_x () in 
+  let w_height = size_y () in 
+  let () = Graphics.clear_graph () in 
+  let s_x = (w_width / 4) * 3 + 20 in 
+  let s_y = (w_height / 4) in 
+  let () = render_pkm_stats trn_pkm s_x (s_y + 80) in 
+  let () = render_pkm_stats w_pkm 45 (s_y * 3 + 40) in 
+  let () = render_pkm 130 (s_y + 70) blue in 
+  let () = render_pkm (s_x - 20) (s_y * 3 + 20) magenta in
+  let () = render_battle_options black battle_options in  
+  let () = synchronize () in ()
 
 
+(* let render_battle = failwith "unimplemented"  *)
+(* 
+let render_building (st : State.state) (block : State.block) =
+  match block with 
+  | PokeCenter -> 
+  | Gym -> 
+  | House ->  *)
+
+(* let render_win = failwith "unimplemented"  *)

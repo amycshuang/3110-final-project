@@ -79,6 +79,9 @@ val get_caught : t -> caught
 (** [get_move t move_name] is the [move] represented by [move_name]. *)
 val get_move : t -> move_name -> move
 
+(** TODO - add doc *)
+val get_moves : t -> string list
+
 (** [valid_move_name pkm move_name] is true if move_name is a valid move name
     for one of [pokemon]'s moves  *)
 val valid_move_name : t -> string -> bool
