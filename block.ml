@@ -9,7 +9,7 @@ type block_type = string
 
 exception InvalidBlock of block_type
 
-type t = 
+type block = 
   | TallGrass 
   | Water 
   | Road
@@ -44,7 +44,7 @@ let json_to_list json =
 let list_to_blocks lst =
   List.map (string_to_block) lst
 
-let list_to_matrix (lst : t list) json = 
+let list_to_matrix (lst : block list) json = 
   let arr = Array.of_list lst in
   let dim = map_dim json in
   let matrix = Array.make_matrix dim.height dim.width Grass in
@@ -64,7 +64,7 @@ let rev_matrix a =
   done;
   a
 
-let get_block_type (t : t) =
+let get_block_type (t : block) =
   match t with
   | TallGrass -> "tall grass"
   | Water -> "water"
@@ -81,7 +81,7 @@ let spawn_poke (lst : Pokemon.t list) =
   let poke_arr = Array.of_list lst in
   poke_arr.(random)
 
-let spawn_prob (t : t) (lst : Pokemon.t list) =
+let spawn_prob (t : block) (lst : Pokemon.t list) =
   let random = Random.int 3 in
   match t with
   | TallGrass -> 

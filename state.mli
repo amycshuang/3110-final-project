@@ -1,17 +1,12 @@
-(** The different types of blocks within a map. *)
-type block = TallGrass 
-           | Water
-           | Grass
-           | Road
-           | Gym
-           | PokeCenter
-           | House
-
 (** The status of the game. *)
-type status =  Walking | Battling | Encounter of block | Enter of block | Win
+type status =  Walking 
+            | Battling 
+            | Encounter of Block.block 
+            | Enter of Block.block 
+            | Win
 
 (** The type representing a map. *)
-type map = block array array
+type map = Block.block array array
 
 type state = {
   map : map;
