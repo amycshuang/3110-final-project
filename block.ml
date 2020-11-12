@@ -18,17 +18,6 @@ type t =
   | House 
   | PokeCenter
 
-(* module PokeBlock = struct
-   type t = {
-    id : string;
-    block_type : string;
-    width : float;
-    location : float * float;
-    poke_list : Pokemon.t list;
-
-   }
-   end *)
-
 let map_dim (json : Yojson.Basic.t) = {
   width = json |> member "width" |> to_int;
   height = json |> member "height" |> to_int;
@@ -66,7 +55,6 @@ let list_to_matrix (lst : t list) json =
   done;
   matrix  
 
-(** temporary function with reversed array bc i messed up json *)
 let rev_matrix a =
   let len = Array.length a in
   for i = 0 to (len/2) do
@@ -86,9 +74,7 @@ let get_block_type (t : t) =
   | House -> "house" 
   | PokeCenter -> "pokecenter"
 
-let poke_list_from_json (json : Yojson.Basic.t) =
-  let lst = [json] in
-  List.map Pokemon.poke_from_json lst
+let poke_list_from_json j = j |> to_list |> List.map Pokemon.poke_from_json
 
 let spawn_poke (lst : Pokemon.t list) =
   let random = Random.int (List.length lst) in
@@ -110,14 +96,17 @@ let spawn_prob (t : t) (lst : Pokemon.t list) =
   | House -> None
   | PokeCenter -> None
 
-(** Utop testing for now*)
-let map = json_to_list (Yojson.Basic.from_file "map1.json")
+(* * Utop testing for now
+   let map = json_to_list (Yojson.Basic.from_file "map1.json")
 
-let dims = map_dim (Yojson.Basic.from_file "map1.json")
+   let dims = map_dim (Yojson.Basic.from_file "map1.json")
 
-let map_list = list_to_blocks map
 
-let map_arr = list_to_matrix map_list (Yojson.Basic.from_file "map1.json")
+   let map_list = list_to_blocks map
 
-(** To get the right array (starting from top left) *)
-let map_rev = rev_matrix map_arr
+   let map_arr = list_to_matrix map_list (Yojson.Basic.from_file "map1.json")
+
+   (** To get the right array (starting from top left) *)
+   let map_rev = rev_matrix map_arr *)
+
+let starter_poke = poke_list_from_json (Yojson.Basic.from_file "starter_pokemon.json")

@@ -62,7 +62,7 @@ let type_from_string = function
   | "Rock" -> Rock
   | "Steel" -> Steel
   | "Water" -> Water
-  | _ -> raise (InvalidPokemon "this pokemon does not have a type")
+  | _ -> raise (InvalidPokemon ("this pokemon does not have a type"))
 
 let moves_of_json j = {
   move_type = j |> member "move_type" |> to_string |> type_from_string;
@@ -75,7 +75,7 @@ let poke_from_json j = {
   stats = j |> member "stats" |> stats_of_json;
   caught = j |> member "caught" |> to_bool;
   move_set = j |> member "move_set" |> to_list |> List.map moves_of_json;
-}
+} 
 
 let get_name pokemon = pokemon.name
 
