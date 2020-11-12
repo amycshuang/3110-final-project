@@ -18,17 +18,6 @@ type t =
   | House 
   | PokeCenter
 
-(* module PokeBlock = struct
-   type t = {
-    id : string;
-    block_type : string;
-    width : float;
-    location : float * float;
-    poke_list : Pokemon.t list;
-
-   }
-   end *)
-
 let map_dim (json : Yojson.Basic.t) = {
   width = json |> member "width" |> to_int;
   height = json |> member "height" |> to_int;
@@ -66,7 +55,7 @@ let list_to_matrix (lst : t list) json =
   done;
   matrix  
 
-(** temporary function with reversed array bc i messed up json *)
+(** temporary function to reverse array bc i messed up json *)
 let rev_matrix a =
   let len = Array.length a in
   for i = 0 to (len/2) do
