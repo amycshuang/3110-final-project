@@ -51,4 +51,4 @@ finalcheck: check
 	bash finalcheck.sh
 
 zip:
-	zip -r pokemon.zip *.ml* _tags Makefile 
+	zip -r pokemon.zip *.ml* *.json _tags Makefile 
