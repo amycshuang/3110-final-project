@@ -7,8 +7,8 @@
       "hp": 45,
       "attack": 49,
       "defense": 49,
-      "curr_exp": 64,
-      "level_up_exp": 100
+      "curr_exp": 0,
+      "level_up_exp": 50
     },
     "caught": false,
     "move_set": [
@@ -38,8 +38,8 @@
       "hp": 39,
       "attack": 52,
       "defense": 43,
-      "curr_exp": 62,
-      "level_up_exp": 100
+      "curr_exp": 0,
+      "level_up_exp": 50
     },
     "caught": false,
     "move_set": [
@@ -69,8 +69,8 @@
       "hp": 44,
       "attack": 48,
       "defense": 65,
-      "curr_exp": 63,
-      "level_up_exp": 100
+      "curr_exp": 0,
+      "level_up_exp": 50
     },
     "caught": false,
     "move_set": [
@@ -100,8 +100,8 @@
       "hp": 35,
       "attack": 55,
       "defense": 40,
-      "curr_exp": 112,
-      "level_up_exp": 200
+      "curr_exp": 0,
+      "level_up_exp": 50
     },
     "caught": false,
     "move_set": [
