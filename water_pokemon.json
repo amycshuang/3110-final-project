@@ -65,7 +65,7 @@
     "name": "Gyarados",
     "poke_type": "Water",
     "stats": {
-      "level": 88,
+      "level": 3,
       "hp": 95,
       "attack": 125,
       "defense": 79,
@@ -127,7 +127,7 @@
     "name": "Magikarp",
     "poke_type": "Water",
     "stats": {
-      "level": 88,
+      "level": 17,
       "hp": 20,
       "attack": 10,
       "defense": 55,
@@ -154,7 +154,7 @@
     "name": "Vaporeon",
     "poke_type": "Water",
     "stats": {
-      "level": 94,
+      "level": 12,
       "hp": 130,
       "attack": 65,
       "defense": 60,
@@ -203,7 +203,7 @@
         "move_name": "Hydro Pump"
       },
       {
-        "move_type": "Steell",
+        "move_type": "Steel",
         "move_name": "Flash Cannon"
       },
       {
@@ -216,7 +216,7 @@
     "name": "Psyduck",
     "poke_type": "Water",
     "stats": {
-      "level": 88,
+      "level": 8,
       "hp": 50,
       "attack": 52,
       "defense": 48,
@@ -247,7 +247,7 @@
     "name": "Mudkip",
     "poke_type": "Water",
     "stats": {
-      "level": 94,
+      "level": 11,
       "hp": 50,
       "attack": 70,
       "defense": 50,

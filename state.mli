@@ -15,7 +15,7 @@ type state = {
   status : status;
 }
 
-type encounter_status = {
+type encounter_state = {
   player : Player.player;
   opponent: Pokemon.pokemon
 }
@@ -27,7 +27,4 @@ val update_status : Block.block -> status
 
 val player_block : Player.player -> map -> Block.block
 
-(** [trying] is a test map to test for rendering *)
-val testing_state : state
-
-val init_state : Player.nickname -> 'a -> state
+val init_state : Player.nickname -> Pokemon.pokemon -> state

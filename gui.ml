@@ -194,9 +194,6 @@ let list_of_stats pokemon =
   [(String.uppercase_ascii pokemon.name);
    "Lv" ^ string_of_int pokemon.stats.level]
 
-
-
-
 let opt_lst () = make_options 2 (size_x () / 2) 0 (size_x () / 2) battle_panel_ht encounter_menu
 
 let rec draw_options = function
@@ -207,27 +204,23 @@ let rec draw_options = function
     Graphics.draw_string opt.text;
     draw_options t
 
-let poke_panel x y = 
+let poke_panel x y poke = 
   let width = size_x () / 3 in
   let height = size_y () / 5 in
   Graphics.set_color (Graphics.rgb 248 248 216);
   Graphics.fill_rect x y width height;
   Graphics.set_color (Graphics.rgb 58 82 52);
   Graphics.set_line_width 5;
-  Graphics.draw_rect x y width height
+  Graphics.draw_rect x y width height;
+  let lst = list_of_stats poke in
+  let txt = make_options 2 x y width height lst in
+  draw_options txt
 
-let render_encounter (st : State.state) =
+let render_encounter (st : State.state) (b_st : State.encounter_state) =
   let () = Graphics.open_graph (graph_dims st.map); in
   let () = Graphics.clear_graph () in 
   let () = draw_bottom_panel () in
-  let () = poke_panel 50 275 in
-  let () = poke_panel 300 150 in
+  let () = poke_panel 50 275 b_st.opponent in
+  let () = poke_panel 300 150 (List.hd b_st.player.poke_list) in
   let () = draw_options (opt_lst ()) in
   let () = synchronize () in ()
-
-let () = render_encounter testing_state
-
-
-
-
-

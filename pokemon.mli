@@ -8,7 +8,7 @@
 
 type poke_type = 
   | Bug | Dark | Dragon | Electric | Fighting | Fire | Flying | Ghost 
-  | Grass | Ice | Normal | Poison | Psychic | Rock | Steel | Water
+  | Grass | Ground | Ice | Normal | Poison | Psychic | Rock | Steel | Water
 
 type move = {
   move_type: poke_type;
@@ -39,6 +39,9 @@ exception InvalidPokemon of string
 (** [poke_from_json j] is the pokemon that [j] represents.
     Requires: [j] is a valid JSON pokemon representation. *)
 val poke_from_json : Yojson.Basic.t -> pokemon
+
+(** [poke_list_from_json json] is the a list of pokemon from the JSON [json]. *)
+val poke_list_from_json : Yojson.Basic.t -> pokemon list
 
 (** [valid_move_name pkm move_name] is true if move_name is a valid move name
     for one of [pokemon]'s moves  *)

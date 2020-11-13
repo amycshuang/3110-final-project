@@ -16,7 +16,7 @@ type state = {
   status : status;
 }
 
-type encounter_status = {
+type encounter_state = {
   player : Player.player;
   opponent: Pokemon.pokemon
 }
@@ -76,7 +76,7 @@ let trying = [|[|Grass; Grass; Grass; Grass; Water; Water; Water; Road;
 let test_player = init_player "testing" pikachu (player_start trying)
 
 (** TODO - change the starter to an actual pokemon object *)
-let make_player name starter = init_player name pikachu (player_start trying)
+let make_player name starter = init_player name starter (player_start trying)
 
 let init_state name starter = 
   let start_game_message = 
@@ -90,10 +90,3 @@ let init_state name starter =
     panel_txt = "default";
     status = Walking;
   }
-
-let testing_state = {
-  map = trying;
-  player = test_player;
-  panel_txt = "Default text";
-  status = Walking;
-}

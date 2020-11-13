@@ -2,7 +2,7 @@ open Yojson.Basic.Util
 
 type poke_type = 
   | Bug | Dark | Dragon | Electric | Fighting | Fire | Flying | Ghost 
-  | Grass | Ice | Normal | Poison | Psychic | Rock | Steel | Water
+  | Grass | Ground | Ice | Normal | Poison | Psychic | Rock | Steel | Water 
 
 exception InvalidPokemon of string
 
@@ -48,6 +48,7 @@ let type_from_string = function
   | "Flying" -> Flying
   | "Ghost" -> Ghost
   | "Grass" -> Grass
+  | "Ground" -> Ground
   | "Ice" -> Ice
   | "Normal" -> Normal
   | "Poison" -> Poison
@@ -69,6 +70,8 @@ let poke_from_json j = {
   caught = j |> member "caught" |> to_bool;
   move_set = j |> member "move_set" |> to_list |> List.map moves_of_json;
 } 
+
+let poke_list_from_json j = j |> to_list |> List.map poke_from_json
 
 let get_move pokemon move_name = 
   match List.filter (fun move' -> move'.move_name = move_name) 
