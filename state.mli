@@ -18,11 +18,9 @@ type state = {
 (** [get_key ()] returns the corresponding character of the key pressed *)
 val get_key : unit -> char
 
-(** [map_key ch st] maps pressed character to an option of action *)
-val process_input : char -> state -> state
+val update_status : Block.block -> status
 
-(** [process_encounter ch st] is the state after an encounter. *)
-val process_encounter :  char -> state -> state
+val player_block : Player.player -> map -> Block.block
 
 (** [trying] is a test map to test for rendering *)
 val testing_state : state

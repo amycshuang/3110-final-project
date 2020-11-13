@@ -7,6 +7,7 @@
 #load "player.cmo";;
 #load "state.cmo";;
 #use "gui.ml";;
+#use "option.ml";;
 open Pokemon
 open Player
 open State
