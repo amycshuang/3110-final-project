@@ -54,10 +54,6 @@ let rec pokemon_info_input file_name () =
   let pokemon_type = string_input_helper () in
   print_string "\n";
 
-  print_string "Enter this pokemon's current level\n";
-  let pokemon_level = int_input_helper () in
-  print_string "\n";
-
   print_string "Enter this pokemon's HP\n";
   let pokemon_hp = int_input_helper () in
   print_string "\n";
@@ -70,23 +66,15 @@ let rec pokemon_info_input file_name () =
   let pokemon_defense = int_input_helper () in
   print_string "\n";
 
-  print_string "Enter this pokemon's current experience\n";
-  let pokemon_curr_exp = int_input_helper () in
-  print_string "\n";
-
-  print_string "Enter the experience needed to level up this pokemon\n";
-  let pokemon_level_up_exp = int_input_helper () in
-  print_string "\n";
-
   let json = "{\"name\": " ^ pokemon_name ^ 
              ", \"poke_type\": " ^ pokemon_type ^ 
              ", \"stats\": { " ^
-             "\"level\": " ^ string_of_int pokemon_level ^ 
+             "\"level\": " ^ string_of_int (Random.int 99) ^ 
              ", \"hp\": " ^ string_of_int pokemon_hp ^ 
              ", \"attack\": " ^ string_of_int pokemon_attack ^ 
              ", \"defense\": " ^ string_of_int pokemon_defense ^
-             ", \"curr_exp\": " ^ string_of_int pokemon_curr_exp ^ 
-             ", \"level_up_exp\": " ^ string_of_int pokemon_level_up_exp ^
+             ", \"curr_exp\": " ^ "0" ^ 
+             ", \"level_up_exp\": " ^ "50" ^
              "}, " ^
              "\"caught\": " ^ "false" ^
              ", \"move_set\": [ "
