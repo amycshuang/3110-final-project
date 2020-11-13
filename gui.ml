@@ -173,8 +173,9 @@ let make_options ncol x y width height lst =
     | h :: t -> let n = (List.length t) + 1 in
       let multx = n mod ncol in
       let multy = (n + 1) / ncol - 1 in
-      let button = {loc=((multx * s_x + (s_x / 3) + x), ((multy * s_y) + (s_y /3 + y)));
-                    text=h; selected=false} in making (button::acc) t in
+      let button = {loc=((multx * s_x + (s_x / 3) + x),
+                         ((multy * s_y) + (s_y /3 + y))); text=h; 
+                    selected=false} in making (button::acc) t in
   making [] lst
 
 (* let rec make_options lst x y width height = 
@@ -188,6 +189,13 @@ let make_options ncol x y width height lst =
     let nx = multx * (n_w) in
     let nb = {loc=(x + nx, y + n_h); text=h; selected=false} in
     nb::(make_options t x y width height);; *)
+
+let list_of_stats pokemon = 
+  [(String.uppercase_ascii pokemon.name);
+   "Lv" ^ string_of_int pokemon.stats.level]
+
+
+
 
 let opt_lst () = make_options 2 (size_x () / 2) 0 (size_x () / 2) battle_panel_ht encounter_menu
 

@@ -16,6 +16,11 @@ type state = {
   status : status;
 }
 
+type encounter_status = {
+  player : Player.player;
+  opponent: Pokemon.pokemon
+}
+
 let update_status = function 
   | TallGrass -> Encounter TallGrass
   | Water -> Encounter Water

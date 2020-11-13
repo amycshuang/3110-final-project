@@ -35,7 +35,6 @@ let rec play_game st =
 
 (** [main ()] prompts for the game to play, then starts it. *)
 let main () =
-  render_walk initialize;
   play_game initialize
 
 (* Execute the game engine. *)

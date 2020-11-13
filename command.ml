@@ -25,7 +25,7 @@ exception InvalidCommand of string
     [pkm], false otherwise. *)
 let check_valid_catch = function
   | None -> raise Impossible
-  | Some p -> get_caught p
+  | Some p -> p.caught
 
 (** [get_pkm_move mv_lst] is the string representation of a pokemon move
     formed by catenating each element of the string list [mv_lst] together *)

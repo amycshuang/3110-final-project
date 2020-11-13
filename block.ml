@@ -76,19 +76,19 @@ let get_block_type (t : block) =
 
 let poke_list_from_json j = j |> to_list |> List.map Pokemon.poke_from_json
 
-let spawn_poke (lst : Pokemon.t list) =
+let poke_rand (lst : Pokemon.pokemon list) =
   let random = Random.int (List.length lst) in
   let poke_arr = Array.of_list lst in
   poke_arr.(random)
 
-let spawn_prob (t : block) (lst : Pokemon.t list) =
+let spawn_poke (t : block) (lst : Pokemon.pokemon list) =
   let random = Random.int 3 in
   match t with
   | TallGrass -> 
-    if random = 0 || random = 1 then Some (spawn_poke lst)
+    if random = 0 || random = 1 then Some (poke_rand lst)
     else None
   | Water -> 
-    if random = 0 || random = 1 then Some (spawn_poke lst)
+    if random = 0 || random = 1 then Some (poke_rand lst)
     else None
   | Road -> None
   | Grass -> None
@@ -110,3 +110,5 @@ let spawn_prob (t : block) (lst : Pokemon.t list) =
    let map_rev = rev_matrix map_arr *)
 
 let starter_poke = poke_list_from_json (Yojson.Basic.from_file "starter_pokemon.json")
+let water_poke = poke_list_from_json (Yojson.Basic.from_file "water_pokemon.json")
+let grass_poke = poke_list_from_json (Yojson.Basic.from_file "grass_pokemon.json")

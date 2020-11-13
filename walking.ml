@@ -51,15 +51,15 @@ let parse_pokelist p =
   let pokelist = p.poke_list in
   let rec parse_poke = function
     | [] -> ""
-    | pokemon :: t -> (get_name pokemon) ^ "\n" ^ parse_poke t in
+    | pokemon :: t -> (pokemon.name) ^ "\n" ^ parse_poke t in
   parse_poke pokelist
 
-let display st = function
+let display (st : State.state) = function
   | Bag -> parse_bag st.player
   | PokeList -> parse_pokelist st.player
   | Default -> "Default txt"
 
-let process_walk input st =
+let process_walk input (st : State.state) =
   let action = walk_key input in
   match action with
   | Move dir -> begin 
