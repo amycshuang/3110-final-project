@@ -1,6 +1,7 @@
 open Player
 open Graphics 
 open State
+open Block
 open Pokemon
 
 let box_len = 25
@@ -109,7 +110,7 @@ let rec render_battle_options color b_opts =
       render_battle_options color t
     end
 
-let render_encounter (st : State.state) (block : State.block)
+let render_encounter (st : State.state) (block : Block.block)
     (trn_pkm : Pokemon.t) (w_pkm : Pokemon.t) =
   let w_width = size_x () in 
   let w_height = size_y () in 

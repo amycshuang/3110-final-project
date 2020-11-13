@@ -1,14 +1,7 @@
 open Pokemon
 open Player
+open Block
 open Graphics
-
-type block = TallGrass 
-           | Water
-           | Grass
-           | Road
-           | Gym
-           | PokeCenter
-           | House
 
 type status =  Walking | Battling | Encounter of block | Enter of block | Win
 
