@@ -3,7 +3,7 @@
     "name": "Bulbasaur",
     "poke_type": "Grass",
     "stats": {
-      "level": 1,
+      "level": 5,
       "hp": 45,
       "attack": 49,
       "defense": 49,
@@ -34,7 +34,7 @@
     "name": "Charmander",
     "poke_type": "Fire",
     "stats": {
-      "level": 1,
+      "level": 5,
       "hp": 39,
       "attack": 52,
       "defense": 43,
@@ -65,7 +65,7 @@
     "name": "Squirtle",
     "poke_type": "Water",
     "stats": {
-      "level": 1,
+      "level": 5,
       "hp": 44,
       "attack": 48,
       "defense": 65,
@@ -96,7 +96,7 @@
     "name": "Pikachu",
     "poke_type": "Electric",
     "stats": {
-      "level": 1,
+      "level": 5,
       "hp": 35,
       "attack": 55,
       "defense": 40,

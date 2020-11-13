@@ -6,85 +6,46 @@
    It also handles loading of a pokemon's data from JSON.
 *)
 
+type poke_type = 
+  | Bug | Dark | Dragon | Electric | Fighting | Fire | Flying | Ghost 
+  | Grass | Ground | Ice | Normal | Poison | Psychic | Rock | Steel | Water
+
+type move = {
+  move_type: poke_type;
+  move_name: string;
+}
+
 (** The abstract type of values representing a pokemon. *)
-type t
+type stats = {
+  level: int;
+  hp: int;
+  attack: int;
+  defense: int;
+  curr_exp: int;
+  level_up_exp: int;
+}
 
-(** The name of a pokemon *)
-type name = string
-
-(** The type of a pokemon's type *)
-type poke_type
-
-(** The type of a pokemon's level *)
-type level = int
-
-(** The type of a pokemon's HP stat *)
-type hp = int
-
-(** The type of a pokemon's attack stat *)
-type attack = int
-
-(** The type of a pokemon's defense stat *)
-type defense = int
-
-(** The type of a pokemon's current experience *)
-type curr_exp = int
-
-(** The type of the experience needed for the pokemon to level up *)
-type level_up_exp = int
-
-(** The type of a pokemon's current caught status *) 
-type caught = bool
-
-(** The type of a pokemon's move *)
-type move 
-
-(** The type of a pokemon's move name *)
-type move_name = string
+type pokemon = {
+  name: string;
+  poke_type: poke_type;
+  stats: stats;
+  caught: bool;
+  move_set: move list
+}
 
 (** Raised when an invalid pokemon is encountered. *)
 exception InvalidPokemon of string
 
 (** [poke_from_json j] is the pokemon that [j] represents.
     Requires: [j] is a valid JSON pokemon representation. *)
-val poke_from_json : Yojson.Basic.t -> t
+val poke_from_json : Yojson.Basic.t -> pokemon
 
-(** [get_name t] is the name of pokemon [t]. *)
-val get_name : t -> name
-
-(** [get_poke_type t] is the poke_type of pokemon [t]. *)
-val get_poke_type : t -> poke_type
-
-(** [get_poke_type t] is the level of pokemon [t]. *)
-val get_level : t -> level
-
-(** [get_hp t] is the hp of pokemon [t]. *)
-val get_hp : t -> hp
-
-(** [get_attack t] is the attack of pokemon [t]. *)
-val get_attack : t -> attack
-
-(** [get_defense t] is the defense of pokemon [t]. *)
-val get_defense : t -> defense
-
-(** [get_curr_exp t is the current experience of pokemon [t]. *)
-val get_curr_exp: t -> curr_exp
-
-(** [get_level_up_exp t] is the level_up_exp of pokemon [t]. *)
-val get_level_up_exp : t -> level_up_exp
-
-(** [get_caught t] is the caught status of pokemon [t]. *)
-val get_caught : t -> caught
-
-(** [get_move t move_name] is the [move] represented by [move_name]. *)
-val get_move : t -> move_name -> move
-
-(** TODO - add doc *)
-val get_moves : t -> string list
+(** [poke_list_from_json json] is the a list of pokemon from the JSON [json]. *)
+val poke_list_from_json : Yojson.Basic.t -> pokemon list
 
 (** [valid_move_name pkm move_name] is true if move_name is a valid move name
     for one of [pokemon]'s moves  *)
-val valid_move_name : t -> string -> bool
+val valid_move_name : pokemon -> string -> bool
 
 (** [type_from_string type] is the string representation of poke_type [type] *)
 val type_from_string : string -> poke_type
@@ -92,8 +53,8 @@ val type_from_string : string -> poke_type
 (** [level_up t] is pokemon [t] with [t]'s level incremented by one if 
     [t]'s curr_exp exceeds [t]'s level_up_exp and [t]'s hp, attack, and defense
     are incremented accordinglt. *)
-val level_up : t -> t
+val level_up : pokemon -> pokemon
 
 (** [increase_exp p1 p2] is pokemon [p1]'s curr_exp incremented based on
     the stats of pokemon [p2]. *)
-val increase_exp : t -> t -> t
+val increase_exp : pokemon -> pokemon -> pokemon
