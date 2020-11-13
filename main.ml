@@ -7,7 +7,7 @@ open Block
 open Walking
 open Gui
 
-(** [check_st st] *)
+(** [check_st st] renders a new GUI screen based on the state. *)
 let check_st (st : State.state) = 
   match st.status with 
   | Walking -> render_walk st

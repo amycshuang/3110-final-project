@@ -38,9 +38,8 @@ val json_to_list : Yojson.Basic.t -> string list
 (** [list_to_blocks lst] converts a list of block_types to a list of t types. *)
 val list_to_blocks : block_type list -> block list
 
-(** [list_to_matrix lst json] converts a list [lst] of elements of type t to a 
-    2d array of a size specificed by the JSON [json]. *)
-val list_to_matrix : block list -> Yojson.Basic.t -> block array array
+(** [json_to_map] initializes the JSON with name [j] as a map. *)
+val json_to_map : string -> block array array
 
 (** [rev_matrix a] reverses the array [a]. *)
 val rev_matrix : block array -> block array

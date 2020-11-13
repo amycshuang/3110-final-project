@@ -44,8 +44,11 @@ let json_to_list json =
 let list_to_blocks lst =
   List.map (string_to_block) lst
 
-let list_to_matrix (lst : block list) json = 
-  let arr = Array.of_list lst in
+let json_to_map (j : string) = 
+  let json = Yojson.Basic.from_file j in
+  let json_lst = json_to_list json in
+  let block_list = list_to_blocks json_lst in
+  let arr = Array.of_list block_list in
   let dim = map_dim json in
   let matrix = Array.make_matrix dim.height dim.width Grass in
   for i = 0 to (dim.height - 1) do
@@ -74,8 +77,15 @@ let get_block_type (t : block) =
   | House -> "house" 
   | PokeCenter -> "pokecenter"
 
-let water_poke = Pokemon.poke_list_from_json (Yojson.Basic.from_file "water_pokemon.json")
-let grass_poke = Pokemon.poke_list_from_json (Yojson.Basic.from_file "grass_pokemon.json")
+(** [water_poke] is the pokemon list from the water_pokemon.json. This is a list
+    of all the pokemon that can spawn on water blocks. *)
+let water_poke = Pokemon.poke_list_from_json 
+    (Yojson.Basic.from_file "water_pokemon.json")
+
+(** [grass_poke] is the pokemon list from the grass_pokemon.json. This is a list
+    of all the pokemon that can spawn on tall grass blocks. *)
+let grass_poke = Pokemon.poke_list_from_json 
+    (Yojson.Basic.from_file "grass_pokemon.json")
 
 let poke_rand (lst : Pokemon.pokemon list) =
   let random = Random.int (List.length lst) in
@@ -97,7 +107,7 @@ let spawn_poke (t : block) =
   | House -> None
   | PokeCenter -> None
 
-(* * Utop testing for now
+(* * Utop testing
    let map = json_to_list (Yojson.Basic.from_file "map1.json")
 
    let dims = map_dim (Yojson.Basic.from_file "map1.json")

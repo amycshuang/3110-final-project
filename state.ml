@@ -5,8 +5,6 @@ open Graphics
 
 type status =  Walking | Battling | Encounter of block | Enter of block | Win
 
-let get_key () = (wait_next_event [Key_pressed]).Graphics.key
-
 type map = block array array
 
 type state = {
@@ -21,6 +19,8 @@ type encounter_state = {
   opponent: Pokemon.pokemon
 }
 
+let get_key () = (wait_next_event [Key_pressed]).Graphics.key
+
 let update_status = function 
   | TallGrass -> Encounter TallGrass
   | Water -> Encounter Water
@@ -34,59 +34,25 @@ let player_block p map =
   let (x, y) = p.location in 
   (map.(y)).(x)
 
-let pikachu = poke_from_json (Yojson.Basic.from_file "pikachu.json")
-
+(** [player_start blocks] is the player's location on the map. *)
 let player_start blocks = 
   let ncol = Array.length blocks.(0) in
   let nrow = Array.length blocks in
   ((ncol / 2) - 1, nrow / 2)
 
-let trying = [|[|Grass; Grass; Grass; Grass; Water; Water; Water; Road;
-                 TallGrass; Grass; Grass; Grass; Grass; Grass; Grass; Grass;
-                 Grass; TallGrass; TallGrass; TallGrass;|];
-               [|Grass; House; Grass; Grass; Water; TallGrass; Water; Road; 
-                 TallGrass; Grass; TallGrass; TallGrass; TallGrass; TallGrass;
-                 TallGrass; Grass; Grass; TallGrass; TallGrass; TallGrass;|];
-               [|Grass; Road; House; Grass; Water; Water; Water; Road;
-                 TallGrass; Grass; TallGrass; TallGrass; TallGrass; Water;
-                 TallGrass; Grass; Grass; TallGrass; TallGrass; TallGrass;|];
-               [|TallGrass; Road; Road; Road; Road; Road; Road; Road;
-                 Road; Road; Grass; TallGrass; Water; Water; Grass; Grass;
-                 Grass; TallGrass; TallGrass; TallGrass|];
-               [|TallGrass; Road; House; House; House; House; TallGrass; 
-                 TallGrass; Road; Road; Road; Road; Road; Road; Road; 
-                 PokeCenter; PokeCenter; Grass; Grass; Grass|];
-               [|TallGrass; Road; Grass; Grass; Grass; Grass; TallGrass; 
-                 TallGrass; Road; Road; Road; Road; Road; Road; Road; Road; 
-                 Road; Road; Road; Road|];
-               [|TallGrass; Road; Grass; Grass; Grass; Grass; Water; Water; Gym; Gym; Gym; Grass; TallGrass; Road; TallGrass; Road; Grass; Grass; Grass; Grass|];
-               [|TallGrass; Road; TallGrass; TallGrass; TallGrass; Water; Water; Water; Gym; Gym; Gym; Grass; TallGrass; Road; TallGrass; Road; Water; TallGrass; TallGrass; TallGrass|];
-               [|TallGrass; Road; TallGrass; TallGrass; TallGrass; Water; Water; Water; Grass; Road; Grass; Grass; TallGrass; Road; TallGrass; Road; Water; TallGrass; TallGrass; TallGrass|];
-               [|TallGrass; Road; Road; Road; Road; Road; Road; Road; Road; 
-                 Road; Road; Road; Road; Road; Road; Road; Water; TallGrass; 
-                 TallGrass; TallGrass|]; 
-               [|TallGrass; TallGrass; TallGrass; TallGrass; TallGrass; Road; 
-                 TallGrass; TallGrass; Grass; Grass; House; Grass; Grass; House; 
-                 Road; Road; Road; Water; Water; Water|];
-               [|TallGrass; TallGrass; TallGrass; TallGrass;
-                 TallGrass; Road; TallGrass; TallGrass; Grass; House; Grass;
-                 Grass; Grass; Grass; House; Road; Road; Water; Water;
-                 Water|]|]
+(** [make_player name starter map] is the player made with name [name],
+    starter pokemon [starter], and map [map]. *)
+let make_player name starter map = init_player name starter (player_start map)
 
-let test_player = init_player "testing" pikachu (player_start trying)
-
-(** TODO - change the starter to an actual pokemon object *)
-let make_player name starter = init_player name starter (player_start trying)
-
-let init_state name starter = 
+let init_state name starter map = 
   let start_game_message = 
     "Good choice " ^ name ^ "! " ^ 
     "Good luck on your adventure! Peace, love, and 3110" in
   ANSITerminal.(print_string [cyan] (start_game_message));
   print_endline "";
   {
-    map = trying;
-    player = make_player name starter;
-    panel_txt = "default";
+    map = map;
+    player = make_player name starter map;
+    panel_txt = "Use your WASD keys to move around the map";
     status = Walking;
   }

@@ -23,7 +23,7 @@ let continue_check_helper (f: unit -> unit) =
   | "y" | "Y" -> f ()
   | _ -> ()
 
-(* Get user input to record a pokemon's move set *)
+(* Gets user input to record a pokemon's move set *)
 let rec move_set_input file_name () =
   print_string "\n";
   print_string "Enter the type of this move\n";
@@ -38,7 +38,7 @@ let rec move_set_input file_name () =
              ", \"move_name\": " ^ poke_move_name ^ 
              "}," in
 
-  let oc = open_out_gen [Open_append] 0o666 file_name in (* The octal specifies file permissions *)
+  let oc = open_out_gen [Open_append] 0o666 file_name in
   fprintf oc "%s\n" json;
   close_out oc;
   print_string("Enter another move? y/n \n");
@@ -81,7 +81,7 @@ let rec pokemon_info_input file_name () =
              "\"caught\": " ^ "false" ^
              ", \"move_set\": [ " in
 
-  let oc = open_out_gen [Open_append] 0o666 file_name in (* The octal specifies file permissions *)
+  let oc = open_out_gen [Open_append] 0o666 file_name in 
   fprintf oc "%s\n" json;
   close_out oc;
 
@@ -90,7 +90,7 @@ let rec pokemon_info_input file_name () =
   print_string "\n";
 
   let move_json = read_line pokemon_moves ^ "]" ^ "}," in
-  let oc = open_out_gen [Open_append] 0o666 file_name in (* The octal specifies file permissions *)
+  let oc = open_out_gen [Open_append] 0o666 file_name in
   fprintf oc "%s\n" move_json;
   close_out oc;
 
