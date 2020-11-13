@@ -22,7 +22,7 @@ let fake_spawn_poke = Pokemon.poke_from_json (Yojson.Basic.from_file "pikachu.js
 
 (** [play_game f] starts the adventure in file [f]. *)
 let rec play_game st =
-  render st;
+  render_walk st;
   let input = get_key () in
   (* check_st st; *)
   let n_st = 
@@ -30,12 +30,12 @@ let rec play_game st =
     | Walking -> process_walk input st
     (* | Encounter t -> process_encounter input st *)
     | _ -> process_walk input st in
-  render n_st;
+  render_walk n_st;
   play_game n_st
 
 (** [main ()] prompts for the game to play, then starts it. *)
 let main () =
-  render initialize;
+  render_walk initialize;
   play_game initialize
 
 (* Execute the game engine. *)
