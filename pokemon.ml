@@ -1,16 +1,9 @@
 open Yojson.Basic.Util
 
-type name = string
 type poke_type = 
   | Bug | Dark | Dragon | Electric | Fighting | Fire | Flying | Ghost 
-  | Grass | Ice | Normal | Poison | Psychic | Rock | Steel | Water
-type level = int
-type hp = int
-type attack = int
-type defense = int
-type curr_exp = int
-type level_up_exp = int
-type caught = bool
+  | Grass | Ground | Ice | Normal | Poison | Psychic | Rock | Steel | Water 
+
 exception InvalidPokemon of string
 
 type move_name = string
@@ -20,19 +13,19 @@ type move = {
 }
 
 type stats = {
-  level: level;
-  hp: hp;
-  attack: attack;
-  defense: defense;
-  curr_exp: curr_exp;
-  level_up_exp: level_up_exp;
+  level: int;
+  hp: int;
+  attack: int;
+  defense: int;
+  curr_exp: int;
+  level_up_exp: int;
 }
 
-type t = {
-  name: name;
+type pokemon = {
+  name: string;
   poke_type: poke_type;
   stats: stats;
-  caught: caught;
+  caught: bool;
   move_set: move list
 }
 
@@ -55,6 +48,7 @@ let type_from_string = function
   | "Flying" -> Flying
   | "Ghost" -> Ghost
   | "Grass" -> Grass
+  | "Ground" -> Ground
   | "Ice" -> Ice
   | "Normal" -> Normal
   | "Poison" -> Poison
@@ -77,23 +71,7 @@ let poke_from_json j = {
   move_set = j |> member "move_set" |> to_list |> List.map moves_of_json;
 } 
 
-let get_name pokemon = pokemon.name
-
-let get_poke_type pokemon = pokemon.poke_type 
-
-let get_level pokemon = pokemon.stats.level
-
-let get_hp pokemon = pokemon.stats.hp
-
-let get_attack pokemon = pokemon.stats.attack
-
-let get_defense pokemon = pokemon.stats.defense
-
-let get_curr_exp pokemon = pokemon.stats.curr_exp
-
-let get_level_up_exp pokemon = pokemon.stats.level_up_exp
-
-let get_caught pokemon = pokemon.caught
+let poke_list_from_json j = j |> to_list |> List.map poke_from_json
 
 let get_move pokemon move_name = 
   match List.filter (fun move' -> move'.move_name = move_name) 

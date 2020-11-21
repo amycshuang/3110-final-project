@@ -1,4 +1,4 @@
-MODULES=state player gui pokemon author main block json_utility_script
+MODULES=state initial player gui pokemon author main block walking encounter json_utility_script
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)
@@ -51,4 +51,4 @@ finalcheck: check
 	bash finalcheck.sh
 
 zip:
-	zip -r pokemon.zip *.ml* _tags Makefile 
+	zip -r pokemon.zip *.ml* *.json _tags Makefile 

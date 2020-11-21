@@ -8,6 +8,7 @@ type status =  Walking
 (** The type representing a map. *)
 type map = Block.block array array
 
+(** The type representing a player state. *)
 type state = {
   map : map;
   player : Player.player;
@@ -15,16 +16,22 @@ type state = {
   status : status;
 }
 
+(** The type representing an encounter state *)
+type encounter_state = {
+  player : Player.player;
+  opponent: Pokemon.pokemon
+}
+
 (** [get_key ()] returns the corresponding character of the key pressed *)
 val get_key : unit -> char
 
-(** [map_key ch st] maps pressed character to an option of action *)
-val process_input : char -> state -> state
+(** [update_status block] is the status associated with the block [block]. *)
+val update_status : Block.block -> status
 
-(** [process_encounter ch st] is the state after an encounter. *)
-val process_encounter :  char -> state -> state
+(** [player_block p map] is the block that the player [p] is standing on in 
+    the map [map]. *)
+val player_block : Player.player -> map -> Block.block
 
-(** [trying] is a test map to test for rendering *)
-val testing_state : state
-
-val init_state : Player.nickname -> 'a -> state
+(** [init_state name starter map] is the state created with player name [name],
+    starter pokemon [starter], and map [map]. *)
+val init_state : string -> Pokemon.pokemon -> map -> state

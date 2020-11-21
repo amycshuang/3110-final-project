@@ -6,7 +6,7 @@ type item = Potion | Pokeball
 
 (** The type of a player's bag. *)
 type bag = {
-  pc_box : Pokemon.t list;
+  pc_box : Pokemon.pokemon list;
   badge_case : badge list;
   inventory : (item * int) list;
 }
@@ -15,7 +15,7 @@ type bag = {
 type player = {
   nickname : nickname;
   location : int * int;
-  poke_list : Pokemon.t list;
+  poke_list : Pokemon.pokemon list;
   bag : bag;
   balance : int;
 }
