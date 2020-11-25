@@ -1,4 +1,4 @@
-open OUnit2
+(* open OUnit2
 open Command
 open Pokemon
 
@@ -48,4 +48,4 @@ let command_tests =
     parse_test_exn "invalid attack parse" 
       (Some pikachu) "attack with flamethrower" 
       (InvalidAttack "Invalid Pokemon Attack flamethrower");
-  ]
+  ] *)
