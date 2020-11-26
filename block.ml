@@ -118,4 +118,7 @@ let spawn_poke (t : block) =
    let map_arr = list_to_matrix map_list (Yojson.Basic.from_file "map1.json")
 
    (** To get the right array (starting from top left) *)
-   let map_rev = rev_matrix map_arr *)
+   
+   let map_rev = rev_matrix map_arr
+
+   let starter_poke = poke_list_from_json (Yojson.Basic.from_file "starter_pokemon.json") *)

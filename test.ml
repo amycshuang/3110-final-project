@@ -20,6 +20,7 @@ let command_tests = List.flatten [
 let tests = List.flatten [
     pokemon_tests;
     command_tests;
+    TestBlock.block_tests;
   ]
 
 let suite = "test suite for Pokaml"  >::: tests

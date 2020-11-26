@@ -1,0 +1,30 @@
+{
+  "width": 2,
+  "height": 4,
+  "blocks": [
+    {
+      "type": "grass"
+    },
+    {
+      "type": "water"
+    },
+    {
+      "type": "gym"
+    },
+    {
+      "type": "house"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "tall grass"
+    },
+    {
+      "type": "grass"
+    }
+  ]
+}
