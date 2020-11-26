@@ -18,19 +18,20 @@ exception InvalidRegion
 
 exception InvalidCommand of string
 
+(** TODO - replace with real maps after initializing jsons *)
 let parse_region region = 
   match region with 
   | [] -> raise InvalidRegion
   | h :: t -> begin 
-      match h with 
-      | "kanto" -> Map "map1.json"
-      | "johto" -> Map "map1.json"
-      | "hoenn" -> Map "map1.json"
-      | "sinnoh" -> Map "map1.json"
-      | "unova" -> Map "map1.json"
-      | "kalos" -> Map "map1.json"
-      | "alola" -> Map "map1.json"
-      | "galar" -> Map "map1.json"
+      match h, t with 
+      | "kanto", [] -> Map "map1.json"
+      | "johto", [] -> Map "map1.json"
+      | "hoenn", [] -> Map "map1.json"
+      | "sinnoh", [] -> Map "map1.json"
+      | "unova", [] -> Map "map1.json"
+      | "kalos", [] -> Map "map1.json"
+      | "alola", [] -> Map "map1.json"
+      | "galar", [] -> Map "map1.json"
       | _ -> raise InvalidRegion
     end 
 
@@ -38,11 +39,11 @@ let parse_starter pkm =
   match pkm with 
   | [] -> raise (InvalidCommand "Empty Command")
   | h :: t -> begin 
-      match h with 
-      | "charmander" as c -> SPokemon c
-      | "bulbasaur" as b -> SPokemon b
-      | "squirtle" as s -> SPokemon s
-      | "pikachu" as p -> SPokemon p
+      match h, t with 
+      | "charmander" as c, [] -> SPokemon c
+      | "bulbasaur" as b, [] -> SPokemon b
+      | "squirtle" as s, [] -> SPokemon s
+      | "pikachu" as p, [] -> SPokemon p
       | _ -> raise (InvalidPokemon "Invalid Pokemon")
     end 
 

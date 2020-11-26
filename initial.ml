@@ -50,14 +50,14 @@ let regions = "Kanto | Johto | Hoenn | Sinnoh | Unova | Kalos | Alola | Galar"
 
 (** [reprompt_region_message] is a string that reprompts the player for a 
     valid region. *)
-let reprompt_region_message = "Oh, where is that again?" ^
+let reprompt_region_message = "Oh, where is that again? " ^
                               "Could you please tell me again?"
 
 (** [reprompt_starter_message] is a string that reprompts the player for a 
     valid starter pokemon. *)
 let reprompt_starter_message name = 
-  "Sorry " ^ name ^ "!" ^ 
-  "That is not one of the starter pokemon we have available " ^ 
+  "Sorry " ^ name ^ "! " ^ 
+  "That is not one of the starter pokemon we have available. " ^ 
   "Choose again!"
 
 exception InvalidStarterJson

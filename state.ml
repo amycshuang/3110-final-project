@@ -46,8 +46,8 @@ let make_player name starter map = init_player name starter (player_start map)
 
 let init_state name starter map = 
   let start_game_message = 
-    "Good choice " ^ name ^ "! " ^ 
-    "Good luck on your adventure! Peace, love, and 3110" in
+    "Good choice " ^ name ^ "!\n" ^ 
+    "Good luck on your adventure!\nPeace, love, and 3110" in
   ANSITerminal.(print_string [cyan] (start_game_message));
   print_endline "";
   {
