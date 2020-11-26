@@ -44,8 +44,11 @@ let json_to_list json =
 let list_to_blocks lst =
   List.map (string_to_block) lst
 
-let list_to_matrix (lst : block list) json = 
-  let arr = Array.of_list lst in
+let json_to_map (j : string) = 
+  let json = Yojson.Basic.from_file j in
+  let json_lst = json_to_list json in
+  let block_list = list_to_blocks json_lst in
+  let arr = Array.of_list block_list in
   let dim = map_dim json in
   let matrix = Array.make_matrix dim.height dim.width Grass in
   for i = 0 to (dim.height - 1) do
@@ -74,21 +77,29 @@ let get_block_type (t : block) =
   | House -> "house" 
   | PokeCenter -> "pokecenter"
 
-let poke_list_from_json j = j |> to_list |> List.map Pokemon.poke_from_json
+(** [water_poke] is the pokemon list from the water_pokemon.json. This is a list
+    of all the pokemon that can spawn on water blocks. *)
+let water_poke = Pokemon.poke_list_from_json 
+    (Yojson.Basic.from_file "water_pokemon.json")
 
-let spawn_poke (lst : Pokemon.t list) =
+(** [grass_poke] is the pokemon list from the grass_pokemon.json. This is a list
+    of all the pokemon that can spawn on tall grass blocks. *)
+let grass_poke = Pokemon.poke_list_from_json 
+    (Yojson.Basic.from_file "grass_pokemon.json")
+
+let poke_rand (lst : Pokemon.pokemon list) =
   let random = Random.int (List.length lst) in
   let poke_arr = Array.of_list lst in
   poke_arr.(random)
 
-let spawn_prob (t : block) (lst : Pokemon.t list) =
+let spawn_poke (t : block) =
   let random = Random.int 3 in
   match t with
   | TallGrass -> 
-    if random = 0 || random = 1 then Some (spawn_poke lst)
+    if random = 0 || random = 1 then Some (poke_rand grass_poke)
     else None
   | Water -> 
-    if random = 0 || random = 1 then Some (spawn_poke lst)
+    if random = 0 || random = 1 then Some (poke_rand water_poke)
     else None
   | Road -> None
   | Grass -> None
@@ -96,7 +107,8 @@ let spawn_prob (t : block) (lst : Pokemon.t list) =
   | House -> None
   | PokeCenter -> None
 
-(* let map = json_to_list (Yojson.Basic.from_file "map1.json")
+(* * Utop testing
+   let map = json_to_list (Yojson.Basic.from_file "map1.json")
 
    let dims = map_dim (Yojson.Basic.from_file "map1.json")
 
@@ -106,6 +118,7 @@ let spawn_prob (t : block) (lst : Pokemon.t list) =
    let map_arr = list_to_matrix map_list (Yojson.Basic.from_file "map1.json")
 
    (** To get the right array (starting from top left) *)
+   
    let map_rev = rev_matrix map_arr
 
    let starter_poke = poke_list_from_json (Yojson.Basic.from_file "starter_pokemon.json") *)

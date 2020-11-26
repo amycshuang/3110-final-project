@@ -1,0 +1,308 @@
+[
+  {
+    "name": "Squirtle",
+    "poke_type": "Water",
+    "stats": {
+      "level": 2,
+      "hp": 44,
+      "attack": 48,
+      "defense": 65,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Dark",
+        "move_name": "Bite"
+      },
+      {
+        "move_type": "Water",
+        "move_name": "Rain Dance"
+      },
+      {
+        "move_type": "Water",
+        "move_name": "Aqua Tail"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Skull Bash"
+      }
+    ]
+  },
+  {
+    "name": "Lapras",
+    "poke_type": "Ice",
+    "stats": {
+      "level": 9,
+      "hp": 130,
+      "attack": 85,
+      "defense": 80,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Water",
+        "move_name": "Hydro Pump"
+      },
+      {
+        "move_type": "Ice",
+        "move_name": "Ice Shard"
+      },
+      {
+        "move_type": "Ice",
+        "move_name": "Ice Beam"
+      },
+      {
+        "move_type": "Water",
+        "move_name": "Life Dew"
+      }
+    ]
+  },
+  {
+    "name": "Gyarados",
+    "poke_type": "Water",
+    "stats": {
+      "level": 3,
+      "hp": 95,
+      "attack": 125,
+      "defense": 79,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Water",
+        "move_name": "Waterfall"
+      },
+      {
+        "move_type": "Water",
+        "move_name": "Whirlpool"
+      },
+      {
+        "move_type": "Flying",
+        "move_name": "Hurricane"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Thrash"
+      }
+    ]
+  },
+  {
+    "name": "Poliwag",
+    "poke_type": "Water",
+    "stats": {
+      "level": 9,
+      "hp": 40,
+      "attack": 50,
+      "defense": 40,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Psychic",
+        "move_name": "Hypnosis"
+      },
+      {
+        "move_type": "Water",
+        "move_name": "Bubble Beam"
+      },
+      {
+        "move_type": "Water",
+        "move_name": "Rain Dance"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Belly Drum"
+      }
+    ]
+  },
+  {
+    "name": "Magikarp",
+    "poke_type": "Water",
+    "stats": {
+      "level": 17,
+      "hp": 20,
+      "attack": 10,
+      "defense": 55,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Normal",
+        "move_name": "Splash"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Tackle"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Flail"
+      }
+    ]
+  },
+  {
+    "name": "Vaporeon",
+    "poke_type": "Water",
+    "stats": {
+      "level": 12,
+      "hp": 130,
+      "attack": 65,
+      "defense": 60,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Water",
+        "move_name": "Aqua Ring"
+      },
+      {
+        "move_type": "Water",
+        "move_name": "Muddy Water"
+      },
+      {
+        "move_type": "Ice",
+        "move_name": "Aurora Beam"
+      },
+      {
+        "move_type": "Poison",
+        "move_name": "Acid Armor"
+      }
+    ]
+  },
+  {
+    "name": "Blastoise",
+    "poke_type": "Water",
+    "stats": {
+      "level": 9,
+      "hp": 79,
+      "attack": 83,
+      "defense": 100,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Water",
+        "move_name": "Water gun"
+      },
+      {
+        "move_type": "Water",
+        "move_name": "Hydro Pump"
+      },
+      {
+        "move_type": "Steel",
+        "move_name": "Flash Cannon"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Shell Smash"
+      }
+    ]
+  },
+  {
+    "name": "Psyduck",
+    "poke_type": "Water",
+    "stats": {
+      "level": 8,
+      "hp": 50,
+      "attack": 52,
+      "defense": 48,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Psychic",
+        "move_name": "Amnesia"
+      },
+      {
+        "move_type": "Water",
+        "move_name": "Soak"
+      },
+      {
+        "move_type": "Water",
+        "move_name": "Water Pulse"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Fury Swipes"
+      }
+    ]
+  },
+  {
+    "name": "Mudkip",
+    "poke_type": "Water",
+    "stats": {
+      "level": 11,
+      "hp": 50,
+      "attack": 70,
+      "defense": 50,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Water",
+        "move_name": "Surf"
+      },
+      {
+        "move_type": "Water",
+        "move_name": "Hydro Pump"
+      },
+      {
+        "move_type": "Psychic",
+        "move_name": "Amnesia"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Supersonic"
+      }
+    ]
+  },
+  {
+    "name": "Glaceon",
+    "poke_type": "Ice",
+    "stats": {
+      "level": 14,
+      "hp": 65,
+      "attack": 60,
+      "defense": 110,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Ice",
+        "move_name": "Freeze-Dry"
+      },
+      {
+        "move_type": "Ice",
+        "move_name": "Blizzard"
+      },
+      {
+        "move_type": "Ice",
+        "move_name": "Hail"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Tackle"
+      }
+    ]
+  }
+]

@@ -1,0 +1,463 @@
+[
+  {
+    "name": "Bulbasaur",
+    "poke_type": "Grass",
+    "stats": {
+      "level": 5,
+      "hp": 45,
+      "attack": 49,
+      "defense": 49,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Grass",
+        "move_name": "Vine Whip"
+      },
+      {
+        "move_type": "Poison",
+        "move_name": "Poison Powder"
+      },
+      {
+        "move_type": "Grass",
+        "move_name": "Leech Seed"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Sweet Scent"
+      }
+    ]
+  },
+  {
+    "name": "Charmander",
+    "poke_type": "Fire",
+    "stats": {
+      "level": 5,
+      "hp": 39,
+      "attack": 52,
+      "defense": 43,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Dragon",
+        "move_name": "Dragon Breath"
+      },
+      {
+        "move_type": "Fire",
+        "move_name": "Ember"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Scary Face"
+      },
+      {
+        "move_type": "Fire",
+        "move_name": "Flare Blitz"
+      }
+    ]
+  },
+  {
+    "name": "Pikachu",
+    "poke_type": "Electric",
+    "stats": {
+      "level": 5,
+      "hp": 35,
+      "attack": 55,
+      "defense": 40,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Electric",
+        "move_name": "Electro Ball"
+      },
+      {
+        "move_type": "Electric",
+        "move_name": "Thunderbolt"
+      },
+      {
+        "move_type": "Dark",
+        "move_name": "Nasty Plot"
+      }
+    ]
+  },
+  {
+    "name": "Giratina",
+    "poke_type": "Ghost",
+    "stats": {
+      "level": 14,
+      "hp": 150,
+      "attack": 100,
+      "defense": 120,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Ghost",
+        "move_name": "Shadow Sneak"
+      },
+      {
+        "move_type": "Rock",
+        "move_name": "Ancient Power"
+      },
+      {
+        "move_type": "Dragon",
+        "move_name": "Dragon Claw"
+      },
+      {
+        "move_type": "Ghost",
+        "move_name": "Hex"
+      }
+    ]
+  },
+  {
+    "name": "Shaymin",
+    "poke_type": "Grass",
+    "stats": {
+      "level": 9,
+      "hp": 100,
+      "attack": 100,
+      "defense": 100,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Grass",
+        "move_name": "Magical Leaf"
+      },
+      {
+        "move_type": "Grass",
+        "move_name": "Worry Seed"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Natural Gift"
+      },
+      {
+        "move_type": "Psychic",
+        "move_name": "Healing Wish"
+      }
+    ]
+  },
+  {
+    "name": "Riolu",
+    "poke_type": "Fighting",
+    "stats": {
+      "level": 15,
+      "hp": 40,
+      "attack": 70,
+      "defense": 40,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Fighting",
+        "move_name": "Final Gambit"
+      },
+      {
+        "move_type": "Fighting",
+        "move_name": "Rock Smash"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Swords Dance"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Copycat"
+      }
+    ]
+  },
+  {
+    "name": "Eevee",
+    "poke_type": "Normal",
+    "stats": {
+      "level": 15,
+      "hp": 55,
+      "attack": 55,
+      "defense": 50,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Normal",
+        "move_name": "Growl"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Double-Edge"
+      },
+      {
+        "move_type": "Ground",
+        "move_name": "Sand Attack"
+      },
+      {
+        "move_type": "Dark",
+        "move_name": "Bite"
+      }
+    ]
+  },
+  {
+    "name": "Jolteon",
+    "poke_type": "Electric",
+    "stats": {
+      "level": 9,
+      "hp": 65,
+      "attack": 65,
+      "defense": 60,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Electric",
+        "move_name": "Thunder Fang"
+      },
+      {
+        "move_type": "Electric",
+        "move_name": "Thunder Shock"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Covet"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Swift"
+      }
+    ]
+  },
+  {
+    "name": "Flareon",
+    "poke_type": "Fire",
+    "stats": {
+      "level": 12,
+      "hp": 65,
+      "attack": 130,
+      "defense": 60,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Fire",
+        "move_name": "Lava Plume"
+      },
+      {
+        "move_type": "Fire",
+        "move_name": "Ember"
+      },
+      {
+        "move_type": "Poison",
+        "move_name": "Smog"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Quick Attack"
+      }
+    ]
+  },
+  {
+    "name": "Espeon",
+    "poke_type": "Psychic",
+    "stats": {
+      "level": 6,
+      "hp": 65,
+      "attack": 65,
+      "defense": 60,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Psychic",
+        "move_name": "Future Sight"
+      },
+      {
+        "move_type": "Psychic",
+        "move_name": "Psybeam"
+      },
+      {
+        "move_type": "Psychic",
+        "move_name": "Power Swap"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Tail Whip"
+      }
+    ]
+  },
+  {
+    "name": "Umbreon",
+    "poke_type": "Dark",
+    "stats": {
+      "level": 11,
+      "hp": 95,
+      "attack": 65,
+      "defense": 110,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Dark",
+        "move_name": "Assurance"
+      },
+      {
+        "move_type": "Dark",
+        "move_name": "Dark Pulse"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Mean Look"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Screech"
+      }
+    ]
+  },
+  {
+    "name": "Leafeon",
+    "poke_type": "Grass",
+    "stats": {
+      "level": 20,
+      "hp": 65,
+      "attack": 110,
+      "defense": 130,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Grass",
+        "move_name": "Giga Drain"
+      },
+      {
+        "move_type": "Grass",
+        "move_name": "Leaf Blade"
+      },
+      {
+        "move_type": "Ground",
+        "move_name": "Sand Attack"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Swords Dance"
+      }
+    ]
+  },
+  {
+    "name": "Skitty",
+    "poke_type": "Normal",
+    "stats": {
+      "level": 9,
+      "hp": 50,
+      "attack": 45,
+      "defense": 45,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Normal",
+        "move_name": "Double Slap"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Captivate"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Heal Bell"
+      },
+      {
+        "move_type": "Dark",
+        "move_name": "Feint Attack"
+      }
+    ]
+  },
+  {
+    "name": "Ponyta",
+    "poke_type": "Fire",
+    "stats": {
+      "level": 14,
+      "hp": 50,
+      "attack": 85,
+      "defense": 55,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Fire",
+        "move_name": "Inferno"
+      },
+      {
+        "move_type": "Fire",
+        "move_name": "Flame Wheel"
+      },
+      {
+        "move_type": "Fire",
+        "move_name": "Fire Spin"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Stomp"
+      }
+    ]
+  },
+  {
+    "name": "Swablu",
+    "poke_type": "Flying",
+    "stats": {
+      "level": 17,
+      "hp": 45,
+      "attack": 40,
+      "defense": 60,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Flying",
+        "move_name": "Peck"
+      },
+      {
+        "move_type": "Dragon",
+        "move_name": "Dragon Breath"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Perish Song"
+      },
+      {
+        "move_type": "Grass",
+        "move_name": "Cotton Guard"
+      }
+    ]
+  }
+]

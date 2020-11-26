@@ -23,7 +23,7 @@ let continue_check_helper (f: unit -> unit) =
   | "y" | "Y" -> f ()
   | _ -> ()
 
-(* Get user input to record a pokemon's move set *)
+(* Gets user input to record a pokemon's move set *)
 let rec move_set_input file_name () =
   print_string "\n";
   print_string "Enter the type of this move\n";
@@ -38,13 +38,15 @@ let rec move_set_input file_name () =
              ", \"move_name\": " ^ poke_move_name ^ 
              "}," in
 
-  let oc = open_out_gen [Open_append] 0o666 file_name in (* The octal specifies file permissions *)
+  let oc = open_out_gen [Open_append] 0o666 file_name in
   fprintf oc "%s\n" json;
   close_out oc;
   print_string("Enter another move? y/n \n");
   let _ = continue_check_helper (move_set_input file_name) in
   ()
 
+(* [pokemon_info_input file_name] formats and prints a pokemon json that appears 
+   on a certain block type in its corresponding file [file_name] *)
 let rec pokemon_info_input file_name () = 
   print_string "Enter this pokemon's name\n";
   let pokemon_name = string_input_helper () in
@@ -52,10 +54,6 @@ let rec pokemon_info_input file_name () =
 
   print_string "Enter this pokemon's type (note: please capatilize the first letter)\n";
   let pokemon_type = string_input_helper () in
-  print_string "\n";
-
-  print_string "Enter this pokemon's current level\n";
-  let pokemon_level = int_input_helper () in
   print_string "\n";
 
   print_string "Enter this pokemon's HP\n";
@@ -70,29 +68,20 @@ let rec pokemon_info_input file_name () =
   let pokemon_defense = int_input_helper () in
   print_string "\n";
 
-  print_string "Enter this pokemon's current experience\n";
-  let pokemon_curr_exp = int_input_helper () in
-  print_string "\n";
-
-  print_string "Enter the experience needed to level up this pokemon\n";
-  let pokemon_level_up_exp = int_input_helper () in
-  print_string "\n";
-
   let json = "{\"name\": " ^ pokemon_name ^ 
              ", \"poke_type\": " ^ pokemon_type ^ 
              ", \"stats\": { " ^
-             "\"level\": " ^ string_of_int pokemon_level ^ 
+             "\"level\": " ^ string_of_int ((Random.int 19) + 1) ^ 
              ", \"hp\": " ^ string_of_int pokemon_hp ^ 
              ", \"attack\": " ^ string_of_int pokemon_attack ^ 
              ", \"defense\": " ^ string_of_int pokemon_defense ^
-             ", \"curr_exp\": " ^ string_of_int pokemon_curr_exp ^ 
-             ", \"level_up_exp\": " ^ string_of_int pokemon_level_up_exp ^
+             ", \"curr_exp\": " ^ "0" ^ 
+             ", \"level_up_exp\": " ^ "50" ^
              "}, " ^
              "\"caught\": " ^ "false" ^
-             ", \"move_set\": [ "
-  in
+             ", \"move_set\": [ " in
 
-  let oc = open_out_gen [Open_append] 0o666 file_name in (* The octal specifies file permissions *)
+  let oc = open_out_gen [Open_append] 0o666 file_name in 
   fprintf oc "%s\n" json;
   close_out oc;
 
@@ -101,7 +90,7 @@ let rec pokemon_info_input file_name () =
   print_string "\n";
 
   let move_json = read_line pokemon_moves ^ "]" ^ "}," in
-  let oc = open_out_gen [Open_append] 0o666 file_name in (* The octal specifies file permissions *)
+  let oc = open_out_gen [Open_append] 0o666 file_name in
   fprintf oc "%s\n" move_json;
   close_out oc;
 
@@ -109,13 +98,13 @@ let rec pokemon_info_input file_name () =
   let _ = continue_check_helper (pokemon_info_input file_name) in
   ()
 
-(* Get user input to record a pokemon found in water block *)
+(* Gets user input to record a pokemon found in water block *)
 let water_block_input = pokemon_info_input "water_pokemon.json"
 
-(* Get user input to record a pokemon that appears on grass *)
+(* Gets user input to record a pokemon that appears on grass *)
 let grass_block_input = pokemon_info_input "grass_pokemon.json"
 
-(* Get user input to record one of the starter pokemon *)
+(* Gets user input to record one of the starter pokemon *)
 let starter_block_input = pokemon_info_input "starter_pokemon.json"
 
 let rec main () =

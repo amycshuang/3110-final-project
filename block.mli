@@ -38,9 +38,8 @@ val json_to_list : Yojson.Basic.t -> string list
 (** [list_to_blocks lst] converts a list of block_types to a list of t types. *)
 val list_to_blocks : block_type list -> block list
 
-(** [list_to_matrix lst json] converts a list [lst] of elements of type t to a 
-    2d array of a size specificed by the JSON [json]. *)
-val list_to_matrix : block list -> Yojson.Basic.t -> block array array
+(** [json_to_map] initializes the JSON with name [j] as a map. *)
+val json_to_map : string -> block array array
 
 (** [rev_matrix a] reverses the array [a]. *)
 val rev_matrix : block array -> block array
@@ -51,13 +50,11 @@ val rev_matrix : block array -> block array
 (** [get_block_type t] returns the block_type representation of type t. *)
 val get_block_type : block -> block_type
 
-(** [poke_list_from_json json] is the a list of pokemon from the JSON [json]. *)
-val poke_list_from_json : Yojson.Basic.t -> Pokemon.t list
-
-(** [spawn_poke lst r] is the pokemon at a random index from a list [lst] of 
+(** [poke_rand lst r] is the pokemon at a random index from a list [lst] of 
     pokemon.*)
-val spawn_poke : Pokemon.t list -> Pokemon.t
+val poke_rand : Pokemon.pokemon list -> Pokemon.pokemon
 
-(** [spawn_prob t lst] decides whether Some pokemon from the pokemon list [lst] 
-    will spawn on a block [t]. If a pokemon is not spawned, None is returned. *)
-val spawn_prob : block -> Pokemon.t list -> Pokemon.t option
+(** [spawn_poke t] decides whether Some pokemon from a pokemon list based on the
+    the type of block [t] will spawn on a block [t]. If a pokemon is not 
+    spawned, None is returned. *)
+val spawn_poke : block -> Pokemon.pokemon option
