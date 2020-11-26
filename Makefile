@@ -1,4 +1,4 @@
-MODULES=state initial player gui pokemon author main block walking encounter json_utility_script
+MODULES=state initial player gui pokemon author main block walking encounter pokemon_json_script map_json_script
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)
@@ -6,7 +6,8 @@ TEST=test.byte
 MAIN=main.byte
 OCAMLBUILD=ocamlbuild -use-ocamlfind 
 PKGS=oUnit,yojson, ANSITerminal, graphics
-JSONBUILD=json_utility_script.byte
+POKEJSONBUILD=pokemon_json_script.byte
+MAPJSONBUILD=map_json_script.byte
 
 default: build
 	utop
@@ -43,8 +44,11 @@ test:
 play:
 	$(OCAMLBUILD) $(MAIN) && ./$(MAIN)
 
-json:
-	$(OCAMLBUILD) $(JSONBUILD) && ./$(JSONBUILD)
+pokemon_json:
+	$(OCAMLBUILD) $(POKEJSONBUILD) && ./$(POKEJSONBUILD)
+
+map_json:
+	$(OCAMLBUILD) $(MAPJSONBUILD) && ./$(MAPJSONBUILD)
 
 finalcheck: check
 	bash checkzip.sh
