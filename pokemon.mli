@@ -6,16 +6,27 @@
    It also handles loading of a pokemon's data from JSON.
 *)
 
+(** Raised when an invalid pokemon is encountered. *)
+exception InvalidPokemon of string
+
+(** Raised when an invalid pokemon type is encountered. *)
+exception InvalidPokemonType of string 
+
+(** The type of pokemon move types. *)
 type poke_type = 
   | Bug | Dark | Dragon | Electric | Fighting | Fire | Flying | Ghost 
   | Grass | Ground | Ice | Normal | Poison | Psychic | Rock | Steel | Water
 
+(** The type of pokemon move names. *)
+type move_name = string
+
+(** The type of values representing a pokemon's move. *)
 type move = {
   move_type: poke_type;
-  move_name: string;
+  move_name: move_name;
 }
 
-(** The abstract type of values representing a pokemon. *)
+(** The type of values representing a pokemon's stats. *)
 type stats = {
   level: int;
   hp: int;
@@ -25,6 +36,7 @@ type stats = {
   level_up_exp: int;
 }
 
+(** The type of values representing a pokemon. *)
 type pokemon = {
   name: string;
   poke_type: poke_type;
@@ -33,26 +45,25 @@ type pokemon = {
   move_set: move list
 }
 
-(** Raised when an invalid pokemon is encountered. *)
-exception InvalidPokemon of string
-
-(** [poke_from_json j] is the pokemon that [j] represents.
-    Requires: [j] is a valid JSON pokemon representation. *)
-val poke_from_json : Yojson.Basic.t -> pokemon
-
-(** [poke_list_from_json json] is the a list of pokemon from the JSON [json]. *)
+(** [poke_list_from_json json] is the a list of pokemon from the JSON [json].
+    Requires: [j] is a valid JSON for a list of pokemon. *)
 val poke_list_from_json : Yojson.Basic.t -> pokemon list
 
-(** [valid_move_name pkm move_name] is true if move_name is a valid move name
-    for one of [pokemon]'s moves  *)
-val valid_move_name : pokemon -> string -> bool
-
-(** [type_from_string type] is the string representation of poke_type [type] *)
+(** [type_from_string type] is the string representation of poke_type [type].
+    Requires: [type] is capitalized.
+    Raises: InvalidPokemonType if [type] is not a valid pokemon type. *)
 val type_from_string : string -> poke_type
 
-(** [level_up t] is pokemon [t] with [t]'s level incremented by one if 
-    [t]'s curr_exp exceeds [t]'s level_up_exp and [t]'s hp, attack, and defense
-    are incremented accordinglt. *)
+(** [opponent_move p] is the move the opponenet pokemon [p] chooses. *)
+val opponent_move : pokemon -> move 
+
+(** [battle_damage p move] is a pokemon [p] after damage is inflicted
+    by move [move]. *)
+val battle_damage : pokemon -> move -> pokemon
+
+(** [level_up p] is pokemon [p] with [p]'s level incremented by one if 
+    [p]'s curr_exp exceeds [p]'s level_up_exp and [p]'s hp, attack, and defense
+    are incremented accordingly. *)
 val level_up : pokemon -> pokemon
 
 (** [increase_exp p1 p2] is pokemon [p1]'s curr_exp incremented based on

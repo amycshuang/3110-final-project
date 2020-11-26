@@ -28,13 +28,17 @@ exception InvalidRegion
 (** Raised when an invalid command is parsed. *)
 exception InvalidCommand of string
 
-(** [parse_region region] is the map command associated with [region]. *)
+(** [parse_region region] is the map command associated with [region].
+    Raises: InvalidRegion if [region] is not a valid region. *)
 val parse_region : phrase -> command
 
-(** [parse_starter pkm] is the pokemon command associated with [pkm]. *)
+(** [parse_starter pkm] is the pokemon command associated with [pkm].
+    Raises: InvalidPokemon if [pkm] is not a valid starter pokemon.
+    Raises: InvalidCommand if [pkm] is an empty phrase. *)
 val parse_starter: phrase -> command
 
-(** [parse_yn cmd] is [Yes] if "yes" is parsed and is [No] if "no" is parsed. *)
+(** [parse_yn cmd] is [Yes] if "yes" is parsed and is [No] if "no" is parsed. 
+    Raises: InvalidCommand if [cmd] is not a valid command. *)
 val parse_yn : phrase -> command 
 
 (** [parse cmd] parses a player's input into a command [cmd].*)
