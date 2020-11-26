@@ -34,7 +34,7 @@ let block_input_helper () =
   | "h" -> "\"" ^ "house" ^ "\""
   | "c" -> "\"" ^ "pokecenter" ^ "\""
   | "gym" -> "\"" ^ "gym" ^ "\""
-  | _ -> raise (Failure "nopee")
+  | _ -> raise (Failure "nope")
 
 (* Gets user input to record a pokemon's move set *)
 let rec block_type_input file_name w h () =
