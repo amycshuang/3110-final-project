@@ -96,8 +96,7 @@ let spawn_prob (t : block) (lst : Pokemon.t list) =
   | House -> None
   | PokeCenter -> None
 
-(* * Utop testing for now
-   let map = json_to_list (Yojson.Basic.from_file "map1.json")
+(* let map = json_to_list (Yojson.Basic.from_file "map1.json")
 
    let dims = map_dim (Yojson.Basic.from_file "map1.json")
 
@@ -107,6 +106,6 @@ let spawn_prob (t : block) (lst : Pokemon.t list) =
    let map_arr = list_to_matrix map_list (Yojson.Basic.from_file "map1.json")
 
    (** To get the right array (starting from top left) *)
-   let map_rev = rev_matrix map_arr *)
+   let map_rev = rev_matrix map_arr
 
-let starter_poke = poke_list_from_json (Yojson.Basic.from_file "starter_pokemon.json")
+   let starter_poke = poke_list_from_json (Yojson.Basic.from_file "starter_pokemon.json") *)

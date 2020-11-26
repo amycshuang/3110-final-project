@@ -46,6 +46,7 @@ let suite =
     pokemon_get_function_tests;
     player_test;
     command_tests;
+    TestBlock.block_tests;
   ]
 
 let _ = run_test_tt_main suite
