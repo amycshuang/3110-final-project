@@ -22,6 +22,12 @@ type encounter_state = {
   opponent: Pokemon.pokemon
 }
 
+type battle_state = {
+  player : Player.player;
+  opponent: Pokemon.pokemon;
+  p_turn : bool
+}
+
 (** [get_key ()] returns the corresponding character of the key pressed *)
 val get_key : unit -> char
 

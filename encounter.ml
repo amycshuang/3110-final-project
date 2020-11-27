@@ -2,6 +2,8 @@ open State
 open Player
 open Pokemon
 
+type action = Fight | PokeList | Bag | Run
+
 (** The type of selection on the encounter screen *)
 type selection = Up | Left | Right | Down
 

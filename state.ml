@@ -19,6 +19,12 @@ type encounter_state = {
   opponent: Pokemon.pokemon
 }
 
+type battle_state = {
+  player : Player.player;
+  opponent: Pokemon.pokemon;
+  p_turn : bool
+}
+
 let get_key () = (wait_next_event [Key_pressed]).Graphics.key
 
 let update_status = function 
