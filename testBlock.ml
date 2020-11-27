@@ -40,13 +40,12 @@ let list_to_blocks_test
   name >:: (fun _ -> 
       assert_equal expected_output (list_to_blocks lst))
 
-let list_to_matrix_test
+let json_to_map_test
     (name : string) 
-    (lst : block list)
-    (json : Yojson.Basic.t) 
+    (j : string) 
     (expected_output : block array array) : test = 
   name >:: (fun _ -> 
-      assert_equal expected_output (list_to_matrix lst json))
+      assert_equal expected_output (json_to_map j))
 
 let rev_matrix_test
     (name : string) 
@@ -88,8 +87,7 @@ let block_tests = [
      "tall grass"; "grass"] [Grass; Water; Gym; House; Road; TallGrass; 
                              TallGrass; Grass];
 
-  list_to_matrix_test "maptest to matrix" [Grass; Water; Gym; House; Road; 
-                                           TallGrass; TallGrass; Grass] maptest 
+  json_to_map_test "maptest to map" "maptest.json"
     [|[|Grass; Water|]; [|Gym; House|]; [|Road; TallGrass|]; 
       [|TallGrass; Grass|]|];
 
