@@ -19,6 +19,7 @@ let check_st (st : State.state) =
     match spawned with
     | Some x -> let est = { player = st.player; opponent = x} in 
       render_encounter st est;
+      process_encounter st est
     | None -> render_walk st
 
 (** [play_game f] starts the adventure in file [f]. *)

@@ -29,6 +29,7 @@ type move = {
 (** The type of values representing a pokemon's stats. *)
 type stats = {
   level: int;
+  base_hp: int;
   hp: int;
   attack: int;
   defense: int;

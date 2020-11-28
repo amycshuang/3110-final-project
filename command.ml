@@ -18,6 +18,34 @@ exception InvalidRegion
 
 exception InvalidCommand of string
 
+type encounter = 
+  | Pokeball 
+  | Potion 
+  | Run 
+  | Attack of string list
+  | Switch of string list 
+
+(** fake *)
+let parse_encounter enc  = 
+  match enc with 
+  | [] -> raise (InvalidCommand "cannot do")
+  | h :: t -> 
+    match h with 
+    | "pokeball" -> Pokeball 
+    | "potion" -> Potion
+    | "attack" -> Attack t
+    | "run" -> Run 
+    | "switch" -> Switch t 
+    | _ -> raise (InvalidCommand "cannot do")
+
+let fake_parse cmd cmd_type =
+  cmd 
+  |> String.lowercase_ascii
+  |> String.split_on_char ' ' 
+  |> List.filter (fun x -> x <> "" && x <> "with")
+  |> cmd_type
+
+
 (** TODO - replace with real maps after initializing jsons *)
 let parse_region region = 
   match region with 

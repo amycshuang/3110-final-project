@@ -155,7 +155,8 @@ let make_options ncol x y width height lst =
     during an encounter *)
 let list_of_stats pokemon = 
   [(String.uppercase_ascii pokemon.name);
-   "Lv" ^ string_of_int pokemon.stats.level]
+   "Lv" ^ string_of_int pokemon.stats.level;
+   "hp" ^ string_of_int pokemon.stats.hp]
 
 (** [opt_lst ()] are the menu option buttons during an encounter *)
 let opt_lst () = make_options 2 (size_x () / 2) 0 (size_x () / 2) 
@@ -180,7 +181,7 @@ let poke_panel x y poke =
   Graphics.set_line_width 5;
   Graphics.draw_rect x y width height;
   let lst = list_of_stats poke in
-  let txt = make_options 2 x y width height lst in
+  let txt = make_options 3 x y width height lst in
   draw_options txt
 
 let render_encounter (st : State.state) (e_st : State.encounter_state) =

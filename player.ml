@@ -24,7 +24,7 @@ type player = {
 let empty_bag = {
   pc_box = [];
   badge_case = [];
-  inventory = [];
+  inventory = [(Potion, 5); (Pokeball, 5)];
 }
 
 let init_player name start_poke loc = {
@@ -58,7 +58,7 @@ let check_pc player =
   }
 
 let catch_poke player poke =
-  let new_poke_list = List.cons poke player.poke_list in
+  let new_poke_list = player.poke_list @ [poke] in
   let updated_player =
     {
       nickname = player.nickname;
