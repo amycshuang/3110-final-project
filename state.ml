@@ -3,7 +3,27 @@ open Player
 open Block
 open Graphics
 
-type status =  Walking | Battling | Encounter of block | Enter of block | Win
+type menu = Fight | PokeList | Bag | Run
+
+(** The type representing an encounter state *)
+type encounter_state = {
+  player : Player.player;
+  opponent: Pokemon.pokemon;
+  hover: int;
+  select: menu option
+}
+
+type battle_state = {
+  player : Player.player;
+  opponent: Pokemon.pokemon;
+  p_turn : bool;
+}
+
+type status =  Walking 
+            | Battling of battle_state
+            | Encounter of encounter_state 
+            | Enter of block 
+            | Win
 
 type map = block array array
 
@@ -14,22 +34,18 @@ type state = {
   status : status;
 }
 
-type encounter_state = {
-  player : Player.player;
-  opponent: Pokemon.pokemon;
-}
-
-type battle_state = {
-  player : Player.player;
-  opponent: Pokemon.pokemon;
-  p_turn : bool;
-}
-
 let get_key () = (wait_next_event [Key_pressed]).Graphics.key
 
-let update_status = function 
-  | TallGrass -> Encounter TallGrass
-  | Water -> Encounter Water
+let spawn_status block (st : state) = 
+  let spawned = spawn_poke block in
+  match spawned with
+  | Some x -> let est = {player = st.player; opponent = x; hover=0; select=None}
+    in Encounter est
+  | None -> Walking
+
+let update_status (st : state) = function 
+  | TallGrass -> spawn_status TallGrass st
+  | Water -> spawn_status Water st
   | Grass -> Walking
   | Road -> Walking
   | Gym -> Enter Gym

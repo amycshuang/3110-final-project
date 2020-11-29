@@ -56,7 +56,7 @@ val poke_list_from_json : Yojson.Basic.t -> pokemon list
 val type_from_string : string -> poke_type
 
 (** [opponent_move p] is the move the opponenet pokemon [p] chooses. *)
-val opponent_move : pokemon -> move 
+(* val opponent_move : pokemon -> move  *)
 
 (** [battle_damage p move] is a pokemon [p] after damage is inflicted
     by move [move]. *)

@@ -3,6 +3,7 @@ open Graphics
 open State
 open Block
 open Pokemon
+open Encounter
 
 (** [box_len] is the size of each block on the map *)
 let box_len = 25
@@ -133,9 +134,6 @@ let draw_bottom_panel () =
   bottom_bg_panel ();
   bottom_menu_panel ()
 
-(** [encounter_menu] are the list of menu options during an encounter *)
-let encounter_menu = ["FIGHT"; "BAG"; "POKEMON"; "RUN"]
-
 (** [make_options ncol x y width height lst] makes the different options in 
     [lst] on a given menu panel *)
 let make_options ncol x y width height lst =
@@ -159,8 +157,8 @@ let list_of_stats pokemon =
    "hp" ^ string_of_int pokemon.stats.hp]
 
 (** [opt_lst ()] are the menu option buttons during an encounter *)
-let opt_lst () = make_options 2 (size_x () / 2) 0 (size_x () / 2) 
-    battle_panel_ht encounter_menu
+let opt_lst menu = make_options 2 (size_x () / 2) 0 (size_x () / 2) 
+    battle_panel_ht (Array.to_list menu)
 
 (** [draw_options] draws the list of option buttons *)
 let rec draw_options = function
@@ -190,5 +188,5 @@ let render_encounter (st : State.state) (e_st : State.encounter_state) =
   let () = draw_bottom_panel () in
   let () = poke_panel 50 275 e_st.opponent in
   let () = poke_panel 300 150 (List.hd e_st.player.poke_list) in
-  let () = draw_options (opt_lst ()) in
+  let () = draw_options (opt_lst Encounter.encounter_menu) in
   let () = synchronize () in ()

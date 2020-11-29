@@ -1,7 +1,23 @@
+type menu = Fight | PokeList | Bag | Run
+
+(** The type representing an encounter state *)
+type encounter_state = {
+  player : Player.player;
+  opponent: Pokemon.pokemon;
+  hover: int;
+  select: menu option
+}
+
+type battle_state = {
+  player : Player.player;
+  opponent: Pokemon.pokemon;
+  p_turn : bool
+}
+
 (** The status of the game. *)
 type status =  Walking 
-            | Battling 
-            | Encounter of Block.block 
+            | Battling of battle_state
+            | Encounter of encounter_state 
             | Enter of Block.block 
             | Win
 
@@ -13,26 +29,14 @@ type state = {
   map : map;
   player : Player.player;
   panel_txt : string;
-  status : status;
-}
-
-(** The type representing an encounter state *)
-type encounter_state = {
-  player : Player.player;
-  opponent: Pokemon.pokemon
-}
-
-type battle_state = {
-  player : Player.player;
-  opponent: Pokemon.pokemon;
-  p_turn : bool
+  status : status
 }
 
 (** [get_key ()] returns the corresponding character of the key pressed *)
 val get_key : unit -> char
 
 (** [update_status block] is the status associated with the block [block]. *)
-val update_status : Block.block -> status
+val update_status : state -> Block.block -> status
 
 (** [player_block p map] is the block that the player [p] is standing on in 
     the map [map]. *)
