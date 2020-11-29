@@ -182,11 +182,11 @@ let poke_panel x y poke =
   let txt = make_options 3 x y width height lst in
   draw_options txt
 
-let render_encounter (st : State.state) (e_st : State.encounter_state) =
+let render_encounter (st : State.state) (est : State.encounter_state) =
   let () = Graphics.open_graph (graph_dims st.map); in
   let () = Graphics.clear_graph () in 
   let () = draw_bottom_panel () in
-  let () = poke_panel 50 275 e_st.opponent in
-  let () = poke_panel 300 150 (List.hd e_st.player.poke_list) in
+  let () = poke_panel 50 275 est.opponent in
+  let () = poke_panel 300 150 (List.hd est.player.poke_list) in
   let () = draw_options (opt_lst Encounter.encounter_menu) in
   let () = synchronize () in ()
