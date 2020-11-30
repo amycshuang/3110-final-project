@@ -38,6 +38,7 @@ let able_level_water = generate_able_levelup test_water_pkm
 
 let leveled_up_starter_stats = {
   level = 6;
+  base_hp = 45;
   hp = 47;
   attack = 51;
   defense = 51;
@@ -49,6 +50,7 @@ let leveled_up_starter =
 
 let leveled_up_grass_stats = {
   level = 6;
+  base_hp = 39;
   hp = 41;
   attack = 54;
   defense = 45;
@@ -60,6 +62,7 @@ let leveled_up_grass =
 
 let leveled_up_water_stats = {
   level = 3;
+  base_hp = 44;
   hp = 46;
   attack = 50;
   defense = 67;
@@ -72,6 +75,7 @@ let leveled_up_water = {test_water_pkm with stats = leveled_up_water_stats}
 
 let increased_exp_starter_stats = {
   level = 5;
+  base_hp = 45;
   hp = 45;
   attack = 49;
   defense = 49;
@@ -83,6 +87,7 @@ let increased_exp_starter =
 
 let increased_exp_grass_stats = {
   level = 5;
+  base_hp = 39;
   hp = 39;
   attack = 52;
   defense = 43;
@@ -94,6 +99,7 @@ let increased_exp_grass =
 
 let increased_exp_water_stats = {
   level = 2;
+  base_hp = 44;
   hp = 44;
   attack = 48;
   defense = 65;

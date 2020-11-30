@@ -56,8 +56,8 @@ let rec pokemon_info_input file_name () =
   let pokemon_type = string_input_helper () in
   print_string "\n";
 
-  print_string "Enter this pokemon's HP\n";
-  let pokemon_hp = int_input_helper () in
+  print_string "Enter this pokemon's base HP\n";
+  let pokemon_base_hp = int_input_helper () in
   print_string "\n";
 
   print_string "Enter this pokemon's attack\n";
@@ -72,7 +72,8 @@ let rec pokemon_info_input file_name () =
              ", \"poke_type\": " ^ pokemon_type ^ 
              ", \"stats\": { " ^
              "\"level\": " ^ string_of_int ((Random.int 19) + 1) ^ 
-             ", \"hp\": " ^ string_of_int pokemon_hp ^ 
+             ", \"base_hp\": " ^ string_of_int pokemon_base_hp ^ 
+             ", \"hp\": " ^ string_of_int pokemon_base_hp ^ 
              ", \"attack\": " ^ string_of_int pokemon_attack ^ 
              ", \"defense\": " ^ string_of_int pokemon_defense ^
              ", \"curr_exp\": " ^ "0" ^ 

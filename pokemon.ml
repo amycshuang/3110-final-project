@@ -15,6 +15,7 @@ type move = {
 
 type stats = {
   level: int;
+  base_hp: int;
   hp: int;
   attack: int;
   defense: int;
@@ -33,6 +34,7 @@ type pokemon = {
 (** [stats_of_json j] is the pokemon stat represented by [j]. *)
 let stats_of_json j = {
   level = j |> member "level" |> to_int;
+  base_hp = j |> member "base_hp" |> to_int;
   hp = j |> member "hp" |> to_int;
   attack = j |> member "attack" |> to_int;
   defense = j |> member "defense" |> to_int;
@@ -88,6 +90,7 @@ let level_up pokemon =
   if curr_stats.curr_exp >= curr_stats.level_up_exp then 
     let new_stats = {
       level = curr_stats.level + 1;
+      base_hp = curr_stats.base_hp;
       hp = curr_stats.hp + 2;
       attack = curr_stats.attack + 2;
       defense = curr_stats.defense + 2;
