@@ -83,18 +83,20 @@ let opponent_move pokemon =
 
 (* (Fire, [|[Grass; Bug; Steel, Ice]; [Water; Ground]|]) *)
 
+let damage_multiplier pkm opp_pkm_mv = failwith "TODO"
 
 (* let damage_multiplier pkm opp_pkm_mv =
    match pkm.poke_type, opp_pkm_mv.poke_type with 
-
-
 
    | 
     (Fire, Water) -> 0.5
    | (Water, Fire) -> 1.5
    else 1 *)
 
-let battle_damage pokemon move = failwith "TODO"
+(* (((((2 * level / 5) + 2) * (attack/defense))/50) + 2) * modifier  *)
+
+let battle_damage pkm move = failwith "TODO"
+
 
 let level_up pokemon = 
   let curr_stats = pokemon.stats in

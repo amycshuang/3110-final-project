@@ -6,20 +6,28 @@ open Graphics
 type menu = Fight | PokeList | Bag | Run
 
 (** The type representing an encounter state *)
-type encounter_state = {
+type menu_state = {
   player : Player.player;
   opponent: Pokemon.pokemon;
   hover: int;
   select: menu option
 }
 
+type encounter_state = {
+  player : Player.player;
+  opponent: Pokemon.pokemon;
+  hover: int;
+  select: menu option       
+}
+
 type battle_state = {
   player : Player.player;
   opponent: Pokemon.pokemon;
   p_turn : bool;
-}
+} 
 
 type status =  Walking 
+            | Menu of menu_state
             | Battling of battle_state
             | Encounter of encounter_state 
             | Enter of block 
@@ -39,8 +47,9 @@ let get_key () = (wait_next_event [Key_pressed]).Graphics.key
 let spawn_status block (st : state) = 
   let spawned = spawn_poke block in
   match spawned with
-  | Some x -> let est = {player = st.player; opponent = x; hover=0; select=None}
-    in Encounter est
+  | Some x -> let (mst : menu_state) = 
+                {player = st.player; opponent = x; hover=0; select=None} in 
+    Menu mst
   | None -> Walking
 
 let update_status (st : state) = function 
