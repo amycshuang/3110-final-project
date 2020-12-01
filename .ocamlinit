@@ -5,7 +5,10 @@
 #directory "_build";;
 #load "pokemon.cmo";;
 #load "player.cmo";;
+#load "block.cmo";;
 #load "state.cmo";;
+#load "main.cmo";;
+#load "encounter.cmo";;
 #use "gui.ml";;
 open Pokemon
 open Player

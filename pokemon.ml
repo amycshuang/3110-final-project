@@ -94,7 +94,6 @@ let opponent_move pokemon =
    | (Water, Fire) -> 1.5
    else 1 *)
 
-
 let battle_damage pokemon move = failwith "TODO"
 
 let level_up pokemon = 
