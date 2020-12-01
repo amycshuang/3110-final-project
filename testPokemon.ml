@@ -17,9 +17,9 @@ let opponent_move_test (name: string) (pkm: pokemon)
   : test = name >:: (fun _ -> assert_equal true 
                         (List.mem (opponent_move pkm) pkm.move_set))
 
-let battle_damage_test (name: string) (pkm: pokemon) (move: move) 
-    (expected_output : pokemon) : test = 
-  name >:: (fun _ -> assert_equal expected_output (battle_damage pkm move)) 
+let battle_damage_test (name: string) (pkm1: pokemon) (pkm2: pokemon) 
+    (move: move) (expected_output : pokemon) : test = 
+  name >:: (fun _ -> assert_equal expected_output (battle_damage pkm1 pkm2 move)) 
 
 let level_up_test (name: string) (pkm: pokemon)
     (expected_output: pokemon) : test  =
