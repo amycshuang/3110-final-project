@@ -34,6 +34,7 @@ module type PokemonSig = sig
   }
   type stats = {
     level: int;
+    base_hp: int;
     hp: int;
     attack: int;
     defense: int;

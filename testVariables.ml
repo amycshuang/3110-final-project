@@ -62,7 +62,7 @@ let leveled_up_grass =
 
 let leveled_up_water_stats = {
   level = 3;
-  base_hp = 41;
+  base_hp = 46;
   hp = 46;
   attack = 50;
   defense = 67;
