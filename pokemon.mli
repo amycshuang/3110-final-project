@@ -14,7 +14,7 @@ exception InvalidPokemonType of string
 
 (** The type of pokemon move types. *)
 type poke_type = 
-  | Bug | Dark | Dragon | Electric | Fighting | Fire | Flying | Ghost 
+  | Bug | Dark | Dragon | Electric | Fairy | Fighting | Fire | Flying | Ghost 
   | Grass | Ground | Ice | Normal | Poison | Psychic | Rock | Steel | Water
 
 (** The type of pokemon move names. *)
@@ -56,11 +56,11 @@ val poke_list_from_json : Yojson.Basic.t -> pokemon list
 val type_from_string : string -> poke_type
 
 (** [opponent_move p] is the move the opponenet pokemon [p] chooses. *)
-(* val opponent_move : pokemon -> move  *)
+val opponent_move : pokemon -> move 
 
-(** [battle_damage p move] is a pokemon [p] after damage is inflicted
-    by move [move]. *)
-val battle_damage : pokemon -> move -> pokemon
+(** [battle_damage p1 p2 move] is a pokemon [p1] after damage is inflicted
+    by a move [move] of pokemon [p2]. *)
+val battle_damage : pokemon -> pokemon -> move -> pokemon
 
 (** [level_up p] is pokemon [p] with [p]'s level incremented by one if 
     [p]'s curr_exp exceeds [p]'s level_up_exp and [p]'s hp, attack, and defense

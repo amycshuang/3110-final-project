@@ -4,6 +4,7 @@ open Command
 open Encounter
 open Pokemon
 open Block
+open Menu
 open Walking
 open Gui
 
@@ -11,19 +12,20 @@ open Gui
 let render_st (st : State.state) = 
   match st.status with 
   | Walking -> render_walk st
-  | Battling _ -> ()
   | Enter building -> render_walk st
   | Win -> ()
-  | Encounter est -> render_encounter st est
+  | Menu mst -> render_menu st mst
+  | Encounter est -> ()
+  | Battling _ -> ()
 
 (** [play_game f] starts the adventure in file [f]. *)
 let rec play_game st =
-  (* render_st st; *)
+  render_st st;
   let input = get_key () in
   let n_st = 
     match st.status with
     | Walking -> process_walk input st
-    | Encounter est -> process_encounter input st est
+    | Menu mst -> process_menu input st mst
     | _ -> process_walk input st in
   play_game n_st
 

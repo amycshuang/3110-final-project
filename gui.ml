@@ -4,6 +4,7 @@ open State
 open Block
 open Pokemon
 open Encounter
+open Menu
 
 (** [box_len] is the size of each block on the map *)
 let box_len = 25
@@ -153,8 +154,7 @@ let make_options ncol x y width height lst =
     during an encounter *)
 let list_of_stats pokemon = 
   [(String.uppercase_ascii pokemon.name);
-   "Lv" ^ string_of_int pokemon.stats.level;
-   "hp" ^ string_of_int pokemon.stats.hp]
+   "Lv" ^ string_of_int pokemon.stats.level]
 
 (** [opt_lst ()] are the menu option buttons during an encounter *)
 let opt_lst menu = make_options 2 (size_x () / 2) 0 (size_x () / 2) 
@@ -179,14 +179,14 @@ let poke_panel x y poke =
   Graphics.set_line_width 5;
   Graphics.draw_rect x y width height;
   let lst = list_of_stats poke in
-  let txt = make_options 3 x y width height lst in
+  let txt = make_options 2 x y width height lst in
   draw_options txt
 
-let render_encounter (st : State.state) (est : State.encounter_state) =
+let render_menu (st : State.state) (est : State.menu_state) =
   let () = Graphics.open_graph (graph_dims st.map); in
   let () = Graphics.clear_graph () in 
   let () = draw_bottom_panel () in
   let () = poke_panel 50 275 est.opponent in
   let () = poke_panel 300 150 (List.hd est.player.poke_list) in
-  let () = draw_options (opt_lst Encounter.encounter_menu) in
+  let () = draw_options (opt_lst Menu.menu_lst) in
   let () = synchronize () in ()
