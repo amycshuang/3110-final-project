@@ -78,6 +78,23 @@ let poke_from_json j = {
 
 let poke_list_from_json j = j |> to_list |> List.map poke_from_json
 
+let opponent_move pokemon = 
+  List.nth pokemon.move_set (Random.int (List.length pokemon.move_set)) 
+
+(* (Fire, [|[Grass; Bug; Steel, Ice]; [Water; Ground]|]) *)
+
+
+(* let damage_multiplier pkm opp_pkm_mv =
+   match pkm.poke_type, opp_pkm_mv.poke_type with 
+
+
+
+   | 
+    (Fire, Water) -> 0.5
+   | (Water, Fire) -> 1.5
+   else 1 *)
+
+
 let battle_damage pokemon move = failwith "TODO"
 
 let level_up pokemon = 
