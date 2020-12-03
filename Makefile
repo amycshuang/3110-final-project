@@ -1,4 +1,4 @@
-MODULES=state initial player gui pokemon author main block walking encounter pokemon_json_script map_json_script
+MODULES=state initial player gui pokemon author main block walking menu encounter pokemon_json_script map_json_script
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)

@@ -35,8 +35,7 @@ type option = {
 }
 
 (** [color_of_block b] maps a block type to the specified color on the map *)
-let color_of_block b = 
-  match b with
+let color_of_block = function
   | TallGrass -> Graphics.rgb 88 165 116
   | Water -> Graphics.rgb 152 200 240
   | Grass -> Graphics.rgb 112 200 160
@@ -44,6 +43,26 @@ let color_of_block b =
   | Gym -> Graphics.rgb 192 168 103
   | PokeCenter -> Graphics.rgb 216 104 96
   | House -> Graphics.rgb 200 168 240
+
+let color_of_poke = function
+  | Bug -> Graphics.rgb 184 198 81
+  | Fire -> Graphics.rgb 245 101 79
+  | Water -> Graphics.rgb 74 170 255
+  | Dragon -> Graphics.rgb 141 128 241
+  | Electric -> Graphics.rgb 251 212 92
+  | Flying -> Graphics.rgb 155 170 255
+  | Ghost -> Graphics.rgb 127 127 198
+  | Grass -> Graphics.rgb 140 212 114
+  | Fairy -> Graphics.rgb 241 169 241
+  | Fighting -> Graphics.rgb 198 114 101
+  | Dark -> Graphics.rgb 141 114 101
+  | Ground -> Graphics.rgb 226 198 115
+  | Ice -> Graphics.rgb 125 212 255
+  | Normal -> Graphics.rgb 183 183 169
+  | Poison -> Graphics.rgb 184 114 169
+  | Psychic -> Graphics.rgb 247 114 169
+  | Rock -> Graphics.rgb 197 184 127
+  | Steel -> Graphics.rgb 181 181 195
 
 (** [draw_map blocks] draws the map from a 2D array of blocks [blocks] *)
 let draw_map blocks =
@@ -137,7 +156,7 @@ let draw_bottom_panel () =
 
 (** [make_options ncol x y width height lst] makes the different options in 
     [lst] on a given menu panel *)
-let make_options ncol x y width height lst =
+let make_options ncol x y width height lst hover_str =
   let s_x = width / ncol in 
   let s_y = height / ((List.length lst) / ncol ) in
   let rec making acc = function
@@ -145,9 +164,10 @@ let make_options ncol x y width height lst =
     | h :: t -> let n = (List.length t) + 1 in
       let multx = n mod ncol in
       let multy = (n + 1) / ncol - 1 in
+      let select_bool = if h = hover_str then true else false in
       let button = {loc=((multx * s_x + (s_x / 3) + x),
                          ((multy * s_y) + (s_y /3 + y))); text=h; 
-                    selected=false} in making (button::acc) t in
+                    selected=select_bool} in making (button::acc) t in
   making [] lst
 
 (** [list_of_stats pokemon] are the stats displayed of a Pokemon [pokemon] 
@@ -157,8 +177,8 @@ let list_of_stats pokemon =
    "Lv" ^ string_of_int pokemon.stats.level]
 
 (** [opt_lst ()] are the menu option buttons during an encounter *)
-let opt_lst menu = make_options 2 (size_x () / 2) 0 (size_x () / 2) 
-    battle_panel_ht (Array.to_list menu)
+let opt_lst menu hover = make_options 2 (size_x () / 2) 0 (size_x () / 2) 
+    battle_panel_ht (Array.to_list menu) menu.(hover)
 
 (** [draw_options] draws the list of option buttons *)
 let rec draw_options = function
@@ -167,6 +187,11 @@ let rec draw_options = function
     Graphics.moveto x y;
     Graphics.set_color Graphics.black;
     Graphics.draw_string opt.text;
+    if opt.selected then begin
+      Graphics.moveto (x - 5 - fst (Graphics.text_size ">")) y;
+      Graphics.draw_string ">";
+    end
+    else ();
     draw_options t
 
 (** [poke_panel x y poke] draws the Pokemon stats on the encounter screen *)
@@ -179,14 +204,45 @@ let poke_panel x y poke =
   Graphics.set_line_width 5;
   Graphics.draw_rect x y width height;
   let lst = list_of_stats poke in
-  let txt = make_options 2 x y width height lst in
+  let txt = make_options 2 x y width height lst "" in
   draw_options txt
 
-let render_menu (st : State.state) (est : State.menu_state) =
+let draw_poke x y poke = 
+  Graphics.set_color (color_of_poke poke.poke_type);
+  Graphics.fill_circle x y 50
+
+let render_menu (st : State.state) (mst : State.menu_state) =
   let () = Graphics.open_graph (graph_dims st.map); in
   let () = Graphics.clear_graph () in 
   let () = draw_bottom_panel () in
-  let () = poke_panel 50 275 est.opponent in
-  let () = poke_panel 300 150 (List.hd est.player.poke_list) in
-  let () = draw_options (opt_lst Menu.menu_lst) in
+  let () = poke_panel 50 275 mst.opponent in
+  let () = poke_panel 300 150 (List.hd mst.player.poke_list) in
+  let () = draw_poke (50 + (size_x () / 6)) 175 (List.hd st.player.poke_list) in
+  let () = draw_poke (300 + (size_x () / 6)) (160 + (size_y () / 3)) 
+      mst.opponent in
+  let () = draw_options (opt_lst Menu.menu_lst mst.hover) in
   let () = synchronize () in ()
+
+
+(************************* T E S T I N G *************************************)
+
+let poke_lst = 
+  Pokemon.poke_list_from_json (Yojson.Basic.from_file "starter_pokemon.json")
+
+let starter = List.hd poke_lst
+
+let test_opp = List.nth poke_lst 2
+
+let test_map = Block.json_to_map "map1.json"
+
+let test_st = init_state "test" starter test_map
+
+let test_mst : menu_state = {
+  player = test_st.player;
+  opponent = test_opp;
+  hover = 0;
+  select = None
+}
+
+let test_render () = render_menu test_st test_mst
+
