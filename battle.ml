@@ -20,12 +20,12 @@ let choose_attack pkm1 =
   let moves = pkm1.mvs in 
   display_moves in 
 let chosen_move = process+input in 
-let newpkm = battledamage pkm1 cosen move
+let newpkm = battledamage pkm1 chosen move
 
 let check_battle st : bool = failwith "unimplemented"
 
 let battle (st : battle_state) = 
-  if check_batlte (u can still battle) then 
+  if check_battle (u can still battle) then 
     if st.p_turn 
     then let p_move = choose_attack st.player.pkm1 
       in battle {st with player.poe = p_move, p_turn = false} 

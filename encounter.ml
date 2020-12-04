@@ -24,6 +24,8 @@ open Menu
    () *)
 
 
+let process_encounter st est = failwith "TODO"
+
 let switch pkm_name st e_st = 
   let pkm_lst = st.player.poke_list in 
   let selected_pkm = List.filter (fun p -> p.name = pkm_name) pkm_lst in 

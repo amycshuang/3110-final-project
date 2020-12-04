@@ -1,7 +1,6 @@
 open State
 open Player
 open Pokemon
-open Command
 
 type direction = Up | Left | Right | Down 
 
@@ -49,10 +48,21 @@ let select_change est = function
 
 let menu_change (mst : menu_state) st menu =
   match menu with 
-  | Fight -> let bst = {player=mst.player; opponent=mst.opponent; p_turn=false} in {st with status = (Battling bst)}
   | Bag -> st
   | PokeList -> st
   | Run -> {st with status = Walking}
+  | Fight -> begin 
+      if (mst.is_encounter) then 
+        let est = {player = mst.player; 
+                   opponent = get_opponent mst.opponent; 
+                   hover = 0; 
+                   select = Some Fight} in
+        {st with status = (Encounter est)}
+      else let bst = {player = mst.player; 
+                      opponent = get_opponent mst.opponent; 
+                      p_turn = false} in
+        {st with status = (Battling bst)}
+    end 
 
 let rec process_menu input (st: state) (mst : State.menu_state) =
   let new_mst = select_change mst (encount_key input) in 

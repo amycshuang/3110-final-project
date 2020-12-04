@@ -71,6 +71,7 @@ let display (st : State.state) = function
   | PokeList -> parse_pokelist st.player
   | Default -> "Default txt"
 
+(** [process_walk input st] processes the state while walking. *)
 let process_walk input (st : State.state) =
   let action = walk_key input in
   match action with

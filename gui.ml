@@ -34,7 +34,8 @@ type option = {
   selected: bool;
 }
 
-(** [color_of_block b] maps a block type to the specified color on the map *)
+(** [color_of_block b] maps a block type to the 
+    ecified color on the map *)
 let color_of_block b = 
   match b with
   | TallGrass -> Graphics.rgb 88 165 116
@@ -186,7 +187,13 @@ let render_menu (st : State.state) (est : State.menu_state) =
   let () = Graphics.open_graph (graph_dims st.map); in
   let () = Graphics.clear_graph () in 
   let () = draw_bottom_panel () in
-  let () = poke_panel 50 275 est.opponent in
+  let () = poke_panel 50 275 (List.hd (State.get_opponent est.opponent)) in
   let () = poke_panel 300 150 (List.hd est.player.poke_list) in
   let () = draw_options (opt_lst Menu.menu_lst) in
   let () = synchronize () in ()
+
+(** [TODO - render the pokemon center] *)
+let render_pokecenter (st: state) = ()
+
+(** TODO - render a not enough money message *)
+let render_no_money = ()
