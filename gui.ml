@@ -302,12 +302,6 @@ let rec render_bag bag_items s_x s_y =
     Graphics.draw_string b; 
     render_bag t s_x (s_y - 30)
 
-let render_no_money = 
-  Graphics.moveto 200 60; 
-  Graphics.set_color Graphics.black; 
-  Graphics.draw_string "You don't have enough money!";
-  let () = synchronize () in ()
-
 let render_pokecenter (st: state) = 
   Graphics.clear_graph ();
   Graphics.moveto 160 340; 
@@ -331,6 +325,11 @@ let render_pokecenter (st: state) =
   Graphics.set_color Graphics.cyan; 
   Graphics.draw_string "Your Bag";
   let () = render_bag (bag_items st.player.bag.inventory) (box_len * 11) 90 in 
-  let () = if st.player.balance < 50 then 
-      render_no_money else () in 
   let () = synchronize () in ()
+
+(** TODO - render a not enough money message *)
+let render_no_money = ()
+(* Graphics.moveto 200 60; 
+   Graphics.set_color Graphics.black; 
+   Graphics.draw_string "You don't have enough money!";
+   let () = synchronize () in () *)
