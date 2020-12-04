@@ -74,7 +74,7 @@ let update_status (st : state) = function
 
 let get_opponent opp = match opp with  
   | OppPokemon pkm -> pkm
-  | OppTrainer -> failwith "TODO"
+  | OppTrainer -> failwith "TODO after initializing trainer module"
 
 let player_block p map = 
   let (x, y) = p.location in 

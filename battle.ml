@@ -2,7 +2,7 @@ open State
 open Pokemon
 open Player
 (** The type of selection on the encounter screen *)
-type selection = Up | Left | Right | Down | Select of action
+type selection = Up | Left | Right | Down
 
 (* 2 pokemon, 4 moves *)
 
@@ -13,7 +13,6 @@ let battle_key ch =
   | 'a' -> Some Left
   | 's' -> Some Down
   | 'd' -> Some Right
-  | 'e' -> Some Select button 
   | _ -> None
 
 let choose_attack pkm1 = 

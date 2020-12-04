@@ -36,11 +36,6 @@ exception InvalidRegion
 (** Raised when an invalid command is parsed. *)
 exception InvalidCommand of string
 
-(** todo: delete *)
-val parse_encounter : phrase -> encounter
-
-val fake_parse : string -> (phrase -> encounter) -> encounter
-
 (** [parse_region region] is the map command associated with [region].
     Raises: InvalidRegion if [region] is not a valid region. *)
 val parse_region : phrase -> command

@@ -27,12 +27,23 @@ let empty_bag = {
   inventory = [(Potion, 5); (Pokeball, 5)];
 }
 
+(** for testing pokecenter hp *)
+let lower_hp pkm = 
+  let stats = pkm.stats in 
+  let new_stats = {stats with hp = 1} in 
+  {pkm with stats = new_stats}
+
+let lower_hp2 pkm = 
+  let stats = pkm.stats in 
+  let new_stats = {stats with hp = 21} in 
+  {pkm with stats = new_stats}
+
 let init_player name start_poke loc = {
   nickname = name;
   location = loc;
-  poke_list = [start_poke];
+  poke_list = [lower_hp start_poke; lower_hp start_poke; start_poke; lower_hp2 start_poke; start_poke; lower_hp2 start_poke];
   bag = empty_bag;
-  balance = 0;
+  balance = 500;
 }
 
 (** [move_poke poke_list acc ct] returns a list of Pokemon that need to be 
