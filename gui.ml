@@ -246,13 +246,21 @@ let test_st = init_state "test" starter test_map
 
 (* let test_render () = render_menu test_st test_mst *)
 
+
+let pokecenter_header_color = Graphics.rgb 255 153 204 
+let pokecenter_color = Graphics.rgb 102 178 255 
+let hp_bad_color = Graphics.rgb 240 53 53
+let hp_ok_color = Graphics.rgb 255 204 153
+let hp_good_color = Graphics.rgb 129 210 153
+let no_money_color = Graphics.rgb 255 153 153
+
 (** [hp_color hp base_hp] is the color of the drawn pokemon's hp. *)
 let hp_color hp base_hp = 
   let float_hp = float_of_int hp in 
   let float_base = float_of_int base_hp in 
-  if float_hp /. float_base >= 0.50 then Graphics.green 
-  else if float_hp /. float_base >= 0.2 then Graphics.yellow 
-  else Graphics.red
+  if float_hp /. float_base >= 0.50 then hp_good_color
+  else if float_hp /. float_base >= 0.2 then hp_ok_color
+  else hp_bad_color
 
 let rec render_pokecenter_pkm pkm_lst s_x s_y = 
   match pkm_lst with 
@@ -302,34 +310,36 @@ let rec render_bag bag_items s_x s_y =
     Graphics.draw_string b; 
     render_bag t s_x (s_y - 30)
 
+let render_no_money () = 
+  Graphics.moveto 150 30; 
+  Graphics.set_color no_money_color; 
+  Graphics.draw_string "You don't have enough money!";
+  ()
+
 let render_pokecenter (st: state) = 
   Graphics.clear_graph ();
   Graphics.moveto 160 340; 
-  Graphics.set_color Graphics.magenta; 
+  Graphics.set_color pokecenter_header_color; 
   Graphics.draw_string "Welcome to the Pokemon Center!";
   Graphics.moveto (box_len * 2) 300;
-  Graphics.set_color Graphics.cyan;
+  Graphics.set_color pokecenter_color;
   Graphics.draw_string "Your Pokemon";
   let () = render_pokecenter_pkm (st.player.poke_list) (box_len * 2) 270 in 
   Graphics.moveto (box_len * 11) 300;
-  Graphics.set_color Graphics.cyan;
+  Graphics.set_color pokecenter_color;
   Graphics.draw_string "Pokecenter Options";
   let () = render_pokecenter_options pokecenter_options(box_len * 11) 270  in
   Graphics.moveto (box_len * 11) 150; 
-  Graphics.set_color Graphics.cyan; 
+  Graphics.set_color pokecenter_color; 
   Graphics.draw_string "Your Balance: ";
   Graphics.moveto (box_len * 11 + 85) 150;
-  Graphics.set_color Graphics.black; 
+  let () = if st.player.balance = 0 then Graphics.set_color no_money_color else
+      Graphics.set_color Graphics.black in 
   Graphics.draw_string (string_of_int st.player.balance);
   Graphics.moveto (box_len * 11) 120;
-  Graphics.set_color Graphics.cyan; 
-  Graphics.draw_string "Your Bag";
+  Graphics.set_color pokecenter_color; 
+  Graphics.draw_string "Your Bag: ";
   let () = render_bag (bag_items st.player.bag.inventory) (box_len * 11) 90 in 
+  let () = 
+    if st.player.balance = 0 then render_no_money () else () in 
   let () = synchronize () in ()
-
-(** TODO - render a not enough money message *)
-let render_no_money = ()
-(* Graphics.moveto 200 60; 
-   Graphics.set_color Graphics.black; 
-   Graphics.draw_string "You don't have enough money!";
-   let () = synchronize () in () *)

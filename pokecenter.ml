@@ -52,14 +52,12 @@ let process_pokecenter input (st: State.state) =
     if player_money >= potion_cost then 
       let new_player = purchase st.player player_money Player.Potion in 
       {st with player = new_player}
-    else 
-      st 
+    else st
   | BPokeball -> 
     let player_money = st.player.balance in 
     if player_money >= pokeball_cost then 
       let new_player = purchase st.player player_money Player.Pokeball in 
       {st with player = new_player}
-    else 
-      st 
+    else st 
   | Back -> {st with status = Walking}
   | Default -> st 

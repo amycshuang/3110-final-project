@@ -10,4 +10,4 @@ val render_pokecenter : State.state -> unit
 
 (** [render_no_money] renders a message for the player indicating they have no
     money. *)
-val render_no_money : unit
+val render_no_money : unit -> unit
