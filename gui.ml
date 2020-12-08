@@ -277,8 +277,8 @@ let rec render_pokecenter_pkm pkm_lst s_x s_y =
 
 let pokecenter_options = [
   "Press 'h' to heal your pokemon";
-  "Press 'j' to buy a potion";
-  "Press 'k' to buy a pokeball";
+  "Press 'j' to buy a potion (100)";
+  "Press 'k' to buy a pokeball (50)";
   "Press 'b' to leave the pokecenter"
 ]
 
@@ -335,7 +335,7 @@ let render_pokecenter (st: state) =
   Graphics.moveto (box_len * 11 + 85) 150;
   let () = if st.player.balance = 0 then Graphics.set_color no_money_color else
       Graphics.set_color Graphics.black in 
-  Graphics.draw_string (string_of_int st.player.balance);
+  Graphics.draw_string (string_of_int st.player.balance ^ " pokecoins");
   Graphics.moveto (box_len * 11) 120;
   Graphics.set_color pokecenter_color; 
   Graphics.draw_string "Your Bag: ";
