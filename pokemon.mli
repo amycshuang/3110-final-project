@@ -2,8 +2,8 @@
    Representation of pokemon data.
 
    This module represents the data of a pokemon file, including their name, 
-   type, level, HP, attack, defense, experience, move set, and caught status. 
-   It also handles loading of a pokemon's data from JSON.
+   type, level, base HP, HP, attack, defense, experience, move set, and 
+   caught status. It also handles loading of a pokemon's data from JSON.
 *)
 
 (** Raised when an invalid pokemon is encountered. *)
@@ -29,6 +29,7 @@ type move = {
 (** The type of values representing a pokemon's stats. *)
 type stats = {
   level: int;
+  base_hp: int;
   hp: int;
   attack: int;
   defense: int;

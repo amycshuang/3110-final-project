@@ -4,6 +4,7 @@
     "poke_type": "Grass",
     "stats": {
       "level": 5,
+      "base_hp": 45,
       "hp": 45,
       "attack": 49,
       "defense": 49,
@@ -35,6 +36,7 @@
     "poke_type": "Fire",
     "stats": {
       "level": 5,
+      "base_hp": 39,
       "hp": 39,
       "attack": 52,
       "defense": 43,
@@ -66,6 +68,7 @@
     "poke_type": "Water",
     "stats": {
       "level": 5,
+      "base_hp": 44,
       "hp": 44,
       "attack": 48,
       "defense": 65,
@@ -97,6 +100,7 @@
     "poke_type": "Electric",
     "stats": {
       "level": 5,
+      "base_hp": 35,
       "hp": 35,
       "attack": 55,
       "defense": 40,

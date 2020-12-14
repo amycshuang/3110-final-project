@@ -25,8 +25,8 @@ let parse_region region =
   | h :: t -> begin 
       match h, t with 
       | "kanto", [] -> Map "map1.json"
-      | "johto", [] -> Map "map1.json"
-      | "hoenn", [] -> Map "map1.json"
+      | "johto", [] -> Map "johto.json"
+      | "hoenn", [] -> Map "hoenn.json"
       | "sinnoh", [] -> Map "map1.json"
       | "unova", [] -> Map "map1.json"
       | "kalos", [] -> Map "map1.json"
