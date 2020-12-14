@@ -2,7 +2,6 @@ open OUnit2
 open TestPokemon
 open TestCommand
 
-
 let pokemon_tests = List.flatten [
     TestPokemon.type_from_string_tests;
     TestPokemon.opponent_move_tests;

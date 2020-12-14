@@ -24,15 +24,26 @@ type player = {
 let empty_bag = {
   pc_box = [];
   badge_case = [];
-  inventory = [];
+  inventory = [(Potion, 5); (Pokeball, 5)];
 }
+
+(** for testing pokecenter hp *)
+let lower_hp pkm = 
+  let stats = pkm.stats in 
+  let new_stats = {stats with hp = 1} in 
+  {pkm with stats = new_stats}
+
+let lower_hp2 pkm = 
+  let stats = pkm.stats in 
+  let new_stats = {stats with hp = 21} in 
+  {pkm with stats = new_stats}
 
 let init_player name start_poke loc = {
   nickname = name;
   location = loc;
-  poke_list = [start_poke];
+  poke_list = [lower_hp start_poke; lower_hp start_poke; start_poke; lower_hp2 start_poke; start_poke; lower_hp2 start_poke];
   bag = empty_bag;
-  balance = 0;
+  balance = 500;
 }
 
 (** [move_poke poke_list acc ct] returns a list of Pokemon that need to be 
@@ -58,7 +69,7 @@ let check_pc player =
   }
 
 let catch_poke player poke =
-  let new_poke_list = List.cons poke player.poke_list in
+  let new_poke_list = player.poke_list @ [poke] in
   let updated_player =
     {
       nickname = player.nickname;

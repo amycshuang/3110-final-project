@@ -71,11 +71,13 @@ let display (st : State.state) = function
   | PokeList -> parse_pokelist st.player
   | Default -> "Default txt"
 
+(** [process_walk input st] processes the state while walking. *)
 let process_walk input (st : State.state) =
   let action = walk_key input in
   match action with
   | Move dir -> begin 
       let mv_st =  {st with player=(move_map st.player dir st.map)} in 
-      {mv_st with status = (update_status (player_block mv_st.player mv_st.map))}
+      {mv_st with status = 
+                    (update_status mv_st (player_block mv_st.player mv_st.map))}
     end 
   | Display x -> {st with panel_txt=(display st x)}
