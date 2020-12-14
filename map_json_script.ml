@@ -32,7 +32,7 @@ let block_input_helper () =
   | "h" -> "\"" ^ "house" ^ "\""
   | "c" -> "\"" ^ "pokecenter" ^ "\""
   | "gym" -> "\"" ^ "gym" ^ "\""
-  | _ -> raise (Failure "nope")
+  | _ -> raise (Failure "not a block type")
 
 (* Gets user input to record a pokemon's move set *)
 let rec block_type_input file_name w h () =
@@ -78,7 +78,7 @@ let map_input map_file_name =
   fprintf oc "%s\n" block_json;
   close_out oc;
 
-  print_string("Enter another pokemon that appears on this type of block? y/n \n");
+  print_string("Enter another map? y/n \n");
   let _ = continue_check_helper (block_type_input map_file_name map_width map_height) in
   ()
 

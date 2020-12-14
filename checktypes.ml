@@ -157,6 +157,3 @@ module type WalkingSig = sig
   val process_walk : char -> State.state -> State.state
 end 
 module WalkingCheck : WalkingSig = Walking
-
-
-
