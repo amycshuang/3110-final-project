@@ -211,17 +211,17 @@ let draw_poke x y poke =
   Graphics.set_color (color_of_poke poke.poke_type);
   Graphics.fill_circle x y 50
 
-let render_menu (st : State.state) (mst : State.menu_state) = ()
-(* let () = Graphics.open_graph (graph_dims st.map); in
-   let () = Graphics.clear_graph () in 
-   let () = draw_bottom_panel () in
-   let () = poke_panel 50 275 (List.hd (State.get_opponent est.opponent)) in
-   let () = poke_panel 300 150 (List.hd est.player.poke_list) in
-   let () = draw_poke (50 + (size_x () / 6)) 175 (List.hd st.player.poke_list) in
-   let () = draw_poke (300 + (size_x () / 6)) (160 + (size_y () / 3)) 
-    (List.hd (State.get_opponent est.opponent)) in
-   let () = draw_options (opt_lst Menu.menu_lst mst.hover) in
-   let () = synchronize () in () *)
+let render_menu (st : State.state) (mst : State.menu_state) = 
+  let () = Graphics.open_graph (graph_dims st.map); in
+  let () = Graphics.clear_graph () in 
+  let () = draw_bottom_panel () in
+  let () = poke_panel 50 275 (List.hd mst.opponent) in
+  let () = poke_panel 300 150 (List.hd mst.player.poke_list) in
+  let () = draw_poke (50 + (size_x () / 6)) 175 (List.hd st.player.poke_list) in
+  let () = draw_poke (300 + (size_x () / 6)) (160 + (size_y () / 3)) 
+      (List.hd mst.opponent) in
+  let () = draw_options (opt_lst Menu.menu_lst mst.hover) in
+  let () = synchronize () in ()
 
 
 (************************* T E S T I N G *************************************)
@@ -242,9 +242,9 @@ let test_st = init_state "test" starter test_map
    opponent = test_opp;
    hover = 0;
    select = None
-   } *)
+   }
 
-(* let test_render () = render_menu test_st test_mst *)
+   let test_render () = render_menu test_st test_mst *)
 
 
 let pokecenter_header_color = Graphics.rgb 255 153 204 

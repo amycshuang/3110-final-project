@@ -7,37 +7,45 @@ type menu = Fight | PokeList | Bag | Run
 
 (** The type representing an opponent. An opponent is either a wild pokemon
     or another trainer. *)
-type opponent = 
-  | OppPokemon of Pokemon.pokemon list
-  | OppTrainer
+(* type opponent = 
+   | OppPokemon of Pokemon.pokemon list
+   | OppTrainer *)
 
 (** The type representing an encounter state *)
 type menu_state = {
   player : Player.player;
-  opponent: opponent;
-  hover: int;
-  select: menu option;
-  is_encounter: bool
-}
-
-type encounter_state = {
-  player : Player.player;
   opponent: Pokemon.pokemon list;
   hover: int;
-  select: menu option       
+  select: menu option;
 }
 
 type battle_state = {
-  player : Player.player;
+  player: Player.player;
   opponent: Pokemon.pokemon list;
-  p_turn : bool;
-} 
+  p_turn: bool;
+  hover: int;
+  select: menu option 
+}
+
+(* type encounter_state = {
+   player : Player.player;
+   opponent: opponent;
+   hover: int;
+   select: menu option       
+   }
+
+   type battle_state = {
+   player : Player.player;
+   opponent: opponent;
+   p_turn : bool;
+   }  *)
 
 type status =  Walking 
             | PokeCenter
             | Menu of menu_state
-            | Battling of battle_state
-            | Encounter of encounter_state 
+            | Battle of battle_state
+            (* | Battling of battle_state
+               | Encounter of encounter_state  *)
             | Gym 
             | Win
 
@@ -57,10 +65,9 @@ let spawn_status block (st : state) =
   match spawned with
   | Some x -> let (mst : menu_state) = 
                 {player = st.player; 
-                 opponent = OppPokemon [x]; 
+                 opponent = [x]; 
                  hover = 0; 
-                 select = None; 
-                 is_encounter = true} in 
+                 select = None;} in 
     Menu mst
   | None -> Walking
 
@@ -72,9 +79,9 @@ let update_status (st : state) = function
   | Gym -> Gym
   | PokeCenter -> PokeCenter 
 
-let get_opponent opp = match opp with  
-  | OppPokemon pkm -> pkm
-  | OppTrainer -> failwith "TODO after initializing trainer module"
+(* let get_opponent opp = match opp with  
+   | OppPokemon pkm -> pkm
+   | OppTrainer -> failwith "TODO after initializing trainer module" *)
 
 let player_block p map = 
   let (x, y) = p.location in 
