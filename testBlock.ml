@@ -61,9 +61,9 @@ let get_block_type_test
   name >:: (fun _ -> 
       assert_equal expected_output (get_block_type t))
 
-let map1 = Yojson.Basic.from_file "map1.json"
+let map1 = Yojson.Basic.from_file "map_jsons/map1.json"
 
-let maptest = Yojson.Basic.from_file "maptest.json"
+let maptest = Yojson.Basic.from_file "map_jsons/maptest.json"
 
 let block_tests = [
   map_dim_test "map1 dim test" map1 
@@ -87,7 +87,7 @@ let block_tests = [
      "tall grass"; "grass"] [Grass; Water; Gym; House; Road; TallGrass; 
                              TallGrass; Grass];
 
-  json_to_map_test "maptest to map" "maptest.json"
+  json_to_map_test "maptest to map" "map_jsons/maptest.json"
     [|[|Grass; Water|]; [|Gym; House|]; [|Road; TallGrass|]; 
       [|TallGrass; Grass|]|];
 

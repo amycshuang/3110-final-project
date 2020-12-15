@@ -108,14 +108,14 @@ let spawn_poke (t : block) =
   | PokeCenter -> None
 
 (* * Utop testing
-   let map = json_to_list (Yojson.Basic.from_file "map1.json")
+   let map = json_to_list (Yojson.Basic.from_file "map_jsons/map1.json")
 
-   let dims = map_dim (Yojson.Basic.from_file "map1.json")
+   let dims = map_dim (Yojson.Basic.from_file "map_jsons/map1.json")
 
 
    let map_list = list_to_blocks map
 
-   let map_arr = list_to_matrix map_list (Yojson.Basic.from_file "map1.json")
+   let map_arr = list_to_matrix map_list (Yojson.Basic.from_file "map_jsons/map1.json")
 
    (** To get the right array (starting from top left) *)
 
