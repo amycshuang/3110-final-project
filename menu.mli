@@ -1,5 +1,6 @@
-(** [encounter_menu] are the list of menu options during an encounter *)
-val menu_lst : string array
+(** [bag_items bag] is the string representation of the items in the bag's
+    inventory. *)
+val bag_items: (Player.item * int) list -> string list
 
 (** [process_encounter ch st] is the state after some key input during an 
     encounter. *)

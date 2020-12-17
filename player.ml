@@ -46,6 +46,8 @@ let init_player name start_poke loc = {
   balance = 500;
 }
 
+(** FIx check_pc function *)
+
 (** [move_poke poke_list acc ct] returns a list of Pokemon that need to be 
     removed from poke_list so that poke_list has a length of 6 or less *)
 let rec move_poke poke_list acc =
@@ -79,3 +81,4 @@ let catch_poke player poke =
       balance = player.balance
     } in
   check_pc updated_player
+(* updated_player *)

@@ -220,7 +220,7 @@ let render_menu (st : State.state) (mst : State.menu_state) =
   let () = draw_poke (50 + (size_x () / 6)) 175 (List.hd st.player.poke_list) in
   let () = draw_poke (300 + (size_x () / 6)) (160 + (size_y () / 3)) 
       (List.hd mst.opponent) in
-  let () = draw_options (opt_lst Menu.menu_lst mst.hover) in
+  let () = draw_options (opt_lst mst.opt_lst mst.hover) in
   let () = synchronize () in ()
 
 
@@ -282,16 +282,6 @@ let pokecenter_options = [
   "Press 'b' to leave the pokecenter"
 ]
 
-(** [bag_items bag] is the string representation of the items in the bag's
-    inventory. *)
-let rec bag_items = function 
-  | [] -> []
-  | (item, amt) :: t -> 
-    if item = Player.Potion then 
-      ("Potions: " ^ string_of_int amt) :: bag_items t 
-    else 
-      ("Pokeballs: " ^ string_of_int amt) :: bag_items t 
-
 let rec render_pokecenter_options options s_x s_y = 
   match options with 
   | [] -> ()
@@ -339,7 +329,7 @@ let render_pokecenter (st: state) =
   Graphics.moveto (box_len * 11) 120;
   Graphics.set_color pokecenter_color; 
   Graphics.draw_string "Your Bag: ";
-  let () = render_bag (bag_items st.player.bag.inventory) (box_len * 11) 90 in 
+  let () = render_bag (Menu.bag_items st.player.bag.inventory) (box_len * 11) 90 in 
   let () = 
     if st.player.balance = 0 then render_no_money () else () in 
   let () = synchronize () in ()

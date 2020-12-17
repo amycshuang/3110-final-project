@@ -1,4 +1,4 @@
-type menu = Fight | PokeList | Bag | Run
+type menu = Fight | PokeList | Bag | Run | Catch | Heal
 
 (* type opponent = 
    | OppPokemon of Pokemon.pokemon list
@@ -9,6 +9,7 @@ type menu_state = {
   opponent: Pokemon.pokemon list;
   hover: int;
   select: menu option;
+  opt_lst: string array;
   (* is_encounter: bool; *)
 }
 

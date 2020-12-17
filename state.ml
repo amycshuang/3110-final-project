@@ -3,7 +3,7 @@ open Player
 open Block
 open Graphics
 
-type menu = Fight | PokeList | Bag | Run
+type menu = Fight | PokeList | Bag | Run | Catch | Heal
 
 (** The type representing an opponent. An opponent is either a wild pokemon
     or another trainer. *)
@@ -11,12 +11,12 @@ type menu = Fight | PokeList | Bag | Run
    | OppPokemon of Pokemon.pokemon list
    | OppTrainer *)
 
-(** The type representing an encounter state *)
 type menu_state = {
   player : Player.player;
   opponent: Pokemon.pokemon list;
   hover: int;
   select: menu option;
+  opt_lst: string array;
 }
 
 type battle_state = {
@@ -33,7 +33,6 @@ type battle_state = {
    hover: int;
    select: menu option       
    }
-
    type battle_state = {
    player : Player.player;
    opponent: opponent;
@@ -67,7 +66,9 @@ let spawn_status block (st : state) =
                 {player = st.player; 
                  opponent = [x]; 
                  hover = 0; 
-                 select = None;} in 
+                 select = None;
+                 opt_lst = [|"FIGHT"; "BAG"; "POKEMON"; "RUN"|];
+                } in 
     Menu mst
   | None -> Walking
 
