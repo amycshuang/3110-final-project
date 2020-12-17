@@ -14,7 +14,7 @@ let battle_key ch =
   | 's' -> Some Down
   | 'd' -> Some Right
   | _ -> None
-
+(* 
 let choose_attack pkm1 = 
   let moves = pkm1.mvs in 
   display_moves in 
@@ -29,4 +29,4 @@ let battle (st : battle_state) =
     then let p_move = choose_attack st.player.pkm1 
       in battle {st with player.poe = p_move, p_turn = false} 
     else let opp_move = opponent_move st.opponent in 
-  else {st }
+  else {st } *)
