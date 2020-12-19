@@ -32,6 +32,11 @@ let block_input_helper () =
   | "h" -> "\"" ^ "house" ^ "\""
   | "c" -> "\"" ^ "pokecenter" ^ "\""
   | "gym" -> "\"" ^ "gym" ^ "\""
+  | "n" -> "\"" ^ "null" ^ "\""
+  | "b" -> "\"" ^ "brown gym floor" ^ "\""
+  | "grey" -> "\"" ^ "grey gym floor" ^ "\""
+  | "trainer" -> "\"" ^ "trainer" ^ "\""
+  | "clarkson" -> "\"" ^ "clarkson spot" ^ "\""
   | _ -> raise (Failure "not a block type")
 
 (* Gets user input to record a pokemon's move set *)

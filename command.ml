@@ -31,14 +31,14 @@ let parse_region region =
   | [] -> raise InvalidRegion
   | h :: t -> begin 
       match h, t with 
-      | "kanto", [] -> Map "map1.json"
-      | "johto", [] -> Map "johto.json"
-      | "hoenn", [] -> Map "hoenn.json"
-      | "sinnoh", [] -> Map "sinnoh.json"
-      | "unova", [] -> Map "unova.json"
-      | "kalos", [] -> Map "kalos.json"
-      | "alola", [] -> Map "alola.json"
-      | "galar", [] -> Map "galar.json"
+      | "kanto", [] -> Map "map_jsons/kanto.json"
+      | "johto", [] -> Map "map_jsons/johto.json"
+      | "hoenn", [] -> Map "map_jsons/hoenn.json"
+      | "sinnoh", [] -> Map "map_jsons/sinnoh.json"
+      | "unova", [] -> Map "map_jsons/unova.json"
+      | "kalos", [] -> Map "map_jsons/kalos.json"
+      | "alola", [] -> Map "map_jsons/alola.json"
+      | "galar", [] -> Map "map_jsons/galar.json"
       | _ -> raise InvalidRegion
     end 
 

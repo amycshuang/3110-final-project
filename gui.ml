@@ -43,6 +43,11 @@ let color_of_block = function
   | Gym -> Graphics.rgb 192 168 103
   | PokeCenter -> Graphics.rgb 216 104 96
   | House -> Graphics.rgb 200 168 240
+  | Null -> failwith "unimplemented"
+  | BrownGymFloor -> failwith "unimplemented"
+  | GreyGymFloor -> failwith "unimplemented"
+  | Trainer -> failwith "unimplemented"
+  | ClarksonSpot -> failwith "unimplemented"
 
 let color_of_poke = function
   | Bug -> Graphics.rgb 184 198 81
@@ -261,7 +266,7 @@ let starter = List.hd poke_lst
 
 let test_opp = List.nth poke_lst 2
 
-let test_map = Block.json_to_map "map1.json"
+let test_map = Block.json_to_map "map_jsons/map1.json"
 
 let test_st = init_state "test" starter test_map
 

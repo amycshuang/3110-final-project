@@ -11,6 +11,11 @@ type block =
   | Gym 
   | House 
   | PokeCenter
+  | Null
+  | BrownGymFloor
+  | GreyGymFloor
+  | Trainer
+  | ClarksonSpot
 
 (** The type of the block represented as a string. *)
 type block_type = string

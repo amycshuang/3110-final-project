@@ -16,14 +16,15 @@ let command_tests = List.flatten [
     TestCommand.parse_yn_tests;
   ]
 
-let block_tests = List.flatten [
-    TestBlock.block_tests;
-  ]
+let block_tests = List.flatten [ TestBlock.block_tests; ]
+
+let trainer_tests = List.flatten [ TestTrainer.trainer_tests; ]
 
 let tests = List.flatten [
     pokemon_tests;
     command_tests;
     block_tests;
+    trainer_tests;
   ]
 
 let suite = "test suite for Pokaml"  >::: tests

@@ -2,8 +2,11 @@ open Pokemon
 open Player
 open Block
 open Graphics
+open Trainer
 
-type menu = Fight | PokeList | Bag | Run | Catch | Heal | Switch | Attack
+type menu = Fight | PokeList | Bag | Run | Catch | Heal | Switch | Attack 
+
+type map = block array array
 
 type menu_state = {
   player : Player.player;
@@ -21,14 +24,17 @@ type battle_state = {
   select: menu option 
 }
 
+type gym_state = {
+  trainers: trainer list;
+  map: map;
+}
 
 type status =  Walking 
             | PokeCenter
             | Menu of menu_state
-            | Gym 
+            | WalkingGym of gym_state 
+            | GymBattle of gym_state * menu_state
             | Win
-
-type map = block array array
 
 type state = {
   map : map;
@@ -52,13 +58,17 @@ let spawn_status block (st : state) =
     Menu mst
   | None -> Walking
 
+let trainer_battle_status st = failwith "TODo"
+
 let update_status (st : state) = function 
   | TallGrass -> spawn_status TallGrass st
   | Water -> spawn_status Water st
   | Grass -> Walking
   | Road | House -> Walking
-  | Gym -> Gym
+  | Gym  | Null | BrownGymFloor | GreyGymFloor -> Gym 
   | PokeCenter -> PokeCenter 
+  | Trainer -> failwith "TOOD"
+  | ClarksonSpot -> failwith "TODO"
 
 (* let get_opponent opp = match opp with  
    | OppPokemon pkm -> pkm

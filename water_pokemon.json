@@ -35,7 +35,7 @@
     "name": "Lapras",
     "poke_type": "Ice",
     "stats": {
-      "level": 9,
+      "level": 7,
       "base_hp": 130,
       "hp": 130,
       "attack": 85,
@@ -99,7 +99,7 @@
     "name": "Poliwag",
     "poke_type": "Water",
     "stats": {
-      "level": 9,
+      "level": 5,
       "base_hp": 40,
       "hp": 40,
       "attack": 50,
@@ -131,7 +131,7 @@
     "name": "Magikarp",
     "poke_type": "Water",
     "stats": {
-      "level": 17,
+      "level": 3,
       "base_hp": 20,
       "hp": 20,
       "attack": 10,
@@ -163,7 +163,7 @@
     "name": "Vaporeon",
     "poke_type": "Water",
     "stats": {
-      "level": 12,
+      "level": 6,
       "base_hp": 130,
       "hp": 130,
       "attack": 65,
@@ -195,7 +195,7 @@
     "name": "Blastoise",
     "poke_type": "Water",
     "stats": {
-      "level": 9,
+      "level": 7,
       "base_hp": 79,
       "hp": 79,
       "attack": 83,
@@ -259,7 +259,7 @@
     "name": "Mudkip",
     "poke_type": "Water",
     "stats": {
-      "level": 11,
+      "level": 7,
       "base_hp": 50,
       "hp": 50,
       "attack": 70,
@@ -291,7 +291,7 @@
     "name": "Glaceon",
     "poke_type": "Ice",
     "stats": {
-      "level": 14,
+      "level": 7,
       "base_hp": 65,
       "hp": 65,
       "attack": 60,
