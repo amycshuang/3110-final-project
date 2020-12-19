@@ -23,21 +23,28 @@ let continue_check_helper (f: unit -> unit) =
   | "y" | "Y" -> f ()
   | _ -> ()
 
-let block_input_helper () = 
-  match read_line () with 
-  | "g" | "gg" -> "\"" ^ "grass" ^ "\""
-  | "w" -> "\"" ^ "water" ^ "\""
-  | "r" -> "\"" ^ "road" ^ "\""
-  | "t" -> "\"" ^ "tall grass" ^ "\""
-  | "h" -> "\"" ^ "house" ^ "\""
-  | "c" -> "\"" ^ "pokecenter" ^ "\""
-  | "gym" -> "\"" ^ "gym" ^ "\""
-  | "n" -> "\"" ^ "null" ^ "\""
-  | "b" -> "\"" ^ "brown gym floor" ^ "\""
-  | "grey" -> "\"" ^ "grey gym floor" ^ "\""
-  | "trainer" -> "\"" ^ "trainer" ^ "\""
-  | "clarkson" -> "\"" ^ "clarkson spot" ^ "\""
-  | _ -> raise (Failure "not a block type")
+exception InvalidBlock
+
+let block_error_message = "Sorry, that is not a valid block type."
+
+let rec block_input_helper msg = 
+  try
+    match read_line () with 
+    | "g" | "gg" -> "\"" ^ "grass" ^ "\""
+    | "w" -> "\"" ^ "water" ^ "\""
+    | "r" -> "\"" ^ "road" ^ "\""
+    | "t" -> "\"" ^ "tall grass" ^ "\""
+    | "h" -> "\"" ^ "house" ^ "\""
+    | "c" -> "\"" ^ "pokecenter" ^ "\""
+    | "gym" -> "\"" ^ "gym" ^ "\""
+    | "n" -> "\"" ^ "null" ^ "\""
+    | "b" -> "\"" ^ "brown gym floor" ^ "\""
+    | "grey" -> "\"" ^ "grey gym floor" ^ "\""
+    | "trainer" -> "\"" ^ "trainer" ^ "\""
+    | "clarkson" -> "\"" ^ "clarkson spot" ^ "\""
+    | _ -> block_input_helper msg
+  with 
+  | InvalidBlock -> block_input_helper msg
 
 (* Gets user input to record a pokemon's move set *)
 let rec block_type_input file_name w h () =
@@ -48,7 +55,7 @@ let rec block_type_input file_name w h () =
 
   let oc = open_out_gen [Open_append] 0o666 file_name in
   for i=0 to (w * h - 1) do 
-    let block_type = block_input_helper () in
+    let block_type = block_input_helper block_error_message in
     print_string ("\n" ^ (string_of_int (i+2)) ^ ". ");
 
     let json = "{\"type\": " ^ block_type ^ "}," in
