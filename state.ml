@@ -29,7 +29,7 @@ type status =  Walking
             | WalkingGym
             | PokeCenter
             | Menu of menu_state
-            | Gym
+            (* | Gym *)
             | Win
 
 type state = {
@@ -62,7 +62,7 @@ let update_status (st : state) = function
   | Water -> spawn_status Water st
   | Grass -> Walking
   | Road | House -> Walking
-  | Gym  | Null | GymRoad | BrownGymFloor | GreyGymFloor -> WalkingGym 
+  | Gym | Null | GymRoad | BrownGymFloor | GreyGymFloor -> WalkingGym 
   | Exit -> Walking
   | PokeCenter -> PokeCenter 
   | Trainer -> WalkingGym (** TODO: link with menu state start battle *)

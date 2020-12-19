@@ -21,7 +21,7 @@ type status =  Walking
             | WalkingGym
             | PokeCenter 
             | Menu of menu_state
-            | Gym
+            (* | Gym *)
             | Win
 
 (** The type representing a map. *)

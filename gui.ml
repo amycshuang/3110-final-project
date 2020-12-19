@@ -43,13 +43,13 @@ let color_of_block = function
   | Gym -> Graphics.rgb 192 168 103
   | PokeCenter -> Graphics.rgb 216 104 96
   | House -> Graphics.rgb 200 168 240
-  | Null -> failwith "unimplemented"
-  | GymRoad -> failwith "unimplemented"
-  | Exit -> failwith "unimplemented"
-  | BrownGymFloor -> failwith "unimplemented"
-  | GreyGymFloor -> failwith "unimplemented"
-  | Trainer -> failwith "unimplemented"
-  | ClarksonSpot -> failwith "unimplemented"
+  | Null -> Graphics.rgb 0 0 0
+  | GymRoad -> Graphics.rgb 208 171 115
+  | Exit -> Graphics.rgb 101 101 101
+  | BrownGymFloor -> Graphics.rgb 236 222 187
+  | GreyGymFloor -> Graphics.rgb 183 172 163
+  | Trainer -> Graphics.rgb 179 27 27
+  | ClarksonSpot -> Graphics.rgb 179 27 27
 
 let color_of_poke = function
   | Bug -> Graphics.rgb 184 198 81
