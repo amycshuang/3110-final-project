@@ -1,0 +1,666 @@
+{
+  "width": 20,
+  "height": 12,
+  "blocks": [
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "road"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "grey gym floor"
+    },
+    {
+      "type": "grey gym floor"
+    },
+    {
+      "type": "grey gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "grey gym floor"
+    },
+    {
+      "type": "clarkson spot"
+    },
+    {
+      "type": "grey gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    },
+    {
+      "type": "null"
+    }
+  ]
+}
