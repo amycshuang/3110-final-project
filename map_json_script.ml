@@ -5,7 +5,7 @@ open Printf
     nothing will be taken in, and the function will default to an empty string. *)
 let string_input_helper () =  
   match read_line () with
-  | exception End_of_file -> print_endline "nothing given, defaulting to empty string"; ""
+  | exception End_of_file -> print_endline "nothing given, default to empty string"; ""
   | s -> "\"" ^ s ^ "\""
 
 (** int_input_helper is the integer that the user inputs in the terminal. 
@@ -86,7 +86,8 @@ let map_input map_file_name =
   close_out oc;
 
   print_string("Enter another map? y/n \n");
-  let _ = continue_check_helper (block_type_input map_file_name map_width map_height) in
+  let _ = continue_check_helper 
+      (block_type_input map_file_name map_width map_height) in
   ()
 
 let rec main () =

@@ -71,7 +71,7 @@ let rec pokemon_info_input file_name () =
   let json = "{\"name\": " ^ pokemon_name ^ 
              ", \"poke_type\": " ^ pokemon_type ^ 
              ", \"stats\": { " ^
-             "\"level\": " ^ string_of_int ((Random.int 19) + 1) ^ 
+             "\"level\": " ^ string_of_int ((Random.int 9) + 1) ^ 
              ", \"base_hp\": " ^ string_of_int pokemon_base_hp ^ 
              ", \"hp\": " ^ string_of_int pokemon_base_hp ^ 
              ", \"attack\": " ^ string_of_int pokemon_attack ^ 
