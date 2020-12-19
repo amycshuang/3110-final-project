@@ -7,7 +7,7 @@
         "name": "Camerupt",
         "poke_type": "Ground",
         "stats": {
-          "level": 12,
+          "level": 10,
           "base_hp": 70,
           "hp": 70,
           "attack": 100,
@@ -39,7 +39,7 @@
         "name": "Giratina",
         "poke_type": "Ghost",
         "stats": {
-          "level": 14,
+          "level": 11,
           "base_hp": 150,
           "hp": 150,
           "attack": 100,
@@ -71,7 +71,7 @@
         "name": "Vaporeon",
         "poke_type": "Water",
         "stats": {
-          "level": 12,
+          "level": 9,
           "base_hp": 130,
           "hp": 130,
           "attack": 65,
@@ -173,7 +173,7 @@
         "name": "Riolu",
         "poke_type": "Fighting",
         "stats": {
-          "level": 15,
+          "level": 9,
           "base_hp": 40,
           "hp": 40,
           "attack": 70,
@@ -205,7 +205,7 @@
         "name": "Leafeon",
         "poke_type": "Grass",
         "stats": {
-          "level": 20,
+          "level": 8,
           "base_hp": 65,
           "hp": 65,
           "attack": 110,
@@ -243,7 +243,7 @@
         "name": "Ponyta",
         "poke_type": "Fire",
         "stats": {
-          "level": 14,
+          "level": 9,
           "base_hp": 50,
           "hp": 50,
           "attack": 85,
@@ -307,7 +307,7 @@
         "name": "Eevee",
         "poke_type": "Normal",
         "stats": {
-          "level": 15,
+          "level": 11,
           "base_hp": 55,
           "hp": 55,
           "attack": 55,
