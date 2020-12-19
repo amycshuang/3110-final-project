@@ -32,8 +32,8 @@ let rec play_game st =
   play_game n_st
 
 (** [main ()] prompts for the game to play, then starts it. *)
-let main () =
-  play_game initialize
+(* let main () =
+   play_game initialize
 
-(* Execute the game engine. *)
-let () = main ()
+   (* Execute the game engine. *)
+   let () = main () *)
