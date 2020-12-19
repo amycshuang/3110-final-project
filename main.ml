@@ -17,9 +17,6 @@ let render_st (st : State.state) =
   | Gym -> render_walk st
   | Win -> ()
   | Menu mst -> render_menu st mst
-  | Battle bst -> ()
-(* | Encounter est -> ()
-   | Battling _ -> () *)
 
 (** [play_game f] starts the adventure in file [f]. *)
 let rec play_game st =
@@ -30,8 +27,7 @@ let rec play_game st =
     | Walking -> process_walk input st
     | PokeCenter -> process_pokecenter input st  
     | Menu mst -> process_menu input st mst
-    (* | Encounter est -> failwith "TODO"
-       | Battling bst -> failwith "TODO" *)
+    | Win -> failwith "TODO"
     | _ -> process_walk input st in
   play_game n_st
 

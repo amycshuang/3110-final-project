@@ -5,15 +5,8 @@ open Graphics
 
 type menu = Fight | PokeList | Bag | Run | Catch | Heal | Switch | Attack
 
-(** The type representing an opponent. An opponent is either a wild pokemon
-    or another trainer. *)
-(* type opponent = 
-   | OppPokemon of Pokemon.pokemon list
-   | OppTrainer *)
-
 type menu_state = {
   player : Player.player;
-  (* trainer : Trainer.trainer option; *)
   opponent: Pokemon.pokemon list;
   hover: int;
   select: menu option;
@@ -28,24 +21,10 @@ type battle_state = {
   select: menu option 
 }
 
-(* type encounter_state = {
-   player : Player.player;
-   opponent: opponent;
-   hover: int;
-   select: menu option       
-   }
-   type battle_state = {
-   player : Player.player;
-   opponent: opponent;
-   p_turn : bool;
-   }  *)
 
 type status =  Walking 
             | PokeCenter
             | Menu of menu_state
-            | Battle of battle_state
-            (* | Battling of battle_state
-               | Encounter of encounter_state  *)
             | Gym 
             | Win
 

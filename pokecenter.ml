@@ -1,7 +1,6 @@
 open Player
 open State
 open Pokemon
-open Gui
 
 type center_action = Heal | BPotion | BPokeball | Back | Default
 
@@ -57,11 +56,7 @@ let process_pokecenter input (st: State.state) =
   else 
     let action = pokecenter_key input in 
     match action with 
-    | Heal -> 
-      let poke_list = st.player.poke_list in 
-      let healed_poke = List.map heal_hp poke_list in 
-      let new_player = {st.player with poke_list = healed_poke} in 
-      {st with player = new_player}
+    | Heal -> heal_pokelist st
     | BPotion -> 
       let player_money = st.player.balance in 
       if player_money >= potion_cost then 

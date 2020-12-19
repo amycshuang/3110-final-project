@@ -237,7 +237,7 @@ let level_up pokemon =
 
 let increase_exp p1 p2 = 
   let p2_lvl = float_of_int p2.stats.level in 
-  let exp = int_of_float (p2_lvl *. 0.5) in 
+  let exp = int_of_float (p2_lvl *. 1.75) in 
   let curr_stats = p1.stats in 
   let new_stats = 
     { curr_stats with curr_exp = curr_stats.curr_exp + exp; } in 

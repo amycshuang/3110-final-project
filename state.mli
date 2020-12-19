@@ -1,16 +1,11 @@
 type menu = Fight | PokeList | Bag | Run | Catch | Heal | Switch | Attack
 
-(* type opponent = 
-   | OppPokemon of Pokemon.pokemon list
-   | OppTrainer *)
-
 type menu_state = {
   player : Player.player;
   opponent: Pokemon.pokemon list;
   hover: int;
   select: menu option;
   opt_lst: string array;
-  (* is_encounter: bool; *)
 }
 
 type battle_state = {
@@ -21,27 +16,10 @@ type battle_state = {
   select: menu option 
 }
 
-(** The type representing an encounter state *)
-(* type encounter_state = {
-   player : Player.player;
-   opponent: Pokemon.pokemon list;
-   hover: int;
-   select: menu option
-   }
-
-   type battle_state = {
-   player : Player.player;
-   opponent: Pokemon.pokemon list;
-   p_turn : bool
-   }  *)
-
 (** The status of the game. *)
 type status =  Walking 
             | PokeCenter 
             | Menu of menu_state
-            | Battle of battle_state
-            (* | Battling of battle_state
-               | Encounter of encounter_state  *)
             | Gym
             | Win
 

@@ -357,7 +357,7 @@ let render_pokecenter (st: state) =
   Graphics.moveto (box_len * 11) 120;
   Graphics.set_color pokecenter_color; 
   Graphics.draw_string "Your Bag: ";
-  let () = render_bag (Menu.bag_items st.player.bag.inventory) (box_len * 11) 90 in 
+  let () = render_bag (Encounter.str_bag_items st.player.bag.inventory) (box_len * 11) 90 in 
   let () = 
     if st.player.balance = 0 then render_no_money () else () in 
   let () = synchronize () in ()
