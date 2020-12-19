@@ -3,6 +3,7 @@ open Player
 open Block
 open Graphics
 open Trainer
+open Yojson
 
 type menu = Fight | PokeList | Bag | Run | Catch | Heal | Switch | Attack 
 
@@ -24,16 +25,11 @@ type battle_state = {
   select: menu option 
 }
 
-type gym_state = {
-  trainers: trainer list;
-  map: map;
-}
-
 type status =  Walking 
+            | WalkingGym
             | PokeCenter
             | Menu of menu_state
-            | WalkingGym of gym_state 
-            | GymBattle of gym_state * menu_state
+            | Gym
             | Win
 
 type state = {
@@ -41,6 +37,7 @@ type state = {
   player : Player.player;
   panel_txt : string;
   status : status;
+  trainers: trainer list;
 }
 
 let get_key () = (wait_next_event [Key_pressed]).Graphics.key
@@ -65,10 +62,11 @@ let update_status (st : state) = function
   | Water -> spawn_status Water st
   | Grass -> Walking
   | Road | House -> Walking
-  | Gym  | Null | BrownGymFloor | GreyGymFloor -> Gym 
+  | Gym  | Null | GymRoad | BrownGymFloor | GreyGymFloor -> WalkingGym 
+  | Exit -> Walking
   | PokeCenter -> PokeCenter 
-  | Trainer -> failwith "TOOD"
-  | ClarksonSpot -> failwith "TODO"
+  | Trainer -> WalkingGym (** TODO: link with menu state start battle *)
+  | ClarksonSpot -> WalkingGym (** TODO: link with menu state start battle *)
 
 (* let get_opponent opp = match opp with  
    | OppPokemon pkm -> pkm
@@ -99,4 +97,5 @@ let init_state name starter map =
     player = make_player name starter map;
     panel_txt = "Use your WASD keys to move around the map";
     status = Walking;
+    trainers = trainer_list_from_json (Yojson.Basic.from_file "trainers.json");
   }

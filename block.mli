@@ -12,8 +12,10 @@ type block =
   | House 
   | PokeCenter
   | Null
+  | GymRoad
   | BrownGymFloor
   | GreyGymFloor
+  | Exit
   | Trainer
   | ClarksonSpot
 

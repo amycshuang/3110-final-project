@@ -44,6 +44,8 @@ let color_of_block = function
   | PokeCenter -> Graphics.rgb 216 104 96
   | House -> Graphics.rgb 200 168 240
   | Null -> failwith "unimplemented"
+  | GymRoad -> failwith "unimplemented"
+  | Exit -> failwith "unimplemented"
   | BrownGymFloor -> failwith "unimplemented"
   | GreyGymFloor -> failwith "unimplemented"
   | Trainer -> failwith "unimplemented"
