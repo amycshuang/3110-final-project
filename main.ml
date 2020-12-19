@@ -21,23 +21,23 @@ let render_st (st : State.state) =
   | Menu mst -> render_menu st mst
   | Win -> ()
 
+
 (** [play_game f] starts the adventure in file [f]. *)
 let rec play_game st : unit =
   render_st st;
-  check_state st;
+  check_menu st;
   let input = get_key () in
   let n_st = 
     match st.status with
     | Walking -> process_walk input st
     | PokeCenter -> process_pokecenter input st  
+    | WalkingGym -> process_walk input st
     | Menu mst -> process_menu input st mst
-    | Win -> failwith "TODO"
-    | _ -> process_walk input st in
+    | Win -> failwith "TODO" in
+  render_st n_st;
   play_game n_st
-and check_state st : unit = 
+and check_menu st : unit = 
   match st.status with 
-  | WalkingGym -> play_game {st with  
-                             map = Block.json_to_map "gym_map.json"}
   | Menu mst -> begin
       match mst.status with 
       | Attack _ -> let def_status = {mst with status = Default} in

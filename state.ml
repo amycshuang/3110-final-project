@@ -5,24 +5,31 @@ open Graphics
 open Trainer
 open Yojson
 
-type menu = Fight | PokeList | Bag | Run | Catch | Heal | Switch | Attack 
-
 type map = block array array
+type attack_moves = {
+  player_attack : Pokemon.move; 
+  opponent_attack : Pokemon.move;
+  battling_poke : Pokemon.pokemon array;
+}
+
+type menu = Default 
+          | Fight 
+          | PokeList 
+          | Bag 
+          | Run 
+          | Catch 
+          | Heal 
+          | Switch 
+          | Attack of attack_moves
 
 type menu_state = {
+  status : menu;
   player : Player.player;
   opponent: Pokemon.pokemon list;
   hover: int;
   select: menu option;
-  opt_lst: string array;
-}
-
-type battle_state = {
-  player: Player.player;
-  opponent: Pokemon.pokemon list;
-  p_turn: bool;
-  hover: int;
-  select: menu option 
+  p_turn : bool;
+  previous: menu_state option
 }
 
 type status =  Walking 
@@ -33,7 +40,7 @@ type status =  Walking
             | Win
 
 type state = {
-  map : map;
+  maps : map array;
   player : Player.player;
   panel_txt : string;
   status : status;
@@ -46,11 +53,13 @@ let spawn_status block (st : state) =
   let spawned = spawn_poke block in
   match spawned with
   | Some x -> let (mst : menu_state) = 
-                {player = st.player; 
+                {status = Default;
+                 player = st.player; 
                  opponent = [x]; 
                  hover = 0; 
                  select = None;
-                 opt_lst = [|"FIGHT"; "BAG"; "POKEMON"; "RUN"|];
+                 p_turn = true;
+                 previous = None
                 } in 
     Menu mst
   | None -> Walking
@@ -93,7 +102,7 @@ let init_state name starter map =
   ANSITerminal.(print_string [cyan] (start_game_message));
   print_endline "";
   {
-    map = map;
+    maps = [|map; Block.json_to_map "gym_map.json"|];
     player = make_player name starter map;
     panel_txt = "Use your WASD keys to move around the map";
     status = Walking;

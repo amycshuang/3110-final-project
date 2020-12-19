@@ -55,6 +55,10 @@ val poke_list_from_json : Yojson.Basic.t -> pokemon list
     Raises: InvalidPokemonType if [type] is not a valid pokemon type. *)
 val type_from_string : string -> poke_type
 
+val string_from_type : poke_type -> string
+
+val attack_effectiveness : pokemon -> pokemon -> move -> string
+
 (** [opponent_move p] is the move the opponenet pokemon [p] chooses. *)
 val opponent_move : pokemon -> move 
 
