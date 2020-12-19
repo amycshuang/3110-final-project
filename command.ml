@@ -34,11 +34,11 @@ let parse_region region =
       | "kanto", [] -> Map "map1.json"
       | "johto", [] -> Map "johto.json"
       | "hoenn", [] -> Map "hoenn.json"
-      | "sinnoh", [] -> Map "map1.json"
-      | "unova", [] -> Map "map1.json"
-      | "kalos", [] -> Map "map1.json"
-      | "alola", [] -> Map "map1.json"
-      | "galar", [] -> Map "map1.json"
+      | "sinnoh", [] -> Map "sinnoh.json"
+      | "unova", [] -> Map "unova.json"
+      | "kalos", [] -> Map "kalos.json"
+      | "alola", [] -> Map "alola.json"
+      | "galar", [] -> Map "galar.json"
       | _ -> raise InvalidRegion
     end 
 

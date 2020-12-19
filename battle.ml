@@ -30,3 +30,5 @@ let battle (st : battle_state) =
       in battle {st with player.poe = p_move, p_turn = false} 
     else let opp_move = opponent_move st.opponent in 
   else {st } *)
+
+let process_battle st mst = failwith "TODO"

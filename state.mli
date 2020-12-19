@@ -1,4 +1,4 @@
-type menu = Fight | PokeList | Bag | Run | Catch | Heal
+type menu = Fight | PokeList | Bag | Run | Catch | Heal | Switch | Attack
 
 (* type opponent = 
    | OppPokemon of Pokemon.pokemon list

@@ -15,7 +15,7 @@ exception InvalidPokemonType of string
 (** The type of pokemon move types. *)
 type poke_type = 
   | Bug | Dark | Dragon | Electric | Fairy | Fighting | Fire | Flying | Ghost 
-  | Grass | Ground | Ice | Normal | Poison | Psychic | Rock | Steel | Water
+  | Grass | Ground | Ice | Normal | Poison | Psychic | Rock | Steel | Water 
 
 (** The type of pokemon move names. *)
 type move_name = string

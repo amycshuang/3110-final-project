@@ -33,7 +33,6 @@ let rec play_game st =
     (* | Encounter est -> failwith "TODO"
        | Battling bst -> failwith "TODO" *)
     | _ -> process_walk input st in
-  render_st n_st;
   play_game n_st
 
 (** [main ()] prompts for the game to play, then starts it. *)

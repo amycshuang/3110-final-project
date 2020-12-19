@@ -100,9 +100,30 @@ let graph_dims blocks =
   " " ^ string_of_int (ncol * box_len) ^ "x" ^
   string_of_int (nrow * box_len + panel_height)
 
+let rec display_poke_text_bottom str x y = 
+  match str with 
+  | [] -> ()
+  | [x] -> ()
+  | h1 :: h2 :: t -> 
+    Graphics.moveto x y; 
+    Graphics.draw_string h1; 
+    Graphics.draw_string (" " ^ h2);
+    display_poke_text_bottom t (x + 100) y 
+
+let rec display_poke_text_top str x y  acc = 
+  match str with 
+  | [] -> ()
+  | [x] -> ()
+  | h1 :: h2 :: t -> 
+    Graphics.moveto x y; 
+    Graphics.draw_string h1; 
+    Graphics.draw_string (" " ^ h2);
+    if acc = 2 then display_poke_text_bottom t 10 (y/2)
+    else display_poke_text_top t (x + 100) y (acc + 1)
+
 (** [display_text s] draws text [s] onto the bottom panel while player is 
     walking *)
-let display_text s =
+let display_text' s =
   Graphics.moveto 10 50;
   Graphics.draw_string s
 
@@ -112,7 +133,14 @@ let render_walk (st : State.state) =
   let () = draw_map st.map in
   let () = draw_panel st.map in
   let () = draw_char st.player in
-  let () = display_text st.panel_txt in
+  let () = 
+    match st.panel_txt with 
+    | "Use your WASD keys to move around the map" as s -> display_text' s 
+    | "Invalid Key :( Use WASD keys to walk around, P - Pokelist, B - Bag" 
+      as s -> display_text' s 
+    | _ -> 
+      let str_lst = String.split_on_char ' ' st.panel_txt in 
+      display_poke_text_top str_lst 10 50 0 in
   let () = synchronize () in ()
 
 (** [battle_panel_ht] is the height of the text panel during encounters and 
@@ -174,7 +202,7 @@ let make_options ncol x y width height lst hover_str =
     during an encounter *)
 let list_of_stats pokemon = 
   [(String.uppercase_ascii pokemon.name);
-   "Lv" ^ string_of_int pokemon.stats.level]
+   "Lv" ^ string_of_int pokemon.stats.level ^ "Hp: " ^ string_of_int pokemon.stats.hp]
 
 (** [opt_lst ()] are the menu option buttons during an encounter *)
 let opt_lst menu hover = make_options 2 (size_x () / 2) 0 (size_x () / 2) 

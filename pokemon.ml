@@ -241,4 +241,4 @@ let increase_exp p1 p2 =
   let curr_stats = p1.stats in 
   let new_stats = 
     { curr_stats with curr_exp = curr_stats.curr_exp + exp; } in 
-  { p1 with stats = new_stats} 
+  {p1 with stats = new_stats} 

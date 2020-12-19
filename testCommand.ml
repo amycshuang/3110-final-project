@@ -48,19 +48,19 @@ let parse_region_tests = [
   parse_test "parsing valid region 'Kanto'" "Kanto" parse_region
     (Map "map1.json");
   parse_test "parsing valid region 'Johto'" "Johto" parse_region
-    (Map "map1.json");
+    (Map "johto.json");
   parse_test "parsing valid region 'Hoenn'" "Hoenn" parse_region
-    (Map "map1.json");
+    (Map "hoenn.json");
   parse_test "parsing valid region 'Sinnoh'" "Sinnoh" parse_region
-    (Map "map1.json");
+    (Map "sinnoh.json");
   parse_test "parsing valid region 'Unova'" "Unova" parse_region
-    (Map "map1.json");
-  parse_test "parsing valid region 'Johto'" "Kalos" parse_region
-    (Map "map1.json");
-  parse_test "parsing valid region 'Johto'" "Alola" parse_region
-    (Map "map1.json");
-  parse_test "parsing valid region 'Johto'" "Galar" parse_region
-    (Map "map1.json");
+    (Map "unova.json");
+  parse_test "parsing valid region 'Kalos'" "Kalos" parse_region
+    (Map "kalos.json");
+  parse_test "parsing valid region 'Alola'" "Alola" parse_region
+    (Map "alola.json");
+  parse_test "parsing valid region 'Galar'" "Galar" parse_region
+    (Map "galar.json");
 
   (* testing exception *)
   parse_test_exn "parsing invalid region 'Caml'" "Caml" 

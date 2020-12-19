@@ -3,7 +3,7 @@ open Player
 open Block
 open Graphics
 
-type menu = Fight | PokeList | Bag | Run | Catch | Heal
+type menu = Fight | PokeList | Bag | Run | Catch | Heal | Switch | Attack
 
 (** The type representing an opponent. An opponent is either a wild pokemon
     or another trainer. *)
@@ -13,6 +13,7 @@ type menu = Fight | PokeList | Bag | Run | Catch | Heal
 
 type menu_state = {
   player : Player.player;
+  (* trainer : Trainer.trainer option; *)
   opponent: Pokemon.pokemon list;
   hover: int;
   select: menu option;

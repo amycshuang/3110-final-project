@@ -52,7 +52,7 @@ let parse_bag p =
   let inventory = bag.inventory in
   let rec parse_inventory = function
     | [] -> ""
-    | (item, ct) :: t -> (string_of_item item) ^ ": " ^ string_of_int ct ^ "\n" 
+    | (item, ct) :: t -> (string_of_item item) ^ ": " ^ string_of_int ct ^ " " 
                          ^ parse_inventory t in 
   parse_inventory inventory
 
@@ -62,14 +62,17 @@ let parse_pokelist p =
   let pokelist = p.poke_list in
   let rec parse_poke = function
     | [] -> ""
-    | pokemon :: t -> (pokemon.name) ^ "\n" ^ parse_poke t in
+    | pokemon :: t -> (pokemon.name) ^ " Lv:" ^ 
+                      string_of_int pokemon.stats.level ^ 
+                      " " ^ parse_poke t in
   parse_poke pokelist
 
 (** [display st] displays the state [st] panel text *)
 let display (st : State.state) = function
   | Bag -> parse_bag st.player
   | PokeList -> parse_pokelist st.player
-  | Default -> "Default txt"
+  | Default -> 
+    "Invalid Key :( Use WASD keys to walk around, P - Pokelist, B - Bag" 
 
 (** [process_walk input st] processes the state while walking. *)
 let process_walk input (st : State.state) =

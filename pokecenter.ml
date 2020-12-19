@@ -33,31 +33,46 @@ let purchase player money item =
   let curr_inventory = player.bag.inventory in 
   let potion_num = List.assoc item curr_inventory in 
   let old_inv = List.remove_assoc item curr_inventory in 
-  let new_inv = (item, potion_num + 1) :: old_inv in 
-  let new_balance = money - potion_cost in 
-  let new_bag = {player.bag with inventory = new_inv} in 
-  {player with bag = new_bag; balance = new_balance}
+  if item = Player.Potion then 
+    let new_inv = (item, potion_num + 1) :: old_inv in 
+    let new_balance = money - potion_cost in 
+    let new_bag = {player.bag with inventory = new_inv} in 
+    {player with bag = new_bag; balance = new_balance}
+  else 
+    let new_inv = old_inv @ [(item, potion_num + 1)] in 
+    let new_balance = money - potion_cost in 
+    let new_bag = {player.bag with inventory = new_inv} in 
+    {player with bag = new_bag; balance = new_balance}
+
+let heal_pokelist st = 
+  let poke_list = st.player.poke_list in 
+  let healed_poke = List.map heal_hp poke_list in 
+  let new_player = {st.player with poke_list = healed_poke} in 
+  {st with player = new_player}
 
 (** [process_pokecenter input st] processes the state in the pokecenter. *)
 let process_pokecenter input (st: State.state) =  
-  let action = pokecenter_key input in 
-  match action with 
-  | Heal -> 
-    let poke_list = st.player.poke_list in 
-    let healed_poke = List.map heal_hp poke_list in 
-    let new_player = {st.player with poke_list = healed_poke} in 
-    {st with player = new_player}
-  | BPotion -> 
-    let player_money = st.player.balance in 
-    if player_money >= potion_cost then 
-      let new_player = purchase st.player player_money Player.Potion in 
+  if (List.filter (fun p -> p.stats.hp > 0) st.player.poke_list) = [] then 
+    heal_pokelist st 
+  else 
+    let action = pokecenter_key input in 
+    match action with 
+    | Heal -> 
+      let poke_list = st.player.poke_list in 
+      let healed_poke = List.map heal_hp poke_list in 
+      let new_player = {st.player with poke_list = healed_poke} in 
       {st with player = new_player}
-    else st
-  | BPokeball -> 
-    let player_money = st.player.balance in 
-    if player_money >= pokeball_cost then 
-      let new_player = purchase st.player player_money Player.Pokeball in 
-      {st with player = new_player}
-    else st 
-  | Back -> {st with status = Walking}
-  | Default -> st 
+    | BPotion -> 
+      let player_money = st.player.balance in 
+      if player_money >= potion_cost then 
+        let new_player = purchase st.player player_money Player.Potion in 
+        {st with player = new_player}
+      else st
+    | BPokeball -> 
+      let player_money = st.player.balance in 
+      if player_money >= pokeball_cost then 
+        let new_player = purchase st.player player_money Player.Pokeball in 
+        {st with player = new_player}
+      else st 
+    | Back -> {st with status = Walking}
+    | Default -> st 
