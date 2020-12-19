@@ -64,6 +64,26 @@ let type_from_string = function
   | "Water" -> Water
   | _ -> raise (InvalidPokemonType ("this pokemon type is not valid"))
 
+let string_from_type = function 
+  | Bug -> "Bug"
+  | Dark -> "Dark"
+  | Dragon -> "Dragon"
+  | Electric -> "Electric"
+  | Fairy -> "Fairy"
+  | Fighting -> "Fighting"
+  | Fire -> "Fire"
+  | Flying -> "Flying"
+  | Ghost -> "Ghost"
+  | Grass -> "Grass"
+  | Ground -> "Ground"
+  | Ice -> "Ice"
+  | Normal -> "Normal"
+  | Poison -> "Poison"
+  | Psychic -> "Psychic"
+  | Rock -> "Rock"
+  | Steel -> "Steel"
+  | Water -> "Water"
+
 (** [moves_of_json j] is the pokemon move represented by [j] *)
 let moves_of_json j = {
   move_type = j |> member "move_type" |> to_string |> type_from_string;
@@ -204,6 +224,21 @@ let damage_multiplier t1 t2 =
       | Electric | Grass ->  2.
       | _ -> 1. 
     end 
+
+(** [attack_effectiveness pkm1 pkm2 attack] is the string representing the 
+    effectiveness of move [attack] on pokemon [pkm1] by pokemon [pkm2]. *)
+let attack_effectiveness pkm1 pkm2 attack =  
+  let effectiveness = 
+    match damage_multiplier pkm1.poke_type attack.move_type with 
+    | 2. -> "It was super effective!"
+    | 1.0 -> ""
+    | 0.5 -> "It was not very effective..."
+    | 0.0 -> "The move had no effect."
+    | _ -> "" in 
+  String.uppercase_ascii pkm2.name ^ " used " 
+  ^ String.uppercase_ascii attack.move_name ^ " on " ^ 
+  String.uppercase_ascii pkm1.name ^ ". " ^ 
+  effectiveness 
 
 let battle_damage pkm1 pkm2 move = 
   let damage_multiplier = damage_multiplier pkm1.poke_type move.move_type in 

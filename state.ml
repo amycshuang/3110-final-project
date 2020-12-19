@@ -3,24 +3,31 @@ open Player
 open Block
 open Graphics
 
-type menu = Fight | PokeList | Bag | Run | Catch | Heal | Switch | Attack
+type attack_moves = {
+  player_attack : Pokemon.move; 
+  opponent_attack : Pokemon.move;
+  battling_poke : Pokemon.pokemon array;
+}
+
+type menu = Default 
+          | Fight 
+          | PokeList 
+          | Bag 
+          | Run 
+          | Catch 
+          | Heal 
+          | Switch 
+          | Attack of attack_moves
 
 type menu_state = {
+  status : menu;
   player : Player.player;
   opponent: Pokemon.pokemon list;
   hover: int;
   select: menu option;
-  opt_lst: string array;
+  p_turn : bool;
+  previous: menu_state option
 }
-
-type battle_state = {
-  player: Player.player;
-  opponent: Pokemon.pokemon list;
-  p_turn: bool;
-  hover: int;
-  select: menu option 
-}
-
 
 type status =  Walking 
             | PokeCenter
@@ -43,11 +50,13 @@ let spawn_status block (st : state) =
   let spawned = spawn_poke block in
   match spawned with
   | Some x -> let (mst : menu_state) = 
-                {player = st.player; 
+                {status = Default;
+                 player = st.player; 
                  opponent = [x]; 
                  hover = 0; 
                  select = None;
-                 opt_lst = [|"FIGHT"; "BAG"; "POKEMON"; "RUN"|];
+                 p_turn = true;
+                 previous = None
                 } in 
     Menu mst
   | None -> Walking

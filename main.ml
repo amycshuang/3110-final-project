@@ -18,9 +18,11 @@ let render_st (st : State.state) =
   | Win -> ()
   | Menu mst -> render_menu st mst
 
+
 (** [play_game f] starts the adventure in file [f]. *)
-let rec play_game st =
+let rec play_game st : unit =
   render_st st;
+  check_menu st;
   let input = get_key () in
   let n_st = 
     match st.status with
@@ -30,10 +32,19 @@ let rec play_game st =
     | Win -> failwith "TODO"
     | _ -> process_walk input st in
   play_game n_st
+and check_menu st : unit = 
+  match st.status with 
+  | Menu mst -> begin
+      match mst.status with 
+      | Attack _ -> let def_status = {mst with status = Default} in
+        play_game {st with status = Menu def_status}                            
+      | _ -> ()
+    end
+  | _ -> ()
 
 (** [main ()] prompts for the game to play, then starts it. *)
-(* let main () =
-   play_game initialize
+let main () =
+  play_game initialize
 
-   (* Execute the game engine. *)
-   let () = main () *)
+(* Execute the game engine. *)
+let () = main ()

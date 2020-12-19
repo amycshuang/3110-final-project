@@ -10,6 +10,8 @@ type direction = Up | Left | Right | Down
 (** The type of selection on the encounter screen *)
 type selection = Move of direction| Enter | Back
 
+let default_menu = [|"FIGHT"; "BAG"; "POKEMON"; "RUN"|]
+
 (** [encount ch] is the correpsonding selection action to a key input. *)
 let encount_key ch =
   match ch with
@@ -23,13 +25,28 @@ let encount_key ch =
 
 let hover_change (st : menu_state) dir =
   let new_hover = 
-    match dir with
-    | Up -> st.hover - 2
-    | Left -> st.hover - 1
-    | Down -> st.hover + 2
-    | Right -> st.hover + 1
+    match st.status with
+    | Default | Fight -> begin
+        match dir with
+        | Up -> st.hover - 2
+        | Left -> st.hover - 1
+        | Down -> st.hover + 2
+        | Right -> st.hover + 1
+      end
+    | _ -> begin
+        match dir with
+        | Up -> st.hover - 1
+        | Down -> st.hover + 1
+        | _ -> st.hover
+      end
   in 
-  if new_hover < Array.length st.opt_lst && new_hover >= 0 then 
+  let max_len = 
+    match st.status with
+    | Default | Fight -> 4
+    | PokeList -> List.length st.player.poke_list
+    | Bag -> List.length st.player.bag.inventory
+    | _ -> failwith "no hover needed" in
+  if new_hover < max_len && new_hover >= 0 then 
     {st with hover = new_hover}
   else st
 
@@ -51,23 +68,45 @@ let is_switch pkm_lst pkm_name =
 
 (** [menu_of_string mst] is the menu option associated with the string the 
     hover is on. *)
-let menu_of_string mst = match mst.opt_lst.(mst.hover) with 
-  | "FIGHT" -> Fight
-  | "BAG" -> Bag
-  | "POKEMON" -> PokeList
-  | "RUN" -> Run
-  | x -> begin 
-      if (contains x "POKEBALL") then Catch
-      else if (contains x "POTION") then Heal
-      else if (is_switch mst.player.poke_list x) then Switch 
-      else Attack
-    end 
+let menu_of_string (mst : menu_state) = 
+  match mst.status with
+  | Default -> begin
+      match default_menu.(mst.hover) with 
+      | "FIGHT" -> Fight
+      | "BAG" -> Bag
+      | "POKEMON" -> PokeList
+      | "RUN" -> Run
+      | _ -> failwith "not a default menu option"
+    end
+  | Fight -> begin
+      let curr_pokelist = mst.player.poke_list in 
+      let curr_pkm = List.hd curr_pokelist in 
+      let p_attack = List.nth curr_pkm.move_set mst.hover in 
+      let curr_opp_pokelist = mst.opponent in 
+      let opp_pkm = List.hd curr_opp_pokelist in 
+      let o_attack = opponent_move opp_pkm in 
+      Attack {player_attack = p_attack; 
+              opponent_attack = o_attack;
+              battling_poke = [|curr_pkm; curr_pkm; opp_pkm; opp_pkm|]
+             }
+    end
+  | x -> x
+(* | x -> begin 
+   if (contains x "POKEBALL") then Catch
+   else if (contains x "POTION") then Heal
+   else if (is_switch mst.player.poke_list x) then Switch 
+   else Attack 
+   end *)
 
 let action_change mst = function
   | Move x -> hover_change mst x
   | Enter -> let select_menu = menu_of_string mst in
-    {mst with select = Some select_menu}
-  | Back -> {mst with opt_lst = [|"FIGHT"; "BAG"; "POKEMON"; "RUN"|]}
+    {mst with status = select_menu; select = Some select_menu}
+  | Back -> begin
+      match mst.previous with
+      | None -> mst
+      | Some x -> x
+    end
 
 let select_change est = function
   | Some sel -> action_change est sel
@@ -81,8 +120,9 @@ let menu_change (mst : menu_state) st menu =
   | Catch -> process_catch mst st 
   | Heal ->  process_heal mst st 
   | Switch -> process_switch mst st 
-  | Attack -> process_attack mst st
-  | Run -> process_run st
+  | Attack atks -> process_attack {mst with status = Attack atks} st atks 
+  | Run -> {st with status = Walking}
+  | _ -> failwith "idk yet"
 
 let rec process_menu input (st: state) (mst : State.menu_state) =
   let pkm_lst = st.player.poke_list in 
@@ -91,8 +131,10 @@ let rec process_menu input (st: state) (mst : State.menu_state) =
     let new_st = {st with player = player} in 
     let new_mst = {mst with player = player} in  
     let new_mst' = select_change new_mst (encount_key input) in 
+    let prev = if new_mst.status != new_mst'.status then Some new_mst 
+      else new_mst.previous in
     match new_mst'.select with
-    | Some menu -> menu_change new_mst' new_st menu
+    | Some menu -> menu_change {new_mst' with previous = prev} new_st menu
     | None -> {new_st with status = Menu new_mst'}
   else process_fainted st 
 
