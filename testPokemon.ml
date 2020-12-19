@@ -38,7 +38,7 @@ let type_from_string_tests = [
   (* testing exception *)
   type_from_string_test_exn "type 'ice' is an invalid pokemon type" "ice" 
     (InvalidPokemonType "this pokemon type is not valid");
-  type_from_string_test_exn "type 'Fairy' is an invalid pokemon type" "Fairy"
+  type_from_string_test_exn "type 'Clown' is an invalid pokemon type" "Clown"
     (InvalidPokemonType "this pokemon type is not valid");
 ]
 

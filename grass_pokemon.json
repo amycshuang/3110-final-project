@@ -478,5 +478,69 @@
         "move_name": "Cotton Guard"
       }
     ]
+  },
+  {
+    "name": "Numel",
+    "poke_type": "Ground",
+    "stats": {
+      "level": 12,
+      "base_hp": 60,
+      "hp": 60,
+      "attack": 60,
+      "defense": 40,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Ground",
+        "move_name": "Magnitude"
+      },
+      {
+        "move_type": "Ground",
+        "move_name": "Earth Power"
+      },
+      {
+        "move_type": "Fire",
+        "move_name": "Lava Plume"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Yawn"
+      }
+    ]
+  },
+  {
+    "name": "Camerupt",
+    "poke_type": "Ground",
+    "stats": {
+      "level": 12,
+      "base_hp": 70,
+      "hp": 70,
+      "attack": 100,
+      "defense": 70,
+      "curr_exp": 0,
+      "level_up_exp": 50
+    },
+    "caught": false,
+    "move_set": [
+      {
+        "move_type": "Ground",
+        "move_name": "Fissure"
+      },
+      {
+        "move_type": "Normal",
+        "move_name": "Growl"
+      },
+      {
+        "move_type": "Fire",
+        "move_name": "Eruption"
+      },
+      {
+        "move_type": "Ground",
+        "move_name": "Earthquake"
+      }
+    ]
   }
 ]

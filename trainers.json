@@ -1,0 +1,410 @@
+[
+  {
+    "name": "Clarkson",
+    "catchphrase": "Peace, Love, and 3110",
+    "poke_list": [
+      {
+        "name": "Camerupt",
+        "poke_type": "Ground",
+        "stats": {
+          "level": 12,
+          "base_hp": 70,
+          "hp": 70,
+          "attack": 100,
+          "defense": 70,
+          "curr_exp": 0,
+          "level_up_exp": 50
+        },
+        "caught": false,
+        "move_set": [
+          {
+            "move_type": "Ground",
+            "move_name": "Fissure"
+          },
+          {
+            "move_type": "Normal",
+            "move_name": "Growl"
+          },
+          {
+            "move_type": "Fire",
+            "move_name": "Eruption"
+          },
+          {
+            "move_type": "Ground",
+            "move_name": "Earthquake"
+          }
+        ]
+      },
+      {
+        "name": "Giratina",
+        "poke_type": "Ghost",
+        "stats": {
+          "level": 14,
+          "base_hp": 150,
+          "hp": 150,
+          "attack": 100,
+          "defense": 120,
+          "curr_exp": 0,
+          "level_up_exp": 50
+        },
+        "caught": false,
+        "move_set": [
+          {
+            "move_type": "Ghost",
+            "move_name": "Shadow Sneak"
+          },
+          {
+            "move_type": "Rock",
+            "move_name": "Ancient Power"
+          },
+          {
+            "move_type": "Dragon",
+            "move_name": "Dragon Claw"
+          },
+          {
+            "move_type": "Ghost",
+            "move_name": "Hex"
+          }
+        ]
+      },
+      {
+        "name": "Vaporeon",
+        "poke_type": "Water",
+        "stats": {
+          "level": 12,
+          "base_hp": 130,
+          "hp": 130,
+          "attack": 65,
+          "defense": 60,
+          "curr_exp": 0,
+          "level_up_exp": 50
+        },
+        "caught": false,
+        "move_set": [
+          {
+            "move_type": "Water",
+            "move_name": "Aqua Ring"
+          },
+          {
+            "move_type": "Water",
+            "move_name": "Muddy Water"
+          },
+          {
+            "move_type": "Ice",
+            "move_name": "Aurora Beam"
+          },
+          {
+            "move_type": "Poison",
+            "move_name": "Acid Armor"
+          }
+        ]
+      },
+      {
+        "name": "Umbreon",
+        "poke_type": "Dark",
+        "stats": {
+          "level": 11,
+          "base_hp": 95,
+          "hp": 95,
+          "attack": 65,
+          "defense": 110,
+          "curr_exp": 0,
+          "level_up_exp": 50
+        },
+        "caught": false,
+        "move_set": [
+          {
+            "move_type": "Dark",
+            "move_name": "Assurance"
+          },
+          {
+            "move_type": "Dark",
+            "move_name": "Dark Pulse"
+          },
+          {
+            "move_type": "Normal",
+            "move_name": "Mean Look"
+          },
+          {
+            "move_type": "Normal",
+            "move_name": "Screech"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Gries",
+    "catchphrase": "Do you know the four loopy questions?",
+    "poke_list": [
+      {
+        "name": "Jolteon",
+        "poke_type": "Electric",
+        "stats": {
+          "level": 9,
+          "base_hp": 65,
+          "hp": 65,
+          "attack": 65,
+          "defense": 60,
+          "curr_exp": 0,
+          "level_up_exp": 50
+        },
+        "caught": false,
+        "move_set": [
+          {
+            "move_type": "Electric",
+            "move_name": "Thunder Fang"
+          },
+          {
+            "move_type": "Electric",
+            "move_name": "Thunder Shock"
+          },
+          {
+            "move_type": "Normal",
+            "move_name": "Covet"
+          },
+          {
+            "move_type": "Normal",
+            "move_name": "Swift"
+          }
+        ]
+      },
+      {
+        "name": "Riolu",
+        "poke_type": "Fighting",
+        "stats": {
+          "level": 15,
+          "base_hp": 40,
+          "hp": 40,
+          "attack": 70,
+          "defense": 40,
+          "curr_exp": 0,
+          "level_up_exp": 50
+        },
+        "caught": false,
+        "move_set": [
+          {
+            "move_type": "Fighting",
+            "move_name": "Final Gambit"
+          },
+          {
+            "move_type": "Fighting",
+            "move_name": "Rock Smash"
+          },
+          {
+            "move_type": "Normal",
+            "move_name": "Swords Dance"
+          },
+          {
+            "move_type": "Normal",
+            "move_name": "Copycat"
+          }
+        ]
+      },
+      {
+        "name": "Leafeon",
+        "poke_type": "Grass",
+        "stats": {
+          "level": 20,
+          "base_hp": 65,
+          "hp": 65,
+          "attack": 110,
+          "defense": 130,
+          "curr_exp": 0,
+          "level_up_exp": 50
+        },
+        "caught": false,
+        "move_set": [
+          {
+            "move_type": "Grass",
+            "move_name": "Giga Drain"
+          },
+          {
+            "move_type": "Grass",
+            "move_name": "Leaf Blade"
+          },
+          {
+            "move_type": "Ground",
+            "move_name": "Sand Attack"
+          },
+          {
+            "move_type": "Normal",
+            "move_name": "Swords Dance"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Ann Bracy",
+    "catchphrase": "Welcome back folks, time to battle!",
+    "poke_list": [
+      {
+        "name": "Ponyta",
+        "poke_type": "Fire",
+        "stats": {
+          "level": 14,
+          "base_hp": 50,
+          "hp": 50,
+          "attack": 85,
+          "defense": 55,
+          "curr_exp": 0,
+          "level_up_exp": 50
+        },
+        "caught": false,
+        "move_set": [
+          {
+            "move_type": "Fire",
+            "move_name": "Inferno"
+          },
+          {
+            "move_type": "Fire",
+            "move_name": "Flame Wheel"
+          },
+          {
+            "move_type": "Fire",
+            "move_name": "Fire Spin"
+          },
+          {
+            "move_type": "Normal",
+            "move_name": "Stomp"
+          }
+        ]
+      },
+      {
+        "name": "Lapras",
+        "poke_type": "Ice",
+        "stats": {
+          "level": 9,
+          "base_hp": 130,
+          "hp": 130,
+          "attack": 85,
+          "defense": 80,
+          "curr_exp": 0,
+          "level_up_exp": 50
+        },
+        "caught": false,
+        "move_set": [
+          {
+            "move_type": "Water",
+            "move_name": "Hydro Pump"
+          },
+          {
+            "move_type": "Ice",
+            "move_name": "Ice Shard"
+          },
+          {
+            "move_type": "Ice",
+            "move_name": "Ice Beam"
+          },
+          {
+            "move_type": "Water",
+            "move_name": "Life Dew"
+          }
+        ]
+      },
+      {
+        "name": "Eevee",
+        "poke_type": "Normal",
+        "stats": {
+          "level": 15,
+          "base_hp": 55,
+          "hp": 55,
+          "attack": 55,
+          "defense": 50,
+          "curr_exp": 0,
+          "level_up_exp": 50
+        },
+        "caught": false,
+        "move_set": [
+          {
+            "move_type": "Normal",
+            "move_name": "Growl"
+          },
+          {
+            "move_type": "Normal",
+            "move_name": "Double-Edge"
+          },
+          {
+            "move_type": "Ground",
+            "move_name": "Sand Attack"
+          },
+          {
+            "move_type": "Dark",
+            "move_name": "Bite"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Walker White",
+    "catchphrase": "I get a lot of emails, this better be quick.",
+    "poke_list": [
+      {
+        "name": "Skitty",
+        "poke_type": "Normal",
+        "stats": {
+          "level": 9,
+          "base_hp": 50,
+          "hp": 50,
+          "attack": 45,
+          "defense": 45,
+          "curr_exp": 0,
+          "level_up_exp": 50
+        },
+        "caught": false,
+        "move_set": [
+          {
+            "move_type": "Normal",
+            "move_name": "Double Slap"
+          },
+          {
+            "move_type": "Normal",
+            "move_name": "Captivate"
+          },
+          {
+            "move_type": "Normal",
+            "move_name": "Heal Bell"
+          },
+          {
+            "move_type": "Dark",
+            "move_name": "Feint Attack"
+          }
+        ]
+      },
+      {
+        "name": "Mudkip",
+        "poke_type": "Water",
+        "stats": {
+          "level": 11,
+          "base_hp": 50,
+          "hp": 50,
+          "attack": 70,
+          "defense": 50,
+          "curr_exp": 0,
+          "level_up_exp": 50
+        },
+        "caught": false,
+        "move_set": [
+          {
+            "move_type": "Water",
+            "move_name": "Surf"
+          },
+          {
+            "move_type": "Water",
+            "move_name": "Hydro Pump"
+          },
+          {
+            "move_type": "Psychic",
+            "move_name": "Amnesia"
+          },
+          {
+            "move_type": "Normal",
+            "move_name": "Supersonic"
+          }
+        ]
+      }
+    ]
+  }
+]

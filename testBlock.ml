@@ -33,13 +33,6 @@ let list_to_blocks_test
   name >:: (fun _ -> 
       assert_equal expected_output (list_to_blocks lst))
 
-let list_to_blocks_test
-    (name : string) 
-    (lst : block_type list) 
-    (expected_output : block list) : test = 
-  name >:: (fun _ -> 
-      assert_equal expected_output (list_to_blocks lst))
-
 let json_to_map_test
     (name : string) 
     (j : string) 
@@ -94,5 +87,4 @@ let block_tests = [
   get_block_type_test "get tall grass block" TallGrass "tall grass";
 
   get_block_type_test "get water block" Water "water";
-
 ]
