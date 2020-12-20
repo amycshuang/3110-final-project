@@ -60,7 +60,8 @@ let reprompt_starter_message name =
   "That is not one of the starter pokemon we have available. " ^ 
   "Choose again!"
 
-(** TODO: write comment *)
+(** Raised when the Player enters an invalid pokemon for the desired starter 
+    pokemon. *)
 exception InvalidStarterJson
 
 (** [starter_poke] is the list of starter pokemon *)

@@ -49,7 +49,7 @@ val list_to_blocks : block_type list -> block list
 val json_to_map : string -> block array array
 
 (** [rev_matrix a] reverses the array [a]. *)
-val rev_matrix : block array -> block array
+val rev_matrix : block array array -> block array array
 
 (** [get_block_type t] returns the block_type representation of type t. *)
 val get_block_type : block -> block_type

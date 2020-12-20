@@ -122,15 +122,5 @@ let spawn_poke (t : block) =
   | Water -> 
     if random = 0 || random = 1 then Some (poke_rand water_poke)
     else None
-  | Road -> None
-  | Grass -> None
-  | Gym -> None
-  | House -> None
-  | PokeCenter -> None
-  | Null -> None
-  | GymRoad -> None
-  | BrownGymFloor -> None
-  | GreyGymFloor -> None
-  | Exit -> None
-  | Trainer -> None
-  | ClarksonSpot -> None
+  | Road | Grass | Gym | House | PokeCenter | Null | GymRoad 
+  | BrownGymFloor | GreyGymFloor | Exit | Trainer | ClarksonSpot -> None

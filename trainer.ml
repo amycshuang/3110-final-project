@@ -1,3 +1,11 @@
+(** 
+   Representation of a trainer and their data. 
+*)
+
+(** 
+   Representation of a trainer and their data. 
+*)
+
 open Pokemon
 open Yojson.Basic.Util
 

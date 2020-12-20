@@ -13,7 +13,7 @@ let type_from_string_test (name: string) (s_type: string)
 let type_from_string_test_exn (name: string) (s_type: string) (ex: exn) : test 
   = name >:: (fun _ -> assert_raises ex (fun () -> type_from_string s_type))
 
-let opponent_move_test (name: string) (pkm: pokemon) s
+let opponent_move_test (name: string) (pkm: pokemon)
   : test = name >:: (fun _ -> assert_equal true 
                         (List.mem (opponent_move pkm) pkm.move_set))
 
@@ -52,7 +52,21 @@ let opponent_move_tests = [
 ]
 
 let battle_damage_tests = [
-  (** TODO *)
+  battle_damage_test "starter bulbasaur uses vine whip against charmander"
+    test_grass_pkm test_starter_pkm (List.hd test_starter_pkm.move_set) 
+    damaged_grass_poke;
+
+  battle_damage_test "charmander uses dragon breath against bulbasaur"
+    test_starter_pkm test_grass_pkm (List.hd test_grass_pkm.move_set)
+    damaged_starter_poke;
+
+  battle_damage_test "charmander uses ember against squirtle"
+    test_water_pkm test_grass_pkm (List.nth test_water_pkm.move_set 1)
+    damaged_water_poke;
+
+  battle_damage_test "squirtle uses aqua tail against low_hp charmander"
+    low_hp_charmander test_water_pkm (List.nth test_water_pkm.move_set 2)
+    damaged_low_hp_charmander
 ]
 
 let level_up_tests = [

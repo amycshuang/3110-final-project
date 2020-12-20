@@ -129,7 +129,8 @@ let process_walk input (st : State.state) =
             {st with panel_txt = "We have already battled!";
                      status = WalkingGym}
           else if new_status = CannotBattle then 
-            {st with panel_txt = "You must battle in order!"; status = WalkingGym}
+            {st with panel_txt = "You must battle in order!"; 
+                     status = WalkingGym}
           else {mv_st with status = new_status} end 
       | _ -> failwith "impossible"
     end 
