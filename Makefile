@@ -16,9 +16,6 @@ default: build
 build:
 	$(OCAMLBUILD) $(OBJECTS)
 
-check:
-	bash checkenv.sh && bash checktypes.sh
-
 docs: docs-public docs-private
 
 docs-public: build
