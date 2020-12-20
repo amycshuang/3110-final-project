@@ -26,7 +26,7 @@ module PlayerCheck : PlayerSig = Player
 
 module type PokemonSig = sig 
   type poke_type = 
-    | Bug | Dark | Dragon | Electric | Fighting | Fire | Flying | Ghost 
+    | Bug | Dark | Dragon | Electric | Fighting | Fire | Fairy | Flying | Ghost 
     | Grass | Ground | Ice | Normal | Poison | Psychic | Rock | Steel | Water
   type move = {
     move_type: poke_type;

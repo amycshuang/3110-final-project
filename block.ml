@@ -1,13 +1,13 @@
 open Yojson.Basic.Util
 
+type block_type = string
+
+exception InvalidBlock of block_type
+
 type map_dimensions = {
   width : int;
   height : int;
 }
-
-type block_type = string
-
-exception InvalidBlock of block_type
 
 type block = 
   | TallGrass 
@@ -17,6 +17,13 @@ type block =
   | Gym 
   | House 
   | PokeCenter
+  | Null
+  | GymRoad
+  | BrownGymFloor
+  | GreyGymFloor
+  | Exit
+  | Trainer
+  | ClarksonSpot
 
 let map_dim (json : Yojson.Basic.t) = {
   width = json |> member "width" |> to_int;
@@ -32,6 +39,13 @@ let string_to_block (s : block_type) =
   | "gym" -> Gym
   | "house" -> House
   | "pokecenter" -> PokeCenter
+  | "null" -> Null
+  | "gym road" -> GymRoad
+  | "brown gym floor" -> BrownGymFloor
+  | "grey gym floor" -> GreyGymFloor
+  | "exit" -> Exit
+  | "trainer" -> Trainer
+  | "clarkson spot" -> ClarksonSpot
   |  _ -> raise (InvalidBlock s)
 
 let json_to_list json = 
@@ -76,6 +90,13 @@ let get_block_type (t : block) =
   | Gym -> "gym"
   | House -> "house" 
   | PokeCenter -> "pokecenter"
+  | Null -> "null"
+  | GymRoad -> "gym road"
+  | BrownGymFloor -> "brown gym floor"
+  | GreyGymFloor -> "grey gym floor"
+  | Exit -> "exit"
+  | Trainer -> "trainer"
+  | ClarksonSpot -> "clarkson spot "
 
 (** [water_poke] is the pokemon list from the water_pokemon.json. This is a list
     of all the pokemon that can spawn on water blocks. *)
@@ -106,19 +127,10 @@ let spawn_poke (t : block) =
   | Gym -> None
   | House -> None
   | PokeCenter -> None
-
-(* * Utop testing
-   let map = json_to_list (Yojson.Basic.from_file "map1.json")
-
-   let dims = map_dim (Yojson.Basic.from_file "map1.json")
-
-
-   let map_list = list_to_blocks map
-
-   let map_arr = list_to_matrix map_list (Yojson.Basic.from_file "map1.json")
-
-   (** To get the right array (starting from top left) *)
-
-   let map_rev = rev_matrix map_arr
-
-   let starter_poke = poke_list_from_json (Yojson.Basic.from_file "starter_pokemon.json") *)
+  | Null -> None
+  | GymRoad -> None
+  | BrownGymFloor -> None
+  | GreyGymFloor -> None
+  | Exit -> None
+  | Trainer -> None
+  | ClarksonSpot -> None

@@ -1,5 +1,5 @@
-(** [encounter_menu] are the list of menu options during an encounter *)
-val menu_lst : string array
+(** TODO: add comment *)
+val default_menu : string array
 
 (** [process_encounter ch st] is the state after some key input during an 
     encounter. *)

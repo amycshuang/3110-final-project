@@ -22,14 +22,6 @@ type command =
   | Attack of phrase
   | Battle of phrase
 
-(** delete *)
-type encounter = 
-  | Pokeball 
-  | Potion 
-  | Run 
-  | Attack of string list
-  | Switch of string list 
-
 (** Raised when an invalid region is parsed. *)
 exception InvalidRegion
 

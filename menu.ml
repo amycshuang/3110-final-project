@@ -2,11 +2,17 @@ open State
 open Player
 open Pokemon
 open Command
+open Walking
+open Encounter
 
+(** TODO: add comment *)
 type direction = Up | Left | Right | Down 
 
 (** The type of selection on the encounter screen *)
-type selection = Move of direction| Enter
+type selection = Move of direction| Enter | Back
+
+(** TODO: add comment *)
+let default_menu = [|"FIGHT"; "BAG"; "POKEMON"; "RUN"|]
 
 (** [encount ch] is the correpsonding selection action to a key input. *)
 let encount_key ch =
@@ -16,51 +22,141 @@ let encount_key ch =
   | 's' -> Some (Move Down)
   | 'd' -> Some (Move Right)
   | 'f' -> Some Enter
+  | 'b' -> Some Back
   | _ -> None
 
-(** [encounter_menu] are the list of menu options during an encounter *)
-let menu_lst = [|"FIGHT"; "BAG"; "POKEMON"; "RUN"|]
-
+(** TODO: add comment *)
 let hover_change (st : menu_state) dir =
   let new_hover = 
-    match dir with
-    | Up -> st.hover - 2
-    | Left -> st.hover - 1
-    | Down -> st.hover + 2
-    | Right -> st.hover + 1
-  in if new_hover < 4 && new_hover >= 0 then {st with hover = new_hover}
+    match st.status with
+    | Default | Fight -> begin
+        match dir with
+        | Up -> st.hover - 2
+        | Left -> st.hover - 1
+        | Down -> st.hover + 2
+        | Right -> st.hover + 1
+      end
+    | PokeList -> begin
+        match st.hover, dir with
+        | 0, Right -> st.hover + 1
+        | 0, _ -> st.hover
+        | 1, Up -> st.hover
+        | _, Right -> st.hover
+        | _, Left -> 0
+        | _, Up -> st.hover - 1
+        | _, Down -> st.hover + 1
+      end
+    | _ -> begin
+        match dir with
+        | Up -> st.hover - 1
+        | Down -> st.hover + 1
+        | _ -> st.hover
+      end
+  in 
+  let max_len = 
+    match st.status with
+    | Default | Fight -> 4
+    | PokeList -> List.length st.player.poke_list
+    | Bag -> List.length st.player.bag.inventory
+    | _ -> failwith "no hover needed" in
+  if new_hover < max_len && new_hover >= 0 then 
+    {st with hover = new_hover}
   else st
+(* 
+(** [contains s1 s2] is true if string [s1] contains string [s2]. *)
+let contains s1 s2 =
+  try
+    let len = String.length s2 in
+    for i = 0 to String.length s1 - len do
+      if String.sub s1 i len = s2 then raise Exit
+    done;
+    false
+  with Exit -> true *)
 
-let menu_of_string = function
-  | "FIGHT" -> Fight
-  | "BAG" -> Bag
-  | "POKEMON" -> PokeList
-  | "RUN" -> Run
-  | _ -> failwith "not an option"
+(** [is_switch pkm_lst pkm_name] is true if a pokemon with name [pkm_name] 
+    is in the list [pkm_lst], false otherwise. *)
+let is_switch pkm_lst pkm_name = 
+  List.mem pkm_name 
+    (List.map (fun p -> p.name ^ " Hp: " ^ string_of_int p.stats.hp) pkm_lst)
 
+(** [menu_of_string mst] is the menu option associated with the string the 
+    hover is on. *)
+let menu_of_string (mst : menu_state) = 
+  match mst.status with
+  | Default -> begin
+      match default_menu.(mst.hover) with 
+      | "FIGHT" -> Fight
+      | "BAG" -> Bag
+      | "POKEMON" -> PokeList
+      | "RUN" -> Run
+      | _ -> failwith "not a default menu option"
+    end
+  | Fight -> begin
+      let curr_pokelist = mst.player.poke_list in 
+      let curr_pkm = List.hd curr_pokelist in 
+      let p_attack = List.nth curr_pkm.move_set mst.hover in 
+      let curr_opp_pokelist = mst.opponent in 
+      let opp_pkm = List.hd curr_opp_pokelist in 
+      let o_attack = opponent_move opp_pkm in 
+      Attack {player_attack = p_attack; 
+              opponent_attack = o_attack;
+              battling_poke = [|curr_pkm; curr_pkm; opp_pkm; opp_pkm|]
+             }
+    end
+  | Bag -> begin
+      let bag = Array.of_list mst.player.bag.inventory in
+      match fst (bag.(mst.hover)) with
+      | Potion -> Heal
+      | Pokeball -> Catch
+    end
+  | PokeList -> Switch
+  | x -> x
+(* | x -> begin 
+   if (contains x "POKEBALL") then Catch
+   else if (contains x "POTION") then Heal
+   else if (is_switch mst.player.poke_list x) then Switch 
+   else Attack 
+   end *)
+
+(** TODO: add comment *)
 let action_change mst = function
   | Move x -> hover_change mst x
-  | Enter -> let select_menu = menu_of_string menu_lst.(mst.hover) in
-    {mst with select = Some select_menu}
+  | Enter -> let select_menu = menu_of_string mst in
+    {mst with status = select_menu; select = Some select_menu}
+  | Back -> begin
+      match mst.previous with
+      | None -> mst
+      | Some x -> x
+    end
 
+(** TODO: add comment *)
 let select_change est = function
   | Some sel -> action_change est sel
   | None -> est
 
+(** TODO: add comment *)
 let menu_change (mst : menu_state) st menu =
   match menu with 
-  | Fight -> let bst = 
-               {player=mst.player;
-                opponent=mst.opponent; 
-                p_turn=true;
-                hover=0;
-                select=Some Fight} in {st with status = (Battle bst)}
-  | Bag -> st
-  | PokeList -> st
+  | Fight -> process_fight mst st 
+  | Bag -> process_bag mst st 
+  | PokeList -> process_pokelist mst st 
+  | Catch -> process_catch mst st 
+  | Heal -> process_heal mst st 
+  | Switch -> process_switch mst st 
+  | Attack atks -> process_attack {mst with status = Attack atks} st atks 
   | Run -> {st with status = Walking}
+  | _ -> failwith "idk yet"
 
 let rec process_menu input (st: state) (mst : State.menu_state) =
-  let new_mst = select_change mst (encount_key input) in 
-  match mst.select with
-  | Some menu -> menu_change new_mst st menu
-  | None -> {st with status = Menu new_mst}
+  let pkm_lst = st.player.poke_list in 
+  if check_pokelist pkm_lst then 
+    let player = process_player_team pkm_lst st in 
+    let new_st = {st with player = player} in 
+    let new_mst = {mst with player = player} in  
+    let new_mst' = select_change new_mst (encount_key input) in 
+    let prev = if new_mst.status != new_mst'.status then Some new_mst 
+      else new_mst.previous in
+    match new_mst'.select with
+    | Some menu -> menu_change {new_mst' with previous = prev} new_st menu
+    | None -> {new_st with status = Menu new_mst'}
+  else process_fainted st 

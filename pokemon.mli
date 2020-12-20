@@ -15,7 +15,7 @@ exception InvalidPokemonType of string
 (** The type of pokemon move types. *)
 type poke_type = 
   | Bug | Dark | Dragon | Electric | Fairy | Fighting | Fire | Flying | Ghost 
-  | Grass | Ground | Ice | Normal | Poison | Psychic | Rock | Steel | Water
+  | Grass | Ground | Ice | Normal | Poison | Psychic | Rock | Steel | Water 
 
 (** The type of pokemon move names. *)
 type move_name = string
@@ -54,6 +54,10 @@ val poke_list_from_json : Yojson.Basic.t -> pokemon list
     Requires: [type] is capitalized.
     Raises: InvalidPokemonType if [type] is not a valid pokemon type. *)
 val type_from_string : string -> poke_type
+
+val string_from_type : poke_type -> string
+
+val attack_effectiveness : pokemon -> pokemon -> move -> string
 
 (** [opponent_move p] is the move the opponenet pokemon [p] chooses. *)
 val opponent_move : pokemon -> move 

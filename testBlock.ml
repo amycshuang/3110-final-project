@@ -33,13 +33,6 @@ let list_to_blocks_test
   name >:: (fun _ -> 
       assert_equal expected_output (list_to_blocks lst))
 
-let list_to_blocks_test
-    (name : string) 
-    (lst : block_type list) 
-    (expected_output : block list) : test = 
-  name >:: (fun _ -> 
-      assert_equal expected_output (list_to_blocks lst))
-
 let json_to_map_test
     (name : string) 
     (j : string) 
@@ -61,9 +54,9 @@ let get_block_type_test
   name >:: (fun _ -> 
       assert_equal expected_output (get_block_type t))
 
-let map1 = Yojson.Basic.from_file "map1.json"
+let map1 = Yojson.Basic.from_file "map_jsons/map1.json"
 
-let maptest = Yojson.Basic.from_file "maptest.json"
+let maptest = Yojson.Basic.from_file "map_jsons/maptest.json"
 
 let block_tests = [
   map_dim_test "map1 dim test" map1 
@@ -87,12 +80,11 @@ let block_tests = [
      "tall grass"; "grass"] [Grass; Water; Gym; House; Road; TallGrass; 
                              TallGrass; Grass];
 
-  json_to_map_test "maptest to map" "maptest.json"
+  json_to_map_test "maptest to map" "map_jsons/maptest.json"
     [|[|Grass; Water|]; [|Gym; House|]; [|Road; TallGrass|]; 
       [|TallGrass; Grass|]|];
 
   get_block_type_test "get tall grass block" TallGrass "tall grass";
 
   get_block_type_test "get water block" Water "water";
-
 ]

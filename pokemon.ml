@@ -1,12 +1,11 @@
 open Yojson.Basic.Util
 
+exception InvalidPokemon of string
+exception InvalidPokemonType of string 
+
 type poke_type = 
   | Bug | Dark | Dragon | Electric | Fairy | Fighting | Fire | Flying | Ghost 
   | Grass | Ground | Ice | Normal | Poison | Psychic | Rock | Steel | Water 
-
-
-exception InvalidPokemon of string
-exception InvalidPokemonType of string 
 
 type move_name = string
 type move = {
@@ -64,12 +63,33 @@ let type_from_string = function
   | "Water" -> Water
   | _ -> raise (InvalidPokemonType ("this pokemon type is not valid"))
 
+let string_from_type = function 
+  | Bug -> "Bug"
+  | Dark -> "Dark"
+  | Dragon -> "Dragon"
+  | Electric -> "Electric"
+  | Fairy -> "Fairy"
+  | Fighting -> "Fighting"
+  | Fire -> "Fire"
+  | Flying -> "Flying"
+  | Ghost -> "Ghost"
+  | Grass -> "Grass"
+  | Ground -> "Ground"
+  | Ice -> "Ice"
+  | Normal -> "Normal"
+  | Poison -> "Poison"
+  | Psychic -> "Psychic"
+  | Rock -> "Rock"
+  | Steel -> "Steel"
+  | Water -> "Water"
+
 (** [moves_of_json j] is the pokemon move represented by [j] *)
 let moves_of_json j = {
   move_type = j |> member "move_type" |> to_string |> type_from_string;
   move_name = j |> member "move_name" |> to_string; 
 }
 
+(** TODO: add comment *)
 let poke_from_json j = {
   name = j |> member "name" |> to_string;
   poke_type = j |> member "poke_type" |> to_string |> type_from_string;
@@ -205,13 +225,29 @@ let damage_multiplier t1 t2 =
       | _ -> 1. 
     end 
 
+(** [attack_effectiveness pkm1 pkm2 attack] is the string representing the 
+    effectiveness of move [attack] on pokemon [pkm1] by pokemon [pkm2]. *)
+let attack_effectiveness pkm1 pkm2 attack =  
+  let effectiveness = 
+    match damage_multiplier pkm1.poke_type attack.move_type with 
+    | 2. -> "It was super effective!"
+    | 1.0 -> ""
+    | 0.5 -> "It was not very effective..."
+    | 0.0 -> "The move had no effect."
+    | _ -> "" in 
+  String.uppercase_ascii pkm2.name ^ " used " 
+  ^ String.uppercase_ascii attack.move_name ^ " on " ^ 
+  String.uppercase_ascii pkm1.name ^ ". " ^ 
+  effectiveness 
+
 let battle_damage pkm1 pkm2 move = 
   let damage_multiplier = damage_multiplier pkm1.poke_type move.move_type in 
   let pkm_lv = float_of_int pkm1.stats.level in 
   let pkm_defense = float_of_int pkm1.stats.defense in 
   let opp_attack = float_of_int pkm2.stats.attack in 
-  let damage_float = (((2. *. pkm_lv) /. 5.) *. (opp_attack /. pkm_defense))
-                     *. damage_multiplier in 
+  let damage_float = 
+    4.0 *. (((2. *. pkm_lv) /. 5.) *. (opp_attack /. pkm_defense))
+    *. damage_multiplier in 
   let damage_int = int_of_float damage_float in 
   let dec_hp = pkm1.stats.hp - damage_int in 
   if dec_hp < 0 then 
@@ -237,8 +273,8 @@ let level_up pokemon =
 
 let increase_exp p1 p2 = 
   let p2_lvl = float_of_int p2.stats.level in 
-  let exp = int_of_float (p2_lvl *. 0.5) in 
+  let exp = int_of_float (p2_lvl *. 1.25) in 
   let curr_stats = p1.stats in 
   let new_stats = 
     { curr_stats with curr_exp = curr_stats.curr_exp + exp; } in 
-  { p1 with stats = new_stats} 
+  {p1 with stats = new_stats} 

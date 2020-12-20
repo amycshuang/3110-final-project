@@ -2,86 +2,115 @@ open Pokemon
 open Player
 open Block
 open Graphics
-
-type menu = Fight | PokeList | Bag | Run
-
-(** The type representing an opponent. An opponent is either a wild pokemon
-    or another trainer. *)
-(* type opponent = 
-   | OppPokemon of Pokemon.pokemon list
-   | OppTrainer *)
-
-(** The type representing an encounter state *)
-type menu_state = {
-  player : Player.player;
-  opponent: Pokemon.pokemon list;
-  hover: int;
-  select: menu option;
-}
-
-type battle_state = {
-  player: Player.player;
-  opponent: Pokemon.pokemon list;
-  p_turn: bool;
-  hover: int;
-  select: menu option 
-}
-
-(* type encounter_state = {
-   player : Player.player;
-   opponent: opponent;
-   hover: int;
-   select: menu option       
-   }
-
-   type battle_state = {
-   player : Player.player;
-   opponent: opponent;
-   p_turn : bool;
-   }  *)
-
-type status =  Walking 
-            | PokeCenter
-            | Menu of menu_state
-            | Battle of battle_state
-            (* | Battling of battle_state
-               | Encounter of encounter_state  *)
-            | Gym 
-            | Win
+open Trainer
+open Yojson
 
 type map = block array array
+type attack_moves = {
+  player_attack : Pokemon.move; 
+  opponent_attack : Pokemon.move;
+  battling_poke : Pokemon.pokemon array;
+}
+type menu = Default 
+          | Fight 
+          | PokeList 
+          | Bag 
+          | Run 
+          | Catch 
+          | Heal 
+          | Switch 
+          | Attack of attack_moves
+
+type battle = Begin 
+            | Battling 
+            | Over 
+            | CannotBattle
+
+type menu_state = {
+  status : menu;
+  player : Player.player;
+  opponent : Pokemon.pokemon list;
+  hover : int;
+  select : menu option;
+  is_trainer : bool;
+  previous : menu_state option
+}
+
+(** The status of the game. *)
+type status =  Walking 
+            | WalkingGym
+            | EnterGym
+            | ExitGym
+            | PokeCenter
+            | TrainerTalk  
+            | TrainerOver 
+            | Menu of menu_state
+            | Win
 
 type state = {
-  map : map;
+  maps : map array;
   player : Player.player;
   panel_txt : string;
   status : status;
+  trainers: trainer list;
 }
 
 let get_key () = (wait_next_event [Key_pressed]).Graphics.key
 
+(** TODO: add comment *)
 let spawn_status block (st : state) = 
   let spawned = spawn_poke block in
   match spawned with
   | Some x -> let (mst : menu_state) = 
-                {player = st.player; 
+                {status = Default;
+                 player = st.player; 
                  opponent = [x]; 
                  hover = 0; 
-                 select = None;} in 
+                 select = None;
+                 is_trainer = false;
+                 previous = None
+                } in 
     Menu mst
   | None -> Walking
+
+(** TODO: add comment *)
+let trainer_battle st =   
+  match List.filter (fun (t : Trainer.trainer) -> 
+      (t.x, t.y) = st.player.location) st.trainers with 
+  | [] -> failwith "impossible"
+  | h :: t -> h 
 
 let update_status (st : state) = function 
   | TallGrass -> spawn_status TallGrass st
   | Water -> spawn_status Water st
   | Grass -> Walking
   | Road | House -> Walking
-  | Gym -> Gym
+  | Gym -> EnterGym
+  | Null | GymRoad | BrownGymFloor | GreyGymFloor -> WalkingGym 
+  | Exit -> ExitGym
   | PokeCenter -> PokeCenter 
-
-(* let get_opponent opp = match opp with  
-   | OppPokemon pkm -> pkm
-   | OppTrainer -> failwith "TODO after initializing trainer module" *)
+  | Trainer | ClarksonSpot -> TrainerTalk
+(* let mst = { status = Default;
+            player = st.player; 
+            opponent = trainer.poke_list; 
+            hover = 0; 
+            select = None;
+            p_turn = true;
+            previous = None
+          } in 
+   if trainer = (List.hd (List.rev st.trainers)) then 
+   let gym_state = {
+    trainer = trainer; 
+    battle = mst; 
+    status = Begin;
+   }
+   in GymBattle gym_state
+   else let gym_state = {
+    trainer = trainer; 
+    battle = mst; 
+    status = CannotBattle;
+   }
+   in GymBattle gym_state *)
 
 let player_block p map = 
   let (x, y) = p.location in 
@@ -104,8 +133,9 @@ let init_state name starter map =
   ANSITerminal.(print_string [cyan] (start_game_message));
   print_endline "";
   {
-    map = map;
+    maps = [|map; Block.json_to_map "map_jsons/gym_map.json"|];
     player = make_player name starter map;
     panel_txt = "Use your WASD keys to move around the map";
     status = Walking;
+    trainers = trainer_array (Yojson.Basic.from_file "trainers.json");
   }

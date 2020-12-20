@@ -1,47 +1,47 @@
-type menu = Fight | PokeList | Bag | Run
+(** TODO: add comment *)
+type attack_moves = {
+  player_attack : Pokemon.move; 
+  opponent_attack : Pokemon.move;
+  battling_poke : Pokemon.pokemon array;
+}
 
-(* type opponent = 
-   | OppPokemon of Pokemon.pokemon list
-   | OppTrainer *)
+(** TODO: add comment *)
+type menu = Default 
+          | Fight 
+          | PokeList 
+          | Bag 
+          | Run 
+          | Catch 
+          | Heal 
+          | Switch 
+          | Attack of attack_moves
 
+(** TODO: add comment *)
+type battle = Begin 
+            | Battling 
+            | Over 
+            | CannotBattle
+
+(** TODO: add comment *)
 type menu_state = {
+  status : menu;
   player : Player.player;
-  opponent: Pokemon.pokemon list;
-  hover: int;
-  select: menu option;
-  (* is_encounter: bool; *)
+  opponent : Pokemon.pokemon list;
+  hover : int;
+  select : menu option;
+  is_trainer : bool;
+  previous : menu_state option
 }
-
-type battle_state = {
-  player: Player.player;
-  opponent: Pokemon.pokemon list;
-  p_turn: bool;
-  hover: int;
-  select: menu option 
-}
-
-(** The type representing an encounter state *)
-(* type encounter_state = {
-   player : Player.player;
-   opponent: Pokemon.pokemon list;
-   hover: int;
-   select: menu option
-   }
-
-   type battle_state = {
-   player : Player.player;
-   opponent: Pokemon.pokemon list;
-   p_turn : bool
-   }  *)
 
 (** The status of the game. *)
 type status =  Walking 
-            | PokeCenter 
+            | WalkingGym
+            | EnterGym
+            | ExitGym
+            | PokeCenter
+            | TrainerTalk 
+            | TrainerOver 
             | Menu of menu_state
-            | Battle of battle_state
-            (* | Battling of battle_state
-               | Encounter of encounter_state  *)
-            | Gym
             | Win
 
 (** The type representing a map. *)
@@ -49,10 +49,11 @@ type map = Block.block array array
 
 (** The type representing a player state. *)
 type state = {
-  map : map;
+  maps : map array;
   player : Player.player;
   panel_txt : string;
-  status : status
+  status : status;
+  trainers: Trainer.trainer list;
 }
 
 (** [get_key ()] returns the corresponding character of the key pressed *)

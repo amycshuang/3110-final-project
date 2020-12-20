@@ -46,21 +46,21 @@ let parse_test_exn (name: string) (cmd: string) cmd_type
 let parse_region_tests = [
   (* testing non-exception *)
   parse_test "parsing valid region 'Kanto'" "Kanto" parse_region
-    (Map "map1.json");
+    (Map "map_jsons/kanto.json");
   parse_test "parsing valid region 'Johto'" "Johto" parse_region
-    (Map "map1.json");
+    (Map "map_jsons/johto.json");
   parse_test "parsing valid region 'Hoenn'" "Hoenn" parse_region
-    (Map "map1.json");
+    (Map "map_jsons/hoenn.json");
   parse_test "parsing valid region 'Sinnoh'" "Sinnoh" parse_region
-    (Map "map1.json");
+    (Map "map_jsons/sinnoh.json");
   parse_test "parsing valid region 'Unova'" "Unova" parse_region
-    (Map "map1.json");
+    (Map "map_jsons/unova.json");
   parse_test "parsing valid region 'Johto'" "Kalos" parse_region
-    (Map "map1.json");
+    (Map "map_jsons/kalos.json");
   parse_test "parsing valid region 'Johto'" "Alola" parse_region
-    (Map "map1.json");
+    (Map "map_jsons/alola.json");
   parse_test "parsing valid region 'Johto'" "Galar" parse_region
-    (Map "map1.json");
+    (Map "map_jsons/galar.json");
 
   (* testing exception *)
   parse_test_exn "parsing invalid region 'Caml'" "Caml" 
