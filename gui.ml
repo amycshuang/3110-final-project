@@ -535,33 +535,6 @@ let render_menu (st : State.state) (mst : State.menu_state) =
   | PokeList -> render_pokelst st mst
   | _ -> failwith "unimplmented"
 
-
-(************************* T E S T I N G *************************************)
-
-let poke_lst = 
-  Pokemon.poke_list_from_json (Yojson.Basic.from_file "starter_pokemon.json")
-
-let starter = List.hd poke_lst
-
-let test_opp = List.nth poke_lst 2
-
-let test_map = Block.json_to_map "map_jsons/map1.json"
-
-let test_st = init_state "test" starter test_map
-
-let test_mst : menu_state = {
-  status = Default;
-  player = {test_st.player with poke_list = poke_lst};
-  opponent = [test_opp];
-  hover = 0;
-  select = None;
-  is_trainer = false
-}
-
-let () = render_pokelst test_st test_mst 
-
-(******************************************************************************)
-
 let pokecenter_header_color = Graphics.rgb 255 153 204 
 let pokecenter_color = Graphics.rgb 102 178 255 
 let hp_bad_color = Graphics.rgb 240 53 53
@@ -654,39 +627,37 @@ let draw_people x y p_color =
   Graphics.set_color p_color; 
   Graphics.fill_circle x y 50
 
-(* let render_battle_begin st = 
-   let () = Graphics.open_graph (graph_dims st.maps.(0)); in
-   let () = Graphics.clear_graph () in
-   let () = draw_people (50 + (size_x () / 6)) 175 Graphics.black in 
-   let () = draw_people (300 + (size_x () / 6)) (160 + (size_y () / 3)) 
-   (Graphics.rgb 97 95 216) in 
+let rec draw_trainer_pokeball pkm x y size color = 
+  match pkm with 
+  | [] -> ()
+  | p :: t -> 
+    Graphics.moveto x y; 
+    if p.stats.hp > 0 then begin 
+      Graphics.set_color color;
+      Graphics.fill_circle x y size;
+      draw_trainer_pokeball t (x + 70) y size color end 
+    else begin 
+      Graphics.set_color Graphics.black;
+      Graphics.draw_circle x y size;
+      draw_trainer_pokeball t (x + 70) y size color end 
 
-   let () = synchronize () in () *)
+let draw_trainer_panel st x1 y1 x2 y2 color = 
+  draw_trainer_pokeball st.player.poke_list 20 20 5 Graphics.white; 
+  Graphics.set_color color; 
+  Graphics.moveto x1 y1;
+  Graphics.lineto x2 y2
 
+(* let draw_text_panel p_width p_height = 
+   custom_outline Graphics.white 0 0 p_width battle_panel_ht 13 5;
+   custom_outline (Graphics.rgb 200 168 72) 0 0 p_width battle_panel_ht 5 12;
+   custom_outline Graphics.black 0 0 p_width battle_panel_ht 0 5; *)
 
-(* (** [draw_panel blocks] draws the bottom text panel of a screen under the map *)
-   let draw_battle_panel = 
-   let panel_width = (Array.length blocks.(0)) * box_len in
-   Graphics.set_color Graphics.white;
-   Graphics.fill_rect 0 0 panel_width panel_height;
-   Graphics.set_color panel_color;
-   Graphics.set_line_width panel_outline;
-   Graphics.draw_rect 0 0 panel_width panel_height
-
-   let render_battle_end st = 
-   let () = Graphics.open_graph (graph_dims st.maps.(0)); in
-   let () = Graphics.clear_graph () in
-   let () = draw_people (50 + (size_x () / 6)) 175 Graphics.black in 
-   let () = draw_people (300 + (size_x () / 6)) (160 + (size_y () / 3)) 
-   (Graphics.rgb 97 95 216) in 
-   let () = synchronize () in () *)
-
-let render_trainertalk st = 
+let render_trainertalk trainer st = 
   let () = Graphics.open_graph (graph_dims st.maps.(0)); in
   let () = Graphics.clear_graph () in
   let () = draw_people (50 + (size_x () / 6)) 175 Graphics.black in 
-  let () = draw_people (300 + (size_x () / 6)) (160 + (size_y () / 3)) 
-      (Graphics.rgb 97 95 216) in 
+  let () = draw_people (300 + (size_x () / 6)) (160 + (size_y () / 3)) (Graphics.rgb 97 95 216) in 
+  let () = draw_trainer_panel st (50 + (size_x () / 2)) 170 (200 + (size_x () / 2)) 170 Graphics.black in 
   let () = synchronize () in () 
 
 let render_trainerover st = 
@@ -705,9 +676,28 @@ let render_win st =
   let () = Graphics.draw_string "YOU WON!" in
   let () = synchronize () in () 
 
-(* let render_battle (st: state) = 
-   match gst.status with 
-   | CannotBattle -> () (** TODO *)
-   | Begin -> render_battle_begin st gst 
-   | Battling -> render_menu st gst.battle
-   | Over -> () render_battle_end st gst *)
+(************************* T E S T I N G *************************************)
+
+let poke_lst = 
+  Pokemon.poke_list_from_json (Yojson.Basic.from_file "starter_pokemon.json")
+
+let starter = List.hd poke_lst
+
+let test_opp = List.nth poke_lst 2
+
+let test_map = Block.json_to_map "map_jsons/map1.json"
+
+let test_st = init_state "test" starter test_map
+
+let test_mst : menu_state = {
+  status = Default;
+  player = {test_st.player with poke_list = poke_lst};
+  opponent = [test_opp];
+  hover = 0;
+  select = None;
+  is_trainer = false
+}
+
+let test_trainer = List.hd (Trainer.trainer_list_from_json (Yojson.Basic.from_file "trainers.json"))
+
+let () = render_trainertalk test_trainer test_st

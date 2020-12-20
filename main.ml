@@ -14,7 +14,7 @@ open Pokecenter
 let render_st (st : State.state) = 
   match st.status with 
   | Walking | WalkingGym | EnterGym | ExitGym -> render_walk st
-  | TrainerTalk -> render_trainertalk st 
+  | TrainerTalk trainer -> render_trainertalk trainer st 
   | TrainerOver -> render_trainerover st 
   | PokeCenter -> render_pokecenter st
   | CannotBattle -> render_walk st 
@@ -29,7 +29,7 @@ let rec play_game st : unit =
   let n_st = 
     match st.status with
     | Walking | WalkingGym | EnterGym | ExitGym -> process_walk input st
-    | TrainerTalk -> process_gym input st 
+    | TrainerTalk trainer -> process_gym input st 
     | AlreadyBattled -> process_walk input st 
     | CannotBattle -> process_walk input st 
     | TrainerOver -> process_gym input st
