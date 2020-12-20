@@ -538,28 +538,27 @@ let render_menu (st : State.state) (mst : State.menu_state) =
 
 (************************* T E S T I N G *************************************)
 
-(* let poke_lst = 
-   Pokemon.poke_list_from_json (Yojson.Basic.from_file "starter_pokemon.json")
+let poke_lst = 
+  Pokemon.poke_list_from_json (Yojson.Basic.from_file "starter_pokemon.json")
 
-   let starter = List.hd poke_lst
+let starter = List.hd poke_lst
 
-   let test_opp = List.nth poke_lst 2
+let test_opp = List.nth poke_lst 2
 
-   let test_map = Block.json_to_map "map_jsons/map1.json"
+let test_map = Block.json_to_map "map_jsons/map1.json"
 
-   let test_st = init_state "test" starter test_map
+let test_st = init_state "test" starter test_map
 
-   let test_mst : menu_state = {
-   status = Default;
-   player = {test_st.player with poke_list = poke_lst};
-   opponent = [test_opp];
-   hover = 0;
-   select = None;
-   is_trainer = false
-   }
+let test_mst : menu_state = {
+  status = Default;
+  player = {test_st.player with poke_list = poke_lst};
+  opponent = [test_opp];
+  hover = 0;
+  select = None;
+  is_trainer = false
+}
 
-
-   let () = render_pokelst test_st test_mst  *)
+let () = render_pokelst test_st test_mst 
 
 (******************************************************************************)
 
