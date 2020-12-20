@@ -30,6 +30,21 @@
       "type": "brown gym floor"
     },
     {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
+      "type": "brown gym floor"
+    },
+    {
       "type": "exit"
     },
     {
@@ -39,21 +54,6 @@
       "type": "brown gym floor"
     },
     {
-      "type": "brown gym floor"
-    },
-    {
-      "type": "brown gym floor"
-    },
-    {
-      "type": "gym road"
-    },
-    {
-      "type": "brown gym floor"
-    },
-    {
-      "type": "brown gym floor"
-    },
-    {
       "type": "null"
     },
     {
@@ -138,7 +138,7 @@
       "type": "brown gym floor"
     },
     {
-      "type": "gym road"
+      "type": "trainer"
     },
     {
       "type": "gym road"
@@ -285,7 +285,7 @@
       "type": "brown gym floor"
     },
     {
-      "type": "gym road"
+      "type": "trainer"
     },
     {
       "type": "brown gym floor"
@@ -336,7 +336,7 @@
       "type": "gym road"
     },
     {
-      "type": "gym road"
+      "type": "trainer"
     },
     {
       "type": "brown gym floor"

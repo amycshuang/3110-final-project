@@ -2,6 +2,8 @@
   {
     "name": "Clarkson",
     "catchphrase": "Peace, Love, and 3110",
+    "x": 10,
+    "y": 8,
     "poke_list": [
       {
         "name": "Camerupt",
@@ -136,6 +138,8 @@
   {
     "name": "Gries",
     "catchphrase": "Do you know the four loopy questions?",
+    "x": 6,
+    "y": 3,
     "poke_list": [
       {
         "name": "Jolteon",
@@ -238,6 +242,8 @@
   {
     "name": "Ann Bracy",
     "catchphrase": "Welcome back folks, time to battle!",
+    "x": 12,
+    "y": 6,
     "poke_list": [
       {
         "name": "Ponyta",
@@ -340,6 +346,8 @@
   {
     "name": "Walker White",
     "catchphrase": "I get a lot of emails, this better be quick.",
+    "x": 15,
+    "y": 5,
     "poke_list": [
       {
         "name": "Skitty",
