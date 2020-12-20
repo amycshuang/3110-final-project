@@ -74,19 +74,68 @@ let display (st : State.state) = function
   | Default -> 
     "Invalid Key :( Use WASD keys to walk around, P - Pokelist, B - Bag" 
 
+(** [gym_entrance_loc map] is the location of the gym entrance on [map]. *)
+let gym_entrance_loc map = 
+  let ncol = Array.length map.(0) in 
+  let nrow = Array.length map in 
+  let loc = ref (0, 0) in 
+  for row = 0 to (nrow - 1) do 
+    for col = 0 to (ncol - 1) do 
+      if map.(row).(col) = Block.Exit then 
+        loc := (col, row)
+    done; 
+  done;
+  !loc
+
+(** [gym_loc map] is the location of the gym on [map]. *)
+let gym_loc map = 
+  let ncol = Array.length map.(0) in 
+  let nrow = Array.length map in 
+  let loc = ref (0, 0) in 
+  for row = 0 to (nrow - 1) do 
+    for col = 0 to (ncol - 1) do 
+      if map.(row).(col) = Block.Gym then 
+        loc := (col, row)
+    done; 
+  done;
+  !loc
+
+let process_gym st = 
+  if st.status = EnterGym then 
+    let loc = gym_entrance_loc st.maps.(1) in 
+    let mv_player = {st.player with location = loc} in 
+    {st with player = mv_player; status = WalkingGym}
+  else 
+    let loc = gym_loc st.maps.(0) in 
+    let mv_player = {st.player with location = loc} in 
+    {st with player = mv_player; status = Walking}
+
 (** [process_walk input st] processes the state while walking. *)
 let process_walk input (st : State.state) =
   let action = walk_key input in
   match action with
   | Move dir ->  begin 
       match st.status with 
-      | Walking -> 
-        let mv_st =  {st with player=(move_map st.player dir st.maps.(0))} in 
-        {mv_st with status = (update_status mv_st (player_block mv_st.player mv_st.maps.(0)))} 
-      | WalkingGym -> 
-        let mv_st =  {st with player=(move_map st.player dir st.maps.(1))} in 
-        {mv_st with status = (update_status mv_st (player_block mv_st.player mv_st.maps.(1)))} 
-      | _ -> let mv_st =  {st with player=(move_map st.player dir st.maps.(0))} in 
-        {mv_st with status = (update_status mv_st (player_block mv_st.player mv_st.maps.(0)))} 
+      | Walking -> begin 
+          let mv_st =  {st with player=(move_map st.player dir st.maps.(0))} in 
+          let new_status = 
+            (update_status mv_st (player_block mv_st.player mv_st.maps.(0))) in 
+          if new_status = EnterGym then 
+            let loc = gym_entrance_loc st.maps.(1) in 
+            let mv_player = {mv_st.player with location = loc} in 
+            {mv_st with player = mv_player; status = WalkingGym}
+          else 
+            {mv_st with status = new_status} end 
+      | WalkingGym -> begin 
+          let mv_st =  {st with player=(move_map st.player dir st.maps.(1))} in 
+          let new_status = 
+            (update_status mv_st (player_block mv_st.player mv_st.maps.(1))) in 
+          if new_status = ExitGym then 
+            let loc = gym_loc st.maps.(0) in 
+            let mv_player = {mv_st.player with location = loc} in 
+            {mv_st with player = mv_player; status = Walking}
+          else 
+            {mv_st with status = new_status} end 
+      | _ -> failwith "impossible"
     end 
   | Display x -> {st with panel_txt=(display st x)}

@@ -27,9 +27,10 @@ type menu_state = {
 (** The status of the game. *)
 type status =  Walking 
             | WalkingGym
-            | PokeCenter 
+            | EnterGym
+            | ExitGym
+            | PokeCenter
             | Menu of menu_state
-            (* | Gym *)
             | Win
 
 (** The type representing a map. *)
@@ -41,7 +42,7 @@ type state = {
   player : Player.player;
   panel_txt : string;
   status : status;
-  trainers: Trainer.trainer list;
+  trainers: Trainer.trainer array;
 }
 
 (** [get_key ()] returns the corresponding character of the key pressed *)
