@@ -43,13 +43,6 @@ let color_of_block = function
   | Gym -> Graphics.rgb 192 168 103
   | PokeCenter -> Graphics.rgb 216 104 96
   | House -> Graphics.rgb 200 168 240
-  | Null -> failwith "unimplemented"
-  | GymRoad -> failwith "unimplemented"
-  | Exit -> failwith "unimplemented"
-  | BrownGymFloor -> failwith "unimplemented"
-  | GreyGymFloor -> failwith "unimplemented"
-  | Trainer -> failwith "unimplemented"
-  | ClarksonSpot -> failwith "unimplemented"
 
 let color_of_poke = function
   | Bug -> Graphics.rgb 184 198 81
@@ -71,17 +64,30 @@ let color_of_poke = function
   | Rock -> Graphics.rgb 197 184 127
   | Steel -> Graphics.rgb 181 181 195
 
-(** [draw_map blocks] draws the map from a 2D array of blocks [blocks] *)
-let draw_map blocks =
-  let ncol = Array.length blocks.(0) in
-  let nrow = Array.length blocks in
-  for row = 0 to (nrow - 1) do
-    for col = 0 to (ncol - 1) do
-      Graphics.set_color (color_of_block (blocks.(row)).(col));
-      Graphics.fill_rect (col * box_len)
-        (row * box_len + panel_height) box_len box_len;
+(** [draw_map st] draws the map depending on the status of state [st]. *)
+let draw_map st =
+  if st.status = Walking then 
+    let blocks = st.maps.(0) in 
+    let ncol = Array.length blocks.(0) in
+    let nrow = Array.length blocks in
+    for row = 0 to (nrow - 1) do
+      for col = 0 to (ncol - 1) do
+        Graphics.set_color (color_of_block (blocks.(row)).(col));
+        Graphics.fill_rect (col * box_len)
+          (row * box_len + panel_height) box_len box_len;
+      done
     done
-  done
+  else 
+    let blocks = st.maps.(1) in 
+    let ncol = Array.length blocks.(0) in
+    let nrow = Array.length blocks in
+    for row = 0 to (nrow - 1) do
+      for col = 0 to (ncol - 1) do
+        Graphics.set_color (color_of_block (blocks.(row)).(col));
+        Graphics.fill_rect (col * box_len)
+          (row * box_len + panel_height) box_len box_len;
+      done
+    done
 
 (** [draw_panel blocks] draws the bottom text panel of a screen under the map *)
 let draw_panel blocks = 
@@ -135,10 +141,10 @@ let display_text' s =
   Graphics.draw_string s
 
 let render_walk (st : State.state) = 
-  let () = Graphics.open_graph (graph_dims st.map); in 
+  let () = Graphics.open_graph (graph_dims st.maps.(0)); in 
   let () = clear_graph () in
-  let () = draw_map st.map in
-  let () = draw_panel st.map in
+  let () = draw_map st in
+  let () = draw_panel st.maps.(0) in
   let () = draw_char st.player in
   let () = 
     match st.panel_txt with 
@@ -165,13 +171,17 @@ let custom_outline color x1 y1 x2 y2 buffer size =
 
 (** [battle_bg_panel ()] draws the bottom left panel displayed during an 
     encounter *)
-let bottom_bg_panel () = 
+let bottom_bg_panel poke = 
   let panel_width = size_x () in
+  let txt = "What will " ^ String.uppercase_ascii poke.name ^ " do?" in
   Graphics.set_color (Graphics.rgb 40 80 104);
   Graphics.fill_rect 0 0 panel_width battle_panel_ht;
   custom_outline Graphics.white 0 0 panel_width battle_panel_ht 13 5;
   custom_outline (Graphics.rgb 200 168 72) 0 0 panel_width battle_panel_ht 5 12;
-  custom_outline Graphics.black 0 0 panel_width battle_panel_ht 0 5
+  custom_outline Graphics.black 0 0 panel_width battle_panel_ht 0 5;
+  Graphics.set_color Graphics.white;
+  Graphics.moveto 25 (battle_panel_ht - 40);
+  Graphics.draw_string txt 
 
 (** [bottom_menu_panel ()] draws the bottom right menu panel displayed during
     an encounter. *)
@@ -185,9 +195,42 @@ let bottom_menu_panel () =
   custom_outline Graphics.black new_x 0 panel_width battle_panel_ht 0 5
 
 (** [draw_bottom_panel ()] draws the bottom panel during an encounter. *)
-let draw_bottom_panel () = 
-  bottom_bg_panel ();
+let draw_bottom_panel poke = 
+  bottom_bg_panel poke;
   bottom_menu_panel ()
+
+let bottom_moves_panel () =
+  let panel_width = 2 * (size_x ()) / 3 in
+  let new_x = 0 in
+  Graphics.set_color Graphics.white;
+  Graphics.fill_rect new_x 0 panel_width battle_panel_ht;
+  custom_outline (Graphics.rgb 117 111 144) new_x 0 panel_width battle_panel_ht 
+    5 12;
+  custom_outline Graphics.black new_x 0 panel_width battle_panel_ht 0 5
+
+let bottom_info_panel () =
+  let panel_width = size_x () / 3 in
+  let new_x = size_x () - panel_width in
+  Graphics.set_color Graphics.white;
+  Graphics.fill_rect new_x 0 panel_width battle_panel_ht;
+  custom_outline (Graphics.rgb 117 111 144) new_x 0 panel_width battle_panel_ht 
+    5 12;
+  custom_outline Graphics.black new_x 0 panel_width battle_panel_ht 0 5
+
+let draw_bottom_fight () =
+  bottom_moves_panel ();
+  bottom_info_panel ()
+
+let draw_attack_info str =
+  let panel_width = size_x () in
+  Graphics.set_color (Graphics.rgb 40 80 104);
+  Graphics.fill_rect 0 0 panel_width battle_panel_ht;
+  custom_outline Graphics.white 0 0 panel_width battle_panel_ht 13 5;
+  custom_outline (Graphics.rgb 200 168 72) 0 0 panel_width battle_panel_ht 5 12;
+  custom_outline Graphics.black 0 0 panel_width battle_panel_ht 0 5;
+  Graphics.set_color Graphics.white;
+  Graphics.moveto 25 (battle_panel_ht - 40);
+  Graphics.draw_string str
 
 (** [make_options ncol x y width height lst] makes the different options in 
     [lst] on a given menu panel *)
@@ -209,11 +252,11 @@ let make_options ncol x y width height lst hover_str =
     during an encounter *)
 let list_of_stats pokemon = 
   [(String.uppercase_ascii pokemon.name);
-   "Lv" ^ string_of_int pokemon.stats.level ^ "Hp: " ^ string_of_int pokemon.stats.hp]
+   "Lv" ^ string_of_int pokemon.stats.level]
 
 (** [opt_lst ()] are the menu option buttons during an encounter *)
-let opt_lst menu hover = make_options 2 (size_x () / 2) 0 (size_x () / 2) 
-    battle_panel_ht (Array.to_list menu) menu.(hover)
+let opt_lst menu hover = make_options 2 (size_x () / 2) 5 (size_x () / 2) 
+    (battle_panel_ht - 15) (Array.to_list menu) menu.(hover)
 
 (** [draw_options] draws the list of option buttons *)
 let rec draw_options = function
@@ -229,6 +272,39 @@ let rec draw_options = function
     else ();
     draw_options t
 
+let show_move_info move =
+  let str = "TYPE/" ^ String.uppercase_ascii (string_from_type move.move_type) in
+  Graphics.set_color Graphics.black;
+  let panel_width = size_x () / 3 in
+  let new_x = size_x () - panel_width in
+  Graphics.moveto (new_x + 25) 30;
+  Graphics.draw_string str
+
+let mv_lst poke hover = 
+  let moves = poke.move_set in
+  let move_str = str_move_lst moves in
+  let panel_width = 2 * (size_x ()) / 3 in
+  let () = show_move_info (Array.of_list moves).(hover) in 
+  make_options 2 0 10 panel_width (battle_panel_ht - 15)
+    (Array.to_list move_str) move_str.(hover)
+
+let hp_bar x y poke length = 
+  let tot_hp = float_of_int poke.stats.base_hp in
+  let curr_hp = float_of_int poke.stats.hp in
+  let frac = curr_hp /. tot_hp in
+  let clr = if frac > (2. /. 3.) then Graphics.rgb 0 246 146
+    else if frac > (1. /. 3.) then Graphics.rgb 247 236 126
+    else Graphics.rgb 237 97 96 in
+  Graphics.set_color (Graphics.rgb 58 82 52);
+  Graphics.fill_rect 
+    (x - 5) (y - 4) (fst (Graphics.text_size "HP") + 15 + length) 20;
+  Graphics.set_color (Graphics.rgb 252 208 68);
+  Graphics.moveto x y;
+  Graphics.draw_string "HP";
+  Graphics.set_color clr;
+  Graphics.fill_rect 
+    (x + fst (Graphics.text_size "HP") + 5) y (int_of_float (frac *. (float_of_int length))) (snd (Graphics.text_size "HP"))
+
 (** [poke_panel x y poke] draws the Pokemon stats on the encounter screen *)
 let poke_panel x y poke = 
   let width = size_x () / 3 in
@@ -238,25 +314,77 @@ let poke_panel x y poke =
   Graphics.set_color (Graphics.rgb 58 82 52);
   Graphics.set_line_width 5;
   Graphics.draw_rect x y width height;
+  let () = hp_bar (x + 50) (y + (height / 4)) poke (width / 2) in
   let lst = list_of_stats poke in
-  let txt = make_options 2 x y width height lst "" in
+  let txt = make_options 2 (x - 15) (y + 15) (4 * width / 3) height lst "" in
   draw_options txt
 
 let draw_poke x y poke = 
   Graphics.set_color (color_of_poke poke.poke_type);
   Graphics.fill_circle x y 50
 
-let render_menu (st : State.state) (mst : State.menu_state) = 
-  let () = Graphics.open_graph (graph_dims st.map); in
+let rec wait_time ref_time = 
+  if Unix.gettimeofday () -. ref_time > 2.5 then 
+    () 
+  else begin
+    Unix.sleepf(0.0001); 
+    wait_time ref_time
+  end
+
+let render_default (st : State.state) (mst : State.menu_state) = 
+  let () = Graphics.open_graph (graph_dims st.maps.(0)); in
   let () = Graphics.clear_graph () in 
-  let () = draw_bottom_panel () in
+  let () = draw_bottom_panel (List.hd st.player.poke_list) in
   let () = poke_panel 50 275 (List.hd mst.opponent) in
   let () = poke_panel 300 150 (List.hd mst.player.poke_list) in
   let () = draw_poke (50 + (size_x () / 6)) 175 (List.hd st.player.poke_list) in
   let () = draw_poke (300 + (size_x () / 6)) (160 + (size_y () / 3)) 
       (List.hd mst.opponent) in
-  let () = draw_options (opt_lst mst.opt_lst mst.hover) in
+  let () = draw_options (opt_lst default_menu mst.hover) in
   let () = synchronize () in ()
+
+let render_moves (st : State.state) (mst : State.menu_state) = 
+  let () = Graphics.open_graph (graph_dims st.maps.(0)); in
+  let () = Graphics.clear_graph () in 
+  let () = draw_bottom_fight () in
+  let () = poke_panel 50 275 (List.hd mst.opponent) in
+  let () = poke_panel 300 150 (List.hd mst.player.poke_list) in
+  let () = draw_poke (50 + (size_x () / 6)) 175 (List.hd st.player.poke_list) in
+  let () = draw_poke (300 + (size_x () / 6)) (160 + (size_y () / 3)) 
+      (List.hd mst.opponent) in
+  let () = draw_options (mv_lst (List.hd st.player.poke_list) mst.hover) in
+  let () = synchronize () in ()
+
+let render_attack (st : State.state) (mst : State.menu_state) poke1 poke2 player opp atk = 
+  let () = Graphics.open_graph (graph_dims st.maps.(0)); in
+  let () = Graphics.clear_graph () in
+  let txt = attack_effectiveness poke1 poke2 atk in
+  let () = draw_attack_info txt in
+  let () = poke_panel 50 275 opp in
+  let () = poke_panel 300 150 player in
+  let () = draw_poke (50 + (size_x () / 6)) 175 (List.hd mst.player.poke_list) in
+  let () = draw_poke (300 + (size_x () / 6)) (160 + (size_y () / 3)) 
+      (List.hd mst.opponent) in
+  let () = synchronize () in ()
+
+
+(* let () = wait_time (Unix.gettimeofday ()) *)
+
+let render_menu (st : State.state) (mst : State.menu_state) = 
+  match mst.status with
+  | Default -> render_default st mst
+  | Fight -> render_moves st mst
+  | Attack atks -> 
+    let p_poke = atks.battling_poke.(0) in 
+    let p_poke' = atks.battling_poke.(1) in 
+    let o_poke = atks.battling_poke.(2) in 
+    let o_poke' = atks.battling_poke.(3) in 
+    render_attack st mst o_poke p_poke p_poke o_poke' atks.player_attack;
+    wait_time (Unix.gettimeofday ());
+    render_attack st mst p_poke o_poke p_poke' o_poke' atks.opponent_attack;
+    wait_time (Unix.gettimeofday ())
+  | Run -> render_walk st
+  | _ -> failwith "unimplmented"
 
 
 (************************* T E S T I N G *************************************)
@@ -268,18 +396,24 @@ let starter = List.hd poke_lst
 
 let test_opp = List.nth poke_lst 2
 
-let test_map = Block.json_to_map "map_jsons/map1.json"
+let test_map = Block.json_to_map "map1.json"
 
 let test_st = init_state "test" starter test_map
 
-(* let test_mst : menu_state = {
-   player = test_st.player;
-   opponent = test_opp;
-   hover = 0;
-   select = None
-   }
 
-   let test_render () = render_menu test_st test_mst *)
+let test_mst : menu_state = {
+  status = Default;
+  player = test_st.player;
+  opponent = [test_opp];
+  hover = 0;
+  select = None;
+  p_turn = true;
+  previous = None
+}
+
+(* let () = render_moves test_st test_mst  *)
+
+(*  let test_render () = render_menu test_st test_mst *)
 
 
 let pokecenter_header_color = Graphics.rgb 255 153 204 

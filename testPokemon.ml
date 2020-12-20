@@ -13,7 +13,7 @@ let type_from_string_test (name: string) (s_type: string)
 let type_from_string_test_exn (name: string) (s_type: string) (ex: exn) : test 
   = name >:: (fun _ -> assert_raises ex (fun () -> type_from_string s_type))
 
-let opponent_move_test (name: string) (pkm: pokemon) 
+let opponent_move_test (name: string) (pkm: pokemon) s
   : test = name >:: (fun _ -> assert_equal true 
                         (List.mem (opponent_move pkm) pkm.move_set))
 

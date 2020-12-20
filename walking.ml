@@ -78,9 +78,15 @@ let display (st : State.state) = function
 let process_walk input (st : State.state) =
   let action = walk_key input in
   match action with
-  | Move dir -> begin 
-      let mv_st =  {st with player=(move_map st.player dir st.map)} in 
-      {mv_st with status = 
-                    (update_status mv_st (player_block mv_st.player mv_st.map))}
+  | Move dir ->  begin 
+      match st.status with 
+      | Walking -> 
+        let mv_st =  {st with player=(move_map st.player dir st.maps.(0))} in 
+        {mv_st with status = (update_status mv_st (player_block mv_st.player mv_st.maps.(0)))} 
+      | WalkingGym -> 
+        let mv_st =  {st with player=(move_map st.player dir st.maps.(1))} in 
+        {mv_st with status = (update_status mv_st (player_block mv_st.player mv_st.maps.(1)))} 
+      | _ -> let mv_st =  {st with player=(move_map st.player dir st.maps.(0))} in 
+        {mv_st with status = (update_status mv_st (player_block mv_st.player mv_st.maps.(0)))} 
     end 
   | Display x -> {st with panel_txt=(display st x)}

@@ -1,3 +1,3 @@
-val play_game : State.state -> 'a
+val play_game : State.state -> unit
 
 val main : unit -> unit
