@@ -116,6 +116,16 @@ let get_pokecenter_loc map =
   done;
   !loc
 
+<<<<<<< HEAD
+=======
+(** [str_bag_items b] is a string representation of the inventory in bag [b]. *)
+let rec str_bag_items = function 
+  | [] -> []
+  | (item, amt) :: t -> match item with 
+    | Player.Potion ->  ("POTIONS (x" ^ string_of_int amt ^ ")") :: str_bag_items t 
+    | Player.Pokeball ->("POKEBALLS (x" ^ string_of_int amt ^ ")") :: str_bag_items t 
+
+>>>>>>> origin/kassie
 (** [str_poke_lst pkm_lst] is the string representation of the pokemon in 
     pokemon list [pkm_lst]. *)
 let str_poke_lst pkm_lst = 
@@ -142,8 +152,12 @@ let opp_attack st mst atks =
     if check_pokelist new_pkm_lst then 
       let new_pkm_lst' = set_battle_team new_pkm_lst in 
       let new_player = {st.player with poke_list = new_pkm_lst'} in 
+<<<<<<< HEAD
       let new_mst = 
         {mst with player = new_player; select = None} in 
+=======
+      let new_mst = {mst with player = new_player; select = None} in 
+>>>>>>> origin/kassie
       let () = atks.battling_poke.(1) <- List.hd new_pkm_lst in 
       {st with player = new_player; status = Menu new_mst}
     else 
@@ -213,13 +227,13 @@ let process_catch (mst: menu_state) st =
     {n_st with panel_txt = parse_pokelist n_st.player}
   else 
     let new_mst = 
-      {mst with player = n_st.player; select = None} in 
+      {mst with status = Default; hover = 0; player = n_st.player; select = None} in 
     {n_st with status = Menu new_mst}
 
 let process_heal (mst : menu_state) st = 
   let n_st = check_potion st.player.bag st in 
   let new_mst = 
-    {mst with player = n_st.player; select = None} in 
+    {mst with status = Default; hover = 0; player = n_st.player; select = None} in 
   {n_st with status = Menu new_mst; panel_txt = (parse_bag n_st.player)}
 
 let process_switch (mst: menu_state) st = 
@@ -230,7 +244,7 @@ let process_switch (mst: menu_state) st =
     let () = pkm_arr.(mst.hover) <- original_fst in 
     let pkm_lst = Array.to_list pkm_arr in 
     let new_player = {st.player with poke_list = pkm_lst} in 
-    let new_mst = {mst with player = new_player; select = None} in 
+    let new_mst = {mst with status = Default; hover = 0; player = new_player; select = None} in 
     {st with player = new_player; status = Menu new_mst} 
   else st
 

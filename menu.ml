@@ -36,6 +36,16 @@ let hover_change (st : menu_state) dir =
         | Down -> st.hover + 2
         | Right -> st.hover + 1
       end
+    | PokeList -> begin
+        match st.hover, dir with
+        | 0, Right -> st.hover + 1
+        | 0, _ -> st.hover
+        | 1, Up -> st.hover
+        | _, Right -> st.hover
+        | _, Left -> 0
+        | _, Up -> st.hover - 1
+        | _, Down -> st.hover + 1
+      end
     | _ -> begin
         match dir with
         | Up -> st.hover - 1
@@ -52,7 +62,7 @@ let hover_change (st : menu_state) dir =
   if new_hover < max_len && new_hover >= 0 then 
     {st with hover = new_hover}
   else st
-
+(* 
 (** [contains s1 s2] is true if string [s1] contains string [s2]. *)
 let contains s1 s2 =
   try
@@ -61,7 +71,7 @@ let contains s1 s2 =
       if String.sub s1 i len = s2 then raise Exit
     done;
     false
-  with Exit -> true
+  with Exit -> true *)
 
 (** [is_switch pkm_lst pkm_name] is true if a pokemon with name [pkm_name] 
     is in the list [pkm_lst], false otherwise. *)
@@ -93,6 +103,13 @@ let menu_of_string (mst : menu_state) =
               battling_poke = [|curr_pkm; curr_pkm; opp_pkm; opp_pkm|]
              }
     end
+  | Bag -> begin
+      let bag = Array.of_list mst.player.bag.inventory in
+      match fst (bag.(mst.hover)) with
+      | Potion -> Heal
+      | Pokeball -> Catch
+    end
+  | PokeList -> Switch
   | x -> x
 (* | x -> begin 
    if (contains x "POKEBALL") then Catch
@@ -124,7 +141,7 @@ let menu_change (mst : menu_state) st menu =
   | Bag -> process_bag mst st 
   | PokeList -> process_pokelist mst st 
   | Catch -> process_catch mst st 
-  | Heal ->  process_heal mst st 
+  | Heal -> process_heal mst st 
   | Switch -> process_switch mst st 
   | Attack atks -> process_attack {mst with status = Attack atks} st atks 
   | Run -> {st with status = Walking}

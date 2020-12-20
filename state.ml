@@ -29,11 +29,18 @@ type battle = Begin
 type menu_state = {
   status : menu;
   player : Player.player;
-  opponent : Pokemon.pokemon list;
+  <<<<<<< HEAD
+    opponent : Pokemon.pokemon list;
   hover : int;
   select : menu option;
   is_trainer : bool;
   previous : menu_state option
+             =======
+             opponent: Pokemon.pokemon list;
+  hover: int;
+  select: menu option;
+  previous: menu_state option
+    >>>>>>> origin/kassie
 }
 
 (** The status of the game. *)
