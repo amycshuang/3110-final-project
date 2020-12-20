@@ -119,8 +119,8 @@ let get_pokecenter_loc map =
 let rec str_bag_items = function 
   | [] -> []
   | (item, amt) :: t -> match item with 
-    | Player.Potion ->  ("POTIONS: " ^ string_of_int amt) :: str_bag_items t 
-    | Player.Pokeball ->("POKEBALLS: " ^ string_of_int amt) :: str_bag_items t 
+    | Player.Potion ->  ("POTIONS (x" ^ string_of_int amt ^ ")") :: str_bag_items t 
+    | Player.Pokeball ->("POKEBALLS (x" ^ string_of_int amt ^ ")") :: str_bag_items t 
 
 (** [str_poke_lst pkm_lst] is the string representation of the pokemon in 
     pokemon list [pkm_lst]. *)
@@ -259,13 +259,13 @@ let process_catch (mst: menu_state) st =
     {n_st with panel_txt = parse_pokelist n_st.player}
   else 
     let new_mst = 
-      {mst with player = n_st.player; select = None} in 
+      {mst with status = Default; player = n_st.player; select = None} in 
     {n_st with status = Menu new_mst}
 
 let process_heal (mst : menu_state) st = 
   let n_st = check_potion st.player.bag st in 
   let new_mst = 
-    {mst with player = n_st.player; select = None} in 
+    {mst with status = Default; player = n_st.player; select = None} in 
   {n_st with status = Menu new_mst; panel_txt = (parse_bag n_st.player)}
 
 let process_switch (mst: menu_state) st = 
@@ -276,7 +276,7 @@ let process_switch (mst: menu_state) st =
     let () = pkm_arr.(mst.hover) <- original_fst in 
     let pkm_lst = Array.to_list pkm_arr in 
     let new_player = {st.player with poke_list = pkm_lst} in 
-    let new_mst = {mst with player = new_player; select = None} in 
+    let new_mst = {mst with status = Default; player = new_player; select = None} in 
     {st with player = new_player; status = Menu new_mst} 
   else st
 

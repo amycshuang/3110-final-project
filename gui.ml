@@ -275,6 +275,36 @@ let mv_lst poke hover =
   make_options 2 0 10 panel_width (battle_panel_ht - 15)
     (Array.to_list move_str) move_str.(hover)
 
+let bag_panel () =
+  let panel_width = size_x () in
+  Graphics.set_color (Graphics.rgb 0 108 179);
+  Graphics.fill_rect 0 0 panel_width battle_panel_ht;
+  custom_outline (Graphics.rgb 0 73 101) 0 0 panel_width battle_panel_ht 0 5
+
+let bag_yellowbg () =
+  let big_ht = (size_y ()) - battle_panel_ht - 10 in
+  let small_ht = big_ht / 3 in
+  let small_width = ((size_x ()) - 15) / 3 in
+  let big_width = small_width * 2 in
+  Graphics.set_color (Graphics.rgb 244 194 110);
+  Graphics.fill_rect 10 ((size_y ()) - small_ht - 5) small_width small_ht;
+  Graphics.fill_rect (10 + small_width) (battle_panel_ht + 5) big_width big_ht;
+  Graphics.set_color (Graphics.rgb 247 248 196);
+  Graphics.fill_rect (20 + small_width) (battle_panel_ht + 15) (big_width - 20) 
+    (big_ht - 20);
+  Graphics.set_color (Graphics.rgb 219 125 71);
+  Graphics.fill_rect 20 ((size_y ()) - (4 * small_ht / 5)) (small_width - 20) 10;
+  Graphics.set_color Graphics.black;
+  Graphics.moveto ((small_width - 20) / 2) ((size_y ()) - (4 * small_ht / 5) + 15);
+  Graphics.draw_string "ITEMS"
+
+let bag_lst bag hover = 
+  let big_ht = (size_y ()) - battle_panel_ht - 10 in
+  let small_width = ((size_x ()) - 15) / 3 in
+  let big_width = small_width * 2 in
+  let lst = str_bag_items bag in
+  make_options 1 (20 + small_width) (battle_panel_ht + (((big_ht - 20)/ 2)) + 15) (big_width / 3) ((big_ht - 20) / 3) lst (Array.of_list lst).(hover)
+
 let hp_bar x y poke length = 
   let tot_hp = float_of_int poke.stats.base_hp in
   let curr_hp = float_of_int poke.stats.hp in
@@ -342,7 +372,8 @@ let render_moves (st : State.state) (mst : State.menu_state) =
   let () = draw_options (mv_lst (List.hd st.player.poke_list) mst.hover) in
   let () = synchronize () in ()
 
-let render_attack (st : State.state) (mst : State.menu_state) poke1 poke2 player opp atk = 
+let render_attack (st : State.state) (mst : State.menu_state) 
+    poke1 poke2 player opp atk = 
   let () = Graphics.open_graph (graph_dims st.map); in
   let () = Graphics.clear_graph () in
   let txt = attack_effectiveness poke1 poke2 atk in
@@ -354,12 +385,24 @@ let render_attack (st : State.state) (mst : State.menu_state) poke1 poke2 player
       (List.hd mst.opponent) in
   let () = synchronize () in ()
 
+let render_bag (st : State.state) (mst : State.menu_state) =
+  let () = Graphics.open_graph (graph_dims st.map); in
+  let () = Graphics.clear_graph () in
+  let () = Graphics.set_color (Graphics.rgb 75 194 186) in
+  let () = Graphics.fill_rect 0 0 (size_x ()) (size_y ()) in
+  let () = bag_panel () in
+  let () = bag_yellowbg () in
+  let () = draw_options (bag_lst st.player.bag.inventory mst.hover) in
+  let () = synchronize () in ()
 
-(* let () = wait_time (Unix.gettimeofday ()) *)
+let render_pokelst (st : State.state) (mst : State.menu_state) =
+  let () = Graphics.open_graph (graph_dims st.map); in
+  let () = Graphics.clear_graph () in
+  let () = synchronize () in ()
 
 let render_menu (st : State.state) (mst : State.menu_state) = 
   match mst.status with
-  | Default -> render_default st mst
+  | Default | Heal | Catch -> render_default st mst
   | Fight -> render_moves st mst
   | Attack atks -> 
     let p_poke = atks.battling_poke.(0) in 
@@ -371,6 +414,7 @@ let render_menu (st : State.state) (mst : State.menu_state) =
     render_attack st mst p_poke o_poke p_poke' o_poke' atks.opponent_attack;
     wait_time (Unix.gettimeofday ())
   | Run -> render_walk st
+  | Bag -> render_bag st mst
   | _ -> failwith "unimplmented"
 
 
@@ -387,7 +431,6 @@ let test_map = Block.json_to_map "map1.json"
 
 let test_st = init_state "test" starter test_map
 
-
 let test_mst : menu_state = {
   status = Default;
   player = test_st.player;
@@ -398,10 +441,9 @@ let test_mst : menu_state = {
   previous = None
 }
 
-(* let () = render_moves test_st test_mst  *)
+let () = render_pokelst test_st test_mst 
 
-(*  let test_render () = render_menu test_st test_mst *)
-
+(******************************************************************************)
 
 let pokecenter_header_color = Graphics.rgb 255 153 204 
 let pokecenter_color = Graphics.rgb 102 178 255 
