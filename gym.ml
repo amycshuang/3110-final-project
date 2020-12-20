@@ -14,7 +14,8 @@ let gym_key ch =
   | 'n' -> EndBattle 
   | _ -> Default
 
-(** TODO - add doc *)
+(** [win_battle_money trainers] is the amount of pokecoins won after defeating
+    a trainer. *)
 let win_battle_money trainers = 1200 / (List.length trainers + 1)
 
 let set_gym_start st =

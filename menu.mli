@@ -1,5 +1,5 @@
 (** 
-   TODO: add comment
+   Representation of a menu state.
 *)
 
 (** [default_menu] is the default menu options displayed when the Player first

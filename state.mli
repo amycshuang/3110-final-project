@@ -2,14 +2,14 @@
    Representation of a game state.
 *)
 
-(** TODO: add comment *)
+(** The type of values representing attack_moves. *)
 type attack_moves = {
   player_attack : Pokemon.move; 
   opponent_attack : Pokemon.move;
   battling_poke : Pokemon.pokemon array;
 }
 
-(** TODO: add comment *)
+(** The type of values representing the menu. *)
 type menu = Default 
           | Fight 
           | PokeList 
@@ -20,13 +20,13 @@ type menu = Default
           | Switch 
           | Attack of attack_moves
 
-(** TODO: add comment *)
+(** The type of values representing a battle. *)
 type battle = Begin 
             | Battling 
             | Over 
             | CannotBattle
 
-(** TODO: add comment *)
+(** The type of a menu_state. *)
 type menu_state = {
   status : menu;
   player : Player.player;

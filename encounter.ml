@@ -47,7 +47,9 @@ let throw_pokeball opp_pkm st =
     let new_player = catch_poke st.player opp_pkm in 
     {st with player = new_player; status = Walking}
 
-(** TODO: add comment *)
+(** [check_catch b opp_pkm st] checks to see if the Player has enough pokeballs
+    to catch a wild pokemon. If the player has enough pokeballs, the amount of
+    pokeballs in their bag is decremented by one. *)
 let check_catch (b : bag) opp_pkm (st : state) = 
   let ball_num = List.assoc Player.Pokeball b.inventory in 
   if ball_num > 0 && (not opp_pkm.caught) && List.length st.player.poke_list < 6
@@ -131,7 +133,7 @@ let rec str_bag_items = function
 let str_move_lst moves = 
   Array.of_list (List.map (fun m -> m.move_name) moves)
 
-(** TODO: add comment *)
+(** [opp_attack st mst atks] TODO comment *)
 let opp_attack st mst atks = 
   let poke_lst = st.player.poke_list in 
   let curr_pkm = List.hd poke_lst in 
@@ -186,7 +188,8 @@ let player_attack atks st mst =
       let new_mst' = {new_mst with opponent = new_opp_lst'} in 
       let () = atks.battling_poke.(2) <- List.hd new_opp_lst' in 
       let () = atks.battling_poke.(3) <- List.hd new_opp_lst' in 
-      let atks' = {atks with opponent_attack = opponent_move (List.hd new_mst'.opponent)} in 
+      let atks' = {atks with opponent_attack = 
+                               opponent_move (List.hd new_mst'.opponent)} in 
       let new_mst'' = {new_mst' with status = Attack atks'} in 
       opp_attack {new_st with status = Menu new_mst''} new_mst'' atks'
     else 
@@ -216,14 +219,14 @@ let process_catch (mst: menu_state) st =
   if n_st.status = Walking then 
     {n_st with panel_txt = parse_pokelist n_st.player}
   else 
-    let new_mst = 
-      {mst with status = Default; hover = 0; player = n_st.player; select = None} in 
+    let new_mst = {mst with status = Default; hover = 0; 
+                            player = n_st.player; select = None} in 
     {n_st with status = Menu new_mst}
 
 let process_heal (mst : menu_state) st = 
   let n_st = check_potion st.player.bag st in 
-  let new_mst = 
-    {mst with status = Default; hover = 0; player = n_st.player; select = None} in 
+  let new_mst = {mst with status = Default; hover = 0; 
+                          player = n_st.player; select = None} in 
   {n_st with status = Menu new_mst; panel_txt = (parse_bag n_st.player)}
 
 let process_switch (mst: menu_state) st = 
@@ -234,7 +237,8 @@ let process_switch (mst: menu_state) st =
     let () = pkm_arr.(mst.hover) <- original_fst in 
     let pkm_lst = Array.to_list pkm_arr in 
     let new_player = {st.player with poke_list = pkm_lst} in 
-    let new_mst = {mst with status = Default; hover = 0; player = new_player; select = None} in 
+    let new_mst = {mst with status = Default; hover = 0; 
+                            player = new_player; select = None} in 
     {st with player = new_player; status = Menu new_mst} 
   else st
 

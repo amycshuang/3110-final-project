@@ -1,14 +1,14 @@
 open Pokemon
 
-(** TODO: add comment *)
+(** The type of a Player's nickname. *)
 type nickname = string
-(** TODO: add comment *)
+
+(** The type of a badge the Player can earn. *)
 type badge = string
 type item = Potion | Pokeball
 
 (** The type of a player's bag. *)
 type bag = {
-  (* pc_box : Pokemon.pokemon list; *)
   badge_case : badge list;
   inventory : (item * int) list;
 }
@@ -24,7 +24,6 @@ type player = {
 
 (** [empty_bag] is a bag with nothing in pc_box, badge_case or inventory. *)
 let empty_bag = {
-  (* pc_box = []; *)
   badge_case = [];
   inventory = [(Potion, 5); (Pokeball, 5)];
 }

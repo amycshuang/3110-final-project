@@ -1,5 +1,5 @@
 (** 
-   TODO: add comment
+   Representation of a walking state.
 *)
 
 (** [parse_bag p] parses the player's bag to display on the text panel *)
@@ -9,7 +9,8 @@ val parse_bag : Player.player -> string
     panel *)
 val parse_pokelist : Player.player -> string
 
-(** TODO - add doc *)
+(** [trainer_on_block st] is the trainer on a trainer block based on the
+    player's location specified by the state [s]. *)
 val trainer_on_block : State.state -> Trainer.trainer
 
 (** [process_walk input st] is the state after some key input while the 

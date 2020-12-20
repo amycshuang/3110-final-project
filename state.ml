@@ -59,7 +59,9 @@ type state = {
 
 let get_key () = (wait_next_event [Key_pressed]).Graphics.key
 
-(** TODO: add comment *)
+(** [spawn_status block st] returns the Player's state with the opponent list 
+    containing a random spawned pokemon based on the block [block] the Player 
+    was on. *)
 let spawn_status block (st : state) = 
   let spawned = spawn_poke block in
   match spawned with

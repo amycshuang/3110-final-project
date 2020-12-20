@@ -16,10 +16,12 @@ val render_pokecenter : State.state -> unit
     money. *)
 val render_no_money : unit -> unit
 
-(** TODO - add doc comment *)
+(** [render_trainertalk] renders the GUI for the initial screen when battling
+    a trainer.  *)
 val render_trainertalk : State.state -> unit
 
-(** TODO - add doc comment *)
+(** [render_trainerover] renders the GUI for the screen when the player defeats
+    a trainer. *)
 val render_trainerover : State.state -> unit
 
 (** [render_win st] renders the GUI for the player in state [st]

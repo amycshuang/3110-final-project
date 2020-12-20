@@ -1,5 +1,5 @@
 (** 
-   TODO: add comment
+   Representation of a trainer and their data. 
 *)
 
 open Pokemon

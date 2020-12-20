@@ -102,7 +102,7 @@ let gym_loc map =
   done;
   !loc
 
-(** TODO: add comment *)
+(** [process_gym st] updates the state [st] with status WalkingGym. *)
 let process_gym st = 
   if st.status = EnterGym then 
     let loc = gym_entrance_loc st.maps.(1) in 

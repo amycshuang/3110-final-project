@@ -47,24 +47,6 @@ and check_status st : unit =
     end
   | _ -> ()
 
-
-(** TODO: look at this code *)
-(** [play_game f] starts the adventure in file [f]. *)
-(* let rec play_game st =
-   render_st st;
-   let input = get_key () in
-   let n_st = 
-    match st.status with 
-    | Walking -> process_walk input st
-    | WalkingGym -> process_walk input {st with  
-          map = Block.json_to_map "map_jsons/gym_map.json"}
-    | PokeCenter -> process_pokecenter input st  
-    (* | Gym -> process_walk input {st with status = WalkingGym; 
-          map = Block.json_to_map "map_jsons/gym_map.json"} *)
-    | Menu mst -> process_menu input st mst
-    | Win -> failwith "TODO" in
-   play_game n_st *)
-
 let main () = play_game initialize
 
 (* Execute the game engine. *)
