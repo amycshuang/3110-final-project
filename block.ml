@@ -18,8 +18,10 @@ type block =
   | House 
   | PokeCenter
   | Null
+  | GymRoad
   | BrownGymFloor
   | GreyGymFloor
+  | Exit
   | Trainer
   | ClarksonSpot
 
@@ -38,8 +40,10 @@ let string_to_block (s : block_type) =
   | "house" -> House
   | "pokecenter" -> PokeCenter
   | "null" -> Null
+  | "gym road" -> GymRoad
   | "brown gym floor" -> BrownGymFloor
   | "grey gym floor" -> GreyGymFloor
+  | "exit" -> Exit
   | "trainer" -> Trainer
   | "clarkson spot" -> ClarksonSpot
   |  _ -> raise (InvalidBlock s)
@@ -87,8 +91,10 @@ let get_block_type (t : block) =
   | House -> "house" 
   | PokeCenter -> "pokecenter"
   | Null -> "null"
+  | GymRoad -> "gym road"
   | BrownGymFloor -> "brown gym floor"
   | GreyGymFloor -> "grey gym floor"
+  | Exit -> "exit"
   | Trainer -> "trainer"
   | ClarksonSpot -> "clarkson spot "
 
@@ -122,7 +128,9 @@ let spawn_poke (t : block) =
   | House -> None
   | PokeCenter -> None
   | Null -> None
+  | GymRoad -> None
   | BrownGymFloor -> None
   | GreyGymFloor -> None
+  | Exit -> None
   | Trainer -> None
   | ClarksonSpot -> None
