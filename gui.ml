@@ -158,6 +158,7 @@ let render_walk (st : State.state) =
     | "Use your WASD keys to move around the map" as s -> display_text' s 
     | "Invalid Key :( Use WASD keys to walk around, P - Pokelist, B - Bag" 
       as s -> display_text' s 
+    | "You must battle in order!" as s -> display_text' s
     | _ -> 
       let str_lst = String.split_on_char ' ' st.panel_txt in 
       display_poke_text_top str_lst 10 50 0 in
@@ -509,3 +510,44 @@ let render_pokecenter (st: state) =
   let () = 
     if st.player.balance = 0 then render_no_money () else () in 
   let () = synchronize () in ()
+
+
+let draw_people x y p_color = 
+  Graphics.set_color p_color; 
+  Graphics.fill_circle x y 50
+
+(* let render_battle_begin st = 
+   let () = Graphics.open_graph (graph_dims st.maps.(0)); in
+   let () = Graphics.clear_graph () in
+   let () = draw_people (50 + (size_x () / 6)) 175 Graphics.black in 
+   let () = draw_people (300 + (size_x () / 6)) (160 + (size_y () / 3)) 
+      (Graphics.rgb 97 95 216) in 
+
+   let () = synchronize () in () *)
+
+
+(* (** [draw_panel blocks] draws the bottom text panel of a screen under the map *)
+   let draw_battle_panel = 
+   let panel_width = (Array.length blocks.(0)) * box_len in
+   Graphics.set_color Graphics.white;
+   Graphics.fill_rect 0 0 panel_width panel_height;
+   Graphics.set_color panel_color;
+   Graphics.set_line_width panel_outline;
+   Graphics.draw_rect 0 0 panel_width panel_height
+
+   let render_battle_end st = 
+   let () = Graphics.open_graph (graph_dims st.maps.(0)); in
+   let () = Graphics.clear_graph () in
+   let () = draw_people (50 + (size_x () / 6)) 175 Graphics.black in 
+   let () = draw_people (300 + (size_x () / 6)) (160 + (size_y () / 3)) 
+      (Graphics.rgb 97 95 216) in 
+   let () = synchronize () in () *)
+
+let render_battle st = failwith "TODO"
+
+(* let render_battle (st: state) = 
+   match gst.status with 
+   | CannotBattle -> () (** TODO *)
+   | Begin -> render_battle_begin st gst 
+   | Battling -> render_menu st gst.battle
+   | Over -> () render_battle_end st gst *)

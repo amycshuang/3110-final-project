@@ -1,9 +1,11 @@
+(** TODO: add comment *)
 type attack_moves = {
   player_attack : Pokemon.move; 
   opponent_attack : Pokemon.move;
   battling_poke : Pokemon.pokemon array;
 }
 
+(** TODO: add comment *)
 type menu = Default 
           | Fight 
           | PokeList 
@@ -14,14 +16,21 @@ type menu = Default
           | Switch 
           | Attack of attack_moves
 
+(** TODO: add comment *)
+type battle = Begin 
+            | Battling 
+            | Over 
+            | CannotBattle
+
+(** TODO: add comment *)
 type menu_state = {
   status : menu;
   player : Player.player;
-  opponent: Pokemon.pokemon list;
-  hover: int;
-  select: menu option;
-  p_turn : bool;
-  previous: menu_state option
+  opponent : Pokemon.pokemon list;
+  hover : int;
+  select : menu option;
+  is_trainer : bool;
+  previous : menu_state option
 }
 
 (** The status of the game. *)
@@ -30,6 +39,8 @@ type status =  Walking
             | EnterGym
             | ExitGym
             | PokeCenter
+            | TrainerTalk 
+            | TrainerOver 
             | Menu of menu_state
             | Win
 
@@ -42,7 +53,7 @@ type state = {
   player : Player.player;
   panel_txt : string;
   status : status;
-  trainers: Trainer.trainer array;
+  trainers: Trainer.trainer list;
 }
 
 (** [get_key ()] returns the corresponding character of the key pressed *)

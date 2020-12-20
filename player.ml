@@ -1,6 +1,8 @@
 open Pokemon
 
+(** TODO: add comment *)
 type nickname = string
+(** TODO: add comment *)
 type badge = string
 type item = Potion | Pokeball
 

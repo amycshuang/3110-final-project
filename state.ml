@@ -11,7 +11,6 @@ type attack_moves = {
   opponent_attack : Pokemon.move;
   battling_poke : Pokemon.pokemon array;
 }
-
 type menu = Default 
           | Fight 
           | PokeList 
@@ -22,21 +21,29 @@ type menu = Default
           | Switch 
           | Attack of attack_moves
 
+type battle = Begin 
+            | Battling 
+            | Over 
+            | CannotBattle
+
 type menu_state = {
   status : menu;
   player : Player.player;
-  opponent: Pokemon.pokemon list;
-  hover: int;
-  select: menu option;
-  p_turn : bool;
-  previous: menu_state option
+  opponent : Pokemon.pokemon list;
+  hover : int;
+  select : menu option;
+  is_trainer : bool;
+  previous : menu_state option
 }
 
+(** The status of the game. *)
 type status =  Walking 
             | WalkingGym
             | EnterGym
             | ExitGym
             | PokeCenter
+            | TrainerTalk  
+            | TrainerOver 
             | Menu of menu_state
             | Win
 
@@ -45,11 +52,12 @@ type state = {
   player : Player.player;
   panel_txt : string;
   status : status;
-  trainers: trainer array;
+  trainers: trainer list;
 }
 
 let get_key () = (wait_next_event [Key_pressed]).Graphics.key
 
+(** TODO: add comment *)
 let spawn_status block (st : state) = 
   let spawned = spawn_poke block in
   match spawned with
@@ -59,13 +67,18 @@ let spawn_status block (st : state) =
                  opponent = [x]; 
                  hover = 0; 
                  select = None;
-                 p_turn = true;
+                 is_trainer = false;
                  previous = None
                 } in 
     Menu mst
   | None -> Walking
 
-let trainer_battle_status st = failwith "TODo"
+(** TODO: add comment *)
+let trainer_battle st =   
+  match List.filter (fun (t : Trainer.trainer) -> 
+      (t.x, t.y) = st.player.location) st.trainers with 
+  | [] -> failwith "impossible"
+  | h :: t -> h 
 
 let update_status (st : state) = function 
   | TallGrass -> spawn_status TallGrass st
@@ -76,30 +89,28 @@ let update_status (st : state) = function
   | Null | GymRoad | BrownGymFloor | GreyGymFloor -> WalkingGym 
   | Exit -> ExitGym
   | PokeCenter -> PokeCenter 
-  | Trainer | ClarksonSpot-> WalkingGym
-(* let (mst : menu_state) = 
-   {status = Default;
-   player = st.player; 
-   opponent = (battle_trainer st).poke_list; 
-   hover = 0; 
-   select = None;
-   p_turn = true;
-   previous = None
-   } in 
-   Menu mst *)
-
-(* WalkingGym  *)
-(** TODO: link with menu state start battle *)
-(* | ClarksonSpot ->  *)
-
-
-
-(* WalkingGym  *)
-(** TODO: link with menu state start battle *)
-
-(* let get_opponent opp = match opp with  
-   | OppPokemon pkm -> pkm
-   | OppTrainer -> failwith "TODO after initializing trainer module" *)
+  | Trainer | ClarksonSpot -> TrainerTalk
+(* let mst = { status = Default;
+            player = st.player; 
+            opponent = trainer.poke_list; 
+            hover = 0; 
+            select = None;
+            p_turn = true;
+            previous = None
+          } in 
+   if trainer = (List.hd (List.rev st.trainers)) then 
+   let gym_state = {
+    trainer = trainer; 
+    battle = mst; 
+    status = Begin;
+   }
+   in GymBattle gym_state
+   else let gym_state = {
+    trainer = trainer; 
+    battle = mst; 
+    status = CannotBattle;
+   }
+   in GymBattle gym_state *)
 
 let player_block p map = 
   let (x, y) = p.location in 

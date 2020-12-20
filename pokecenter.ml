@@ -2,6 +2,7 @@ open Player
 open State
 open Pokemon
 
+(** TODO: add comment *)
 type center_action = Heal | BPotion | BPokeball | Back | Default
 
 (** The cost of a potion represented as an int *)
@@ -43,6 +44,7 @@ let purchase player money item =
     let new_bag = {player.bag with inventory = new_inv} in 
     {player with bag = new_bag; balance = new_balance}
 
+(** TODO: add comment *)
 let heal_pokelist st = 
   let poke_list = st.player.poke_list in 
   let healed_poke = List.map heal_hp poke_list in 
