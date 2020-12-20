@@ -62,16 +62,6 @@ let hover_change (st : menu_state) dir =
   if new_hover < max_len && new_hover >= 0 then 
     {st with hover = new_hover}
   else st
-(* 
-(** [contains s1 s2] is true if string [s1] contains string [s2]. *)
-let contains s1 s2 =
-  try
-    let len = String.length s2 in
-    for i = 0 to String.length s1 - len do
-      if String.sub s1 i len = s2 then raise Exit
-    done;
-    false
-  with Exit -> true *)
 
 (** [is_switch pkm_lst pkm_name] is true if a pokemon with name [pkm_name] 
     is in the list [pkm_lst], false otherwise. *)
@@ -123,11 +113,7 @@ let action_change mst = function
   | Move x -> hover_change mst x
   | Enter -> let select_menu = menu_of_string mst in
     {mst with status = select_menu; select = Some select_menu}
-  | Back -> begin
-      match mst.previous with
-      | None -> mst
-      | Some x -> x
-    end
+  | Back -> {mst with status = Default; hover = 0}
 
 (** TODO: add comment *)
 let select_change est = function
@@ -154,9 +140,7 @@ let rec process_menu input (st: state) (mst : State.menu_state) =
     let new_st = {st with player = player} in 
     let new_mst = {mst with player = player} in  
     let new_mst' = select_change new_mst (encount_key input) in 
-    let prev = if new_mst.status != new_mst'.status then Some new_mst 
-      else new_mst.previous in
     match new_mst'.select with
-    | Some menu -> menu_change {new_mst' with previous = prev} new_st menu
+    | Some menu -> menu_change new_mst' new_st menu
     | None -> {new_st with status = Menu new_mst'}
   else process_fainted st 

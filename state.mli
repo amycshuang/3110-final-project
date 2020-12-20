@@ -29,8 +29,7 @@ type menu_state = {
   opponent : Pokemon.pokemon list;
   hover : int;
   select : menu option;
-  is_trainer : bool;
-  previous : menu_state option
+  is_trainer : bool
 }
 
 (** The status of the game. *)

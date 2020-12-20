@@ -30,8 +30,7 @@ let process_gym input st =
        opponent = (List.hd (List.rev st.trainers)).poke_list; 
        hover = 0; 
        select = None;
-       is_trainer = true;
-       previous = None;
+       is_trainer = true
       } in 
     {st with status = Menu mst}
   else {st with panel_txt = "You must battle in order!"; status = WalkingGym}

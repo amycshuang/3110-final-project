@@ -37,7 +37,7 @@ and check_menu st : unit =
   match st.status with 
   | Menu mst -> begin
       match mst.status with 
-      | Attack _ -> let def_status = {mst with status = Default} in
+      | Attack _ -> let def_status = {mst with hover = 0; status = Default} in
         play_game {st with status = Menu def_status}                            
       | _ -> ()
     end

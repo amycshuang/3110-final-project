@@ -32,8 +32,7 @@ type menu_state = {
   opponent : Pokemon.pokemon list;
   hover : int;
   select : menu option;
-  is_trainer : bool;
-  previous : menu_state option
+  is_trainer : bool
 }
 
 (** The status of the game. *)
@@ -67,8 +66,7 @@ let spawn_status block (st : state) =
                  opponent = [x]; 
                  hover = 0; 
                  select = None;
-                 is_trainer = false;
-                 previous = None
+                 is_trainer = false
                 } in 
     Menu mst
   | None -> Walking
@@ -95,8 +93,7 @@ let update_status (st : state) = function
             opponent = trainer.poke_list; 
             hover = 0; 
             select = None;
-            p_turn = true;
-            previous = None
+            p_turn = true
           } in 
    if trainer = (List.hd (List.rev st.trainers)) then 
    let gym_state = {

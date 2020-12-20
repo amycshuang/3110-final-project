@@ -266,7 +266,7 @@ let make_options ncol x y width height lst hover_str =
 let make_poke_options curr lst hover_choice =
   let x = (size_x ()) / 3 in
   let y = ((size_y ()) / 6) + 10 in
-  let s_y = (size_y ()) / 6 in
+  let s_y = 5 + (size_y ()) / 6 in
   let fst_loc = (10, (size_y () / 2)) in
   let fst_poke = List.hd lst in
   let fst_bool = if fst_poke = hover_choice then true else false in
@@ -274,9 +274,9 @@ let make_poke_options curr lst hover_choice =
   let rec making acc = function
     | [] -> acc
     | h :: t -> let n = List.length t in
-      let multy = (n + 1) in
+      let multy = 5 - (n + 1) in
       let select_bool = if h = hover_choice then true else false in
-      let new_loc = (x + 50, ((multy * s_y) + (s_y / 2 + y))) in
+      let new_loc = (x + 50, (multy * s_y) + y - 45) in
       let button = {loc = new_loc; poke = h; selected = select_bool; first = false} in making (button::acc) t in
   making [fst_pokeopt] (List.tl lst)
 
@@ -546,33 +546,21 @@ let render_menu (st : State.state) (mst : State.menu_state) =
 
    let test_opp = List.nth poke_lst 2
 
-   let test_map = Block.json_to_map "map1.json"
+   let test_map = Block.json_to_map "map_jsons/map1.json"
 
    let test_st = init_state "test" starter test_map
 
-   <<<<<<< HEAD
-
-   let test_mst : menu_state = {
-   status = Default;
-   player = test_st.player;
-   opponent = [test_opp];
-   hover = 0;
-   select = None;
-   p_turn = true;
-   previous = None
-   } *)
-(* =======
    let test_mst : menu_state = {
    status = Default;
    player = {test_st.player with poke_list = poke_lst};
    opponent = [test_opp];
    hover = 0;
    select = None;
-   previous = None
+   is_trainer = false
    }
-   >>>>>>> origin/kassie *)
 
-(* let () = render_pokelst test_st test_mst  *)
+
+   let () = render_pokelst test_st test_mst  *)
 
 (******************************************************************************)
 
@@ -673,7 +661,7 @@ let draw_people x y p_color =
    let () = Graphics.clear_graph () in
    let () = draw_people (50 + (size_x () / 6)) 175 Graphics.black in 
    let () = draw_people (300 + (size_x () / 6)) (160 + (size_y () / 3)) 
-      (Graphics.rgb 97 95 216) in 
+   (Graphics.rgb 97 95 216) in 
 
    let () = synchronize () in () *)
 
@@ -692,7 +680,7 @@ let draw_people x y p_color =
    let () = Graphics.clear_graph () in
    let () = draw_people (50 + (size_x () / 6)) 175 Graphics.black in 
    let () = draw_people (300 + (size_x () / 6)) (160 + (size_y () / 3)) 
-      (Graphics.rgb 97 95 216) in 
+   (Graphics.rgb 97 95 216) in 
    let () = synchronize () in () *)
 
 let render_battle st = failwith "TODO"

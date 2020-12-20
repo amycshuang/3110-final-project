@@ -6,6 +6,7 @@
 #load "pokemon.cmo";;
 #load "player.cmo";;
 #load "block.cmo";;
+#load "trainer.cmo";;
 #load "state.cmo";;
 #load "walking.cmo";;
 #load "encounter.cmo";;
