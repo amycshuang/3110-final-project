@@ -13,7 +13,7 @@ val render_pokecenter : State.state -> unit
 val render_no_money : unit -> unit
 
 (** TODO - add doc comment *)
-val render_trainertalk : State.state -> unit
+val render_trainertalk : Trainer.trainer -> State.state -> unit
 
 (** TODO - add doc comment *)
 val render_trainerover : State.state -> unit

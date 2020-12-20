@@ -17,11 +17,11 @@ let gym_key ch =
 (** TODO - add doc *)
 let win_battle_money trainers = 1200 / (List.length trainers + 1)
 
-let set_gym_start st =
+let set_gym_start st t =
   let mst =                 
     {status = Default;
      player = st.player; 
-     opponent = (List.hd st.trainers).poke_list; 
+     opponent = t.poke_list; 
      hover = 0; 
      select = None;
      is_trainer = true;
@@ -46,7 +46,7 @@ let set_gym_win st =
 
 let process_gym input st =
   match gym_key input, st.status with 
-  | StartBattle, TrainerTalk -> set_gym_start st 
+  | StartBattle, TrainerTalk t -> set_gym_start st t
   | EndBattle, TrainerOver -> set_gym_win st 
   | _, _ -> st
 

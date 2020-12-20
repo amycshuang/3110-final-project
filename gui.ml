@@ -683,11 +683,11 @@ let rec draw_trainer_pokeball pkm x y size color =
       Graphics.draw_circle x y size;
       draw_trainer_pokeball t (x + 70) y size color end 
 
-let draw_trainer_panel st x1 y1 x2 y2 color = 
-  draw_trainer_pokeball st.player.poke_list
+(* let draw_trainer_panel st x1 y1 x2 y2 color = 
+   draw_trainer_pokeball st.player.poke_list
     Graphics.set_color color; 
-  Graphics.moveto x1 y1;
-  Graphics.lineto x2 y2
+   Graphics.moveto x1 y1;
+   Graphics.lineto x2 y2 *)
 
 (* let draw_text_panel p_width p_height = 
    custom_outline Graphics.white 0 0 p_width battle_panel_ht 13 5;
@@ -699,7 +699,7 @@ let render_trainertalk trainer st =
   let () = Graphics.clear_graph () in
   let () = draw_people (50 + (size_x () / 6)) 175 Graphics.black in 
   let () = draw_people (300 + (size_x () / 6)) (160 + (size_y () / 3)) (Graphics.rgb 97 95 216) in 
-  let () = draw_trainer_panel st (50 + (size_x () / 2)) 170 (200 + (size_x () / 2)) 170 Graphics.black in 
+  (* let () = draw_trainer_panel st (50 + (size_x () / 2)) 170 (200 + (size_x () / 2)) 170 Graphics.black in  *)
   let () = synchronize () in () 
 
 let render_trainerover st = 

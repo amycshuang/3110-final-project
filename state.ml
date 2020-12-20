@@ -89,7 +89,7 @@ let set_trainer st =
     CannotBattle
   else TrainerTalk trainer
 
-let set_win st = 
+let check_win st = 
   if List.length st.trainers = 0 then Win
   else set_trainer st 
 
@@ -102,7 +102,7 @@ let update_status (st : state) = function
   | Null | GymRoad | BrownGymFloor | GreyGymFloor -> WalkingGym 
   | Exit -> ExitGym
   | PokeCenter -> PokeCenter 
-  | Trainer | ClarksonSpot -> set_win st 
+  | Trainer | ClarksonSpot -> check_win st 
 
 let player_block p map = 
   let (x, y) = p.location in 
