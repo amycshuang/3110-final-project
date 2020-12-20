@@ -265,20 +265,18 @@ let make_options ncol x y width height lst hover_str =
 
 let make_poke_options curr lst hover_choice =
   let x = (size_x ()) / 3 in
-  let y = ((size_y ()) / 6) + 10 in
-  let s_y = 5 + (size_y ()) / 6 in
+  (* let y = ((size_y ()) / 6) + 10 in *)
+  let s_y = size_y () / 6 in
   let fst_loc = (10, (size_y () / 2)) in
   let fst_poke = List.hd lst in
   let fst_bool = if fst_poke = hover_choice then true else false in
   let fst_pokeopt = {loc = fst_loc; poke = fst_poke; selected = fst_bool; first = true} in
-  let rec making acc = function
+  let rec making acc n = function
     | [] -> acc
-    | h :: t -> let n = List.length t in
-      let multy = 5 - (n + 1) in
-      let select_bool = if h = hover_choice then true else false in
-      let new_loc = (x + 50, (multy * s_y) + y - 45) in
-      let button = {loc = new_loc; poke = h; selected = select_bool; first = false} in making (button::acc) t in
-  making [fst_pokeopt] (List.tl lst)
+    | h :: t -> let select_bool = if h = hover_choice then true else false in
+      let new_loc = (x + 50, size_y () - (n * s_y) - 10) in
+      let button = {loc = new_loc; poke = h; selected = select_bool; first = false} in making (button::acc) (n + 1) t in
+  making [fst_pokeopt] 1 (List.tl lst)
 
 (** [list_of_stats pokemon] are the stats displayed of a Pokemon [pokemon] 
     during an encounter *)
@@ -404,7 +402,7 @@ let draw_fst_pokelst (poke : poke_option) =
 let draw_pokelst_rest (poke : poke_option) : unit =
   let (x, y) = poke.loc in
   let width = (size_x ()) - x - 15 in
-  let height = ((size_y ()) / 6 - 5) in
+  let height = ((size_y ()) / 6 - 10) in
   Graphics.set_color (Graphics.rgb 78 143 210);
   Graphics.fill_rect x y width height;
   draw_poke (x + (height / 3) + 5) (y + height / 2) poke.poke (height / 3);
