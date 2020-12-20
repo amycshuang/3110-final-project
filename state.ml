@@ -44,7 +44,7 @@ type status =  Walking
             | PokeCenter
             | AlreadyBattled
             | CannotBattle
-            | TrainerTalk  
+            | TrainerTalk of trainer
             | TrainerOver 
             | Menu of menu_state
             | Win
