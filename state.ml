@@ -25,7 +25,6 @@ type menu_state = {
   opponent: Pokemon.pokemon list;
   hover: int;
   select: menu option;
-  p_turn : bool;
   previous: menu_state option
 }
 
@@ -55,7 +54,6 @@ let spawn_status block (st : state) =
                  opponent = [x]; 
                  hover = 0; 
                  select = None;
-                 p_turn = true;
                  previous = None
                 } in 
     Menu mst

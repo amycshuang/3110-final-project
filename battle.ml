@@ -23,12 +23,6 @@ let newpkm = battledamage pkm1 chosen move
 
 let check_battle st : bool = failwith "unimplemented"
 
-let battle (st : battle_state) = 
-  if check_battle (u can still battle) then 
-    if st.p_turn 
-    then let p_move = choose_attack st.player.pkm1 
-      in battle {st with player.poe = p_move, p_turn = false} 
-    else let opp_move = opponent_move st.opponent in 
-  else {st } *)
+
 
 let process_battle st mst = failwith "TODO"

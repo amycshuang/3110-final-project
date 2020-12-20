@@ -33,6 +33,16 @@ let hover_change (st : menu_state) dir =
         | Down -> st.hover + 2
         | Right -> st.hover + 1
       end
+    | PokeList -> begin
+        match st.hover, dir with
+        | 0, Right -> st.hover + 1
+        | 0, _ -> st.hover
+        | 1, Up -> st.hover
+        | _, Right -> st.hover
+        | _, Left -> 0
+        | _, Up -> st.hover - 1
+        | _, Down -> st.hover + 1
+      end
     | _ -> begin
         match dir with
         | Up -> st.hover - 1
@@ -96,6 +106,7 @@ let menu_of_string (mst : menu_state) =
       | Potion -> Heal
       | Pokeball -> Catch
     end
+  | PokeList -> Switch
   | x -> x
 (* | x -> begin 
    if (contains x "POKEBALL") then Catch

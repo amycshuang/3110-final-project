@@ -20,7 +20,6 @@ type menu_state = {
   opponent: Pokemon.pokemon list;
   hover: int;
   select: menu option;
-  p_turn : bool;
   previous: menu_state option
 }
 
