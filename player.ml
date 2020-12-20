@@ -33,7 +33,7 @@ let init_player name start_poke loc = {
   nickname = name;
   location = loc;
   (* poke_list = [lower_hp start_poke]; *)
-  poke_list = [start_poke];
+  poke_list = [start_poke; start_poke; start_poke];
   bag = empty_bag;
   balance = 500;
 }

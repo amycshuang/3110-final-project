@@ -42,6 +42,8 @@ type status =  Walking
             | EnterGym
             | ExitGym
             | PokeCenter
+            | AlreadyBattled
+            | CannotBattle
             | TrainerTalk  
             | TrainerOver 
             | Menu of menu_state
@@ -73,12 +75,26 @@ let spawn_status block (st : state) =
     Menu mst
   | None -> Walking
 
-(** TODO: add comment *)
-let trainer_battle st =   
-  match List.filter (fun (t : Trainer.trainer) -> 
-      (t.x, t.y) = st.player.location) st.trainers with 
+let trainer_on_block st =   
+  let all_trainers = trainer_list_from_json (Yojson.Basic.from_file "trainers.json") in 
+  match List.filter (fun t -> (t.x, t.y) = st.player.location) all_trainers with 
   | [] -> failwith "impossible"
   | h :: t -> h 
+
+let set_trainer st =      
+  if not (List.mem (trainer_on_block st) st.trainers) then 
+    AlreadyBattled
+  else if List.hd st.trainers <> (trainer_on_block st) then 
+    CannotBattle
+  else TrainerTalk
+
+let set_win st = 
+  if List.length st.trainers = 0 then Win
+  else set_trainer st 
+(* let bag = {st.player.bag with badge_case = ["Functional Programming Gym"]} in 
+   let win_player = {st.player with bag = bag} in 
+   {st with player = win_player; status = Win}
+   else set_trainer st *)
 
 let update_status (st : state) = function 
   | TallGrass -> spawn_status TallGrass st
@@ -89,28 +105,7 @@ let update_status (st : state) = function
   | Null | GymRoad | BrownGymFloor | GreyGymFloor -> WalkingGym 
   | Exit -> ExitGym
   | PokeCenter -> PokeCenter 
-  | Trainer | ClarksonSpot -> TrainerTalk
-(* let mst = { status = Default;
-            player = st.player; 
-            opponent = trainer.poke_list; 
-            hover = 0; 
-            select = None;
-            p_turn = true;
-            previous = None
-          } in 
-   if trainer = (List.hd (List.rev st.trainers)) then 
-   let gym_state = {
-    trainer = trainer; 
-    battle = mst; 
-    status = Begin;
-   }
-   in GymBattle gym_state
-   else let gym_state = {
-    trainer = trainer; 
-    battle = mst; 
-    status = CannotBattle;
-   }
-   in GymBattle gym_state *)
+  | Trainer | ClarksonSpot -> set_win st 
 
 let player_block p map = 
   let (x, y) = p.location in 
@@ -137,5 +132,5 @@ let init_state name starter map =
     player = make_player name starter map;
     panel_txt = "Use your WASD keys to move around the map";
     status = Walking;
-    trainers = trainer_array (Yojson.Basic.from_file "trainers.json");
+    trainers = List.rev (trainer_list_from_json (Yojson.Basic.from_file "trainers.json"));
   }

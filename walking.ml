@@ -113,25 +113,11 @@ let process_gym st =
     let mv_player = {st.player with location = loc} in 
     {st with player = mv_player; status = Walking}
 
-let trainer_battle st =   
+let trainer_on_block st =   
   match List.filter (fun (t : Trainer.trainer) -> 
       (t.x, t.y) = st.player.location) st.trainers with 
   | [] -> failwith "impossible"
   | h :: t -> h 
-
-let set_gym st = 
-  if List.hd (List.rev st.trainers) = trainer_battle st then
-    let mst =                 
-      {status = Default;
-       player = st.player; 
-       opponent = (List.hd (List.rev st.trainers)).poke_list; 
-       hover = 0; 
-       select = None;
-       is_trainer = true;
-       previous = None;
-      } in 
-    {st with status = Menu mst}
-  else {st with panel_txt = "You must battle in order!"; status = WalkingGym}
 
 let process_walk input (st : State.state) =
   let action = walk_key input in
@@ -156,8 +142,11 @@ let process_walk input (st : State.state) =
             let loc = gym_loc st.maps.(0) in 
             let mv_player = {mv_st.player with location = loc} in 
             {mv_st with player = mv_player; status = Walking}
-          else if new_status = TrainerTalk then 
-            set_gym mv_st
+          else if new_status = AlreadyBattled then 
+            {st with panel_txt = "We have already battled!";
+                     status = WalkingGym}
+          else if new_status = CannotBattle then 
+            {st with panel_txt = "You must battle in order!"; status = WalkingGym}
           else {mv_st with status = new_status} end 
       | _ -> failwith "impossible"
     end 

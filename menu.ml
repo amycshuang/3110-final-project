@@ -5,13 +5,11 @@ open Command
 open Walking
 open Encounter
 
-(** TODO: add comment *)
 type direction = Up | Left | Right | Down 
 
 (** The type of selection on the encounter screen *)
 type selection = Move of direction| Enter | Back
 
-(** TODO: add comment *)
 let default_menu = [|"FIGHT"; "BAG"; "POKEMON"; "RUN"|]
 
 (** [encount ch] is the correpsonding selection action to a key input. *)
@@ -25,7 +23,6 @@ let encount_key ch =
   | 'b' -> Some Back
   | _ -> None
 
-(** TODO: add comment *)
 let hover_change (st : menu_state) dir =
   let new_hover = 
     match st.status with
@@ -118,7 +115,6 @@ let menu_of_string (mst : menu_state) =
    else Attack 
    end *)
 
-(** TODO: add comment *)
 let action_change mst = function
   | Move x -> hover_change mst x
   | Enter -> let select_menu = menu_of_string mst in
@@ -129,12 +125,10 @@ let action_change mst = function
       | Some x -> x
     end
 
-(** TODO: add comment *)
 let select_change est = function
   | Some sel -> action_change est sel
   | None -> est
 
-(** TODO: add comment *)
 let menu_change (mst : menu_state) st menu =
   match menu with 
   | Fight -> process_fight mst st 
@@ -144,7 +138,7 @@ let menu_change (mst : menu_state) st menu =
   | Heal -> process_heal mst st 
   | Switch -> process_switch mst st 
   | Attack atks -> process_attack {mst with status = Attack atks} st atks 
-  | Run -> {st with status = Walking}
+  | Run -> process_run mst st
   | _ -> failwith "idk yet"
 
 let rec process_menu input (st: state) (mst : State.menu_state) =
