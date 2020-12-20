@@ -484,14 +484,9 @@ let render_moves (st : State.state) (mst : State.menu_state) =
   let () = draw_options (mv_lst (List.hd st.player.poke_list) mst.hover) in
   let () = synchronize () in ()
 
-<<<<<<< HEAD
-let render_attack (st : State.state) (mst : State.menu_state) poke1 poke2 player opp atk = 
-  let () = Graphics.open_graph (graph_dims st.maps.(0)); in
-=======
 let render_attack (st : State.state) (mst : State.menu_state) 
     poke1 poke2 player opp atk = 
-  let () = Graphics.open_graph (graph_dims st.map); in
->>>>>>> origin/kassie
+  let () = Graphics.open_graph (graph_dims st.maps.(0)); in
   let () = Graphics.clear_graph () in
   let txt = attack_effectiveness poke1 poke2 atk in
   let () = draw_attack_info txt in
@@ -503,7 +498,7 @@ let render_attack (st : State.state) (mst : State.menu_state)
   let () = synchronize () in ()
 
 let render_bag (st : State.state) (mst : State.menu_state) =
-  let () = Graphics.open_graph (graph_dims st.map); in
+  let () = Graphics.open_graph (graph_dims st.maps.(0)); in
   let () = Graphics.clear_graph () in
   let () = Graphics.set_color (Graphics.rgb 75 194 186) in
   let () = Graphics.fill_rect 0 0 (size_x ()) (size_y ()) in
@@ -513,7 +508,7 @@ let render_bag (st : State.state) (mst : State.menu_state) =
   let () = synchronize () in ()
 
 let render_pokelst (st : State.state) (mst : State.menu_state) =
-  let () = Graphics.open_graph (graph_dims st.map); in
+  let () = Graphics.open_graph (graph_dims st.maps.(0)); in
   let () = Graphics.clear_graph () in
   let () = pokelst_bg () in
   let pokelst = Array.of_list mst.player.poke_list in
@@ -555,7 +550,7 @@ let render_menu (st : State.state) (mst : State.menu_state) =
 
    let test_st = init_state "test" starter test_map
 
-<<<<<<< HEAD
+   <<<<<<< HEAD
 
    let test_mst : menu_state = {
    status = Default;
@@ -566,16 +561,16 @@ let render_menu (st : State.state) (mst : State.menu_state) =
    p_turn = true;
    previous = None
    } *)
-=======
-let test_mst : menu_state = {
-  status = Default;
-  player = {test_st.player with poke_list = poke_lst};
-  opponent = [test_opp];
-  hover = 0;
-  select = None;
-  previous = None
-}
->>>>>>> origin/kassie
+(* =======
+   let test_mst : menu_state = {
+   status = Default;
+   player = {test_st.player with poke_list = poke_lst};
+   opponent = [test_opp];
+   hover = 0;
+   select = None;
+   previous = None
+   }
+   >>>>>>> origin/kassie *)
 
 (* let () = render_pokelst test_st test_mst  *)
 

@@ -116,16 +116,6 @@ let get_pokecenter_loc map =
   done;
   !loc
 
-<<<<<<< HEAD
-=======
-(** [str_bag_items b] is a string representation of the inventory in bag [b]. *)
-let rec str_bag_items = function 
-  | [] -> []
-  | (item, amt) :: t -> match item with 
-    | Player.Potion ->  ("POTIONS (x" ^ string_of_int amt ^ ")") :: str_bag_items t 
-    | Player.Pokeball ->("POKEBALLS (x" ^ string_of_int amt ^ ")") :: str_bag_items t 
-
->>>>>>> origin/kassie
 (** [str_poke_lst pkm_lst] is the string representation of the pokemon in 
     pokemon list [pkm_lst]. *)
 let str_poke_lst pkm_lst = 
@@ -152,12 +142,8 @@ let opp_attack st mst atks =
     if check_pokelist new_pkm_lst then 
       let new_pkm_lst' = set_battle_team new_pkm_lst in 
       let new_player = {st.player with poke_list = new_pkm_lst'} in 
-<<<<<<< HEAD
       let new_mst = 
         {mst with player = new_player; select = None} in 
-=======
-      let new_mst = {mst with player = new_player; select = None} in 
->>>>>>> origin/kassie
       let () = atks.battling_poke.(1) <- List.hd new_pkm_lst in 
       {st with player = new_player; status = Menu new_mst}
     else 
@@ -196,6 +182,7 @@ let player_attack atks st mst =
     if check_pokelist new_mst.opponent then 
       let new_opp_lst' = set_battle_team new_mst.opponent in 
       let new_mst' = {new_mst with opponent = new_opp_lst'} in 
+      let () = atks.battling_poke.(2) <- List.hd new_opp_lst' in 
       let () = atks.battling_poke.(3) <- List.hd new_opp_lst' in 
       opp_attack {new_st with status = Menu new_mst'} new_mst' atks
     else 
