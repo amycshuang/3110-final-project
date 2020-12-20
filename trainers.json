@@ -1,7 +1,8 @@
 [
   {
     "name": "Clarkson",
-    "catchphrase": "Peace, Love, and 3110",
+    "catchphrase": "You thought mutability was hard? Are you ready to face the power of the lambda calculus?",
+    "endphrase": "Wow! I see you are a pragmatic programmer! See you soon young grasshopper. Meanwhile, I hope you are well. Peace, love, and 3110",
     "x": 9,
     "y": 8,
     "poke_list": [
@@ -10,14 +11,14 @@
         "poke_type": "Ground",
         "stats": {
           "level": 10,
-          "base_hp": 70,
-          "hp": 70,
+          "base_hp": 10,
+          "hp": 10,
           "attack": 100,
           "defense": 70,
           "curr_exp": 0,
           "level_up_exp": 50
         },
-        "caught": false,
+        "caught": true,
         "move_set": [
           {
             "move_type": "Ground",
@@ -42,14 +43,14 @@
         "poke_type": "Ghost",
         "stats": {
           "level": 11,
-          "base_hp": 150,
-          "hp": 150,
+          "base_hp": 10,
+          "hp": 10,
           "attack": 100,
           "defense": 120,
           "curr_exp": 0,
           "level_up_exp": 50
         },
-        "caught": false,
+        "caught": true,
         "move_set": [
           {
             "move_type": "Ghost",
@@ -74,14 +75,14 @@
         "poke_type": "Water",
         "stats": {
           "level": 9,
-          "base_hp": 130,
-          "hp": 130,
+          "base_hp": 10,
+          "hp": 10,
           "attack": 65,
           "defense": 60,
           "curr_exp": 0,
           "level_up_exp": 50
         },
-        "caught": false,
+        "caught": true,
         "move_set": [
           {
             "move_type": "Water",
@@ -106,14 +107,14 @@
         "poke_type": "Dark",
         "stats": {
           "level": 11,
-          "base_hp": 95,
-          "hp": 95,
+          "base_hp": 10,
+          "hp": 10,
           "attack": 65,
           "defense": 110,
           "curr_exp": 0,
           "level_up_exp": 50
         },
-        "caught": false,
+        "caught": true,
         "move_set": [
           {
             "move_type": "Dark",
@@ -136,112 +137,9 @@
     ]
   },
   {
-    "name": "Gries",
-    "catchphrase": "Do you know the four loopy questions?",
-    "x": 5,
-    "y": 2,
-    "poke_list": [
-      {
-        "name": "Jolteon",
-        "poke_type": "Electric",
-        "stats": {
-          "level": 9,
-          "base_hp": 65,
-          "hp": 65,
-          "attack": 65,
-          "defense": 60,
-          "curr_exp": 0,
-          "level_up_exp": 50
-        },
-        "caught": false,
-        "move_set": [
-          {
-            "move_type": "Electric",
-            "move_name": "Thunder Fang"
-          },
-          {
-            "move_type": "Electric",
-            "move_name": "Thunder Shock"
-          },
-          {
-            "move_type": "Normal",
-            "move_name": "Covet"
-          },
-          {
-            "move_type": "Normal",
-            "move_name": "Swift"
-          }
-        ]
-      },
-      {
-        "name": "Riolu",
-        "poke_type": "Fighting",
-        "stats": {
-          "level": 9,
-          "base_hp": 40,
-          "hp": 40,
-          "attack": 70,
-          "defense": 40,
-          "curr_exp": 0,
-          "level_up_exp": 50
-        },
-        "caught": false,
-        "move_set": [
-          {
-            "move_type": "Fighting",
-            "move_name": "Final Gambit"
-          },
-          {
-            "move_type": "Fighting",
-            "move_name": "Rock Smash"
-          },
-          {
-            "move_type": "Normal",
-            "move_name": "Swords Dance"
-          },
-          {
-            "move_type": "Normal",
-            "move_name": "Copycat"
-          }
-        ]
-      },
-      {
-        "name": "Leafeon",
-        "poke_type": "Grass",
-        "stats": {
-          "level": 8,
-          "base_hp": 65,
-          "hp": 65,
-          "attack": 110,
-          "defense": 130,
-          "curr_exp": 0,
-          "level_up_exp": 50
-        },
-        "caught": false,
-        "move_set": [
-          {
-            "move_type": "Grass",
-            "move_name": "Giga Drain"
-          },
-          {
-            "move_type": "Grass",
-            "move_name": "Leaf Blade"
-          },
-          {
-            "move_type": "Ground",
-            "move_name": "Sand Attack"
-          },
-          {
-            "move_type": "Normal",
-            "move_name": "Swords Dance"
-          }
-        ]
-      }
-    ]
-  },
-  {
     "name": "Ann Bracy",
-    "catchphrase": "Welcome back folks, time to battle!",
+    "catchphrase": "Time to see if you're a real CS nerd. Let's battle!",
+    "endphrase": "",
     "x": 11,
     "y": 5,
     "poke_list": [
@@ -250,14 +148,14 @@
         "poke_type": "Fire",
         "stats": {
           "level": 9,
-          "base_hp": 50,
-          "hp": 50,
+          "base_hp": 10,
+          "hp": 10,
           "attack": 85,
           "defense": 55,
           "curr_exp": 0,
           "level_up_exp": 50
         },
-        "caught": false,
+        "caught": true,
         "move_set": [
           {
             "move_type": "Fire",
@@ -282,14 +180,14 @@
         "poke_type": "Ice",
         "stats": {
           "level": 9,
-          "base_hp": 130,
-          "hp": 130,
+          "base_hp": 10,
+          "hp": 10,
           "attack": 85,
           "defense": 80,
           "curr_exp": 0,
           "level_up_exp": 50
         },
-        "caught": false,
+        "caught": true,
         "move_set": [
           {
             "move_type": "Water",
@@ -314,14 +212,14 @@
         "poke_type": "Normal",
         "stats": {
           "level": 11,
-          "base_hp": 55,
-          "hp": 55,
+          "base_hp": 10,
+          "hp": 10,
           "attack": 55,
           "defense": 50,
           "curr_exp": 0,
           "level_up_exp": 50
         },
-        "caught": false,
+        "caught": true,
         "move_set": [
           {
             "move_type": "Normal",
@@ -344,8 +242,82 @@
     ]
   },
   {
+    "name": "Gries",
+    "catchphrase": "Do you know the four loopy questions? Will this battle start right? How will this battle progress towards termination?",
+    "endphrase": "I guess this battle did end right. It looks like you have mastered the four loopy questions. Good luck on your journey.",
+    "x": 5,
+    "y": 2,
+    "poke_list": [
+      {
+        "name": "Jolteon",
+        "poke_type": "Electric",
+        "stats": {
+          "level": 9,
+          "base_hp": 10,
+          "hp": 10,
+          "attack": 65,
+          "defense": 60,
+          "curr_exp": 0,
+          "level_up_exp": 50
+        },
+        "caught": true,
+        "move_set": [
+          {
+            "move_type": "Electric",
+            "move_name": "Thunder Fang"
+          },
+          {
+            "move_type": "Electric",
+            "move_name": "Thunder Shock"
+          },
+          {
+            "move_type": "Normal",
+            "move_name": "Covet"
+          },
+          {
+            "move_type": "Normal",
+            "move_name": "Swift"
+          }
+        ]
+      },
+      {
+        "name": "Leafeon",
+        "poke_type": "Grass",
+        "stats": {
+          "level": 8,
+          "base_hp": 10,
+          "hp": 10,
+          "attack": 110,
+          "defense": 130,
+          "curr_exp": 0,
+          "level_up_exp": 50
+        },
+        "caught": true,
+        "move_set": [
+          {
+            "move_type": "Grass",
+            "move_name": "Giga Drain"
+          },
+          {
+            "move_type": "Grass",
+            "move_name": "Leaf Blade"
+          },
+          {
+            "move_type": "Ground",
+            "move_name": "Sand Attack"
+          },
+          {
+            "move_type": "Normal",
+            "move_name": "Swords Dance"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "name": "Walker White",
     "catchphrase": "I get a lot of emails, this better be quick.",
+    "endphrase": "",
     "x": 14,
     "y": 4,
     "poke_list": [
@@ -354,14 +326,14 @@
         "poke_type": "Normal",
         "stats": {
           "level": 9,
-          "base_hp": 50,
-          "hp": 50,
+          "base_hp": 10,
+          "hp": 10,
           "attack": 45,
           "defense": 45,
           "curr_exp": 0,
           "level_up_exp": 50
         },
-        "caught": false,
+        "caught": true,
         "move_set": [
           {
             "move_type": "Normal",
@@ -386,14 +358,14 @@
         "poke_type": "Water",
         "stats": {
           "level": 11,
-          "base_hp": 50,
-          "hp": 50,
+          "base_hp": 10,
+          "hp": 10,
           "attack": 70,
           "defense": 50,
           "curr_exp": 0,
           "level_up_exp": 50
         },
-        "caught": false,
+        "caught": true,
         "move_set": [
           {
             "move_type": "Water",
