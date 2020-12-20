@@ -51,7 +51,6 @@ let string_of_item = function
   | Potion -> "Potion"
   | Pokeball -> "Pokeball"
 
-(** [parse_bag p] parses the player's bag to display on the text panel *)
 let parse_bag p = 
   let bag = p.bag in
   let inventory = bag.inventory in
@@ -61,9 +60,7 @@ let parse_bag p =
                          ^ parse_inventory t in 
   parse_inventory inventory
 
-(** [parse_pokelist p] parses the player's Pokemon list to display on the text 
-    panel *)
-let parse_pokelist p =
+let parse_pokelist (p : Player.player) =
   let pokelist = p.poke_list in
   let rec parse_poke = function
     | [] -> ""
@@ -105,6 +102,7 @@ let gym_loc map =
   done;
   !loc
 
+(** TODO: add comment *)
 let process_gym st = 
   if st.status = EnterGym then 
     let loc = gym_entrance_loc st.maps.(1) in 
@@ -115,7 +113,26 @@ let process_gym st =
     let mv_player = {st.player with location = loc} in 
     {st with player = mv_player; status = Walking}
 
-(** [process_walk input st] processes the state while walking. *)
+let trainer_battle st =   
+  match List.filter (fun (t : Trainer.trainer) -> 
+      (t.x, t.y) = st.player.location) st.trainers with 
+  | [] -> failwith "impossible"
+  | h :: t -> h 
+
+let set_gym st = 
+  if List.hd (List.rev st.trainers) = trainer_battle st then
+    let mst =                 
+      {status = Default;
+       player = st.player; 
+       opponent = (List.hd (List.rev st.trainers)).poke_list; 
+       hover = 0; 
+       select = None;
+       is_trainer = true;
+       previous = None;
+      } in 
+    {st with status = Menu mst}
+  else {st with panel_txt = "You must battle in order!"; status = WalkingGym}
+
 let process_walk input (st : State.state) =
   let action = walk_key input in
   match action with
@@ -139,8 +156,9 @@ let process_walk input (st : State.state) =
             let loc = gym_loc st.maps.(0) in 
             let mv_player = {mv_st.player with location = loc} in 
             {mv_st with player = mv_player; status = Walking}
-          else 
-            {mv_st with status = new_status} end 
+          else if new_status = TrainerTalk then 
+            set_gym mv_st
+          else {mv_st with status = new_status} end 
       | _ -> failwith "impossible"
     end 
   | Display x -> {st with panel_txt=(display st x)}

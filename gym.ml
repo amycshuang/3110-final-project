@@ -2,39 +2,63 @@ open Player
 open State
 open Pokemon
 open Gui
+open Menu
 
-(** [gym_entrance_loc map] is the location of the gym entrance on [map]. *)
-(* let gym_entrance_loc map = 
-   let ncol = Array.length map.(0) in 
-   let nrow = Array.length map in 
-   let loc = ref (0, 0) in 
-   for row = 0 to (nrow - 1) do 
-    for col = 0 to (ncol - 1) do 
-      if map.(row).(col) = Block.Exit then 
-        loc := (col, row)
-    done; 
-   done;
-   !loc
+type gym_action =  StartBattle | Default
 
-   (** [gym_loc map] is the location of the gym on [map]. *)
-   let gym_loc map = 
-   let ncol = Array.length map.(0) in 
-   let nrow = Array.length map in 
-   let loc = ref (0, 0) in 
-   for row = 0 to (nrow - 1) do 
-    for col = 0 to (ncol - 1) do 
-      if map.(row).(col) = Block.Gym then 
-        loc := (col, row)
-    done; 
-   done;
-   !loc
+let gym_key ch = 
+  match ch with 
+  | 'b' -> StartBattle 
+  | _ -> Default
 
-   let process_gym st = 
-   if st.status = EnterGym then 
-    let loc = gym_entrance_loc st.maps.(1) in 
-    let mv_player = {st.player with location = loc} in 
-    {st with player = mv_player; status = WalkingGym}
-   else 
-    let loc = gym_loc st.maps.(0) in 
-    let mv_player = {st.player with location = loc} in 
-    {st with player = mv_player; status = Walking} *)
+(** make sure you battle the trainers in order for example if trainer is the
+    first index in the array then thats fine but if trainer is the second index 
+    in the array then you should not be able to battle them 
+    with panel text ? *)
+
+let trainer_battle st =   
+  match List.filter (fun (t : Trainer.trainer) -> 
+      (t.x, t.y) = st.player.location) st.trainers with 
+  | [] -> failwith "impossible"
+  | h :: t -> h 
+
+let process_gym input st = 
+  if List.hd (List.rev st.trainers) = trainer_battle st then
+    let mst =                 
+      {status = Default;
+       player = st.player; 
+       opponent = (List.hd (List.rev st.trainers)).poke_list; 
+       hover = 0; 
+       select = None;
+       is_trainer = true;
+       previous = None;
+      } in 
+    {st with status = Menu mst}
+  else {st with panel_txt = "You must battle in order!"; status = WalkingGym}
+
+
+(* match gst.status with 
+   | CannotBattle -> 
+   {st with panel_txt = "You must battle in order!"; status = WalkingGym}
+   | Begin -> begin 
+    match gym_key input with 
+    | StartBattle -> {st with status = GymBattle {gst with status = Battling}}
+    | Default -> st end 
+   | Battling -> begin 
+    let n_st = process_menu input st gst.battle in 
+    match n_st.status with 
+    | Walking -> {st with status = GymBattle {gst with status = Over}}
+    | PokeCenter -> n_st
+    | Menu mst -> begin 
+        match mst.status with 
+        | Attack _ -> 
+          let mst' = {mst with select = None; status = Default} in 
+          {st with status = GymBattle {gst with battle = mst'}}
+        | _ -> {st with status = GymBattle {gst with battle = mst}}
+      end 
+    | _ -> failwith "impossible"
+   end 
+   | Over -> 
+   (* let new_trainers - *)
+   (** remove the trainer from the state's trainer list *)
+   {st with status = WalkingGym} *)

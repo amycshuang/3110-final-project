@@ -11,7 +11,6 @@ type trainer = {
 }
 
 let trainer_from_json j = 
-
   {
     name = j |> member "name" |> to_string;
     catchphrase = j |> member "catchphrase" |> to_string;
@@ -24,4 +23,6 @@ let trainer_from_json j =
     Requires: [j] is a valid JSON for a list of trainers. *)
 let trainer_list_from_json j = j |> to_list |> List.map trainer_from_json
 
-let trainer_array j = Array.of_list (trainer_list_from_json j)
+
+(** TODO *)
+let trainer_array j = trainer_list_from_json j

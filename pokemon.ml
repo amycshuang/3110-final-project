@@ -1,12 +1,11 @@
 open Yojson.Basic.Util
 
+exception InvalidPokemon of string
+exception InvalidPokemonType of string 
+
 type poke_type = 
   | Bug | Dark | Dragon | Electric | Fairy | Fighting | Fire | Flying | Ghost 
   | Grass | Ground | Ice | Normal | Poison | Psychic | Rock | Steel | Water 
-
-
-exception InvalidPokemon of string
-exception InvalidPokemonType of string 
 
 type move_name = string
 type move = {
@@ -90,6 +89,7 @@ let moves_of_json j = {
   move_name = j |> member "move_name" |> to_string; 
 }
 
+(** TODO: add comment *)
 let poke_from_json j = {
   name = j |> member "name" |> to_string;
   poke_type = j |> member "poke_type" |> to_string |> type_from_string;
@@ -245,8 +245,9 @@ let battle_damage pkm1 pkm2 move =
   let pkm_lv = float_of_int pkm1.stats.level in 
   let pkm_defense = float_of_int pkm1.stats.defense in 
   let opp_attack = float_of_int pkm2.stats.attack in 
-  let damage_float = 3.5 *. (((2. *. pkm_lv) /. 5.) *. (opp_attack /. pkm_defense))
-                     *. damage_multiplier in 
+  let damage_float = 
+    4.0 *. (((2. *. pkm_lv) /. 5.) *. (opp_attack /. pkm_defense))
+    *. damage_multiplier in 
   let damage_int = int_of_float damage_float in 
   let dec_hp = pkm1.stats.hp - damage_int in 
   if dec_hp < 0 then 

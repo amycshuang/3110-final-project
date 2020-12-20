@@ -41,11 +41,11 @@
         "name": "Giratina",
         "poke_type": "Ghost",
         "stats": {
-          "level": 11,
-          "base_hp": 150,
-          "hp": 150,
-          "attack": 100,
-          "defense": 120,
+          "level": 7,
+          "base_hp": 75,
+          "hp": 75,
+          "attack": 50,
+          "defense": 50,
           "curr_exp": 0,
           "level_up_exp": 50
         },

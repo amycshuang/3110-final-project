@@ -1,6 +1,12 @@
+(** 
+   Representation of an encounter between the Player and a 
+   wild pokemon or trainer. 
+*)
+
 (** [str_bag_items b] is a string representation of the inventory in bag [b]. *)
 val str_bag_items : (Player.item * int) list -> string list
 
+(** [str_move_lst moves] is the string representation of the moveset [moves]. *)
 val str_move_lst : Pokemon.move list -> Pokemon.move_name array
 
 (** [check_pokelist pkm_lst] is true if there are still pokemon able to battle
@@ -24,13 +30,14 @@ val process_catch : State.menu_state -> State.state -> State.state
     pokemon with a potion. *)
 val process_heal : State.menu_state -> State.state -> State.state
 
-(** [process_switch mst st] is the state after attempting to switch the battling
-    pokemon with another one in the pokelist. *)
+(** [process_switch mst st] is the state after attempting to switch the 
+    battling pokemon with another one in the pokelist. *)
 val process_switch : State.menu_state -> State.state -> State.state
 
 (** [process_attack mst st] is the state after the battling pokemon attack
     each other. *)
-val process_attack : State.menu_state -> State.state -> State.attack_moves -> State.state
+val process_attack : State.menu_state -> State.state -> State.attack_moves -> 
+  State.state
 
 (** [process_run st] is the state after selecting Run in the menu *)
 val process_run : State.state -> State.state

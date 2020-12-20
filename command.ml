@@ -18,14 +18,6 @@ exception InvalidRegion
 
 exception InvalidCommand of string
 
-type encounter = 
-  | Pokeball 
-  | Potion 
-  | Run 
-  | Attack of string list
-  | Switch of string list 
-
-(** TODO - replace with real maps after initializing jsons *)
 let parse_region region = 
   match region with 
   | [] -> raise InvalidRegion

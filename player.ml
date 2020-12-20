@@ -1,6 +1,8 @@
 open Pokemon
 
+(** TODO: add comment *)
 type nickname = string
+(** TODO: add comment *)
 type badge = string
 type item = Potion | Pokeball
 
@@ -31,7 +33,7 @@ let init_player name start_poke loc = {
   nickname = name;
   location = loc;
   (* poke_list = [lower_hp start_poke]; *)
-  poke_list = [start_poke;];
+  poke_list = [start_poke];
   bag = empty_bag;
   balance = 500;
 }

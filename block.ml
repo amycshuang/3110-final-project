@@ -1,13 +1,13 @@
 open Yojson.Basic.Util
 
+type block_type = string
+
+exception InvalidBlock of block_type
+
 type map_dimensions = {
   width : int;
   height : int;
 }
-
-type block_type = string
-
-exception InvalidBlock of block_type
 
 type block = 
   | TallGrass 

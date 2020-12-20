@@ -36,10 +36,10 @@
     "poke_type": "Ice",
     "stats": {
       "level": 7,
-      "base_hp": 130,
-      "hp": 130,
-      "attack": 85,
-      "defense": 80,
+      "base_hp": 90,
+      "hp": 90,
+      "attack": 60,
+      "defense": 55,
       "curr_exp": 0,
       "level_up_exp": 50
     },
@@ -70,8 +70,8 @@
       "level": 3,
       "base_hp": 95,
       "hp": 95,
-      "attack": 125,
-      "defense": 79,
+      "attack": 65,
+      "defense": 69,
       "curr_exp": 0,
       "level_up_exp": 50
     },
@@ -164,8 +164,8 @@
     "poke_type": "Water",
     "stats": {
       "level": 6,
-      "base_hp": 130,
-      "hp": 130,
+      "base_hp": 80,
+      "hp": 80,
       "attack": 65,
       "defense": 60,
       "curr_exp": 0,
@@ -199,7 +199,7 @@
       "base_hp": 79,
       "hp": 79,
       "attack": 83,
-      "defense": 100,
+      "defense": 85,
       "curr_exp": 0,
       "level_up_exp": 50
     },
@@ -262,7 +262,7 @@
       "level": 7,
       "base_hp": 50,
       "hp": 50,
-      "attack": 70,
+      "attack": 63,
       "defense": 50,
       "curr_exp": 0,
       "level_up_exp": 50
@@ -295,7 +295,7 @@
       "base_hp": 65,
       "hp": 65,
       "attack": 60,
-      "defense": 110,
+      "defense": 82,
       "curr_exp": 0,
       "level_up_exp": 50
     },

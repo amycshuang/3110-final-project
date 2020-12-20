@@ -5,11 +5,13 @@ open Command
 open Walking
 open Encounter
 
+(** TODO: add comment *)
 type direction = Up | Left | Right | Down 
 
 (** The type of selection on the encounter screen *)
 type selection = Move of direction| Enter | Back
 
+(** TODO: add comment *)
 let default_menu = [|"FIGHT"; "BAG"; "POKEMON"; "RUN"|]
 
 (** [encount ch] is the correpsonding selection action to a key input. *)
@@ -23,6 +25,7 @@ let encount_key ch =
   | 'b' -> Some Back
   | _ -> None
 
+(** TODO: add comment *)
 let hover_change (st : menu_state) dir =
   let new_hover = 
     match st.status with
@@ -32,6 +35,16 @@ let hover_change (st : menu_state) dir =
         | Left -> st.hover - 1
         | Down -> st.hover + 2
         | Right -> st.hover + 1
+      end
+    | PokeList -> begin
+        match st.hover, dir with
+        | 0, Right -> st.hover + 1
+        | 0, _ -> st.hover
+        | 1, Up -> st.hover
+        | _, Right -> st.hover
+        | _, Left -> 0
+        | _, Up -> st.hover - 1
+        | _, Down -> st.hover + 1
       end
     | _ -> begin
         match dir with
@@ -49,7 +62,7 @@ let hover_change (st : menu_state) dir =
   if new_hover < max_len && new_hover >= 0 then 
     {st with hover = new_hover}
   else st
-
+(* 
 (** [contains s1 s2] is true if string [s1] contains string [s2]. *)
 let contains s1 s2 =
   try
@@ -58,7 +71,7 @@ let contains s1 s2 =
       if String.sub s1 i len = s2 then raise Exit
     done;
     false
-  with Exit -> true
+  with Exit -> true *)
 
 (** [is_switch pkm_lst pkm_name] is true if a pokemon with name [pkm_name] 
     is in the list [pkm_lst], false otherwise. *)
@@ -90,6 +103,13 @@ let menu_of_string (mst : menu_state) =
               battling_poke = [|curr_pkm; curr_pkm; opp_pkm; opp_pkm|]
              }
     end
+  | Bag -> begin
+      let bag = Array.of_list mst.player.bag.inventory in
+      match fst (bag.(mst.hover)) with
+      | Potion -> Heal
+      | Pokeball -> Catch
+    end
+  | PokeList -> Switch
   | x -> x
 (* | x -> begin 
    if (contains x "POKEBALL") then Catch
@@ -98,6 +118,7 @@ let menu_of_string (mst : menu_state) =
    else Attack 
    end *)
 
+(** TODO: add comment *)
 let action_change mst = function
   | Move x -> hover_change mst x
   | Enter -> let select_menu = menu_of_string mst in
@@ -108,17 +129,19 @@ let action_change mst = function
       | Some x -> x
     end
 
+(** TODO: add comment *)
 let select_change est = function
   | Some sel -> action_change est sel
   | None -> est
 
+(** TODO: add comment *)
 let menu_change (mst : menu_state) st menu =
   match menu with 
   | Fight -> process_fight mst st 
   | Bag -> process_bag mst st 
   | PokeList -> process_pokelist mst st 
   | Catch -> process_catch mst st 
-  | Heal ->  process_heal mst st 
+  | Heal -> process_heal mst st 
   | Switch -> process_switch mst st 
   | Attack atks -> process_attack {mst with status = Attack atks} st atks 
   | Run -> {st with status = Walking}
@@ -137,4 +160,3 @@ let rec process_menu input (st: state) (mst : State.menu_state) =
     | Some menu -> menu_change {new_mst' with previous = prev} new_st menu
     | None -> {new_st with status = Menu new_mst'}
   else process_fainted st 
-

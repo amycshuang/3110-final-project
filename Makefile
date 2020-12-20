@@ -1,11 +1,12 @@
-MODULES=state initial player gui pokemon author main block walking menu encounter pokemon_json_script map_json_script
+MODULES=state initial player gui pokemon author main block walking menu \
+	encounter
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)
 TEST=test.byte
 MAIN=main.byte
 OCAMLBUILD=ocamlbuild -use-ocamlfind 
-PKGS=oUnit,yojson, ANSITerminal, graphics
+PKGS=oUnit,yojson,ANSITerminal,graphics
 POKEJSONBUILD=pokemon_json_script.byte
 MAPJSONBUILD=map_json_script.byte
 

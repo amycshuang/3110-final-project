@@ -2,6 +2,18 @@
    Representation of a block on the map.
 *)
 
+(** The type of the block represented as a string. *)
+type block_type = string
+
+(** Raised when there is an invalid block type in a map. *)
+exception InvalidBlock of block_type
+
+(** The type of the map's dimensions. *)
+type map_dimensions = {
+  width : int;
+  height : int;
+}
+
 (** The type of values representing a block on the map. *)
 type block = 
   | TallGrass 
@@ -19,18 +31,6 @@ type block =
   | Trainer
   | ClarksonSpot
 
-(** The type of the block represented as a string. *)
-type block_type = string
-
-(** The type of the map's dimensions. *)
-type map_dimensions = {
-  width : int;
-  height : int;
-}
-
-(** Raised when there is an invalid block type in a map. *)
-exception InvalidBlock of block_type
-
 (** [map_dim json] is the map dimensions of the map [json] 
     Requires: [json] is a valid JSON map representation. *)
 val map_dim : Yojson.Basic.t -> map_dimensions
@@ -47,9 +47,6 @@ val list_to_blocks : block_type list -> block list
 
 (** [json_to_map] initializes the JSON with name [j] as a map. *)
 val json_to_map : string -> block array array
-
-(** [rev_matrix a] reverses the array [a]. *)
-val rev_matrix : block array -> block array
 
 (** [rev_matrix a] reverses the array [a]. *)
 val rev_matrix : block array -> block array
