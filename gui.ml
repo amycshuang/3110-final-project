@@ -166,6 +166,7 @@ let render_walk (st : State.state) =
     | "Invalid Key :( Use WASD keys to walk around, P - Pokelist, B - Bag" 
       as s -> display_text' s 
     | "You must battle in order!" as s -> display_text' s
+    | "We have already battled!" as s -> display_text' s
     | _ -> 
       let str_lst = String.split_on_char ' ' st.panel_txt in 
       display_poke_text_top str_lst 10 50 0 in
@@ -681,7 +682,29 @@ let draw_people x y p_color =
    (Graphics.rgb 97 95 216) in 
    let () = synchronize () in () *)
 
-let render_battle st = failwith "TODO"
+let render_trainertalk st = 
+  let () = Graphics.open_graph (graph_dims st.maps.(0)); in
+  let () = Graphics.clear_graph () in
+  let () = draw_people (50 + (size_x () / 6)) 175 Graphics.black in 
+  let () = draw_people (300 + (size_x () / 6)) (160 + (size_y () / 3)) 
+      (Graphics.rgb 97 95 216) in 
+  let () = synchronize () in () 
+
+let render_trainerover st = 
+  let () = Graphics.open_graph (graph_dims st.maps.(0)); in
+  let () = Graphics.clear_graph () in
+  let () = draw_people (50 + (size_x () / 6)) 175 Graphics.black in 
+  let () = draw_people (300 + (size_x () / 6)) (160 + (size_y () / 3)) 
+      (Graphics.rgb 97 95 216) in 
+  let () = synchronize () in () 
+
+let render_win st = 
+  let () = Graphics.open_graph (graph_dims st.maps.(0)); in
+  let () = Graphics.clear_graph () in
+  let () = Graphics.moveto (size_x ()/2) (size_y ()/2) in 
+  let () = Graphics.set_color Graphics.black in 
+  let () = Graphics.draw_string "YOU WON!" in
+  let () = synchronize () in () 
 
 (* let render_battle (st: state) = 
    match gst.status with 

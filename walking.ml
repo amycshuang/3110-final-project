@@ -113,7 +113,7 @@ let process_gym st =
     let mv_player = {st.player with location = loc} in 
     {st with player = mv_player; status = Walking}
 
-let trainer_battle st =   
+let trainer_on_block st =   
   match List.filter (fun (t : Trainer.trainer) -> 
       (t.x, t.y) = st.player.location) st.trainers with 
   | [] -> failwith "impossible"
@@ -155,8 +155,11 @@ let process_walk input (st : State.state) =
             let loc = gym_loc st.maps.(0) in 
             let mv_player = {mv_st.player with location = loc} in 
             {mv_st with player = mv_player; status = Walking}
-          else if new_status = TrainerTalk then 
-            set_gym mv_st
+          else if new_status = AlreadyBattled then 
+            {st with panel_txt = "We have already battled!";
+                     status = WalkingGym}
+          else if new_status = CannotBattle then 
+            {st with panel_txt = "You must battle in order!"; status = WalkingGym}
           else {mv_st with status = new_status} end 
       | _ -> failwith "impossible"
     end 

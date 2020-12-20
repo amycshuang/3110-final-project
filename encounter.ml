@@ -144,8 +144,10 @@ let opp_attack st mst atks =
       let new_player = {st.player with poke_list = new_pkm_lst'} in 
       let new_mst = 
         {mst with player = new_player; select = None} in 
+      let () = atks.battling_poke.(0) <- List.hd new_pkm_lst in 
       let () = atks.battling_poke.(1) <- List.hd new_pkm_lst in 
-      {st with player = new_player; status = Menu new_mst}
+      let new_mst' = {new_mst with status = Default} in 
+      {st with player = new_player; status = Menu new_mst'}
     else 
       let loc = get_pokecenter_loc st.maps.(0) in 
       let new_player = 
@@ -184,9 +186,13 @@ let player_attack atks st mst =
       let new_mst' = {new_mst with opponent = new_opp_lst'} in 
       let () = atks.battling_poke.(2) <- List.hd new_opp_lst' in 
       let () = atks.battling_poke.(3) <- List.hd new_opp_lst' in 
-      opp_attack {new_st with status = Menu new_mst'} new_mst' atks
+      let atks' = {atks with opponent_attack = opponent_move (List.hd new_mst'.opponent)} in 
+      let new_mst'' = {new_mst' with status = Attack atks'} in 
+      opp_attack {new_st with status = Menu new_mst''} new_mst'' atks'
     else 
-      {new_st with status = Walking}
+    if mst.is_trainer then
+      {new_st with status = TrainerOver} 
+    else {new_st with status = Walking}
   else 
     let new_opp_lst = new_opp_pkm :: List.tl mst.opponent in 
     let new_mst' = {mst with opponent = new_opp_lst; select = None} in 
@@ -237,7 +243,10 @@ let process_switch (mst: menu_state) st =
 
 let process_attack mst st atk = player_attack atk st mst
 
-let process_run st =  {st with status = Walking}
+let process_run mst st =    
+  if mst.is_trainer then 
+    {st with status = WalkingGym}
+  else {st with status = Walking}
 
 let process_player_team pkm_lst st = 
   let hp_check_poke = set_battle_team pkm_lst in 
