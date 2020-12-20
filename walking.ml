@@ -119,19 +119,6 @@ let trainer_on_block st =
   | [] -> failwith "impossible"
   | h :: t -> h 
 
-let set_gym st = 
-  if List.hd (List.rev st.trainers) = trainer_battle st then
-    let mst =                 
-      {status = Default;
-       player = st.player; 
-       opponent = (List.hd (List.rev st.trainers)).poke_list; 
-       hover = 0; 
-       select = None;
-       is_trainer = true
-      } in 
-    {st with status = Menu mst}
-  else {st with panel_txt = "You must battle in order!"; status = WalkingGym}
-
 let process_walk input (st : State.state) =
   let action = walk_key input in
   match action with

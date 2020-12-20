@@ -24,26 +24,10 @@ let set_gym_start st =
      opponent = (List.hd st.trainers).poke_list; 
      hover = 0; 
      select = None;
-     is_trainer = true;
-     previous = None;
+     is_trainer = true
     } in 
   {st with status = Menu mst}
 
-<<<<<<< HEAD
-let process_gym input st = 
-  if List.hd (List.rev st.trainers) = trainer_battle st then
-    let mst =                 
-      {status = Default;
-       player = st.player; 
-       opponent = (List.hd (List.rev st.trainers)).poke_list; 
-       hover = 0; 
-       select = None;
-       is_trainer = true
-      } in 
-    {st with status = Menu mst}
-  else {st with panel_txt = "You must battle in order!"; status = WalkingGym}
-=======
->>>>>>> origin/battle
 
 let give_player_money st = 
   let win_money = win_battle_money st.trainers in 
