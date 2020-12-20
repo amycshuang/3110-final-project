@@ -81,20 +81,17 @@ let trainer_on_block st =
   | [] -> failwith "impossible"
   | h :: t -> h 
 
-let set_trainer st =      
+let set_trainer st = 
+  let trainer = trainer_on_block st in    
   if not (List.mem (trainer_on_block st) st.trainers) then 
     AlreadyBattled
   else if List.hd st.trainers <> (trainer_on_block st) then 
     CannotBattle
-  else TrainerTalk
+  else TrainerTalk trainer
 
 let set_win st = 
   if List.length st.trainers = 0 then Win
   else set_trainer st 
-(* let bag = {st.player.bag with badge_case = ["Functional Programming Gym"]} in 
-   let win_player = {st.player with bag = bag} in 
-   {st with player = win_player; status = Win}
-   else set_trainer st *)
 
 let update_status (st : state) = function 
   | TallGrass -> spawn_status TallGrass st

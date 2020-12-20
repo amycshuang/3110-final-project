@@ -40,8 +40,8 @@ type status =  Walking
             | ExitGym
             | PokeCenter
             | AlreadyBattled
-            | CannotBattle 
-            | TrainerTalk 
+            | CannotBattle
+            | TrainerTalk of trainer
             | TrainerOver 
             | Menu of menu_state
             | Win
