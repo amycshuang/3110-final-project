@@ -68,7 +68,7 @@
 
    - [gui.ml] and [main.ml] were tested manually by using valid and invalid 
      keystrokes used to interact with the GUI itself. The main keys used
-     to interact with the GUI are 'w', 'a', 's', 'd', 'f', and 'b', with the WASD
+     to interact with the GUI are 'w', 'a', 's', 'd', 'f', 'b', with the WASD
      as the keys used to move the player and pointers, 'f' as the selection key,
      and 'b' as a back key. Invalid keystrokes were also tested using [gui.ml]
      by displaying an "Invalid Key" message on the GUI itself.
