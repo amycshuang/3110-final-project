@@ -42,8 +42,8 @@ let json_to_map_test
 
 let rev_matrix_test
     (name : string) 
-    (a : 'a array)
-    (expected_output : 'a array) : test = 
+    (a)
+    (expected_output) : test = 
   name >:: (fun _ -> 
       assert_equal expected_output (rev_matrix a))
 
@@ -57,6 +57,12 @@ let get_block_type_test
 let map1 = Yojson.Basic.from_file "map_jsons/map1.json"
 
 let maptest = Yojson.Basic.from_file "map_jsons/maptest.json"
+
+let test_matrix = [|[|Grass; Water|]; [|Gym; House|]; [|Road; TallGrass|]; 
+                    [|TallGrass; Grass|]|]
+
+let rev_test_matrix = [|[|TallGrass; Grass|]; [|Gym; House|]; 
+                        [|Road; TallGrass|]; [|Grass; Water|]|]
 
 let block_tests = [
   map_dim_test "map1 dim test" map1 
@@ -83,6 +89,8 @@ let block_tests = [
   json_to_map_test "maptest to map" "map_jsons/maptest.json"
     [|[|Grass; Water|]; [|Gym; House|]; [|Road; TallGrass|]; 
       [|TallGrass; Grass|]|];
+
+  rev_matrix_test "reverse matrix test" test_matrix rev_test_matrix;
 
   get_block_type_test "get tall grass block" TallGrass "tall grass";
 
