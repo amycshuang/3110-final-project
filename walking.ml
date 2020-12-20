@@ -1,6 +1,7 @@
 open State
 open Player
 open Pokemon
+open Block
 
 (** The type representing possible character movement while walking *)
 type move = Up | Left | Right | Down
@@ -24,11 +25,15 @@ let walk_key ch =
 
 (** [check_bounds (x1, y1) (x2, y2) map] ensures that the character stays 
     within the bounds of the [map] *)
-let check_bounds (x1, y1) (x2, y2) map = 
+let check_bounds (x1, y1) (x2, y2) (map : block array array) = 
   let ncol = Array.length map.(0) in
   let nrow = Array.length map in
-  if (x2 < 0 || x2 > (ncol - 1)) || (y2 < 0 || y2 > (nrow - 1)) 
-  then (x1, y1) else (x2, y2)
+  if (x2 < 0 || x2 > (ncol - 1)) || (y2 < 0 || y2 > (nrow - 1))
+  then (x1, y1) 
+  else let block = Array.get (map.(y2)) x2 in
+    if block = Null || block = BrownGymFloor
+    then (x1, y1) 
+    else (x2, y2)
 
 (** [move_map p m map] moves the player to the new location on map *)
 let move_map p m map =

@@ -167,7 +167,8 @@ let opp_attack st mst atks =
     if check_pokelist new_pkm_lst then 
       let new_pkm_lst' = set_battle_team new_pkm_lst in 
       let new_player = {st.player with poke_list = new_pkm_lst'} in 
-      let new_mst = {mst with player = new_player; p_turn = true; select = None} in 
+      let new_mst = 
+        {mst with player = new_player; p_turn = true; select = None} in 
       let () = atks.battling_poke.(1) <- List.hd new_pkm_lst in 
       {st with player = new_player; status = Menu new_mst}
     else 
@@ -239,18 +240,15 @@ let player_attack atks st mst =
     opp_attack {st with status = Menu new_mst'} new_mst' atks
 
 let process_fight (mst : menu_state) st = 
-  let new_mst = 
-    {mst with hover = 0; select = None} in 
+  let new_mst = {mst with hover = 0; select = None} in 
   {st with status = Menu new_mst}
 
 let process_bag (mst : menu_state) st =
-  let new_mst = 
-    {mst with hover = 0; select = None} in 
+  let new_mst = {mst with hover = 0; select = None} in 
   {st with status = Menu new_mst} 
 
 let process_pokelist (mst : menu_state) st = 
-  let new_mst = 
-    {mst with hover = 0; select = None} in 
+  let new_mst = {mst with hover = 0; select = None} in 
   {st with status = Menu new_mst}
 
 let process_catch (mst: menu_state) st = 
