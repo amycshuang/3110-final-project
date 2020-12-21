@@ -6,8 +6,10 @@ open Menu
 open Walking
 open Trainer
 
+(** The type representing actions associated with certain key inputs. *)
 type gym_action =  StartBattle | EndBattle | Default 
 
+(** [gym_key ch] maps the input key to an action. *)
 let gym_key ch =
   match ch with 
   | 'b' -> StartBattle 
@@ -27,8 +29,7 @@ let set_gym_start st t =
      opponent = t.poke_list; 
      hover = 0; 
      select = None;
-     is_trainer = true;
-     previous = None;
+     is_trainer = true
     } in 
   {st with status = Menu mst}
 
@@ -54,5 +55,5 @@ let set_gym_win st =
 let process_gym input st =
   match gym_key input, st.status with 
   | StartBattle, TrainerTalk t -> set_gym_start st t
-  | EndBattle, TrainerOver -> set_gym_win st 
+  | EndBattle, TrainerOver _ -> set_gym_win st 
   | _, _ -> st

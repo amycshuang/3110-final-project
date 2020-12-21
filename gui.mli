@@ -24,7 +24,7 @@ val render_trainertalk : Trainer.trainer -> State.state -> unit
 
 (** [render_trainerover st] renders the GUI for for the player in state [st]
     when [st]'s status is TrainerOver. *)
-val render_trainerover : State.state -> unit
+val render_trainerover : Trainer.trainer -> State.state -> unit
 
 (** [render_win st] renders the GUI for the player in state [st]
     and status Win. *)

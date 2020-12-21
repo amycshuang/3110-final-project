@@ -2,7 +2,8 @@ open Printf
 
 (** [block_error_message] is a string that tells the player that their 
     input was an invalid block. *)
-let block_error_message = "Sorry, that is not a valid block type. Please enter a valid block.\n"
+let block_error_message = 
+  "Sorry, that is not a valid block type. Please enter a valid block.\n"
 
 (** [block_input_helper msg] pattern matches shorthand inputs and makes 
     sure that the input is a valid block type. *)

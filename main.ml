@@ -15,7 +15,7 @@ let render_st (st : State.state) =
   match st.status with 
   | Walking | WalkingGym | EnterGym | ExitGym -> render_walk st
   | TrainerTalk trainer -> render_trainertalk trainer st 
-  | TrainerOver -> render_trainerover st 
+  | TrainerOver trainer -> render_trainerover trainer st 
   | PokeCenter -> render_pokecenter st
   | CannotBattle -> render_walk st 
   | AlreadyBattled -> render_walk st 
@@ -32,7 +32,7 @@ let rec play_game st : unit =
     | TrainerTalk trainer -> process_gym input st 
     | AlreadyBattled -> process_walk input st 
     | CannotBattle -> process_walk input st 
-    | TrainerOver -> process_gym input st
+    | TrainerOver trainer -> process_gym input st
     | PokeCenter -> process_pokecenter input st  
     | Menu mst -> process_menu input st mst
     | Win -> st in
@@ -41,7 +41,7 @@ and check_status st : unit =
   match st.status with
   | Menu mst -> begin
       match mst.status with 
-      | Attack _ -> let def_status = {mst with status = Default} in
+      | Attack _ -> let def_status = {mst with hover = 0; status = Default} in
         play_game {st with status = Menu def_status}                            
       | _ -> ()
     end

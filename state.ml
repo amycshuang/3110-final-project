@@ -27,8 +27,7 @@ type menu_state = {
   opponent : Pokemon.pokemon list;
   hover : int;
   select : menu option;
-  is_trainer : bool;
-  previous : menu_state option
+  is_trainer : bool
 }
 
 (** The status of the game. *)
@@ -40,7 +39,7 @@ type status =  Walking
             | AlreadyBattled
             | CannotBattle
             | TrainerTalk of trainer
-            | TrainerOver 
+            | TrainerOver of trainer
             | Menu of menu_state
             | Win
 
@@ -66,15 +65,11 @@ let spawn_status block (st : state) =
                  opponent = [x]; 
                  hover = 0; 
                  select = None;
-                 is_trainer = false;
-                 previous = None
+                 is_trainer = false
                 } in 
     Menu mst
   | None -> Walking
 
-
-(** [trainer_on_block st] is the trainer on a trainer on the block where
-    the player is located in state [st]. *)
 let trainer_on_block st =   
   let all_trainers = 
     trainer_list_from_json (Yojson.Basic.from_file "trainers.json") in 

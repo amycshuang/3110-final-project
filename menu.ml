@@ -104,11 +104,7 @@ let action_change mst = function
   | Move x -> hover_change mst x
   | Enter -> let select_menu = menu_of_string mst in
     {mst with status = select_menu; select = Some select_menu}
-  | Back -> begin
-      match mst.previous with
-      | None -> mst
-      | Some x -> x
-    end
+  | Back -> {mst with status = Default; hover = 0}
 
 let select_change est = function
   | Some sel -> action_change est sel
@@ -133,9 +129,7 @@ let rec process_menu input (st: state) (mst : State.menu_state) =
     let new_st = {st with player = player} in 
     let new_mst = {mst with player = player} in  
     let new_mst' = select_change new_mst (encount_key input) in 
-    let prev = if new_mst.status != new_mst'.status then Some new_mst 
-      else new_mst.previous in
     match new_mst'.select with
-    | Some menu -> menu_change {new_mst' with previous = prev} new_st menu
+    | Some menu -> menu_change new_mst' new_st menu
     | None -> {new_st with status = Menu new_mst'}
   else process_fainted st 

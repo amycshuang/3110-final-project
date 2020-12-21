@@ -358,8 +358,8 @@
       "level": 3,
       "base_hp": 30,
       "hp": 30,
-      "attack": 75,
-      "defense": 70,
+      "attack": 55,
+      "defense": 60,
       "curr_exp": 0,
       "level_up_exp": 50
     },

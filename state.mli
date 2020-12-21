@@ -27,8 +27,7 @@ type menu_state = {
   opponent : Pokemon.pokemon list;
   hover : int;
   select : menu option;
-  is_trainer : bool;
-  previous : menu_state option
+  is_trainer : bool
 }
 
 (** The status of the game. *)
@@ -40,7 +39,7 @@ type status =  Walking
             | AlreadyBattled
             | CannotBattle
             | TrainerTalk of Trainer.trainer
-            | TrainerOver 
+            | TrainerOver of Trainer.trainer
             | Menu of menu_state
             | Win
 
@@ -58,6 +57,10 @@ type state = {
 
 (** [get_key ()] returns the corresponding character of the key pressed *)
 val get_key : unit -> char
+
+(** [trainer_on_block st] is the trainer on a trainer on the block where
+    the player is located in state [st]. *)
+val trainer_on_block : state -> Trainer.trainer
 
 (** [update_status block] is the status associated with the block [block]. *)
 val update_status : state -> Block.block -> status

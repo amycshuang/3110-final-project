@@ -1,5 +1,5 @@
-MODULES=state initial player gui pokemon author main block walking menu \
-	encounter
+MODULES= author block command encounter gui initial main menu player pokemon \
+	state walking
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)

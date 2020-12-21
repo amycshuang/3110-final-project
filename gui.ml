@@ -259,22 +259,21 @@ let make_options ncol x y width height lst hover_str =
 
 let make_poke_options curr lst hover_choice =
   let x = (size_x ()) / 3 in
-  let y = ((size_y ()) / 6) + 10 in
-  let s_y = (size_y ()) / 6 in
+  (* let y = ((size_y ()) / 6) + 10 in *)
+  let s_y = size_y () / 6 in
   let fst_loc = (10, (size_y () / 2)) in
   let fst_poke = List.hd lst in
   let fst_bool = if fst_poke = hover_choice then true else false in
-  let fst_pokeopt = {loc = fst_loc; poke = fst_poke; selected = fst_bool; 
-                     first = true} in
-  let rec making acc = function
+  let fst_pokeopt = 
+    {loc = fst_loc; poke = fst_poke; selected = fst_bool; first = true} in
+  let rec making acc n = function
     | [] -> acc
-    | h :: t -> let n = List.length t in
-      let multy = (n + 1) in
-      let select_bool = if h = hover_choice then true else false in
-      let new_loc = (x + 50, ((multy * s_y) + (s_y / 2 + y))) in
-      let button = {loc = new_loc; poke = h; selected = select_bool; 
-                    first = false} in making (button::acc) t in
-  making [fst_pokeopt] (List.tl lst)
+    | h :: t -> let select_bool = if h = hover_choice then true else false in
+      let new_loc = (x + 50, size_y () - (n * s_y) - 10) in
+      let button = 
+        {loc = new_loc; poke = h; selected = select_bool; first = false} in 
+      making (button::acc) (n + 1) t in
+  making [fst_pokeopt] 1 (List.tl lst)
 
 (** [list_of_stats pokemon] are the stats displayed of a Pokemon [pokemon] 
     during an encounter *)
@@ -414,7 +413,7 @@ let draw_fst_pokelst (poke : poke_option) =
 let draw_pokelst_rest (poke : poke_option) : unit =
   let (x, y) = poke.loc in
   let width = (size_x ()) - x - 15 in
-  let height = ((size_y ()) / 6 - 5) in
+  let height = ((size_y ()) / 6 - 10) in
   Graphics.set_color (Graphics.rgb 78 143 210);
   Graphics.fill_rect x y width height;
   draw_poke (x + (height / 3) + 5) (y + height / 2) poke.poke (height / 3);
@@ -475,6 +474,8 @@ let rec wait_time ref_time =
 let render_default (st : State.state) (mst : State.menu_state) = 
   let () = Graphics.open_graph (graph_dims st.maps.(0)); in
   let () = Graphics.clear_graph () in 
+  Graphics.set_color (Graphics.rgb 238 238 238);
+  Graphics.fill_rect 0 0 (size_x ()) (size_y ());
   let () = draw_bottom_panel (List.hd st.player.poke_list) in
   let () = poke_panel 50 275 (List.hd mst.opponent) false in
   let () = poke_panel 300 150 (List.hd mst.player.poke_list) true in
@@ -488,6 +489,8 @@ let render_default (st : State.state) (mst : State.menu_state) =
 let render_moves (st : State.state) (mst : State.menu_state) = 
   let () = Graphics.open_graph (graph_dims st.maps.(0)); in
   let () = Graphics.clear_graph () in 
+  Graphics.set_color (Graphics.rgb 238 238 238);
+  Graphics.fill_rect 0 0 (size_x ()) (size_y ());
   let () = draw_bottom_fight () in
   let () = poke_panel 50 275 (List.hd mst.opponent) false in
   let () = poke_panel 300 150 (List.hd mst.player.poke_list) true in
@@ -502,6 +505,8 @@ let render_attack (st : State.state) (mst : State.menu_state)
     poke1 poke2 player opp atk = 
   let () = Graphics.open_graph (graph_dims st.maps.(0)); in
   let () = Graphics.clear_graph () in
+  Graphics.set_color (Graphics.rgb 238 238 238);
+  Graphics.fill_rect 0 0 (size_x ()) (size_y ());
   let txt = attack_effectiveness poke1 poke2 atk in
   let () = draw_attack_info txt in
   let () = poke_panel 50 275 opp false in
@@ -637,57 +642,115 @@ let render_pokecenter (st: state) =
   let () = if st.player.balance = 0 then render_no_money () else () in 
   let () = synchronize () in ()
 
-let draw_people x y p_color = 
-  Graphics.set_color p_color; 
+let draw_people x y = 
+  Graphics.set_color Graphics.black; 
   Graphics.fill_circle x y 50
 
-let rec draw_trainer_pokeball pkm x y size color = 
-  match pkm with 
-  | [] -> ()
-  | p :: t -> 
-    Graphics.moveto x y; 
-    if p.stats.hp > 0 then begin 
-      Graphics.set_color color;
-      Graphics.fill_circle x y size;
-      draw_trainer_pokeball t (x + 70) y size color end 
-    else begin 
-      Graphics.set_color Graphics.black;
+let draw_pokeballs x y pokelst is_player length size =
+  let space = length / 6 in
+  let dx = if is_player then space else -1 * space in
+  let rec draw_ball pkm x y n = 
+    match (n < 6), pkm with 
+    | true, [] -> Graphics.set_color Graphics.black;
+      Graphics.set_line_width 1;
       Graphics.draw_circle x y size;
-      draw_trainer_pokeball t (x + 70) y size color end 
+      draw_ball [] (x + dx) y (n + 1)
+    | false, [] -> ()
+    | _, p :: t ->
+      Graphics.moveto x y;
+      Graphics.set_color Graphics.black;
+      Graphics.set_line_width 1;
+      Graphics.draw_circle x y size; 
+      if (p.stats.hp > 0 && n < 6) then begin 
+        Graphics.set_color (Graphics.rgb 238 132 110);
+        Graphics.fill_circle x y size
+      end else ();
+      draw_ball t (x + dx) y (n + 1) in
+  draw_ball pokelst x y 0
 
-(* let draw_trainer_panel st x1 y1 x2 y2 color = 
-   draw_trainer_pokeball st.player.poke_list
-    Graphics.set_color color; 
-   Graphics.moveto x1 y1;
-   Graphics.lineto x2 y2 *)
+let pokeball_bar x y pokelst is_player = 
+  let length = size_x () / 2 - 20 in
+  let ball_len = 3 * length / 5 in
+  Graphics.set_color Graphics.black;
+  Graphics.fill_rect x y length 5;
+  let barx = if is_player then x + (length / 2) - (ball_len / 2)
+    else x + (length / 2) + (ball_len / 2) in
+  draw_pokeballs barx (y + 20) pokelst is_player ball_len 7
 
-(* let draw_text_panel p_width p_height = 
-   custom_outline Graphics.white 0 0 p_width battle_panel_ht 13 5;
-   custom_outline (Graphics.rgb 200 168 72) 0 0 p_width battle_panel_ht 5 12;
-   custom_outline Graphics.black 0 0 p_width battle_panel_ht 0 5; *)
+let draw_trainer_str strlst instructions = 
+  let all_str = strlst @ [instructions] in
+  let rec drawing x y = function
+    | [] -> ()
+    | h :: t -> begin
+        Graphics.set_color Graphics.white;
+        Graphics.moveto x y;
+        Graphics.draw_string h;
+        let str_ht = snd (Graphics.text_size h) in
+        drawing x (y - str_ht - 5) t 
+      end in
+  drawing 20 (battle_panel_ht - 30) all_str
 
-let render_trainertalk trainer st = 
+let draw_trainer_bg st strlst instructions = 
+  Graphics.set_color (Graphics.rgb 197 255 187);
+  Graphics.fill_rect 0 0 (size_x ()) (size_y ());
+  let panel_width = size_x () in
+  Graphics.set_color (Graphics.rgb 52 160 151);
+  Graphics.fill_rect 0 0 panel_width battle_panel_ht;
+  custom_outline (Graphics.rgb 119 74 77) 0 0 panel_width battle_panel_ht 3 7;
+  custom_outline Graphics.black 0 0 panel_width battle_panel_ht 0 5;
+  draw_trainer_str strlst instructions;
+  draw_people (50 + (size_x () / 6)) 175;
+  draw_people (300 + (size_x () / 6)) (160 + (size_y () / 3))  
+
+let draw_win_poke x y width height lst =
+  let s_x = width / 3 in 
+  let s_y = height / 2 in
+  let rec drawing n = function
+    | [] -> ()
+    | h :: t -> 
+      let multx = n mod 3 in
+      let multy = if n < 3 then 1 else 0 in
+      draw_poke (multx * s_x + x) (multy * s_y + y) h 50; 
+      drawing (n + 1) t in
+  drawing 0 lst
+
+let draw_win_bg () = 
+  Graphics.set_color (Graphics.rgb 60 71 87);
+  Graphics.fill_rect 0 0 (size_x ()) (size_y ());
+  let panel_ht = (size_y ()) - 30 - battle_panel_ht in
+  Graphics.set_color (Graphics.rgb 157 183 226);
+  Graphics.fill_rect 0 battle_panel_ht (size_x ()) panel_ht;
+  let txt = "YOU WON! Welcome to the HALL OF FAME!" in
+  let (txtx, txty) = Graphics.text_size txt in
+  Graphics.moveto (size_x () / 2 - txtx / 2) (battle_panel_ht / 2);
+  Graphics.set_color Graphics.white;
+  Graphics.draw_string txt
+
+let render_trainertalk (trainer : Trainer.trainer) st = 
   let () = Graphics.open_graph (graph_dims st.maps.(0)); in
   let () = Graphics.clear_graph () in
-  let () = draw_people (50 + (size_x () / 6)) 175 Graphics.black in 
-  let () = draw_people (300 + (size_x () / 6)) (160 + (size_y () / 3)) 
-      (Graphics.rgb 97 95 216) in 
-  (* let () = draw_trainer_panel st (50 + (size_x () / 2)) 170 
-     (200 + (size_x () / 2)) 170 Graphics.black in  *)
+  let instructions = "(Press 'b' to continue)" in
+  let () = draw_trainer_bg st ((trainer.name ^ ": ") :: trainer.catchphrase) 
+      instructions in
+  let () = pokeball_bar 0 275 trainer.poke_list false in
+  let () = pokeball_bar ((size_x ()) - (size_x () / 2) + 20) 150 
+      st.player.poke_list true in
   let () = synchronize () in () 
 
-let render_trainerover st = 
+let render_trainerover (trainer : Trainer.trainer) st = 
   let () = Graphics.open_graph (graph_dims st.maps.(0)); in
   let () = Graphics.clear_graph () in
-  let () = draw_people (50 + (size_x () / 6)) 175 Graphics.black in 
-  let () = draw_people (300 + (size_x () / 6)) (160 + (size_y () / 3)) 
-      (Graphics.rgb 97 95 216) in 
+  let instructions = "(Press 'n' to continue)" in
+  let () = draw_trainer_bg st ((trainer.name ^ ": ") :: trainer.endphrase) 
+      instructions in
   let () = synchronize () in () 
 
 let render_win st = 
   let () = Graphics.open_graph (graph_dims st.maps.(0)); in
   let () = Graphics.clear_graph () in
-  let () = Graphics.moveto (size_x ()/2) (size_y ()/2) in 
-  let () = Graphics.set_color Graphics.black in 
-  let () = Graphics.draw_string "YOU WON!" in
+  let () = draw_win_bg () in
+  let poke_width = (5 * size_x () / 6) in
+  let () = draw_win_poke (((size_x ()) / 2) - (poke_width / 2) + 50) 
+      (battle_panel_ht + 55) poke_width ((size_y ()) - 20 - battle_panel_ht) 
+      st.player.poke_list in
   let () = synchronize () in () 
