@@ -750,7 +750,7 @@ let render_win st =
   let () = Graphics.clear_graph () in
   let () = draw_win_bg () in
   let poke_width = (5 * size_x () / 6) in
-  let () = draw_win_poke (((size_x ()) / 2) - (poke_width / 2) + 50) 
+  let () = draw_win_poke (((size_x ()) / 2) - (poke_width / 2) + 75) 
       (battle_panel_ht + 55) poke_width ((size_y ()) - 20 - battle_panel_ht) 
       st.player.poke_list in
   let () = synchronize () in () 
