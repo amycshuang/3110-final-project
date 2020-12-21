@@ -18,7 +18,8 @@ Install OCaml module in the CS 3110 Canvas.
 the following command:  
 `opam install oUnit yojson ASNITerminal graphics`
 
-3. You will need an XServer to display the graphics:
+3. You will need an XServer to display the graphics. Please make sure that the 
+XServer is open before completing step 5.
 
     **Windows**: XMing [XMing] https://sourceforge.net/projects/xming/
 
