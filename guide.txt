@@ -1,0 +1,36 @@
+Commands 
+  While Walking on Map
+  - WASD to move 
+  - 'B' to access bag 
+  - 'P' to access pokemon party
+
+  While Battling
+  - WASD to move around menu options
+  - 'F' to select a menu option
+  - 'B' to go back in the menu 
+
+  During Gym Battle 
+  - 'B' to start the battle
+  - 'N' at the end of the battle to dismiss the end screen
+
+Region Map Guide
+  Brown Road - Allows Player to travel between around the map
+  Dark Green Grass - Spawns random Pokemon native to grass
+  Light Green Grass - Does not spawn Pokemon
+  Blue Water - Spawns random Pokemon native to water
+  Red Building - Pokemon Center
+  Purple Building - Houses
+  Brown Building - Pokemon Gym 
+  
+  - Walk on a building to enter it
+
+Gym Map Guide
+  Dark Grey Block - Exit 
+  Red Block - Gym Leader 
+  Violet Block - Trainer
+  Dark Brown Road - Allows Player to travel around the gym
+  
+  - Walk on a trainer or gym leader block to trigger the battle 
+  - Battle the trainers in order 
+
+There's an Easter Egg when choosing the starter pokemon ;)

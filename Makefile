@@ -53,4 +53,4 @@ finalcheck: check
 	bash finalcheck.sh
 
 zip:
-	zip -r pokemon.zip *.ml* *.json *.md _tags Makefile map_jsons/*
+	zip -r pokemon.zip *.ml* *.json *.md *.txt _tags Makefile map_jsons/*
