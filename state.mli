@@ -1,11 +1,15 @@
-(** TODO: add comment *)
+(** 
+   Representation of a game state.
+*)
+
+(** The type of values representing attack_moves. *)
 type attack_moves = {
   player_attack : Pokemon.move; 
   opponent_attack : Pokemon.move;
   battling_poke : Pokemon.pokemon array;
 }
 
-(** TODO: add comment *)
+(** The type of values representing the menu. *)
 type menu = Default 
           | Fight 
           | PokeList 
@@ -16,21 +20,14 @@ type menu = Default
           | Switch 
           | Attack of attack_moves
 
-(** TODO: add comment *)
-type battle = Begin 
-            | Battling 
-            | Over 
-            | CannotBattle
-
-(** TODO: add comment *)
+(** The type of a menu_state. *)
 type menu_state = {
   status : menu;
   player : Player.player;
   opponent : Pokemon.pokemon list;
   hover : int;
   select : menu option;
-  is_trainer : bool;
-  previous : menu_state option
+  is_trainer : bool
 }
 
 (** The status of the game. *)
@@ -39,8 +36,10 @@ type status =  Walking
             | EnterGym
             | ExitGym
             | PokeCenter
-            | TrainerTalk 
-            | TrainerOver 
+            | AlreadyBattled
+            | CannotBattle
+            | TrainerTalk of Trainer.trainer
+            | TrainerOver of Trainer.trainer
             | Menu of menu_state
             | Win
 
@@ -59,11 +58,12 @@ type state = {
 (** [get_key ()] returns the corresponding character of the key pressed *)
 val get_key : unit -> char
 
+(** [trainer_on_block st] is the trainer on a trainer on the block where
+    the player is located in state [st]. *)
+val trainer_on_block : state -> Trainer.trainer
+
 (** [update_status block] is the status associated with the block [block]. *)
 val update_status : state -> Block.block -> status
-
-(** [get_opponent opp] is the value carried by opponent [opp].  *)
-(* val get_opponent : opponent -> Pokemon.pokemon list *)
 
 (** [player_block p map] is the block that the player [p] is standing on in 
     the map [map]. *)

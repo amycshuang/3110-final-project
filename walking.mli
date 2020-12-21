@@ -1,3 +1,7 @@
+(** 
+   Representation of a walking state.
+*)
+
 (** [parse_bag p] parses the player's bag to display on the text panel *)
 val parse_bag : Player.player -> string
 

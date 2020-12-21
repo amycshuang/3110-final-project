@@ -50,13 +50,17 @@ type pokemon = {
     Requires: [j] is a valid JSON for a list of pokemon. *)
 val poke_list_from_json : Yojson.Basic.t -> pokemon list
 
-(** [type_from_string type] is the string representation of poke_type [type].
-    Requires: [type] is capitalized.
-    Raises: InvalidPokemonType if [type] is not a valid pokemon type. *)
+(** [type_from_string s] is the poke_type of string [s].
+    Requires: [s] is capitalized.
+    Raises: InvalidPokemonType if [s] is not a valid string of a pokemon type.*)
 val type_from_string : string -> poke_type
 
+(** [string_from_type t] is the string representation of poke_type [t].
+    Requires: [t] is capitalized. *)
 val string_from_type : poke_type -> string
 
+(** [attack_effectiveness pkm1 pkm2 attack] is the string representing the 
+    effectiveness of move [attack] on pokemon [pkm1] by pokemon [pkm2]. *)
 val attack_effectiveness : pokemon -> pokemon -> move -> string
 
 (** [opponent_move p] is the move the opponenet pokemon [p] chooses. *)

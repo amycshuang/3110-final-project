@@ -89,7 +89,7 @@ let moves_of_json j = {
   move_name = j |> member "move_name" |> to_string; 
 }
 
-(** TODO: add comment *)
+(** [poke_from_json j] is the pokemon represented by [j]. *)
 let poke_from_json j = {
   name = j |> member "name" |> to_string;
   poke_type = j |> member "poke_type" |> to_string |> type_from_string;
@@ -109,111 +109,109 @@ let damage_multiplier t1 t2 =
   match t1 with
   | Bug -> begin 
       match t2 with 
-      | Fire | Fighting | Poison | Flying | Ghost | Steel | Fairy -> 0.5
-      | Grass | Psychic | Dark -> 2.
+      | Grass | Fighting | Ground -> 0.5
+      | Fire | Flying | Rock -> 2.
       | _ -> 1. 
     end
   | Dark -> begin 
       match t2 with 
-      | Poison | Dark | Fairy -> 0.5
-      | Psychic | Ghost -> 2.
+      | Psychic -> 0.
+      | Ghost | Dark -> 0.5
+      | Fighting | Bug | Fairy -> 2.
       | _ -> 1. 
     end
   | Dragon -> begin 
       match t2 with 
-      | Fairy -> 0.
-      | Steel -> 0.5
-      | Dragon -> 2.
+      | Fire | Water | Electric | Grass -> 0.5
+      | Ice | Dragon | Fairy -> 2.
       | _ -> 1. 
     end
   | Electric -> begin 
       match t2 with 
-      | Ground -> 0.
-      | Electric | Grass | Dragon -> 0.5
-      | Water | Flying -> 2.
+      | Electric | Flying | Steel -> 0.5
+      | Ground -> 2.
       | _ -> 1. 
     end
   | Fighting -> begin 
       match t2 with 
-      | Ghost -> 0.
-      | Poison | Flying | Psychic | Bug | Fairy -> 0.5
-      | Normal | Ice | Rock | Dark | Steel -> 2.
+      | Bug | Rock | Dark -> 0.5
+      | Flying | Psychic | Fairy -> 2.
       | _ -> 1. 
     end
   | Fairy -> begin 
       match t2 with 
-      | Fire | Poison | Steel -> 0.5
-      | Fighting | Dragon | Dark -> 2.
+      | Dragon -> 0.
+      | Fighting | Bug | Dark -> 0.5
+      | Poison | Steel -> 2.
       | _ -> 1. 
     end
   | Fire -> begin 
       match t2 with 
-      | Fire | Water | Rock | Dragon -> 0.5
-      | Grass | Ice | Bug | Steel -> 2.
+      | Fire | Grass | Ice | Bug | Steel | Fairy -> 0.5
+      | Water | Ground | Rock -> 2.
       | _ -> 1. 
     end
   | Flying -> begin 
       match t2 with 
-      | Electric | Rock | Steel -> 0.5
-      | Grass | Fighting | Bug -> 2.
+      | Ground -> 0.
+      | Grass | Fighting | Bug -> 0.5
+      | Electric | Ice | Rock -> 2.
       | _ -> 1. 
     end
   | Ghost -> begin 
       match t2 with 
-      | Normal -> 0.
-      | Dark -> 0.5
-      | Psychic | Ghost -> 2.
+      | Normal | Fighting -> 0.
+      | Poison | Bug -> 0.5
+      | Ghost | Dark -> 2.
       | _ -> 1. 
     end
   | Grass -> begin 
       match t2 with 
-      | Fire | Grass | Poison | Flying | Bug | Dragon | Steel -> 0.5
-      | Water | Ground | Rock -> 2.
+      | Water | Electric | Grass | Ground -> 0.5
+      | Fire | Ice | Poison | Flying | Bug -> 2.
       | _ -> 1. 
     end
   | Ground -> begin 
       match t2 with 
-      | Flying -> 0.
-      | Grass | Bug -> 0.5
-      | Fire | Electric | Poison | Rock | Steel -> 2.
+      | Electric-> 0.
+      | Poison | Rock -> 0.5
+      | Water | Grass | Ice -> 2.
       | _ -> 1. 
     end
   | Ice -> begin 
       match t2 with 
-      | Fire | Water | Ice | Steel -> 0.5
-      | Grass | Ground | Flying | Dragon -> 2.
+      | Ice -> 0.5
+      | Fire | Fighting | Rock | Steel -> 2.
       | _ -> 1. 
     end
   | Normal -> begin 
       match t2 with 
       | Ghost -> 0.
-      | Rock | Steel -> 0.5
+      | Fighting -> 2.
       | _ -> 1. 
     end
   | Poison -> begin 
       match t2 with 
-      | Steel -> 0.
-      | Poison | Rock | Ground | Ghost -> 0.5
-      | Grass | Fairy -> 2.
+      | Grass | Fighting | Poison | Bug | Fairy -> 0.5
+      | Ground | Psychic -> 2.
       | _ -> 1. 
     end
   | Psychic -> begin 
       match t2 with 
-      | Dark -> 0.
-      | Psychic | Steel -> 0.5
-      | Fighting | Poison -> 2.
+      | Fighting | Psychic -> 0.5
+      | Bug | Ghost | Dark -> 2.
       | _ -> 1. 
     end
   | Rock -> begin 
       match t2 with 
-      | Fighting | Ground | Steel -> 0.5
-      | Fire | Ice | Flying | Bug -> 2.
+      | Normal | Fire | Poison | Flying -> 0.5
+      | Water | Grass | Fighting | Ground | Steel -> 2.
       | _ -> 1. 
     end
   | Steel -> begin 
       match t2 with 
-      | Normal | Grass | Ice | Flying | Psychic | Bug |
-        Rock | Dragon | Steel | Fairy -> 0.5
+      | Normal | Grass | Ice | Flying | Psychic | Bug | Rock | Dragon
+      | Steel | Fairy -> 0.5
       | Fire | Fighting | Ground  -> 2.
       | Poison -> 0.
       |_ -> 1.
@@ -225,8 +223,6 @@ let damage_multiplier t1 t2 =
       | _ -> 1. 
     end 
 
-(** [attack_effectiveness pkm1 pkm2 attack] is the string representing the 
-    effectiveness of move [attack] on pokemon [pkm1] by pokemon [pkm2]. *)
 let attack_effectiveness pkm1 pkm2 attack =  
   let effectiveness = 
     match damage_multiplier pkm1.poke_type attack.move_type with 
@@ -262,10 +258,10 @@ let level_up pokemon =
   if curr_stats.curr_exp >= curr_stats.level_up_exp then 
     let new_stats = {
       level = curr_stats.level + 1;
-      base_hp = curr_stats.base_hp + 2;
-      hp = curr_stats.hp + 2;
-      attack = curr_stats.attack + 2;
-      defense = curr_stats.defense + 2;
+      base_hp = curr_stats.base_hp + 10;
+      hp = curr_stats.hp + 10;
+      attack = curr_stats.attack + 15;
+      defense = curr_stats.defense + 10;
       curr_exp = curr_stats.level_up_exp - curr_stats.curr_exp;
       level_up_exp = curr_stats.level_up_exp + 2;
     } in { pokemon with stats = new_stats;}

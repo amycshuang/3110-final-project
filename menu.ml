@@ -5,13 +5,12 @@ open Command
 open Walking
 open Encounter
 
-(** TODO: add comment *)
+(** The type of a direction. *)
 type direction = Up | Left | Right | Down 
 
-(** The type of selection on the encounter screen *)
+(** The type of selection on the encounter screen. *)
 type selection = Move of direction| Enter | Back
 
-(** TODO: add comment *)
 let default_menu = [|"FIGHT"; "BAG"; "POKEMON"; "RUN"|]
 
 (** [encount ch] is the correpsonding selection action to a key input. *)
@@ -25,7 +24,6 @@ let encount_key ch =
   | 'b' -> Some Back
   | _ -> None
 
-(** TODO: add comment *)
 let hover_change (st : menu_state) dir =
   let new_hover = 
     match st.status with
@@ -62,16 +60,6 @@ let hover_change (st : menu_state) dir =
   if new_hover < max_len && new_hover >= 0 then 
     {st with hover = new_hover}
   else st
-(* 
-(** [contains s1 s2] is true if string [s1] contains string [s2]. *)
-let contains s1 s2 =
-  try
-    let len = String.length s2 in
-    for i = 0 to String.length s1 - len do
-      if String.sub s1 i len = s2 then raise Exit
-    done;
-    false
-  with Exit -> true *)
 
 (** [is_switch pkm_lst pkm_name] is true if a pokemon with name [pkm_name] 
     is in the list [pkm_lst], false otherwise. *)
@@ -111,30 +99,17 @@ let menu_of_string (mst : menu_state) =
     end
   | PokeList -> Switch
   | x -> x
-(* | x -> begin 
-   if (contains x "POKEBALL") then Catch
-   else if (contains x "POTION") then Heal
-   else if (is_switch mst.player.poke_list x) then Switch 
-   else Attack 
-   end *)
 
-(** TODO: add comment *)
 let action_change mst = function
   | Move x -> hover_change mst x
   | Enter -> let select_menu = menu_of_string mst in
     {mst with status = select_menu; select = Some select_menu}
-  | Back -> begin
-      match mst.previous with
-      | None -> mst
-      | Some x -> x
-    end
+  | Back -> {mst with status = Default; hover = 0}
 
-(** TODO: add comment *)
 let select_change est = function
   | Some sel -> action_change est sel
   | None -> est
 
-(** TODO: add comment *)
 let menu_change (mst : menu_state) st menu =
   match menu with 
   | Fight -> process_fight mst st 
@@ -144,7 +119,7 @@ let menu_change (mst : menu_state) st menu =
   | Heal -> process_heal mst st 
   | Switch -> process_switch mst st 
   | Attack atks -> process_attack {mst with status = Attack atks} st atks 
-  | Run -> {st with status = Walking}
+  | Run -> process_run mst st
   | _ -> failwith "idk yet"
 
 let rec process_menu input (st: state) (mst : State.menu_state) =
@@ -154,9 +129,7 @@ let rec process_menu input (st: state) (mst : State.menu_state) =
     let new_st = {st with player = player} in 
     let new_mst = {mst with player = player} in  
     let new_mst' = select_change new_mst (encount_key input) in 
-    let prev = if new_mst.status != new_mst'.status then Some new_mst 
-      else new_mst.previous in
     match new_mst'.select with
-    | Some menu -> menu_change {new_mst' with previous = prev} new_st menu
+    | Some menu -> menu_change new_mst' new_st menu
     | None -> {new_st with status = Menu new_mst'}
   else process_fainted st 

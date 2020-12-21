@@ -13,6 +13,6 @@ let trainer_tests = [
       assert_equal "Clarkson" (List.hd trainer_list).name);
 
   "catchphrase of second trainer"  >:: (fun _ -> 
-      assert_equal "Do you know the four loopy questions?" 
+      assert_equal "Brace yourself, it's time to see if you're a real CS nerd." 
         (List.nth trainer_list 1).catchphrase)
 ]

@@ -102,63 +102,42 @@ let gym_loc map =
   done;
   !loc
 
-(** TODO: add comment *)
-let process_gym st = 
-  if st.status = EnterGym then 
+(** [walking st dir] is the state after some key input while the 
+    player is walking on regular road *)
+let walking st dir = 
+  let mv_st =  {st with player=(move_map st.player dir st.maps.(0))} in 
+  let new_status = 
+    (update_status mv_st (player_block mv_st.player mv_st.maps.(0))) in 
+  if new_status = EnterGym then 
     let loc = gym_entrance_loc st.maps.(1) in 
-    let mv_player = {st.player with location = loc} in 
-    {st with player = mv_player; status = WalkingGym}
+    let mv_player = {mv_st.player with location = loc} in 
+    {mv_st with player = mv_player; status = WalkingGym}
   else 
-    let loc = gym_loc st.maps.(0) in 
-    let mv_player = {st.player with location = loc} in 
-    {st with player = mv_player; status = Walking}
+    {mv_st with status = new_status}
 
-let trainer_battle st =   
-  match List.filter (fun (t : Trainer.trainer) -> 
-      (t.x, t.y) = st.player.location) st.trainers with 
-  | [] -> failwith "impossible"
-  | h :: t -> h 
-
-let set_gym st = 
-  if List.hd (List.rev st.trainers) = trainer_battle st then
-    let mst =                 
-      {status = Default;
-       player = st.player; 
-       opponent = (List.hd (List.rev st.trainers)).poke_list; 
-       hover = 0; 
-       select = None;
-       is_trainer = true;
-       previous = None;
-      } in 
-    {st with status = Menu mst}
-  else {st with panel_txt = "You must battle in order!"; status = WalkingGym}
+(** [walking_gym st dir] is the state after some key input while the 
+    player is walking on gym road *)
+let walking_gym st dir = 
+  let mv_st =  {st with player=(move_map st.player dir st.maps.(1))} in 
+  let new_status = 
+    (update_status mv_st (player_block mv_st.player mv_st.maps.(1))) in 
+  match new_status with 
+  | ExitGym -> let loc = gym_loc st.maps.(0) in 
+    let mv_player = {mv_st.player with location = loc} in 
+    {mv_st with player = mv_player; status = Walking}
+  | AlreadyBattled -> {st with panel_txt = "We have already battled!";
+                               status = WalkingGym}
+  | CannotBattle -> {st with panel_txt = "You must battle in order!"; 
+                             status = WalkingGym}
+  | _ -> {mv_st with status = new_status}
 
 let process_walk input (st : State.state) =
   let action = walk_key input in
   match action with
   | Move dir ->  begin 
       match st.status with 
-      | Walking -> begin 
-          let mv_st =  {st with player=(move_map st.player dir st.maps.(0))} in 
-          let new_status = 
-            (update_status mv_st (player_block mv_st.player mv_st.maps.(0))) in 
-          if new_status = EnterGym then 
-            let loc = gym_entrance_loc st.maps.(1) in 
-            let mv_player = {mv_st.player with location = loc} in 
-            {mv_st with player = mv_player; status = WalkingGym}
-          else 
-            {mv_st with status = new_status} end 
-      | WalkingGym -> begin 
-          let mv_st =  {st with player=(move_map st.player dir st.maps.(1))} in 
-          let new_status = 
-            (update_status mv_st (player_block mv_st.player mv_st.maps.(1))) in 
-          if new_status = ExitGym then 
-            let loc = gym_loc st.maps.(0) in 
-            let mv_player = {mv_st.player with location = loc} in 
-            {mv_st with player = mv_player; status = Walking}
-          else if new_status = TrainerTalk then 
-            set_gym mv_st
-          else {mv_st with status = new_status} end 
+      | Walking -> walking st dir
+      | WalkingGym -> walking_gym st dir
       | _ -> failwith "impossible"
     end 
   | Display x -> {st with panel_txt=(display st x)}

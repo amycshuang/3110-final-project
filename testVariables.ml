@@ -38,10 +38,10 @@ let able_level_water = generate_able_levelup test_water_pkm
 
 let leveled_up_starter_stats = {
   level = 6;
-  base_hp = 47;
-  hp = 47;
-  attack = 51;
-  defense = 51;
+  base_hp = 55;
+  hp = 55;
+  attack = 64;
+  defense = 59;
   curr_exp = 0;
   level_up_exp = 52;
 }
@@ -50,10 +50,10 @@ let leveled_up_starter =
 
 let leveled_up_grass_stats = {
   level = 6;
-  base_hp = 41;
-  hp = 41;
-  attack = 54;
-  defense = 45;
+  base_hp = 49;
+  hp = 49;
+  attack = 67;
+  defense = 53;
   curr_exp = 0;
   level_up_exp = 52;
 }
@@ -62,10 +62,10 @@ let leveled_up_grass =
 
 let leveled_up_water_stats = {
   level = 3;
-  base_hp = 46;
-  hp = 46;
-  attack = 50;
-  defense = 67;
+  base_hp = 54;
+  hp = 54;
+  attack = 63;
+  defense = 75;
   curr_exp = 0;
   level_up_exp = 52;
 }
@@ -79,7 +79,7 @@ let increased_exp_starter_stats = {
   hp = 45;
   attack = 49;
   defense = 49;
-  curr_exp = 2;
+  curr_exp = 6;
   level_up_exp = 50;
 }
 let increased_exp_starter = 
@@ -91,7 +91,7 @@ let increased_exp_grass_stats = {
   hp = 39;
   attack = 52;
   defense = 43;
-  curr_exp = 2;
+  curr_exp = 6;
   level_up_exp = 50;
 }
 let increased_exp_grass = 
@@ -103,8 +103,73 @@ let increased_exp_water_stats = {
   hp = 44;
   attack = 48;
   defense = 65;
-  curr_exp = 1;
+  curr_exp = 2;
   level_up_exp = 50;
 }
 let increased_exp_water = 
   {test_water_pkm with stats = increased_exp_water_stats}
+
+(* The following create battle_damage test variables *)
+
+(* Stats after bulbasaur uses vine whip on charmander. *)
+let grass_pokemon_damage_stats = {
+  level = 5;
+  base_hp = 39;
+  hp = 35;
+  attack = 52;
+  defense = 43;
+  curr_exp = 0;
+  level_up_exp = 50;
+}
+let damaged_grass_poke =
+  {test_grass_pkm with stats = grass_pokemon_damage_stats}
+
+let starter_pokemon_damage_stats = {
+  level = 5;
+  base_hp = 45;
+  hp = 37;
+  attack = 49;
+  defense = 49;
+  curr_exp = 0;
+  level_up_exp = 50;
+}
+let damaged_starter_poke =
+  {test_starter_pkm with stats = starter_pokemon_damage_stats}
+
+let water_pokemon_damage_stats = {
+  level = 2;
+  base_hp = 44;
+  hp = 43;
+  attack = 48;
+  defense = 65;
+  curr_exp = 0;
+  level_up_exp = 50;
+}
+let damaged_water_poke =
+  {test_water_pkm with stats = water_pokemon_damage_stats}
+
+let low_hp_charmander_stats = {
+  level = 5;
+  base_hp = 39;
+  hp = 3;
+  attack = 52;
+  defense = 43;
+  curr_exp = 0;
+  level_up_exp = 50;
+}
+
+let low_hp_charmander = 
+  {test_grass_pkm with stats = low_hp_charmander_stats}
+
+let damaged_low_charmander_stats = {
+  level = 5;
+  base_hp = 39;
+  hp = 0;
+  attack = 52;
+  defense = 43;
+  curr_exp = 0;
+  level_up_exp = 50;
+}
+
+let damaged_low_hp_charmander = 
+  {test_grass_pkm with stats = damaged_low_charmander_stats}

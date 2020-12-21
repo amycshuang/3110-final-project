@@ -1,22 +1,22 @@
 open Printf
 
-(** string_input_helper is the string that the user inputs in the terminal. 
-    An important thing to remember is that if you press enter by mistake, nothing 
-    will be taken in, and the function will default to an empty string. *)
+(** [string_input_helper ()] is the string that the user inputs in the terminal. 
+    An important thing to remember is that if you press enter by mistake, 
+    nothing will be taken in, and the function will default to an empty string. *)
 let string_input_helper () =  
   match read_line () with
-  | exception End_of_file -> print_endline "nothing given, defaulting to empty string"; ""
+  | exception End_of_file -> print_endline "default to empty string"; ""
   | s -> "\"" ^ s ^ "\""
 
-(** int_input_helper is the integer that the user inputs in the terminal. 
-    An important thing to remember is that if you press enter by mistake, nothing 
-    will be taken in, and the function will default to 0. *)
+(** [int_input_helper ()] is the integer that the user inputs in the terminal. 
+    An important thing to remember is that if you press enter by mistake, 
+    nothing will be taken in, and the function will default to 1. *)
 let int_input_helper () =
   match read_int_opt () with
-  | None -> print_endline "setting to 0"; 0
+  | None -> print_endline "setting to 1"; 1
   | Some s -> s
 
-(** continue_check_helper [f] will call the function f if the user input is 
+(** [continue_check_helper f] calls the function f if the user input is 
     'y' or 'Y', or it will simply return unit (thus exiting) *)
 let continue_check_helper (f: unit -> unit) = 
   match read_line () with
@@ -119,8 +119,6 @@ let rec main () =
     | "starter" -> print_string "\n"; starter_block_input ();
     | _ -> ANSITerminal.(print_string [red] "Invalid block type, try again\n"); 
       main (); in
-  print_string "Do you want to enter another block type?\n";
-  let _ = continue_check_helper main in
   () 
 
 let () = main ()
