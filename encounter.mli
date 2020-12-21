@@ -1,3 +1,8 @@
+(** 
+   Representation of an encounter between the Player and a 
+   wild pokemon or trainer. 
+*)
+
 (** [str_bag_items b] is a string representation of the inventory in bag [b]. *)
 val str_bag_items : (Player.item * int) list -> string list
 

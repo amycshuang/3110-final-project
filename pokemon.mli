@@ -52,7 +52,7 @@ val poke_list_from_json : Yojson.Basic.t -> pokemon list
 
 (** [type_from_string s] is the poke_type of string [s].
     Requires: [s] is capitalized.
-    Raises: InvalidPokemonType if [s] is not a valid string of a pokemon type. *)
+    Raises: InvalidPokemonType if [s] is not a valid string of a pokemon type.*)
 val type_from_string : string -> poke_type
 
 (** [string_from_type t] is the string representation of poke_type [t].

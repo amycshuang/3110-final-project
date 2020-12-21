@@ -10,11 +10,11 @@
         "name": "Camerupt",
         "poke_type": "Ground",
         "stats": {
-          "level": 10,
-          "base_hp": 10,
-          "hp": 10,
-          "attack": 100,
-          "defense": 70,
+          "level": 9,
+          "base_hp": 65,
+          "hp": 65,
+          "attack": 60,
+          "defense": 65,
           "curr_exp": 0,
           "level_up_exp": 50
         },
@@ -42,11 +42,11 @@
         "name": "Giratina",
         "poke_type": "Ghost",
         "stats": {
-          "level": 11,
-          "base_hp": 10,
-          "hp": 10,
-          "attack": 100,
-          "defense": 120,
+          "level": 7,
+          "base_hp": 70,
+          "hp": 70,
+          "attack": 50,
+          "defense": 50,
           "curr_exp": 0,
           "level_up_exp": 50
         },
@@ -75,8 +75,8 @@
         "poke_type": "Water",
         "stats": {
           "level": 9,
-          "base_hp": 10,
-          "hp": 10,
+          "base_hp": 80,
+          "hp": 80,
           "attack": 65,
           "defense": 60,
           "curr_exp": 0,
@@ -107,10 +107,10 @@
         "poke_type": "Dark",
         "stats": {
           "level": 11,
-          "base_hp": 10,
-          "hp": 10,
-          "attack": 65,
-          "defense": 110,
+          "base_hp": 80,
+          "hp": 80,
+          "attack": 70,
+          "defense": 45,
           "curr_exp": 0,
           "level_up_exp": 50
         },
@@ -148,9 +148,9 @@
         "poke_type": "Fire",
         "stats": {
           "level": 9,
-          "base_hp": 10,
-          "hp": 10,
-          "attack": 85,
+          "base_hp": 70,
+          "hp": 70,
+          "attack": 45,
           "defense": 55,
           "curr_exp": 0,
           "level_up_exp": 50
@@ -180,10 +180,10 @@
         "poke_type": "Ice",
         "stats": {
           "level": 9,
-          "base_hp": 10,
-          "hp": 10,
-          "attack": 85,
-          "defense": 80,
+          "base_hp": 70,
+          "hp": 70,
+          "attack": 65,
+          "defense": 40,
           "curr_exp": 0,
           "level_up_exp": 50
         },
@@ -212,8 +212,8 @@
         "poke_type": "Normal",
         "stats": {
           "level": 11,
-          "base_hp": 10,
-          "hp": 10,
+          "base_hp": 80,
+          "hp": 80,
           "attack": 55,
           "defense": 50,
           "curr_exp": 0,
@@ -253,9 +253,9 @@
         "poke_type": "Electric",
         "stats": {
           "level": 9,
-          "base_hp": 10,
-          "hp": 10,
-          "attack": 65,
+          "base_hp": 55,
+          "hp": 55,
+          "attack": 45,
           "defense": 60,
           "curr_exp": 0,
           "level_up_exp": 50
@@ -285,10 +285,10 @@
         "poke_type": "Grass",
         "stats": {
           "level": 8,
-          "base_hp": 10,
-          "hp": 10,
-          "attack": 110,
-          "defense": 130,
+          "base_hp": 75,
+          "hp": 75,
+          "attack": 67,
+          "defense": 52,
           "curr_exp": 0,
           "level_up_exp": 50
         },
@@ -326,8 +326,8 @@
         "poke_type": "Normal",
         "stats": {
           "level": 9,
-          "base_hp": 10,
-          "hp": 10,
+          "base_hp": 65,
+          "hp": 65,
           "attack": 45,
           "defense": 45,
           "curr_exp": 0,
@@ -358,9 +358,9 @@
         "poke_type": "Water",
         "stats": {
           "level": 11,
-          "base_hp": 10,
-          "hp": 10,
-          "attack": 70,
+          "base_hp": 75,
+          "hp": 75,
+          "attack": 50,
           "defense": 50,
           "curr_exp": 0,
           "level_up_exp": 50

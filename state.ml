@@ -21,11 +21,6 @@ type menu = Default
           | Switch 
           | Attack of attack_moves
 
-type battle = Begin 
-            | Battling 
-            | Over 
-            | CannotBattle
-
 type menu_state = {
   status : menu;
   player : Player.player;
@@ -58,7 +53,9 @@ type state = {
 
 let get_key () = (wait_next_event [Key_pressed]).Graphics.key
 
-(** TODO: add comment *)
+(** [spawn_status block st] returns the Player's state with the opponent list 
+    containing a random spawned pokemon based on the block [block] the Player 
+    was on. *)
 let spawn_status block (st : state) = 
   let spawned = spawn_poke block in
   match spawned with
@@ -73,8 +70,12 @@ let spawn_status block (st : state) =
     Menu mst
   | None -> Walking
 
+
+(** [trainer_on_block st] is the trainer on a trainer on the block where
+    the player is located in state [st]. *)
 let trainer_on_block st =   
-  let all_trainers = trainer_list_from_json (Yojson.Basic.from_file "trainers.json") in 
+  let all_trainers = 
+    trainer_list_from_json (Yojson.Basic.from_file "trainers.json") in 
   match List.filter (fun t -> (t.x, t.y) = st.player.location) all_trainers with 
   | [] -> failwith "impossible"
   | h :: t -> h 
@@ -87,7 +88,7 @@ let set_trainer st =
     CannotBattle
   else TrainerTalk trainer
 
-let set_win st = 
+let check_win st = 
   if List.length st.trainers = 0 then Win
   else set_trainer st 
 
@@ -101,26 +102,6 @@ let update_status (st : state) = function
   | Exit -> ExitGym
   | PokeCenter -> PokeCenter 
   | Trainer | ClarksonSpot -> check_win st 
-(* let mst = { status = Default;
-            player = st.player; 
-            opponent = trainer.poke_list; 
-            hover = 0; 
-            select = None;
-            p_turn = true
-          } in 
-   if trainer = (List.hd (List.rev st.trainers)) then 
-   let gym_state = {
-    trainer = trainer; 
-    battle = mst; 
-    status = Begin;
-   }
-   in GymBattle gym_state
-   else let gym_state = {
-    trainer = trainer; 
-    battle = mst; 
-    status = CannotBattle;
-   }
-   in GymBattle gym_state *)
 
 let player_block p map = 
   let (x, y) = p.location in 
@@ -147,5 +128,6 @@ let init_state name starter map =
     player = make_player name starter map;
     panel_txt = "Use your WASD keys to move around the map";
     status = Walking;
-    trainers = List.rev (trainer_list_from_json (Yojson.Basic.from_file "trainers.json"));
+    trainers = List.rev 
+        (trainer_list_from_json (Yojson.Basic.from_file "trainers.json"));
   }

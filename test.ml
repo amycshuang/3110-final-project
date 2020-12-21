@@ -68,7 +68,7 @@
 
    - [gui.ml] and [main.ml] were tested manually by using valid and invalid 
      keystrokes used to interact with the GUI itself. The main keys used
-     to interact with the GUI are 'w', 'a', 's', 'd', 'f', and 'b', with the WASD
+     to interact with the GUI are 'w', 'a', 's', 'd', 'f', 'b', with the WASD
      as the keys used to move the player and pointers, 'f' as the selection key,
      and 'b' as a back key. Invalid keystrokes were also tested using [gui.ml]
      by displaying an "Invalid Key" message on the GUI itself.
@@ -101,10 +101,33 @@
      tested by shwoing messages on the GUI, as we could check for the correct 
      starter pokemon, map, and player name.
 
+    This demonstrates correctness as we were able to check for the correct
+    initialization of the game state and responses through the printed
+    statements in the terminal. By inputting all of the possible options for
+    starter pokemon and maps, as well as invalid inputs, we were able to
+    validate that [initial.ml] was working properly.
 
+   - [gym.ml], [pokecenter.ml], [encounter.ml], [walking.ml], and [menu.ml]
+     were all tested with the same process as testing [gui.ml] and [state.ml] 
+     since these modules rely heavily on the rendering of the GUI and mainly
+     handle what happens when the state status changes for each individual
+     state of the game (Gym, Pokecenter, Encounter, Walking, Menu).
 
+    Similarly, this demonstrates the correctness of these modules as we were
+    able to verify that the correct screen were being rendered based on the
+    change in game state. By being able to interact with the GUI and actually
+    play the game, we could check for the expected changes in our game state.
 
+    JSON Utitlity Script Testing:
+   - [pokemon_json_script.ml] and [map_json_script.ml] were tested manually
+     by inputting into the terminal the necesasry values needed to build the 
+     various JSONs for pokemon and maps. By building several pokemon and map 
+     JSONs, we were able tov verify that these scripts worked as expected.
 
+    This shows correctness because we were able to see the resulting JSONs
+    created from these utility scripts. By checking to see if the output was
+    as expected, we were able to verify that our utility scripts functioned
+    properly and built the JSONs as we wanted them to.
 
 *)
 

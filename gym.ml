@@ -8,20 +8,21 @@ open Trainer
 
 type gym_action =  StartBattle | EndBattle | Default 
 
-let gym_key ch = 
+let gym_key ch =
   match ch with 
   | 'b' -> StartBattle 
   | 'n' -> EndBattle 
-  | _ -> Default
+  | _ -> Default 
 
-(** TODO - add doc *)
+(** [win_battle_money trainers] is the amount of pokecoins won after defeating
+    a trainer. *)
 let win_battle_money trainers = 1200 / (List.length trainers + 1)
 
-let set_gym_start st =
+let set_gym_start st t =
   let mst =                 
     {status = Default;
      player = st.player; 
-     opponent = (List.hd st.trainers).poke_list; 
+     opponent = t.poke_list; 
      hover = 0; 
      select = None;
      is_trainer = true
@@ -45,7 +46,7 @@ let set_gym_win st =
 
 let process_gym input st =
   match gym_key input, st.status with 
-  | StartBattle, TrainerTalk -> set_gym_start st 
+  | StartBattle, TrainerTalk t -> set_gym_start st t
   | EndBattle, TrainerOver -> set_gym_win st 
   | _, _ -> st
 

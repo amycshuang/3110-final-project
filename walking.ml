@@ -102,23 +102,6 @@ let gym_loc map =
   done;
   !loc
 
-(** TODO: add comment *)
-let process_gym st = 
-  if st.status = EnterGym then 
-    let loc = gym_entrance_loc st.maps.(1) in 
-    let mv_player = {st.player with location = loc} in 
-    {st with player = mv_player; status = WalkingGym}
-  else 
-    let loc = gym_loc st.maps.(0) in 
-    let mv_player = {st.player with location = loc} in 
-    {st with player = mv_player; status = Walking}
-
-let trainer_on_block st =   
-  match List.filter (fun (t : Trainer.trainer) -> 
-      (t.x, t.y) = st.player.location) st.trainers with 
-  | [] -> failwith "impossible"
-  | h :: t -> h 
-
 let process_walk input (st : State.state) =
   let action = walk_key input in
   match action with
@@ -146,7 +129,8 @@ let process_walk input (st : State.state) =
             {st with panel_txt = "We have already battled!";
                      status = WalkingGym}
           else if new_status = CannotBattle then 
-            {st with panel_txt = "You must battle in order!"; status = WalkingGym}
+            {st with panel_txt = "You must battle in order!"; 
+                     status = WalkingGym}
           else {mv_st with status = new_status} end 
       | _ -> failwith "impossible"
     end 

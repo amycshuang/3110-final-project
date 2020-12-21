@@ -242,7 +242,7 @@ let battle_damage pkm1 pkm2 move =
   let pkm_defense = float_of_int pkm1.stats.defense in 
   let opp_attack = float_of_int pkm2.stats.attack in 
   let damage_float = 
-    10.0 *. (((2. *. pkm_lv) /. 5.) *. (opp_attack /. pkm_defense))
+    4.0 *. (((2. *. pkm_lv) /. 5.) *. (opp_attack /. pkm_defense))
     *. damage_multiplier in 
   let damage_int = int_of_float damage_float in 
   let dec_hp = pkm1.stats.hp - damage_int in 
