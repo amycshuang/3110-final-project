@@ -125,36 +125,39 @@ let rec str_bag_items = function
 let str_move_lst moves = 
   Array.of_list (List.map (fun m -> m.move_name) moves)
 
+(** [opp_attack' st mst atks pokelist] is the state after the opponent pokemon
+    attacks and the player's attacking pokemon faints.  *)
+let opp_attack' st mst atks pokelist = 
+  if check_pokelist pokelist then 
+    let pokelist' = set_battle_team pokelist in 
+    let battling_poke = List.hd pokelist' in 
+    let player' = {st.player with poke_list = pokelist'} in 
+    let mst' = {mst with player = player'; select = None} in 
+    let () = atks.battling_poke.(1) <- battling_poke in 
+    let mst'' = {mst' with status = Attack atks} in 
+    {st with player = player'; status = Menu mst''}
+  else       
+    let loc = get_pokecenter_loc st.maps.(0) in 
+    let player' = {st.player with location = loc; poke_list = pokelist} in 
+    {st with player = player'; status = PokeCenter}
+
 (** [opp_attack st mst atks] is the state after the opponent pokemon attacks. *)
 let opp_attack st mst atks = 
   let poke_lst = st.player.poke_list in 
   let curr_pkm = List.hd poke_lst in 
   let opp_pkm = List.hd mst.opponent in 
-  let new_curr_pkm = battle_damage curr_pkm opp_pkm atks.opponent_attack in 
-  let new_pkm_lst = new_curr_pkm :: List.tl poke_lst in 
-  if new_curr_pkm.stats.hp = 0 then 
-    if check_pokelist new_pkm_lst then 
-      let new_pkm_lst' = set_battle_team new_pkm_lst in 
-      let new_player = {st.player with poke_list = new_pkm_lst'} in 
-      let new_mst = 
-        {mst with player = new_player; select = None} in 
-      let () = atks.battling_poke.(0) <- List.hd new_pkm_lst in 
-      let () = atks.battling_poke.(1) <- List.hd new_pkm_lst in 
-      let new_mst' = {new_mst with status = Default} in 
-      {st with player = new_player; status = Menu new_mst'}
-    else 
-      let loc = get_pokecenter_loc st.maps.(0) in 
-      let new_player = 
-        {st.player with location = loc; poke_list = new_pkm_lst} in 
-      {st with player = new_player; status = PokeCenter}
+  let curr_pkm' = battle_damage curr_pkm opp_pkm atks.opponent_attack in 
+  let pkm_lst' = curr_pkm' :: List.tl poke_lst in 
+  if curr_pkm'.stats.hp = 0 then 
+    opp_attack' st mst atks pkm_lst'
   else 
-    let new_player = {st.player with poke_list = new_pkm_lst} in 
-    let new_mst = {mst with player = new_player} in 
-    let () = atks.battling_poke.(1) <- List.hd new_pkm_lst in 
-    {st with player = new_player; status = Menu new_mst}
+    let player' = {st.player with poke_list = pkm_lst'} in 
+    let mst' = {mst with player = player'} in 
+    let () = atks.battling_poke.(1) <- List.hd pkm_lst' in 
+    {st with player = player'; status = Menu mst'}
 
 (** [update_player_poke curr_pkm opp_pkm pkm_lst st] is the player after
-    the player's battling pokemon gains experience and levels up,
+    the player's battling pokemon [curr_pkm] gains experience and levels up,
      if necessary. *)
 let update_player_poke curr_pkm opp_pkm pkm_lst st = 
   let gain_exp_curr = increase_exp curr_pkm opp_pkm in 
@@ -162,34 +165,45 @@ let update_player_poke curr_pkm opp_pkm pkm_lst st =
   let new_curr_pokelist = level_up_curr :: List.tl pkm_lst in 
   {st.player with poke_list = new_curr_pokelist}
 
+(** [battle_over mst st] is the state when the battle is over, depending on 
+    whether the battle was with a wild pokemon or a trainer. *)
+let battle_over mst st = 
+  if mst.is_trainer then 
+    {st with status = TrainerOver} 
+  else {st with status = Walking}
+
+
+(** [player_attack atks st mst pokelist] is the state after the player 
+    pokemon attacks and the opponent's current pokemon fainted.  *)
+let player_attack' atks st mst pokelist curr_pkm opp_pkm opp_pkm' = 
+  let player' = update_player_poke curr_pkm opp_pkm pokelist st in
+  let st' = {st with player = player'} in 
+  let opp_lst' = opp_pkm' :: List.tl mst.opponent in 
+  if check_pokelist opp_lst' then 
+    let opp_lst'' = set_battle_team opp_lst' in 
+    let curr_opp' = List.hd opp_lst'' in 
+    let mst' = 
+      {mst with player = player'; opponent = opp_lst''; select = None} in 
+    let () = atks.battling_poke.(2) <- curr_opp' in 
+    let () = atks.battling_poke.(3) <- curr_opp' in 
+    let atks' = {atks with opponent_attack = 
+                             opponent_move curr_opp'} in 
+    let mst'' = {mst' with status = Attack atks'} in 
+    opp_attack {st' with status = Menu mst''} mst'' atks'
+  else battle_over mst st
+
+
 (** [player_attack curr_pkm opp_pkm pkm_lst st] is the state after a player's
     pokemon attacks the opponent pokemon [opp_pkm]. *)
 let player_attack atks st mst = 
-  let curr_pokelist = st.player.poke_list in 
-  let curr_pkm = List.hd curr_pokelist in 
+  let pokelist = st.player.poke_list in 
+  let curr_pkm = List.hd pokelist in 
   let opp_pkm = List.hd mst.opponent in 
-  let new_opp_pkm = battle_damage opp_pkm curr_pkm atks.player_attack in 
-  if new_opp_pkm.stats.hp = 0 then 
-    let new_player = update_player_poke curr_pkm opp_pkm curr_pokelist st in
-    let new_st = {st with player = new_player} in 
-    let new_opp_lst = new_opp_pkm :: List.tl mst.opponent in 
-    let new_mst = 
-      {mst with player = new_player; opponent = new_opp_lst; select = None} in 
-    if check_pokelist new_mst.opponent then 
-      let new_opp_lst' = set_battle_team new_mst.opponent in 
-      let new_mst' = {new_mst with opponent = new_opp_lst'} in 
-      let () = atks.battling_poke.(2) <- List.hd new_opp_lst' in 
-      let () = atks.battling_poke.(3) <- List.hd new_opp_lst' in 
-      let atks' = {atks with opponent_attack = 
-                               opponent_move (List.hd new_mst'.opponent)} in 
-      let new_mst'' = {new_mst' with status = Attack atks'} in 
-      opp_attack {new_st with status = Menu new_mst''} new_mst'' atks'
-    else 
-    if mst.is_trainer then
-      {new_st with status = TrainerOver} 
-    else {new_st with status = Walking}
+  let opp_pkm' = battle_damage opp_pkm curr_pkm atks.player_attack in 
+  if opp_pkm'.stats.hp = 0 then 
+    player_attack' atks st mst pokelist curr_pkm opp_pkm opp_pkm'
   else 
-    let new_opp_lst = new_opp_pkm :: List.tl mst.opponent in 
+    let new_opp_lst = opp_pkm' :: List.tl mst.opponent in 
     let new_mst' = {mst with opponent = new_opp_lst; select = None} in 
     let () = atks.battling_poke.(3) <- List.hd new_opp_lst in 
     opp_attack {st with status = Menu new_mst'} new_mst' atks

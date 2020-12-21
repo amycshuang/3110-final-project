@@ -1,8 +1,14 @@
 [
   {
     "name": "Clarkson",
-    "catchphrase": "You thought mutability was hard? Are you ready to face the power of the lambda calculus?",
-    "endphrase": "Wow! I see you are a pragmatic programmer! See you soon young grasshopper. Meanwhile, I hope you are well. Peace, love, and 3110",
+    "catchphrase": [
+      "You thought mutability was hard?",
+      "Are you ready to face the power of the lambda calculus?"
+    ],
+    "endphrase": [
+      "Wow! I see you are a pragmatic programmer! See you soon young grasshopper.",
+      "Meanwhile, I hope you are well. Peace, love, and 3110"
+    ],
     "x": 9,
     "y": 8,
     "poke_list": [
@@ -138,8 +144,12 @@
   },
   {
     "name": "Ann Bracy",
-    "catchphrase": "Brace yourself, it's time to see if you're a real CS nerd.",
-    "endphrase": "It looks like you and your team make a good system.",
+    "catchphrase": [
+      "Brace yourself, it's time to see if you're a real CS nerd."
+    ],
+    "endphrase": [
+      "It looks like you and your team make a good system."
+    ],
     "x": 11,
     "y": 5,
     "poke_list": [
@@ -243,8 +253,14 @@
   },
   {
     "name": "Gries",
-    "catchphrase": "Do you know the four loopy questions? Will this battle start right? How will this battle progress towards termination?",
-    "endphrase": "I guess this battle did end right. It looks like you have mastered the four loopy questions. Good luck on your journey.",
+    "catchphrase": [
+      "Do you know the four loopy questions? Will this battle start right?",
+      "How will this battle progress towards termination?"
+    ],
+    "endphrase": [
+      "I guess this battle did end right.",
+      "It looks like you have mastered the four loopy questions. Good luck on your journey."
+    ],
     "x": 5,
     "y": 2,
     "poke_list": [
@@ -316,8 +332,12 @@
   },
   {
     "name": "Walker White",
-    "catchphrase": "I get a lot of emails, this better be quick.",
-    "endphrase": "That was more exciting than an email. Good luck trainer.",
+    "catchphrase": [
+      "I get a lot of emails, this better be quick."
+    ],
+    "endphrase": [
+      "That was more exciting than an email. Good luck trainer."
+    ],
     "x": 14,
     "y": 4,
     "poke_list": [

@@ -5,9 +5,10 @@ open Command
 open Walking
 open Encounter
 
+(** The type of a direction. *)
 type direction = Up | Left | Right | Down 
 
-(** The type of selection on the encounter screen *)
+(** The type of selection on the encounter screen. *)
 type selection = Move of direction| Enter | Back
 
 let default_menu = [|"FIGHT"; "BAG"; "POKEMON"; "RUN"|]
@@ -59,16 +60,6 @@ let hover_change (st : menu_state) dir =
   if new_hover < max_len && new_hover >= 0 then 
     {st with hover = new_hover}
   else st
-(* 
-(** [contains s1 s2] is true if string [s1] contains string [s2]. *)
-let contains s1 s2 =
-  try
-    let len = String.length s2 in
-    for i = 0 to String.length s1 - len do
-      if String.sub s1 i len = s2 then raise Exit
-    done;
-    false
-  with Exit -> true *)
 
 (** [is_switch pkm_lst pkm_name] is true if a pokemon with name [pkm_name] 
     is in the list [pkm_lst], false otherwise. *)
@@ -108,12 +99,6 @@ let menu_of_string (mst : menu_state) =
     end
   | PokeList -> Switch
   | x -> x
-(* | x -> begin 
-   if (contains x "POKEBALL") then Catch
-   else if (contains x "POTION") then Heal
-   else if (is_switch mst.player.poke_list x) then Switch 
-   else Attack 
-   end *)
 
 let action_change mst = function
   | Move x -> hover_change mst x

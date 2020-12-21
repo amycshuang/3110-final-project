@@ -98,13 +98,13 @@ let get_block_type (t : block) =
   | Trainer -> "trainer"
   | ClarksonSpot -> "clarkson spot "
 
-(** [water_poke] is the pokemon list from the water_pokemon.json. This is a list
-    of all the pokemon that can spawn on water blocks. *)
+(** [water_poke] is the pokemon list from the water_pokemon.json. This is a 
+    list of all the pokemon that can spawn on water blocks. *)
 let water_poke = Pokemon.poke_list_from_json 
     (Yojson.Basic.from_file "water_pokemon.json")
 
-(** [grass_poke] is the pokemon list from the grass_pokemon.json. This is a list
-    of all the pokemon that can spawn on tall grass blocks. *)
+(** [grass_poke] is the pokemon list from the grass_pokemon.json. This is a 
+    list of all the pokemon that can spawn on tall grass blocks. *)
 let grass_poke = Pokemon.poke_list_from_json 
     (Yojson.Basic.from_file "grass_pokemon.json")
 

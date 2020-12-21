@@ -388,10 +388,10 @@
     "poke_type": "Normal",
     "stats": {
       "level": 2,
-      "base_hp": 50,
-      "hp": 50,
-      "attack": 45,
-      "defense": 45,
+      "base_hp": 25,
+      "hp": 25,
+      "attack": 20,
+      "defense": 20,
       "curr_exp": 0,
       "level_up_exp": 50
     },
@@ -508,38 +508,6 @@
       {
         "move_type": "Normal",
         "move_name": "Yawn"
-      }
-    ]
-  },
-  {
-    "name": "Camerupt",
-    "poke_type": "Ground",
-    "stats": {
-      "level": 4,
-      "base_hp": 70,
-      "hp": 70,
-      "attack": 85,
-      "defense": 70,
-      "curr_exp": 0,
-      "level_up_exp": 50
-    },
-    "caught": false,
-    "move_set": [
-      {
-        "move_type": "Ground",
-        "move_name": "Fissure"
-      },
-      {
-        "move_type": "Normal",
-        "move_name": "Growl"
-      },
-      {
-        "move_type": "Fire",
-        "move_name": "Eruption"
-      },
-      {
-        "move_type": "Ground",
-        "move_name": "Earthquake"
       }
     ]
   }

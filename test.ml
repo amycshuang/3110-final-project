@@ -7,8 +7,8 @@
      Test cases were created for all public functions of [pokemon.ml] using
      glass box testing. We passed in pokemon and checked if the functions 
      correctly returned a pokemon with the correct stats (changed by
-     leveling up, battle damage, increasing exp, etc.). We also checked for valid
-     types and starter pokemon.
+     leveling up, battle damage, increasing exp, etc.). We also checked for 
+     valid types and starter pokemon.
 
     This demonstrates correctness because all public functions of [pokemon.ml]
     are tested with different types of pokemon and moves and different stats 
