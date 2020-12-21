@@ -168,11 +168,10 @@ let update_player_poke curr_pkm opp_pkm pkm_lst st =
 (** [battle_over mst st] is the state when the battle is over, depending on 
     whether the battle was with a wild pokemon or a trainer. *)
 let battle_over mst st = 
-  let trainer = trainer_on_block st in 
   if mst.is_trainer then 
+    let trainer = trainer_on_block st in 
     {st with status = TrainerOver trainer} 
   else {st with status = Walking}
-
 
 (** [player_attack atks st mst pokelist] is the state after the player 
     pokemon attacks and the opponent's current pokemon fainted.  *)
