@@ -14,5 +14,5 @@ let trainer_tests = [
 
   "catchphrase of second trainer"  >:: (fun _ -> 
       assert_equal "Brace yourself, it's time to see if you're a real CS nerd." 
-        (List.nth trainer_list 1).catchphrase)
+        (List.hd (List.nth trainer_list 1).catchphrase))
 ]
